@@ -219,12 +219,18 @@ var App = {
         
         //initiate photoswipe
         try{
-        var options = {};
-            $('a.gallery-item:not(.photoswiped)').addClass('photoswiped').photoSwipe(options);
+          var options = {
+            getToolbar: function() {
+              return '<div class="ps-toolbar-close" style="padding-top: 12px;">Close</div><div class="ps-toolbar-play" style="padding-top: 12px;">'
+              + 'Play</div><div class="ps-toolbar-previous" style="padding-top: 12px;">Previous</div><div class="ps-toolbar-next" ' +
+                'style="padding-top: 12px;">Next</div><div class="say-hi" style="padding-top: 12px;">Tweet</div>';
+            }
+          };
+          $('a.gallery-item:not(.photoswiped)').addClass('photoswiped').photoSwipe(options);
         } catch(e){
-            
+
         }
-        
+
         
         $('.toggleMapHeight:not(.clickBound)').addClass('clickBound').click(function(e){
             e.preventDefault();

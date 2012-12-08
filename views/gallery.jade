@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  div(role='main')
+    .page.innerPage.padpage.padtop.padbottom#galleryPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      h1 Gallery
+
+      .iscroll#galleryScroller(data-ajax='false')
+        .scroller
+          ul.menu
+            each image in images
+              li
+                ul.section
+                  li.square
+                    a.box.gallery-item(href='/img/gallery/#{image.file}')
+                      img(src='/img/gallery/#{image.file}',alt='#{image.name}')
+

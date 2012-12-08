@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  div(role='main')
+    .page.innerPage#videosPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+      .padpage.padtop
+        h1 Videos
+
+        p Curated videos related to Imam Zain-ul-Abideen
+      
+        .padpage
+          h2
+          span.h2 Featured Videos
+          
+        .videosSlide.flexslider(data-ajax='false')
+          ul.slides#slides
+            li
+              iframe(src="http://www.youtube.com/embed/nxCFpby9pgA?rel=0",height="315",frameborder="0",webkitAllowFullScreen, mozallowfullscreen,allowFullScreen)
+            li
+              iframe(src="http://www.youtube.com/embed/tNCwnCimSLA?rel=0",height="315",frameborder="0",webkitAllowFullScreen, mozallowfullscreen,allowFullScreen)
+
+

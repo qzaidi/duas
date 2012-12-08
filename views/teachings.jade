@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 Teachings of Imam Zainul Abideen
+        p
+          | Lessons and Inspiring Episodes from the life of our master.
+
+        .projects
+            ul(data-role='listview')
+                li
+                  a(href='project-detail.html')
+                    img(src='/img/icon-kaba.png', alt='Hajj')
+                    h3 Hajj
+                    p On the Philosophy of piligrimage
