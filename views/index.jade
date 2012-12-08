@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  div(role='main')
+    #menuPage.page.iscroll(data-role='page', data-cache='never')
+      .scroller
+        .company
+          img(src='img/home.jpg', alt='Sahifa-e-Sajjadiya')
+        ul.menu
+          li
+            ul.section
+              li.square
+                a.box(href='/start', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-tesbih.png', alt='About Us')
+                  span.text  Prayers
+              li.square
+                a.box(href='services.html', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-prayer.png', alt='Services')
+                  span.text  Whispered Prayers
+              li.square
+                a.box(href='blog.html', data-transition='fade', data-direction='reverse')
+                  img(src='img/icon-blog.png', alt='Blog')
+                  span.text  Blog
+          li
+            ul.section
+              li.square
+                a.box(href='gallery.html', data-transition='fade', data-direction='reverse')
+                  img(src='img/icon-gallery.png', alt='Gallery')
+                  span.text  Gallery 
+              li.square
+                a.box(href='portfolio.html', data-transition='fade', data-direction='reverse')
+                  img(src='img/icon-bag.png', alt='Portfolio')
+                  span.text  Portfolio
+              li.square
+                a.box(href='videos.html', data-transition='fade', data-direction='reverse')
+                  img(src='img/icon-video.png', alt='videos')
+                  span.text  Videos
+          li
+            ul.section
+              li.square
+                a.box(href='typography.html', data-transition='fade', data-direction='reverse')
+                  img(src='img/icon-typography.png', alt='Typography')
+                  span.text  Typography
+              li.square
+                a.box(href='careers.html', data-transition='fade', data-direction='reverse')
+                  img(src='img/icon-careers.png', alt='Careers')
+                  span.text  Join Us
+              li.square
+                a.box(href='contact.html', data-transition='fade', data-direction='reverse')
+                  img(src='img/icon-contact.png', alt='contact')
+                  span.text  Contact
