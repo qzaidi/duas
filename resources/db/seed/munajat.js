@@ -5,25 +5,42 @@ var sqlite3 = require('sqlite3').verbose();
 var fs = require('fs');
 var util = require('util');
 
+/* file format
+ * english translation
+ * blank
+ * english transliteration
+ * blank
+ * arabic
+ * blank
+ * the above repeats ...
+ */
 function readFile(file,cb) {
   fs.readFile(file, function(err,data) {
     var lines = data.toString().split('\n');
     var rows = [];
-    lines.forEach(function(line) {
-      var m;
+    var index = 0;
+    var row = [];
 
+    lines.forEach(function(line) {
       if (line.length < 1) {
+        //skip blanks
         return;
       }
 
-      m = line.match(/^[0-9A-Za-z, ;:!\[\]."\(\)-?'—]+/);
-      if (m) {
-        rows.push([ m[0], line.substring(m[0].length) ]);
-      } else {
-        console.log('failed on ' + line);
-        console.log(m);
-        process.exit(1);
+      index++;
+      row.push(line);
+      switch (index) {
+        case 1: 
+          break;
+        case 2: 
+          break;
+        case 3:
+          rows.push(row);
+          row = [];
+          index = 0;
+          break;
       }
+
     });
 
     cb(rows);
@@ -45,13 +62,14 @@ function initdb(rows) {
   var db = new sqlite3.Database('duas');
   var table = process.argv[2];
   db.serialize(function() {
-    db.run("CREATE TABLE " + table + " (english TEXT,arabic TEXT)",function(err) {
+    db.run("CREATE TABLE " + table + " (english TEXT,engtrans TEXT,arabic TEXT)",function(err) {
       if (!err) {
-        var stmt = db.prepare("INSERT INTO " + table + " VALUES (?,?)");
+        var stmt = db.prepare("INSERT INTO " + table + " VALUES (?,?,?)");
 
         rows.forEach(function(row) {
           stmt.run(row);
         });
+
         stmt.finalize();
       } else {
         console.log(err);
@@ -60,7 +78,6 @@ function initdb(rows) {
       printdb(db);
 
     });
-
 
   });
 

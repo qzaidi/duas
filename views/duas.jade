@@ -14,16 +14,13 @@ block content
           | keenness in supplication and prayers was so strange that wherever his sacred name is called, mourning, 
           | insistence in worship, invocations and prayers will come to our mind.
         p
-          | These fifty four invocations of Sahifeh are manifestations of the great soul of that Imam.
+          | These fifty four invocations of Sahifeh are manifestations of that great soul.
 
         .clients
             ul(data-role='listview')
-              li
-                a(href='/praise')
-                  img.ui-li-icon(src='img/sample-images/icon2.png', alt='image 2')
-                  | In Praise of Allah
-              li
-                a(href='/blessings')
-                  img.ui-li-icon(src='img/sample-images/icon2.png', alt='image 2')
-                  | Blessings upon Prophet Mohammed and his Household
+              each row in data
+                li
+                  a(href='/dua/#{row.urlkey}')
+                    img.ui-li-icon(src='img/sample-images/icon2.png', alt='image 2')
+                    | #{row.enname}
 

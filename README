@@ -1,0 +1,17 @@
+-- git
+
+-- HTML5 App - Backend Server
+  Server Side
+    - Node.js (Javascript) 
+    - SQLite3 
+      - Convert Duas to a sqlite database 
+ 
+  Client Side
+    - HTML5
+    - Jquery Mobile
+    - Jade 
+
+-- Appification - Phonegap (Android, iOS, Blackberry, Windows) 
+  - Phonegap 
+    $100 iOS, $25 Android
+  - Artwork (Design)

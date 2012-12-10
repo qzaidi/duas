@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 The Whispered prayers
+        p
+          | The Arabic word munajat is derived from najiy, meaning confidential talk
+          | There are fifteen such prayers in Sahifa-e-Kamela.
+
+        .clients
+            ul(data-role='listview')
+              each prayer in prayers
+                li
+                  a(href='/munajat/#{prayer.urlkey}')
+                    img.ui-li-icon(src='img/sample-images/icon1.png', alt='image 2')
+                    | #{prayer.enname}
+
