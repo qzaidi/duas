@@ -11,8 +11,13 @@ module.exports = function(app) {
   });
 
   app.get('/teachings', function(req,res) {
-    res.render('teachings');
+    res.render('teachings/index');
   });
+
+  app.get('/teachings/:episode', function(req,res) {
+    res.render('teachings/' + req.params.episode);
+  });
+
 
   app.get('/social', function(req,res) {
     res.render('social');
