@@ -1283,6 +1283,7 @@ form li {
 }
 .arabic {
   font-size: 25px;
+  direction: rtl;
 }
 
 .innerPage .footer .social {

@@ -1,5 +1,6 @@
 "use strict";
 
+var settings = require('./settings');
 
 module.exports = function(app) {
   app.get('/', function(req,res) {
@@ -18,10 +19,11 @@ module.exports = function(app) {
     res.render('teachings/' + req.params.episode);
   });
 
-
   app.get('/social', function(req,res) {
     res.render('social');
   });
+
+  app.get('/settings', settings.index);
 
   require('./gallery')(app);
   require('./videos')(app);

@@ -30,12 +30,14 @@ module.exports = function(app) {
   });
 
   app.get('/munajat/:prayer', function(req,res) {
-    var lang = req.query.lang || 'english';
     db.get('select * from toc where urlkey = "' + req.params.prayer + '" ', function(err,info) {
       if (!err) {
+        var lang = req.query.lang || 'english';
         db.all('select * from ' + req.params.prayer, function(err,rows) {
-          console.log(info);
-          res.render('munajat', { data: rows, info: info, lang: lang });
+          var sel = { english:'', engtrans:''};
+          sel[lang] = 'selected';
+          console.log(sel);
+          res.render('munajat', { data: rows, info: info, lang: lang, sel: sel });
         });
       } else {
         // TODO: handle this

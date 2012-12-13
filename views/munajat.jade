@@ -14,9 +14,23 @@ block content
 
         table
           thead
-            th English Translation
+            th
+              select(name='lang')#langselect
+                // this is pathetic, must come up with some fix someday
+                if (lang == 'engtrans')
+                  option(value='engtrans') English Transliteration
+                  option(value='english') English Translation
+                else
+                  option(value='english') English Translation
+                  option(value='engtrans') English Transliteration
             th.right.arabic(style="width: 75%") #{info.arname}
           each row in data
             tr
               td #{row[lang]}
               td.right.arabic #{row.arabic}
+
+append footerblock
+  script(defer='defer')
+    $('#langselect').on('change',function(ev) {
+        window.location.href = window.location.pathname + '?lang=' + $(this).val();
+    });
