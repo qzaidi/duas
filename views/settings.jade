@@ -2,11 +2,30 @@ extends layout
 
 block content
   div(role='main')
-    .page.innerPage#startPage(data-role="page")
+    .page.innerPage#settingsPage(data-role="page")
       .topGrahic
       a.menuButton(href="/")
         img(src="/img/menu-button.png",alt="Menu")
 
 
-    .padpage.padtop
-      h1 Application Settings
+      .padpage.padtop
+        h1 Application Settings
+        p Set Preferred Language, send feedback, check for updates.
+
+        .projects
+          ul(data-role='listview')
+            li
+              a(href='/teachings/sermon')
+                img(src='/img/icon-lang.png', alt='Hajj')
+                h3 Language
+                p  Select prefered language for translations
+            li
+              a(href='/teachings/hajj')
+                img(src='/img/icon-about.png', alt='Hajj')
+                h3 Credits
+                p Acknowledgements &amp; Attribution
+            li
+              a(href='/settings/feedback')
+                img(src='/img/icon-contact.png', alt='Hajj')
+                h3 Feedback
+                p Help us improve.
