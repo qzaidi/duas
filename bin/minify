@@ -1,0 +1,117 @@
+#!/usr/bin/env node
+
+"use strict";
+
+var fs = require('fs');
+var uglify = require('uglify-js');
+var crypto = require('crypto');
+var cleancss = require('clean-css');
+
+function getFiles(template,pattern,cb) {
+  fs.readFile(template, 'utf-8' , function (err, data) {
+    var files = [];
+    var file;
+    var match;
+    var style = data;
+
+    if (err) {
+      return cb(err);
+    }
+
+    while ( match = data.match(pattern)) {
+      file = match[1];
+      data = data.substring(match.index+1);
+      files.push(file);
+    }
+
+    cb(err,style,files);
+
+  });
+}
+
+function minifyCSS(template) {
+  var pattern = /link\(rel=\"stylesheet\",href=\"(.*)\.css\"/;
+
+
+  getFiles(template + '.tmpl',pattern,function(err,data,files) {
+    var allCSS = '';
+
+    if (err || files.length == 0) { 
+      throw err || new Error('No files to minify for ' + template);
+    }
+
+    files.forEach(function(file,i) {
+      file = 'public' + file + '.css';
+      allCSS += fs.readFileSync(file).toString();
+    });
+
+    fs.mkdir('public/css/min',function(err) {
+      var outfilename = 'min/' + crypto.createHash('md5').update(allCSS).digest('hex') + '.css';
+      fs.writeFileSync('public/css/' + outfilename, cleancss.process(allCSS),'utf-8');
+
+      console.log('generated minfied file as ' + outfilename,'minify');
+
+      fs.writeFile(template + '.jade',data.replace('<PLACEHOLDERFORMINIFIEDFILE>',outfilename),function(err) {
+        if (err) {
+          throw err; 
+        }
+      });
+    });
+
+  });
+}
+
+/* parse footer.js and extract all javascript filenames */
+function minifyJS(tmpl) {
+  var pattern = /script\(src\=\'(.*)\.js\'/;
+  var replacePattern = '<PLACEHOLDERFORMINIFIEDFILE>';
+
+  console.log('going to minify ' + tmpl);
+  getFiles(tmpl + '.tmpl',pattern,function(err,footer,files) {
+    var flist,minified;
+
+    if (err) { 
+      throw err;
+    }
+
+    flist = files.map(function(file) {
+      return 'public' + file + '.js';
+    });
+
+    try {
+      minified = uglify.minify(flist);
+    } catch(e) {
+      errHandler(e);
+    }
+
+    fs.mkdir('public/js/min', function(err) {
+      var outfilename = 'min/' + crypto.createHash('md5').update(minified.code).digest('hex') + '.js';
+      fs.writeFileSync('public/js/' + outfilename, minified.code, 'utf-8');
+
+      console.log('generated minfied file as ' + outfilename + ' for template ' + tmpl,'minify');
+
+      if (footer.match(replacePattern) == null) {
+        console.log('placeholder missing from template ' + tmpl,'minify');
+        process.exit(1);
+      } else {
+        fs.writeFile(tmpl + '.jade',footer.replace(replacePattern,outfilename),function(err) {
+          if (err) throw err;
+        });
+      }
+    });
+
+  });
+}
+
+function errHandler(e) {
+  console.log('Minfication failed, aborting deployment');
+  console.log(e.stack);
+  process.exit(1);
+};
+
+process.on('uncaughtException', errHandler);
+
+minifyCSS('views/layout/css');
+minifyJS('views/layout/footerjs');
+
+console.log('deployment completed');
