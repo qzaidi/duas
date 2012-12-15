@@ -29,7 +29,7 @@ bin/minify || abort 'Minification failed. Aborted Restart, but npm packages have
  
 log 'Post deploy script has been executed successfully.'
 
-if test -e '/etc/init/marketapp.conf' ; then
+if test -e '/etc/init/sajjad.conf' ; then
   log 'upstart config is okay'
 else
   log '**** Upstart configuration is missing ****'
