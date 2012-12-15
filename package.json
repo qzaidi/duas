@@ -8,7 +8,8 @@
   "dependencies": {
     "express": "3.0.0",
     "jade": "*",
-    "sqlite3": "*"
+    "sqlite3": "*",
+    "ptmproc": "git+ssh://git@admedly.unfuddle.com:admedly/proc.git"
   },
   "devDependencies": {
     "uglify-js": "*",
