@@ -19,6 +19,15 @@ module.exports = function(app) {
     res.render('teachings/' + req.params.episode);
   });
 
+  app.get('/ziyaraat', function(req,res) {
+    res.render('ziyaraat/index');
+  });
+
+  app.get('/ziyaraat/:episode', function(req,res) {
+    res.render('ziyaraat/' + req.params.episode);
+  });
+
+
   app.get('/social', function(req,res) {
     res.render('social');
   });

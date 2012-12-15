@@ -9,5 +9,9 @@
     "express": "3.0.0",
     "jade": "*",
     "sqlite3": "*"
+  },
+  "devDependencies": {
+    "uglify-js": "*",
+    "clean-css": "*"
   }
 }
