@@ -12,10 +12,11 @@ block content
       .iscroll#galleryScroller(data-ajax='false')
         .scroller
           ul.menu
-            each image in images
+            each row in rows
               li
                 ul.section
-                  li.square
-                    a.box.gallery-item(href='/img/gallery/#{image.file}')
-                      img(src='/img/gallery/#{image.file}',alt='#{image.name}')
+                  each image in row
+                    li.square
+                      a.box.gallery-item(href='/img/gallery/#{image.file}')
+                        img(src='/img/gallery/#{image.file}',alt='#{image.name}')
 

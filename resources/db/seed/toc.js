@@ -14,7 +14,8 @@ function readFile(file,cb) {
       var fields = line.split('|');
 
       if (fields.length != 7) {
-        console.log('invalid line ' + line);
+        console.log('invalid line ' + line + ' fields=' + fields.length);
+        console.log(fields[4]);
         process.exit(2);
       }
 
