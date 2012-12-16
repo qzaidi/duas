@@ -33,6 +33,7 @@ module.exports = function(app) {
   });
 
   app.get('/settings', settings.index);
+  app.get('/settings/:page', settings.page);
 
   require('./gallery')(app);
   require('./videos')(app);

@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1
+          a.back.ui-link(href='/settings')
+            img(src='/img/icon-back.png',alt='Back')
+          | Contact Us
+
+        p Help us improve this app. Send us feature requests.
+
+        .cutContainer.moreUpperMargin
+          span.cutTop
+          span.cutBottom
+          .ui-widget.successMessage
+            .ui-state-highlight.ui-corner-all
+              p
+                span.ui-icon.ui-icon-info(style='')
+                strong Success!
+                | Your mail has been sent.
+
+           h4  Write to us 
+            form(action='send-email.php', method='POST', data-enhance='false')
+              ul
+                li
+                  input#contactName.textbox(type='text', placeholder='Name', required='required', name='contactName')
+                li
+                  input#contactEmail.textbox(type='email', placeholder='Email', required='required', name='contactEmail')
+                li
+                  input#contactPhone.textbox(type='tel', placeholder='Phone', name='contactPhone')
+                li
+                  textarea#contactMessage.textarea(placeholder='Message', required='required', name='contactMessage')
+              input.button.buttonStrong.right(type='submit', value='submit', name='buttonSubmit')
+              .clearfix

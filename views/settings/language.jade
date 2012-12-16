@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/settings')
+            img(src='/img/icon-back.png',alt='Back')
+          | Select Language
+        p Coming Soon ...
+

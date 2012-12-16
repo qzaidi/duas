@@ -8,7 +8,10 @@ block content
         img(src="/img/menu-button.png",alt="Menu")
 
       .padpage.padtop
-        h1 #{info.enname}
+        h1 
+          a.back.ui-link(href='/duas')
+            img(src='/img/icon-back.png',alt='Back')
+          | #{info.enname}
           audio(src="#{info.audio}",controls="controls")
         p #{info.endesc}
 

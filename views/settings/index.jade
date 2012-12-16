@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
   div(role='main')
@@ -15,17 +15,17 @@ block content
         .projects
           ul(data-role='listview')
             li
-              a(href='/teachings/sermon')
+              a(href='/settings/language')
                 img(src='/img/icon-lang.png', alt='Hajj')
                 h3 Language
                 p  Select prefered language for translations
             li
-              a(href='/teachings/hajj')
-                img(src='/img/icon-about.png', alt='Hajj')
+              a(href='/settings/credits')
+                img(src='/img/icon-attrib.png', alt='Hajj')
                 h3 Credits
                 p Acknowledgements &amp; Attribution
             li
-              a(href='/settings/feedback')
-                img(src='/img/icon-contact.png', alt='Hajj')
+              a(href='/settings/contact')
+                img(src='/img/icon-contact.png', alt='Contact Us')
                 h3 Feedback
                 p Help us improve.
