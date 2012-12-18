@@ -1136,7 +1136,7 @@ p {
 .successMessage {
     display: none;
     background: lighten(@themeColor, 15%);
-    color: white;
+    color: green;
     padding: 5px;
     margin-bottom: 20px;
     p{

@@ -9,7 +9,9 @@
     "express": "3.0.0",
     "jade": "*",
     "sqlite3": "*",
-    "ptmproc": "git+ssh://git@admedly.unfuddle.com:admedly/proc.git"
+    "ptmproc": "git+ssh://git@admedly.unfuddle.com:admedly/proc.git",
+    "magickwand": "*",
+    "nodemailer": "*"
   },
   "devDependencies": {
     "uglify-js": "*",

@@ -25,6 +25,7 @@ module.exports = function(app) {
 
   app.get('/settings', settings.index);
   app.get('/settings/:page', settings.page);
+  app.post('/settings/feedback', settings.feedback);
 
   require('./gallery')(app);
   require('./videos')(app);
