@@ -15,11 +15,13 @@ block content
           audio(src="#{info.audio}",controls="controls")
         p #{info.endesc}
 
-        table
-          thead
-            th English Translation
-            th.right.arabic(style="width: 75%") #{info.arname}
+        .columnContainer.column-2
+          p.column English Translation
+          p.column
+            span.arabic.right #{info.arname}
+
+        .columnContainer.column-2
           each row in data
-            tr
-              td #{row.english}
-              td.right.arabic #{row.arabic}
+            p.column #{row.english}
+            p.column
+              span.arabic.right #{row.arabic}
