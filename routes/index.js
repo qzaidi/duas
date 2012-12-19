@@ -1,6 +1,7 @@
 "use strict";
 
 var settings = require('./settings');
+var imageresize = require('./imageresize');
 
 module.exports = function(app) {
   app.get('/', function(req,res) {
@@ -27,9 +28,12 @@ module.exports = function(app) {
   app.get('/settings/:page', settings.page);
   app.post('/settings/feedback', settings.feedback);
 
+  app.get(/^\/cache\/(\d+)x(\d+)\/(.*)$/, imageresize.render);
+
   require('./gallery')(app);
   require('./videos')(app);
   require('./dua')(app);
   require('./ziyarat')(app);
+
 
 };
