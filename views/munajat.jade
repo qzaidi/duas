@@ -2,38 +2,32 @@ extends layout
 
 block content
   div(role='main')
+
     .page.innerPage#startPage(data-role="page")
       .topGrahic
       a.menuButton(href="/")
         img(src="/img/menu-button.png",alt="Menu")
+      a.menuButton.menuButton1(href="?lang=engtrans")
+        img(src="/img/menu-home.png",alt="Menu")
 
       .padpage.padtop
         h1 
           a.back.ui-link(href='/munajat')
             img(src='/img/icon-back.png',alt='Back')
           | #{info.enname}
-          audio(src="#{info.audio}",controls="controls")
+          audio(src="#{info.audio}",controls="controls",preload="none")
         p #{info.endesc}
 
-        table
-          thead
-            th
-              select(name='lang')#langselect
-                // this is pathetic, must come up with some fix someday
-                if (lang == 'engtrans')
-                  option(value='engtrans') English Transliteration
-                  option(value='english') English Translation
-                else
-                  option(value='english') English Translation
-                  option(value='engtrans') English Transliteration
-            th.right.arabic(style="width: 75%") #{info.arname}
-          each row in data
-            tr
-              td #{row[lang]}
-              td.right.arabic #{row.arabic}
+        .columnContainer.column-2
+          p.column 
+            span.strong English Translation
+          p.column
+            span.arabic.right #{info.arname}
 
-append footerblock
-  script(defer='defer')
-    $('#langselect').on('change',function(ev) {
-        window.location.href = window.location.pathname + '?lang=' + $(this).val();
-    });
+        .columnContainer.column-2
+          each row in data
+            p.column #{row[lang]}
+            p.column
+              span.arabic.right #{row.arabic}
+
+     

@@ -18,3 +18,17 @@ window.log = function(){
 
 // place any jQuery/helper plugins in here, instead of separate, slower script files.
 
+$('[data-role=page]').live('pageshow', function (event, ui) {
+  try {
+    _gaq.push(['_setAccount', 'UA-27791118-2']);
+    hash = location.hash;
+    if (hash) {
+      _gaq.push(['_trackPageview', hash.substr(1)]);
+    } else {
+      _gaq.push(['_trackPageview']);
+    }
+  } catch(err) {
+
+  }
+});
+

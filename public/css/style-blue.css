@@ -1234,6 +1234,12 @@ form li {
   right: 15px;
   top: 15px;
 }
+
+.innerPage .menuButton1 {
+  right: 60px;
+  top: 15px;
+}
+
 .innerPage .menuButton:hover img {
   transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
