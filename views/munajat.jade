@@ -12,9 +12,9 @@ block content
 
       .padpage.padtop
         h1 
-          a.back.ui-link(href='/munajat')
+          a.back.ui-link(href='#',data-rel="back")
             img(src='/img/icon-back.png',alt='Back')
-          | #{info.enname}
+            | #{info.enname}
           audio(src="#{info.audio}",controls="controls",preload="none")
         p #{info.endesc}
 

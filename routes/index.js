@@ -20,8 +20,8 @@ module.exports = function(app) {
     res.render('teachings/' + req.params.episode);
   });
 
-  app.get('/social', function(req,res) {
-    res.render('social');
+  app.get('/treatise', function(req,res) {
+    res.render('treatise');
   });
 
   app.get('/settings', settings.index);
