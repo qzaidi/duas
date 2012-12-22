@@ -57,7 +57,6 @@ $(document).ready(function(){
                 }
             });
             
-            console.log(totalWidth);
             $('.menu', scrollContainer).css({    
                 'width' : totalWidth
             });            
@@ -221,12 +220,28 @@ var App = {
         try{
           var options = {
             getToolbar: function() {
-              return '<div class="ps-toolbar-close" style="padding-top: 12px;">Close</div><div class="ps-toolbar-play" style="padding-top: 12px;">'
-              + 'Play</div><div class="ps-toolbar-previous" style="padding-top: 12px;">Previous</div><div class="ps-toolbar-next" ' +
-                'style="padding-top: 12px;">Next</div><div class="say-hi" style="padding-top: 12px;">Tweet</div>';
+              return '<div class="ps-toolbar-close" style="padding-top: 12px;">x</div><div class="ps-toolbar-play" style="padding-top: 12px;">'
+              + '►</div><div class="ps-toolbar-previous" style="padding-top: 12px;">&lt;</div><div class="ps-toolbar-next" ' +
+                'style="padding-top: 12px;">&gt;</div><div class="ps-toolbar-fb" style="padding-top: 12px;">FB</div>';
             }
           };
-          $('a.gallery-item:not(.photoswiped)').addClass('photoswiped').photoSwipe(options);
+          var PhotoSwipe = window.Code.PhotoSwipe;
+          var instance = $('a.gallery-item:not(.photoswiped)').addClass('photoswiped').photoSwipe(options);
+          var sayHiEl;
+
+          instance.addEventHandler(PhotoSwipe.EventTypes.onShow, function(e){
+            sayHiEl = window.document.querySelectorAll('.ps-toolbar-fb')[0];
+          });
+
+          instance.addEventHandler(PhotoSwipe.EventTypes.onToolbarTap, function(e){
+            if (e.toolbarAction === PhotoSwipe.Toolbar.ToolbarAction.none){
+              if (e.tapTarget === sayHiEl){
+                var img = instance.getCurrentImage();
+                window.open("//www.facebook.com/sharer.php?s=100&p[title]=" + img.caption + " &p[url]= " + location.href +  " &p[images][0]=" +
+                + img.src +  "&p[summary]=Salutations%20on%20Imam%20Zainul%20Abideen.");
+              }
+            }
+          });
         } catch(e){
 
         }
@@ -236,7 +251,6 @@ var App = {
             e.preventDefault();
             
             if ($(this).hasClass('opened')){
-                console.log("here");
                 $('.map').empty().removeClass('large');
                 $(this).removeClass('opened').removeClass('notransform');
             } else{
@@ -406,7 +420,6 @@ var App = {
     }
     
     $(document).bind('pagechange', pageChange);
-        
         $('div').live('pagehide', function (event, ui) { 
         var page = jQuery(event.target);
     

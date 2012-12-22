@@ -2218,6 +2218,14 @@ form li {
 .clearfix {
   *zoom: 1;
 }
+
+div.ps-toolbar-fb
+{
+  cursor: pointer;
+  display: table-cell;
+  padding-top: 12px;
+}
+
 @media print {
   * {
     background: transparent !important;

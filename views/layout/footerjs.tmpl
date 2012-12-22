@@ -14,7 +14,7 @@ if environment == 'development'
   script(src='/js/plugins.js',defer='defer')
   script(src='/js/script.js',defer='defer')
 else
-  script(src="#{static_url('/js/<PLACEHOLDERFORMINIFIEDFILE>')}")
+  script(src="#{static_url('/js/<PLACEHOLDERFORMINIFIEDFILE>')}",defer='defer')
 
 //if lt IE 7 
   script(defer='defer', src='//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js')
