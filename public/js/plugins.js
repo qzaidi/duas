@@ -17,6 +17,16 @@ window.log = function(){
 
 
 // place any jQuery/helper plugins in here, instead of separate, slower script files.
+//
+window.onerror = function(message,url,line) {
+  _gaq.push([
+    "_trackEvent",
+    "JS Error",
+    message,
+    (url + " (" + line + ")"),
+    0, true
+  ]);
+};
 
 $('[data-role=page]').live('pageshow', function (event, ui) {
   try {
@@ -31,4 +41,3 @@ $('[data-role=page]').live('pageshow', function (event, ui) {
 
   }
 });
-

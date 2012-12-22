@@ -36,7 +36,6 @@ module.exports = function(app) {
         db.all('select * from ' + req.params.prayer, function(err,rows) {
           var sel = { english:'', engtrans:''};
           sel[lang] = 'selected';
-          console.log(sel);
           res.render('munajat', { data: rows, info: info, lang: lang, sel: sel });
         });
       } else {
