@@ -6,11 +6,11 @@ module.exports = function(app) {
     var images = [
       [ 
         {
-          name: '',
+          name: 'Sajjad, Karbala',
           file: '1.jpg',
         },
         {
-          name: '',
+          name: 'Prayer is the firm recourse against troubles - Imam Sajjad.',
           file: '2.jpg',
         },
         {
@@ -24,7 +24,7 @@ module.exports = function(app) {
           file: '4.jpg',
         },
         {
-          name: '',
+          name: 'Imam Sajjad',
           file: '5.jpg',
         },
         {
@@ -40,7 +40,12 @@ module.exports = function(app) {
         {
           name: 'Chief of the Prostrators',
           file: '8.jpg',
+        },
+        {
+          name: 'Couplet in praise of Imam Sajjad (by Iktishaf)',
+          file: '9.jpg',
         }
+
       ]
 
     ];

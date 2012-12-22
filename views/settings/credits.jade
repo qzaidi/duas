@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   div(role='main')
-    .page.innerPage#startPage(data-role="page")
+    .page.innerPage#creditsPage(data-role="page")
       .topGrahic
       a.menuButton(href="/")
         img(src="/img/menu-button.png",alt="Menu")
@@ -11,6 +11,27 @@ block content
         h1 
           a.back.ui-link(href='/settings')
             img(src='/img/icon-back.png',alt='Back')
-          | Credits
+            | Credits
+
         p The content on this app has been derived from various sources and we would like to acknowledge that here.
+
+        h2
+        span.h2
+          | Content 
+
+        ul.services
+          li
+            a.image(href='http://duas.org',rel='external')
+              img(src='/img/sample-images/product1-image.png', alt='Duas.org')
+            a.text(href='http://duas.org') Duas.org
+            .clearfix
+          li
+            a.image(href='http://al-islam.org',rel='external')
+              img(src='/img/sample-images/product2-image.png', alt='Al-Islam')
+            a.text(href='http://al-islam.org')  Al-Islam
+            .clearfix
+
+        h2
+        span.h2
+          | Gallery Images
 
