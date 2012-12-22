@@ -2,6 +2,7 @@
 
 var settings = require('./settings');
 var imageresize = require('./imageresize');
+var treatise = require('./treatise');
 
 module.exports = function(app) {
   app.get('/', function(req,res) {
@@ -32,9 +33,8 @@ module.exports = function(app) {
     res.render('teachings/' + req.params.episode);
   });
 
-  app.get('/treatise', function(req,res) {
-    res.render('treatise');
-  });
+  app.get('/treatise', treatise.index);
+  app.get('/rights/:right', treatise.right);
 
   app.get('/settings', settings.index);
   app.get('/settings/:page', settings.page);
