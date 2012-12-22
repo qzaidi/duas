@@ -237,7 +237,7 @@ var App = {
             if (e.toolbarAction === PhotoSwipe.Toolbar.ToolbarAction.none){
               if (e.tapTarget === sayHiEl){
                 var img = instance.getCurrentImage();
-                window.open("//www.facebook.com/sharer.php?s=100&p[title]=" + img.caption + " &p[url]= " + location.href +  " &p[images][0]=" +
+                window.open("//www.facebook.com/sharer.php?s=100&p[title]=" + img.caption + " &p[url]= " + location.href +  " &p[images][0]=" 
                 + img.src +  "&p[summary]=Salutations%20on%20Imam%20Zainul%20Abideen.");
               }
             }
