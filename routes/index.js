@@ -5,7 +5,19 @@ var imageresize = require('./imageresize');
 
 module.exports = function(app) {
   app.get('/', function(req,res) {
-    res.render('index');
+    var iosScripts = {};
+    var ua = req.headers['user-agent'];
+    
+    if(/like Mac OS X/.test(ua)) {
+      iosScripts = {
+        css: '/css/add2home.css',
+        js: '/js/add2home.js'
+      };
+    }
+
+    res.render('index', {
+      scripts: iosScripts
+    });
   });
 
   app.get('/about', function(req,res) {

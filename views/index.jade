@@ -1,5 +1,9 @@
 extends layout
 
+append htmlhead
+  if (scripts.css)
+    link(href='#{scripts.css}',rel='stylesheet',type='text/css')
+
 block content
   div(role='main')
     #menuPage.page.iscroll(data-role='page', data-cache='never')
@@ -49,3 +53,5 @@ block content
                 a.box(href='/settings', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-settings.png', alt='Settings')
                   span.text  Settings
+    if (scripts.js)
+      script(src="#{scripts.js}",defer="defer");
