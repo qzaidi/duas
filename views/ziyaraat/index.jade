@@ -9,7 +9,10 @@ block content
 
 
       .padpage.padtop
-        h1 Ziyaraat
+        h1
+          a.back.ui-link(href='/',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Ziyaraat
 
         ul(data-role='listview')
           li

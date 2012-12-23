@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#rightsCompanion(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+
+        h1 
+          a.back.ui-link(href='/treatise')
+            img(src='/img/icon-back.png',alt='Back')
+            | The Right of the Sitting Companion
+
+        p.arabic حق الجليس
+
+        p.arabic   وَأمّا حَقُّ الجَلِيسِ فَأَنْ تُلِينَ لَهُ كَنَفَكَ، وَتُطِيبَ لَهُ جَانِبَكَ، وَتُنْصِفَهُ فِي مُجَارَاةِ اللَّفْظِ ولا تُغْرِق فِي نَزْعِ اللَّحْظِ إذَا لَحَظْتَ وتَقْصُدَ فِي اللَّفْظِ إلَى إفْهَامِهِ إذَا لَفَظْتَ. وَإنْ كُنْتَ الْجَلِيسَ إلَيْهِ كُنْتَ فِي الْقِيَامِ عَنْهُ بالْخِيَارِ وَإنْ كَانَ الجَالِسَ إلَيكَ كَانَ بالخِيارِ. ولا تَقُومُ إلا بإذْنِهِ. وَلا قُوَّةَ إلا باللهِ.
+
+        p
+          | And the right of your sitting companion is that you should treat him gently, warmly welcome him, 
+          | be fair while talking with him, do not take your eyes off of him when you are looking at him, 
+          | and pronounce your words clearly to help him understand what you say. And if you are the first one
+          | to go and sit with him, you can leave him when you wish. However, if he is the first one to come 
+          | and sit with you, he can leave you when he wishes to. And you should not leave him without his permission.
+          | And there is no power but in Allah.
+
+       include ../sharing
