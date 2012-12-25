@@ -9,6 +9,7 @@ block content
     #menuPage.page.iscroll(data-role='page', data-cache='never')
       .scroller
         .company
+          .date.left.b 
           img(src='/img/cover.jpg', alt='Sahifa-e-Sajjadiya')
         ul.menu
           li
@@ -53,5 +54,12 @@ block content
                 a.box(href='/settings', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-settings.png', alt='Settings')
                   span.text  Settings
+
+    .ui-content#popupInfo(data-role="popup",data-theme="e",style="max-width:300px;")
+      p
+        | Greetings on the auspicious occasion of Birthday of Imam Sajjad. Wish your friends on facebook
+        | using any of the images in our Image Gallery.
+
+
     if (scripts.js)
       script(src="#{scripts.js}",defer="defer");

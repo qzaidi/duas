@@ -3,23 +3,10 @@
 var settings = require('./settings');
 var imageresize = require('./imageresize');
 var treatise = require('./treatise');
+var home = require('./home');
 
 module.exports = function(app) {
-  app.get('/', function(req,res) {
-    var iosScripts = {};
-    var ua = req.headers['user-agent'];
-    
-    if(/like Mac OS X/.test(ua)) {
-      iosScripts = {
-        css: '/css/add2home.css',
-        js: '/js/add2home.js'
-      };
-    }
-
-    res.render('index', {
-      scripts: iosScripts
-    });
-  });
+  app.get('/', home.checkForSpecialOccasion, home.index);
 
   app.get('/about', function(req,res) {
     res.render('about');

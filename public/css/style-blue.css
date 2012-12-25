@@ -2224,6 +2224,15 @@ div.ps-toolbar-fb
   cursor: pointer;
   display: table-cell;
   padding-top: 12px;
+  background-repeat: no-repeat;
+  background-image: url(/img/facebook.png);
+  background-position: center;
+}
+
+div.date
+{
+  position: absolute;
+  font-size: 30px;
 }
 
 @media print {
