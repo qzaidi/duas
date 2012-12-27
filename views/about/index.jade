@@ -1,0 +1,39 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#aboutPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/')
+            img(src='/img/icon-back.png',alt='Back')
+            | Best of the worshippers
+
+        img(src='/img/icon-imam.png',style='float: left; margin: 10px;')
+
+        p 
+          | Imam Ali ibn. Husain (AS), popularly known as Zaynul Abidin (the best of the worshippers) and Sayyid us Sajedeen
+          | (chief of the prostrators before God) , was the sole surviving son of Imam Husain, following 
+          | the Battle of Karbala. He was the grandson of Imam Ali
+          | and Lady Fatima (Peace be upon them) , and great grandson of Prophet Muhammad (PBUH).
+        
+        p 
+          | He lived in difficult times, having witnessed the massacre of most of his family and imprisonment of
+          | womenfolk, because they refused to bow to the authority of a despotic ruler.
+          | And yet, he produced such magnificent works as 
+          a.next.ui-link(href='/dua/morals') Sahifa-e-Kamela (a collection of prayers and supplications to Allah) 
+            img(src="/img/icon-next.png")
+          | and 
+          a.next.ui-link(href='/treatise') Treatise on Rights, 
+            img(src="/img/icon-next.png")
+          | which preceded Magna Carta by several centuries. These seminal works of Islamic Sprituality capture the essence
+          | of Islamic faith as religion of Peace.
+
+        h4
+          a.next.ui-link(href="/about/bio") A brief biography
+            img(src="/img/icon-next.png")
+

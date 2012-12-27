@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 
 block content
   div(role='main')
@@ -8,7 +8,10 @@ block content
         img(src="/img/menu-button.png",alt="Menu")
 
       .padpage.padtop
-        h1 Ornament of the worshippers
+        h1 
+          a.back.ui-link(href='/about')
+            img(src='/img/icon-back.png',alt='Back')
+            | Ornament of the worshippers
 
         p The holy Imam 'Ali Zaynu 'l-'Abidin is the Fourth Apostolic Imam. His epithet was Abu Muhammad and was popularly titled as "Zaynu'l-'Abidin".
 

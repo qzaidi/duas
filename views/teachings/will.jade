@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#bestplace(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1
+          a.back.ui-link(href='/teachings')
+            img(src='/img/icon-back.png',alt='Back')
+            | His will to his son
+
+        p 
+          | Imam Zayn ul-'Abidin, peace be upon him, martyred on 25th of Moharram, entrusted his commandments 
+          | to his son Imam Mohammed al-Baqir, peace be on him. One of them was this
+          blockquote 
+            | "O my little son, I will command you with what my father commanded me when death was close to him. 
+            | He said to me: 'O my little son, beware of wronging him who finds no helper against you except Allah'. 
+          span.right (Al-Ama`li, p. 161. Al-Khisa`l, p. 185)
+
+       include ../sharing
