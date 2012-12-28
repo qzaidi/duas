@@ -399,10 +399,6 @@ var App = {
 
 };
 
-$(document).ready(function(){
-
-});
-
 var pageChange = function(){
   App.init();
   //alert("pc");

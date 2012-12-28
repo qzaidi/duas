@@ -77,5 +77,6 @@ if(_zday==4){ _hari = _h_05;}
 if(_zday==5){ _hari = _h_06;}
 if(_zday==6){ _hari = _h_07;}
 
-$('.date').text(_zd + ' ' + _bulan + ' ' + _zy);
+$('.calendar .day').text(_zd);
+$('.calendar .month').text(_bulan);
 }());
