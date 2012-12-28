@@ -12,14 +12,15 @@ module.exports = function(app) {
 
   app.get('/dua/:name', function(req,res,next) {
     db.get('select * from toc where urlkey = "' + req.params.name + '" ', function(err,info) {
-      if (!err) {
-        db.all('select * from ' + req.params.name, function(err,rows) {
-          res.render('dua', { data: rows, info: info });
-        });
-      } else {
-        // TODO: handle this
-        next(err);
+      if (err) {
+        return next(err);
       }
+      db.all('select * from ' + req.params.name, function(err,rows) {
+        var page = { title : info.enname + ' from Imam Sajjad' };
+        page.description = info.collection + ' - ' + info.endesc;
+        console.log(page);
+        res.render('dua', { data: rows, info: info, page: page });
+      });
     });
   });
 
@@ -31,17 +32,15 @@ module.exports = function(app) {
 
   app.get('/munajat/:prayer', function(req,res) {
     db.get('select * from toc where urlkey = "' + req.params.prayer + '" ', function(err,info) {
-      if (!err) {
-        var lang = req.query.lang || 'english';
-        db.all('select * from ' + req.params.prayer, function(err,rows) {
-          var sel = { english:'', engtrans:''};
-          sel[lang] = 'selected';
-          res.render('munajat', { data: rows, info: info, lang: lang, sel: sel });
-        });
-      } else {
-        // TODO: handle this
-        next(err);
+      var lang = req.query.lang || 'english';
+      if (err) {
+        return next(err);
       }
+      db.all('select * from ' + req.params.prayer, function(err,rows) {
+        var page = { title : info.enname  + ' from Imam Sajjad' };
+        page.description = info.collection + ' - ' + info.endesc;
+        res.render('munajat', { data: rows, info: info, lang: lang, page: page });
+      });
     });
   });
 
