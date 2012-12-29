@@ -89,12 +89,14 @@
   if(_zday==5){ _hari = _h_06;}
   if(_zday==6){ _hari = _h_07;}
 
-  if (link = (keydates[_zm + '-' + _zd] || keydates[_zm + '-' + (_zd + 1)] || keydates[_zm + '-' + (_zd + 2)])) {
-    $('.calendar .day').html('<a href="/events/' + link + '">'+ _zd + '*</a>');
-  } else {
-    $('.calendar .day').text(_zd);
-  }
+  $('#menuPage').live('pageshow',function() {
+    if (link = (keydates[_zm + '-' + _zd] || keydates[_zm + '-' + (_zd + 1)] || keydates[_zm + '-' + (_zd + 2)])) {
+      $('.calendar .day').html('<a href="/events/' + link + '">'+ _zd + '*</a>');
+    } else {
+      $('.calendar .day').text(_zd);
+    }
 
-  $('.calendar .month').text(_bulan);
+    $('.calendar .month').text(_bulan);
+  });
 
 }());
