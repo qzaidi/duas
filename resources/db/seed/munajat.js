@@ -7,11 +7,9 @@ var util = require('util');
 
 /* file format
  * english translation
- * blank
  * english transliteration
- * blank
  * arabic
- * blank
+ * urdu
  * the above repeats ...
  */
 function readFile(file,cb) {
@@ -35,6 +33,8 @@ function readFile(file,cb) {
         case 2: 
           break;
         case 3:
+          break;
+        case 4:
           rows.push(row);
           row = [];
           index = 0;
@@ -62,9 +62,9 @@ function initdb(rows) {
   var db = new sqlite3.Database('duas');
   var table = process.argv[2];
   db.serialize(function() {
-    db.run("CREATE TABLE " + table + " (english TEXT,engtrans TEXT,arabic TEXT)",function(err) {
+    db.run("CREATE TABLE " + table + " (english TEXT,engtrans TEXT,arabic TEXT, urdu TEXT)",function(err) {
       if (!err) {
-        var stmt = db.prepare("INSERT INTO " + table + " VALUES (?,?,?)");
+        var stmt = db.prepare("INSERT INTO " + table + " VALUES (?,?,?,?)");
 
         rows.forEach(function(row) {
           stmt.run(row);

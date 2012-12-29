@@ -20,13 +20,14 @@ block content
 
         .columnContainer.column-2
           p.column 
-            span.strong English Translation
+            span.strong #{langdesc}
           p.column
             span.arabic.right #{info.arname}
 
         .columnContainer.column-2
           each row in data
-            p.column #{row[lang]}
+            p.column
+              span(class="#{lang}") #{row[lang]}
             p.column
               span.arabic.right #{row.arabic}
 

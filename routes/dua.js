@@ -2,6 +2,13 @@
 
 var db = require('../model/db');
 
+var langmap = {
+  'english': 'English Translation',
+  'engtrans': 'English Transliteration',
+  'urdu': 'Urdu Translation',
+  'hindi': 'Hindi Translation'
+};
+
 module.exports = function(app) {
 
   app.get('/duas', function(req,res) {
@@ -33,13 +40,14 @@ module.exports = function(app) {
   app.get('/munajat/:prayer', function(req,res) {
     db.get('select * from toc where urlkey = "' + req.params.prayer + '" ', function(err,info) {
       var lang = req.query.lang || 'english';
+      var langdesc = langmap[lang];
       if (err) {
         return next(err);
       }
       db.all('select * from ' + req.params.prayer, function(err,rows) {
         var page = { title : info.enname  + ' from Imam Sajjad' };
         page.description = info.collection + ' - ' + info.endesc;
-        res.render('munajat', { data: rows, info: info, lang: lang, page: page });
+        res.render('munajat', { data: rows, info: info, lang: lang, page: page, langdesc: langdesc });
       });
     });
   });

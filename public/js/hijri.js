@@ -90,7 +90,7 @@
   if(_zday==6){ _hari = _h_07;}
 
   if (link = (keydates[_zm + '-' + _zd] || keydates[_zm + '-' + (_zd + 1)] || keydates[_zm + '-' + (_zd + 2)])) {
-    $('.calendar .day').html('<a href="/dates/' + link + '">'+ _zd + '*</a>');
+    $('.calendar .day').html('<a href="/events/' + link + '">'+ _zd + '*</a>');
   } else {
     $('.calendar .day').text(_zd);
   }
