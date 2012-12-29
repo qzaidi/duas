@@ -2,7 +2,9 @@
 
 var dates = {
   page: function(req,res,next) {
-    res.render('dates/' + req.params.page);
+    var page = {};
+    page.image = 'http:// ' + req.host + '/img/' + req.params.page + '.jpg' ;
+    res.render('dates/' + req.params.page, { page: page });
   }
 };
 
