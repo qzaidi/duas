@@ -1,18 +1,8 @@
 doctype 5
 html(xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#",xmlns:fb="https://www.facebook.com/2008/fbml")
   head
-    block htmlhead
-      meta charset="utf-8"
-      title #{page.title}
-      meta(name="description",content=page.description)
-      meta(name="author",content="Qasim Zaidi")
-
-      // Use the .htaccess and remove these lines to avoid edge case issues.
-      // More info: h5bp.com/b/378 
-      // meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
-
+      meta(charset="utf-8")
       meta(name="HandheldFriendly",content="True")
-      meta(property="og:image",content="#{page.image}")
       meta(name="MobileOptimized",content="320")
       meta(name="viewport",content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0")
       meta(name="apple-mobile-web-app-capable", content="yes")
@@ -21,13 +11,24 @@ html(xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#",xmlns:fb=
       link(rel="apple-touch-icon",sizes="114x114",href="apple-touch-icon-114x114-precomposed.png")
       link(rel="apple-touch-icon",sizes="144x144",href="apple-touch-icon-144x144-precomposed.png")
 
-      include layout/css
+      block metatags
+        title #{page.title}
+        meta(name="description",content=page.description)
+        meta(name="author",content="Qasim Zaidi")
+        meta(property="og:image",content="#{page.image}")
 
-      link(href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600',rel='stylesheet',type='text/css')
-      link(href='http://fonts.googleapis.com/earlyaccess/scheherazade.css',rel='stylesheet',type='text/css')
+      block htmlhead
+        // Use the .htaccess and remove these lines to avoid edge case issues.
+        // More info: h5bp.com/b/378 
+        // meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
 
-      script(src="/js/libs/modernizr-2.0.6.min.js")
-      include ga
+        include layout/css
+
+        link(href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600',rel='stylesheet',type='text/css')
+        link(href='http://fonts.googleapis.com/earlyaccess/scheherazade.css',rel='stylesheet',type='text/css')
+
+        script(src="/js/libs/modernizr-2.0.6.min.js")
+        include ga
   body
     block headerblock
       header

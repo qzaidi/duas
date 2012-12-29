@@ -5,12 +5,15 @@ var imageresize = require('./imageresize');
 var treatise = require('./treatise');
 var home = require('./home');
 var about = require('./about');
+var dates = require('./dates');
 
 module.exports = function(app) {
   app.get('/', home.checkForSpecialOccasion, home.index);
 
   app.get('/about', about.index);
   app.get('/about/:page', about.page);
+
+  app.get('/dates/:page', dates.page);
 
   app.get('/teachings', function(req,res) {
     res.render('teachings/index');
