@@ -45,8 +45,22 @@ module.exports = function(app) {
           name: 'Couplet in praise of Imam Sajjad (by Iktishaf)',
           file: '9.jpg',
         }
-
+      ],
+      [
+        {
+          name: 'A quote from Imam Zainul Abideen',
+          file: '10.jpg',
+        },
+        {
+          name: 'O Zainab, we will never forget your suffering.',
+          file: '11.jpg',
+        },
+        {
+          name: 'Demolition of the Baqeeh Cemetry by the Saudi Royal family (may Allah curse them)',
+          file: '13.jpg',
+        }
       ]
+
 
     ];
 
