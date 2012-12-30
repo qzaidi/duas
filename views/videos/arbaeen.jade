@@ -1,0 +1,36 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#videosPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+      .padpage.padtop
+        h1 Videos
+
+        p Curated videos related to Arbaeen
+      
+        .videosGrid
+          ul
+            li
+              p Walk of the free
+              iframe(src="http://www.youtube.com/embed/capMObCpFPc?rel=0",height="190",frameborder="0",webkitAllowFullScreen, mozallowfullscreen,allowFullScreen)
+            li
+              p Arbaeen 2011, Ziyarat of Karbala and Shaam
+              iframe(src="http://www.youtube.com/embed/QduiL5Avifs?rel=0",height="190",frameborder="0",webkitAllowFullScreen, mozallowfullscreen,allowFullScreen)
+            li
+              p Arbaeen 2012 from London (with the Sermon of Imam Zainul Abideen)
+              iframe(src="http://www.youtube.com/embed/YFxYG3PhBOQ?rel=0",height="190",frameborder="0",webkitAllowFullScreen, mozallowfullscreen,allowFullScreen)
+            li
+              p Arbaeen 2012 from Oslo, Norway
+              iframe(src="http://www.youtube.com/embed/15M68aWc8hM?rel=0",height="190",frameborder="0",webkitAllowFullScreen, mozallowfullscreen,allowFullScreen)
+
+            li
+              p Urdu Elegy - Chehum ko karbala mein ...
+              iframe(src="http://www.youtube.com/embed/h0W8TasvbMs?rel=0",height="190",frameborder="0",webkitAllowFullScreen, mozallowfullscreen,allowFullScreen)
+            li
+              p Urdu Marsiya - Sham sey jab ahle-bait
+              iframe(src="http://www.youtube.com/embed/2Jd25U68?rel=0",height="190",frameborder="0",webkitAllowFullScreen, mozallowfullscreen,allowFullScreen)
+
+              .clearfix

@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#sakina(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/')
+            img(src='/img/icon-back.png',alt='Back')
+            | Martyrdom of Imam Ali Reza, 17th of Safar
+
+        p
+          img(src='/img/imamreza.jpg',alt='Condolences on Martyrdom of Imam Ali Reza')
+
+        p
+          | Imam Reza was poisoned in the year 203 A.H., on the 17th of Safar, and is buried in the Khurasan district of Iran.
+
+        include ../sharing

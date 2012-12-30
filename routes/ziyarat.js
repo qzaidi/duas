@@ -8,20 +8,26 @@ module.exports = function(app) {
     res.render('ziyaraat/index');
   });
 
-  app.get('/ziyaraat/baqeeh', function(req,res,next) {
-    db.get('select * from toc where urlkey = "ziyarat"', function(err,info) {
-      if (!err) {
-        db.all('select * from "ziyarat"', function(err,rows) {
-          res.render('ziyaraat/baqeeh', { data: rows, info: info });
-        });
-      } else {
-        next(err);
+  app.get('/ziyaraat/entry', function(req,res) {
+    res.render('ziyaraat/entry');
+  });
+
+  app.get('/ziyaraat/salwat', function(req,res) {
+    res.render('ziyaraat/salwat');
+  });
+
+  app.get('/ziyaraat/:name', function(req,res,next) {
+    var name = req.params.name;
+    db.get('select * from toc where urlkey = "' + name + '"', function(err,info) {
+      if (err) {
+        return next(err);
       }
+      db.all('select * from "' + name + '"', function(err,rows) {
+        if (err) {
+          return next(err);
+        }
+        res.render('ziyaraat/baqeeh', { data: rows, info: info });
+      });
     });
   });
-
-  app.get('/ziyaraat/:episode', function(req,res) {
-    res.render('ziyaraat/' + req.params.episode);
-  });
-
 };

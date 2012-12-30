@@ -9,6 +9,13 @@ var keydates = {
       'image': '/img/arbaeen.jpg'
     },
   },
+  'imamreza': {
+    page: {
+      'title': 'Martyrdom of Imam Ali Reza',
+      'description': 'Imam Ali Reza was martyred on 17th of Safar',
+      'image': '/img/imamreza.jpg'
+    }
+  },
   'sakina' : {
     page: {
       'title': 'Martyrdom of Sakina, 17th of Safar',

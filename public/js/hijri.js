@@ -3,7 +3,8 @@
   var keydates = {
     "1-1": "moharram",
     "1-2": "karbala-arrival",
-    "2-17": "sakina",
+    "2-13": "sakina",
+    "2-17": "imamreza",
     "2-20": "arbaeen",
     "2-24": "zainab-martyrdom",
     "2-28": "prophet-wafat",

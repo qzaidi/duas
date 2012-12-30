@@ -62,7 +62,7 @@ function initdb(rows) {
   var db = new sqlite3.Database('duas');
   var table = process.argv[2];
   db.serialize(function() {
-    db.run("CREATE TABLE " + table + " (arabic TEXT,english TEXT)",function(err) {
+    db.run("CREATE TABLE " + table + " (english TEXT,arabic TEXT)",function(err) {
       if (!err) {
         var stmt = db.prepare("INSERT INTO " + table + " VALUES (?,?)");
 
@@ -94,5 +94,3 @@ function initdb(rows) {
 
   readFile(process.argv[1],initdb);
 }());
-
-
