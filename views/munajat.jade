@@ -18,17 +18,11 @@ block content
           audio(src="#{info.audio}",controls="controls",preload="none")
         p #{info.endesc}
 
-        .columnContainer.column-2
-          p.column 
-            span.strong #{langdesc}
-          p.column
-            span.arabic.right #{info.arname}
+          .section.group
+            .col.span_1_of_2(class="#{lang}") #{langdesc}
+            .col.span_1_of_2.arabic #{info.arname}
 
-        .columnContainer.column-2
-          each row in data
-            p.column
-              span(class="#{lang}") #{row[lang]}
-            p.column
-              span.arabic.right #{row.arabic}
-
-     
+          each row,index in data
+            .section.group
+              .col.span_1_of_2(class="#{lang}") #{row[lang]}
+              .col.span_1_of_2.arabic #{row.arabic}

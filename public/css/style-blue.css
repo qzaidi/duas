@@ -1287,15 +1287,20 @@ form li {
   /*end social*/
 
 }
+
 .arabic {
   font-family: 'Scheherazade', serif;
   font-size: 28px;
   direction: rtl;
+  background-color: #FFFFF2;
 }
 
 .urdu {
-  float: right;
   direction: rtl;
+  font-size: 18px;
+}
+
+.english {
 }
 
 .innerPage .footer .social {
