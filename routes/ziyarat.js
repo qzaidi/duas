@@ -26,7 +26,7 @@ module.exports = function(app) {
         if (err) {
           return next(err);
         }
-        res.render('ziyaraat/baqeeh', { data: rows, info: info });
+        res.render('ziyaraat/baqeeh', { data: rows, info: info, lang: 'english' });
       });
     });
   });

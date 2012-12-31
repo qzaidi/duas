@@ -22,7 +22,7 @@ block content
             .col.span_1_of_2(class="#{lang}") #{langdesc}
             .col.span_1_of_2.arabic #{info.arname}
 
-          each row,index in data
+          each row in data
             .section.group
               .col.span_1_of_2(class="#{lang}") #{row[lang]}
               .col.span_1_of_2.arabic #{row.arabic}

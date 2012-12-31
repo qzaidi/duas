@@ -5,7 +5,7 @@ var keydates = {
   'arbaeen': {
     page: {
       'title': 'Arbaeen 2013',
-      'description': 'Arbaeen of the martyrs of Karbala',
+      'description': 'Arbaeen of the martyrs of Karbala, Iraq being marked by Shia Muslims',
       'image': '/img/arbaeen.jpg'
     },
   },

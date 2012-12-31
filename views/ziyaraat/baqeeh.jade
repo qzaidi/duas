@@ -15,11 +15,11 @@ block content
           audio(src="#{info.audio}",controls="controls",preload="none")
         p #{info.endesc}
 
-        table
-          thead
-            th English Translation
-            th.right.arabic(style="width: 75%") Arabic Text
-          each row in data
-            tr
-              td #{row.english}
-              td.right.arabic #{row.arabic}
+        .section.group
+          .col.span_1_of_2(class="#{lang}") English Translation
+          .col.span_1_of_2.arabic #{info.arname}
+
+        each row in data
+          .section.group
+            .col.span_1_of_2(class="#{lang}") #{row[lang]}
+            .col.span_1_of_2.arabic #{row.arabic}
