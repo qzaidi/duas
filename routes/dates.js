@@ -32,7 +32,9 @@ var dates = {
       return next(new Error('Not Found'));
     }
 
-    info.page.image = 'http://' + req.host + info.page.image;
+    if (info.page.image.indexOf('http') != 0) {
+      info.page.image = 'http://' + req.host + info.page.image;
+    }
     res.render('dates/' + req.params.page, { page: info.page });
   }
 };
