@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  #munajatcontainer
+
+  script
+    $(document).ready(function () {
+        $('#munajatcontainer').jtable({
+            title: '#{info.enname}',
+            actions: {
+                listAction: '/admin/munajat/#{info.urlkey}/list',
+                createAction: '/admin/munajat/#{info.urlkey}/create',
+                updateAction: '/admin/munajat/#{info.urlkey}/update',
+                deleteAction: '/admin/munajat/#{info.urlkey}/delete'
+            },
+            fields: {
+                rowid: {
+                  key: true,
+                  list: false,
+                  create: false,
+                  edit: false
+                },
+                english: {
+                    title: 'English Translation'
+                },
+                urdu: {
+                    title: 'Urdu Translation',
+                    width: '5%'
+                },
+                engtrans: {
+                    width: '5%',
+                    title: 'English Transliteration'
+                },
+                arabic: {
+                    title: 'Arabic'
+                }
+            }
+        });
+ 
+        $('#munajatcontainer').jtable('load');
+    });
