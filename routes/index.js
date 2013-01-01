@@ -37,5 +37,7 @@ module.exports = function(app) {
   require('./dua')(app);
   require('./ziyarat')(app);
 
+  require('./admin')(app);
+
 
 };

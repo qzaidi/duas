@@ -1,0 +1,43 @@
+extends layout
+
+block content
+  #toctablecontainer
+
+  script
+    $(document).ready(function () {
+        $('#toctablecontainer').jtable({
+            title: 'Table of Contents',
+            actions: {
+                listAction: '/admin/toc/list',
+                createAction: '/admin/toc/create',
+                updateAction: '/admin/toc/update',
+                deleteAction: '/admin/toc/delete'
+            },
+            fields: {
+                urlkey: {
+                    title: 'URL Key',
+                    width: '5%',
+                    key: true
+                },
+                type: {
+                    title: 'Content Type',
+                    width: '5%'
+                },
+                collection: {
+                    width: '5%',
+                    title: 'Collection'
+                },
+                enname: {
+                    title: 'Name'
+                },
+                endesc: {
+                    title: 'Description'
+                },
+                arname: {
+                    title: 'Arabic Name'
+                }
+            }
+        });
+ 
+        $('#toctablecontainer').jtable('load');
+    });
