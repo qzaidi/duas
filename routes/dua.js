@@ -45,8 +45,11 @@ module.exports = function(app) {
         return next(err);
       }
       db.all('select * from ' + req.params.prayer, function(err,rows) {
-        var page = { title : info.enname  + ' from Imam Sajjad' };
-        page.description = info.collection + ' - ' + info.endesc;
+        var page = { title : info.enname  + ' from Imam Sajjad'  };
+        page.description = info.collection + ' - ' + info.enname + ' from Imam Zainul Abideen with ' + langdesc;
+        if (!rows[0][lang]) {
+          rows[0][lang] = 'Coming Soon ...';
+        }
         res.render('munajat', { data: rows, info: info, lang: lang, page: page, langdesc: langdesc });
       });
     });
