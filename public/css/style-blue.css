@@ -787,6 +787,7 @@ q:before, q:after {
 small {
   font-size: 85%;
 }
+
 /* Position subscript and superscript content without affecting line-height: h5bp.com/k */
 sub, sup {
   font-size: 75%;
@@ -2265,6 +2266,11 @@ div.calendar
   text-shadow: 0 1px #fff;
   background: -webkit-gradient(linear, left top, left bottom, from(#405b72), to(#e6e6e6), color-stop(.08,#f9f9f9));
   background: -moz-linear-gradient(top, #f9f9f9, #e6e6e6);
+}
+
+.language {
+  color: blue;
+
 }
 
 @media print {

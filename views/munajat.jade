@@ -16,10 +16,20 @@ block content
             img(src='/img/icon-back.png',alt='Back')
             | #{info.enname}
           audio(src="#{info.audio}",controls="controls",preload="none")
-        p #{info.endesc}
+
+        p #{info.endesc} 
 
           .section.group
-            .col.span_1_of_2(class="#{lang}") #{langdesc}
+            .col.span_1_of_2
+              small
+                a(href='?lang=english') 
+                  span.language English &nbsp;  
+                |  | &nbsp; 
+                a(href='?lang=urdu') 
+                  span.language Urdu &nbsp;
+                |  | &nbsp;  
+                a(href='?lang=engtrans') 
+                  span.language Transliteration 
             .col.span_1_of_2.arabic #{info.arname}
 
           each row in data
