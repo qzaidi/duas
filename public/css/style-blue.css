@@ -2270,7 +2270,10 @@ div.calendar
 
 .language {
   color: blue;
+}
 
+.highlight {
+  background-color: #ffffaa;
 }
 
 @media print {

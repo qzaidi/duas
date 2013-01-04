@@ -5,7 +5,7 @@ var keydates = {
   'arbaeen': {
     page: {
       'title': 'Arbaeen 2013',
-      'description': 'Arbaeen (Chehlum) of Imam Husain was marked by 25 million Shia Muslims in Karbala. '
+      'description': 'Arbaeen (Chehlum) of Imam Husain was marked by 25 million Shia Muslims in Karbala. ' +
       'Watch Arbaeen Videos , read the ziyarat of Arbaeen.',
       'image': '/img/arbaeen.jpg'
     },

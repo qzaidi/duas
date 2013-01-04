@@ -24,7 +24,8 @@ var munajat = {
   },
 
   update: function(req,res,next) {
-    var sql = 'update ' + req.params.name + ' set urdu = "' + req.body.urdu + '" where rowid=' + req.body.rowid; 
+    var sql = 'update ' + req.params.name + ' set urdu = "' + req.body.urdu + '", cue = "' +  req.body.cue + '" where rowid=' + req.body.rowid; 
+    console.log(sql);
     db.run(sql, function(err,st) {
       var resp = { "Result": "OK" };
       if (err) {

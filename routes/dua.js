@@ -18,6 +18,8 @@ module.exports = function(app) {
   });
 
   app.get('/dua/:name', function(req,res,next) {
+    var lang = req.query.lang || 'english';
+    var langdesc = langmap[lang];
     db.get('select * from toc where urlkey = "' + req.params.name + '" ', function(err,info) {
       if (err) {
         return next(err);
@@ -25,8 +27,7 @@ module.exports = function(app) {
       db.all('select * from ' + req.params.name, function(err,rows) {
         var page = { title : info.enname + ' from Imam Sajjad' };
         page.description = info.collection + ' - ' + info.endesc;
-        console.log(page);
-        res.render('dua', { data: rows, info: info, page: page });
+        res.render('dua', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc});
       });
     });
   });

@@ -11,9 +11,9 @@ block content
       .padpage.padtop
         h1 
           a.back.ui-link(href='/munajat')
-            img(src='/img/icon-back.png',alt='Back')
+            img(src='/img/icon-back.png',alt='<-')
             | #{info.enname}
-          audio(src="#{info.audio}",controls="controls",preload="none")
+          audio#amtag(src="#{info.audio}",controls="controls",preload="none")
 
         p #{info.endesc} 
 
@@ -34,3 +34,10 @@ block content
             .section.group
               .col.span_1_of_2(class="#{lang}") #{row[lang]}
               .col.span_1_of_2.arabic #{row.arabic}
+
+          != "<script>"
+          != "var cues = ["
+          if (data[0].cue)
+            each row in data
+              !{row.cue},
+          != " ]; </script>"
