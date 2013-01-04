@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#sakina(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/')
+            img(src='/img/icon-back.png',alt='')
+            | Zainab: The Conqueror of Syria
+
+        .flexslider(data-ajax='false')  
+          img(src='/img/zainab.jpg',alt='Shrine of Sayyeda Zainab in Damascus')
+
+        p
+          | Lady Zainab was the illustrious daughter of Imam Ali and Lady Fatima, who universalized the message 
+          | of Husain's revolution and laid the foundation of Mourning for Imam Husain (AS). She was martyred on 
+          | 24th of Safar, but the date is disputed, and according to some sources its 15th of Rajab.
+
+        p 
+          | She was taken captive along with other women of Prophet's Household shortly after the massacre of Karbala.
+          | Along with Imam Zainul Abideen, she gave eloquent sermons in the support of the cause of the martyrs of Karbala,
+          | on her way to Kufa and Damascus. In Damascus, she confronted Yazid, and from that moment onwards, in evoking the far
+          | flung conquest of Husain, metaphorically turned the Ummayyad Court into a Karbala.
+
+        include ../sharing

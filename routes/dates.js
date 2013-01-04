@@ -23,6 +23,13 @@ var keydates = {
       'description': 'Imam Husain\'s beloved daughter died of cold and starvation in Yazeed\'s Prison',
       'image': '/img/sakina.jpg'
     }
+  },
+  'zainab-martyrdom' : {
+    page: {
+    'title': 'Martyrdom Anniversary of Sayyeda Zainab binte Ali',
+    'description': 'Lady Zainab, the illustrious daughter of Imam Ali, and the torch bearer of Karbala',
+    'image': '/img/zainab.jpg'
+   }
   }
 };
 
