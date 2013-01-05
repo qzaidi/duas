@@ -7,7 +7,7 @@
     "2-17": "imamreza",
     "2-20": "arbaeen",
     "2-24": "zainab-martyrdom",
-    "2-28": "prophet-wafat",
+    "2-28": "prophet-imamhasan",
     "3-8": "imam-askari-martyrdom"
   };
   var link;

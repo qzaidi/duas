@@ -30,6 +30,13 @@ var keydates = {
     'description': 'Lady Zainab, the illustrious daughter of Imam Ali, and the torch bearer of Karbala',
     'image': '/img/zainab.jpg'
    }
+  },
+  'prophet-imamhasan': {
+    page: {
+      'title': 'Wafat of Prophet Muhammad (PBUH) and Martyrdom of Imam Hasan (AS)',
+      'description': '28 Safar marks the sad demise of Holy Prophet Muhammad and martyrdom of his elder grandson, Imam Hassan Mujtaba.',
+      'image': '/img/prophet.jpg'
+    }
   }
 };
 
