@@ -19,6 +19,13 @@ var home = {
         css: '/css/add2home.css',
         js: '/js/add2home.js'
       };
+    } else if (/Mobi/.test(ua) == false) {
+        // desktop browser, run script
+        if (!req.cookies.mobipopup) {
+          req.scripts.js = '/js/popup.js';
+          console.log('Going to serve popup');
+          res.cookie('mobipopup', '1', { maxAge: 90000000, httpOnly: true })
+        }
     }
 
     res.render('index', {

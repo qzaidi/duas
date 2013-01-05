@@ -1,8 +1,7 @@
 var cues;
 $(document).on('pageinit',function() {
-
+  console.log('inside pageinit');
   $('audio').on('loadstart',function() {
-
     var i = 0; // remembers
     var trigger = 0;
     function timeupdate() {
@@ -34,7 +33,4 @@ $(document).on('pageinit',function() {
       $(this).on('timeupdate', timeupdate);
     }
   });
-
-  //$('audio').on('timeupdate', function timeupdate() {
 });
-
