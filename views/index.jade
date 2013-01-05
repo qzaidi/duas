@@ -57,10 +57,13 @@ block content
                   img(src='/img/icon-settings.png', alt='Settings')
                   span.text  Settings
 
-    .ui-content#popupInfo(data-role="popup",data-theme="e",style="max-width:300px;")
+    .ui-content#popupInfo(data-role="popup",data-theme="e",style="max-width:300px;font-size: 12px")
       p
-        | Greetings on the auspicious occasion of Birthday of Imam Sajjad. Wish your friends on facebook
-        | using any of the images in our Image Gallery.
+        img(src='/img/qrcode.png',style='float: left;')
+        | Visit us on your mobile by scanning this code.
+        br
+        a(href="javascript:closePopup()")
+          | Close this popup by pressing Esc or click here.
 
 
     if (scripts.js)
