@@ -2,6 +2,28 @@
 
 var sqlite3 = require('sqlite3').verbose();
 
-var db = new sqlite3.Database(__dirname + '/../data/duas', sqlite3.OPEN_READONLY);
+var db = new sqlite3.Database(__dirname + '/../data/duas', sqlite3.OPEN_READWRITE);
+
+
+db.update = function(table,obj,not_updates,cb) {
+  var sql = 'update ' + table + ' set ';
+  var updates = [];
+  var filters = [];
+
+  Object.keys(obj).forEach(function(key) {
+    if (not_updates.indexOf(key) == -1) {
+      updates.push(key + '="' + obj[key] + '"');
+    }
+  });
+
+  sql += updates.join(',') + ' where ';
+  not_updates.forEach(function(key) {
+    filters.push(' ' + key + '="' + obj[key] + '"');
+  });
+
+  sql += filters.join(' and ');
+  console.log(sql);
+  this.run(sql,cb);
+};
 
 module.exports = db;

@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  #ziyaratcontainer
+
+  script
+    $(document).ready(function () {
+        $('#ziyaratcontainer').jtable({
+            title: '#{info.enname}',
+            actions: {
+                listAction: '/admin/ziyarat/#{info.urlkey}/list',
+                createAction: '/admin/ziyarat/#{info.urlkey}/create',
+                updateAction: '/admin/ziyarat/#{info.urlkey}/update',
+                deleteAction: '/admin/ziyarat/#{info.urlkey}/delete'
+            },
+            fields: {
+                rowid: {
+                  key: true,
+                  list: false,
+                  create: false,
+                  edit: false
+                },
+                english: {
+                    title: 'English Translation'
+                },
+                arabic: {
+                    title: 'Arabic'
+                }
+            }
+        });
+ 
+        $('#ziyaratcontainer').jtable('load');
+    });

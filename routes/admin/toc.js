@@ -25,8 +25,16 @@ var toc = {
   },
 
   update: function(req,res,next) {
-    res.json({
-      "Result": "OK"
+    delete req.body.arname;
+    db.update("toc", req.body, [ 'urlkey' ], function(err,data) {
+      var result = { "Result": "OK" };
+      if (err) {
+        console.log(err);
+        result.Result = 'ERROR';
+        result.message = err.message;
+      }
+
+      res.json(result);
     });
   },
 

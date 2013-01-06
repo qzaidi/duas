@@ -14,27 +14,34 @@ block content
                 deleteAction: '/admin/toc/delete'
             },
             fields: {
-                urlkey: {
-                    title: 'URL Key',
-                    width: '5%',
+              urlkey: {
+                title: 'URL Key',
+                  width: '5%',
                     key: true
                 },
+                audio: {
+                  title: 'Audio',
+                  width: '10%'
+                },
                 type: {
-                    title: 'Content Type',
+                  title: 'Content Type',
                     width: '5%'
                 },
                 collection: {
-                    width: '5%',
+                  width: '5%',
                     title: 'Collection'
                 },
                 enname: {
-                    title: 'Name'
+                  title: 'Name',
+                  display: function(data) {
+                    return '<a href="/admin/' + data.record.type + '/' + data.record.urlkey + '">' + data.record.enname + '</a>'
+                  }
                 },
                 endesc: {
-                    title: 'Description'
+                  title: 'Description'
                 },
                 arname: {
-                    title: 'Arabic Name'
+                  title: 'Arabic Name'
                 }
             }
         });
