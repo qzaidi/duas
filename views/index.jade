@@ -68,3 +68,18 @@ block content
 
     if (scripts.js)
       script(src="#{scripts.js}",defer="defer");
+
+append footerblock
+  script(src='/js/hijri.js')
+  script(defer="defer")
+    $('#menuPage').live('pageshow',function() {
+      var d = hijri.getHijriDate();
+      var keydates = hijri.keydates;
+      if (link = (keydates[d.month + '-' + d.day] || keydates[d.month + '-' + (d.day + 1)] || keydates[d.month + '-' + (d.day + 2)])) {
+        $('.calendar .day').html('<a href="/events/' + link + '">'+ d.day + '*</a>');
+      } else {
+        $('.calendar .day').text(d.day);
+      }
+
+      $('.calendar .month').text(d.monthName);
+    });

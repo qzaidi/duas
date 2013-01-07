@@ -15,7 +15,20 @@ var ziyarat = {
         "Records": rows
       });
     });
-  }
+  },
+
+  update: function(req,res,next) {
+    db.update(req.params.name, req.body, [ 'rowid' ], function(err,data) {
+      var result = { "Result": "OK" };
+      if (err) {
+        console.log(err);
+        result.Result = 'ERROR';
+        result.message = err.message;
+      }
+      res.json(result);
+    });
+  },
+
 };
 
 module.exports = ziyarat;
