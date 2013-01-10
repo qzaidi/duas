@@ -6,6 +6,7 @@ var toc = require('./toc');
 var munajat = require('./munajat');
 var duas = require('./duas');
 var ziyarat = require('./ziyarat');
+var events = require('./events');
 var auth = express.basicAuth('admin','hell0World');
 
 
@@ -29,4 +30,10 @@ module.exports = function(app) {
   app.get('/admin/ziyarat/:name', auth, ziyarat.index);
   app.post('/admin/ziyarat/:name/list', auth, ziyarat.list);
   app.post('/admin/ziyarat/:name/update', auth, ziyarat.update);
+
+  app.get('/admin/events', auth, events.index);
+  app.post('/admin/events/list', auth, events.list);
+  app.post('/admin/events/update', auth, events.update);
+  app.post('/admin/events/create', auth, events.create);
+  app.post('/admin/events/delete', auth, events.remove);
 };

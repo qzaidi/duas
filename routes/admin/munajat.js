@@ -33,7 +33,7 @@ var munajat = {
         console.log(err);
         resp.Result = 'ERROR';
         resp.message = err.message;
-      }
+      } 
       res.json(resp);
     });
   },

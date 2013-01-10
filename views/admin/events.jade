@@ -1,0 +1,50 @@
+extends layout
+
+block content
+  #eventscontainer
+
+  script
+    $(document).ready(function () {
+        $('#eventscontainer').jtable({
+            title: 'Islamic Events',
+            actions: {
+                listAction: '/admin/events/list',
+                createAction: '/admin/events/create',
+                updateAction: '/admin/events/update',
+                deleteAction: '/admin/events/delete'
+            },
+            fields: {
+                rowid: {
+                  key: true,
+                  list: false,
+                  create: false,
+                  edit: false
+                },
+                urlkey: {
+                  title: 'URLKey'
+                },
+                hijridate: {
+                    title: 'Hijri Date'
+                },
+                hijrimonth: {
+                    title: 'Hijri Month'
+                },
+                name: {
+                    title: 'Name'
+                },
+                description: {
+                  title: 'Description',
+                  type: 'textarea'
+                },
+                image: {
+                    title: 'Image Path'
+                },
+                offset: {
+                  title: 'Offset',
+                  defaultValue: 0
+                }
+            }
+        });
+ 
+        $('#eventscontainer').jtable('load');
+    });

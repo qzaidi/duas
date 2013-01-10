@@ -4,6 +4,21 @@ var sqlite3 = require('sqlite3').verbose();
 
 var db = new sqlite3.Database(__dirname + '/../data/duas', sqlite3.OPEN_READWRITE);
 
+db.insert = function(table,obj,cb) {
+  var sql = 'insert into ' + table ;
+  var keys = Object.keys(obj);
+  var values = [];
+
+  sql += '(' + keys.join(',') + ') ';
+
+  keys.forEach(function(key) {
+    values.push("'" + obj[key] + "' ");
+  });
+
+  sql += 'VALUES (' + values.join(',') + ');';
+  console.log(sql);
+  this.run(sql,cb);
+};
 
 db.update = function(table,obj,not_updates,cb) {
   var sql = 'update ' + table + ' set ';
