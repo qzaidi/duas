@@ -6,6 +6,8 @@ var treatise = require('./treatise');
 var home = require('./home');
 var about = require('./about');
 var dates = require('./dates');
+var events = require('./events');
+var mw = require('./mw');
 
 module.exports = function(app) {
   app.get('/', home.checkForSpecialOccasion, home.index);
@@ -13,7 +15,8 @@ module.exports = function(app) {
   app.get('/about', about.index);
   app.get('/about/:page', about.page);
 
-  app.get('/events/:page', dates.page);
+  app.get('/dates/:page', dates.page);
+  app.get('/events/:page', events.page);
 
   app.get('/teachings', function(req,res) {
     res.render('teachings/index');
@@ -38,6 +41,8 @@ module.exports = function(app) {
   require('./ziyarat')(app);
 
   require('./admin')(app);
+
+  app.get('/*', mw.notfound);
 
 
 };

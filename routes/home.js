@@ -19,7 +19,10 @@ var home = {
         css: '/css/add2home.css',
         js: '/js/add2home.js'
       };
-    } else if (/Mobi/.test(ua) == false) {
+    } 
+    
+    /* Don't show popup on desktop
+    else if (/Mobi/.test(ua) == false) {
         // desktop browser, run script
         if (!req.cookies.mobipopup) {
           req.scripts.js = '/js/popup.js';
@@ -27,6 +30,7 @@ var home = {
           res.cookie('mobipopup', '1', { maxAge: 90000000, httpOnly: true })
         }
     }
+    */
 
     res.render('index', {
       scripts: req.scripts

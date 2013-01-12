@@ -8,7 +8,7 @@ var events = {
   },
 
   list: function(req,res,next) {
-    db.all('select rowid,* from events', function(err,rows) {
+    db.all('select * from events', function(err,rows) {
       var result = { "Result": "OK" };
       if (err) {
         console.log(err);
@@ -39,14 +39,13 @@ var events = {
   },
 
   update: function(req,res,next) {
-    db.update("events", req.body, [ 'rowid' ], function(err,data) {
+    db.update("events", req.body, [ 'urlkey' ], function(err,data) {
       var result = { "Result": "OK" };
       if (err) {
         console.log(err);
         result.Result = 'ERROR';
         result.message = err.message;
       }
-
       res.json(result);
     });
   }

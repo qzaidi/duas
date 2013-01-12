@@ -43,6 +43,12 @@
       var y= hijri.year;
       var cdate;
 
+      if (!y) {
+        var hrd = this.getHijriDate();
+        y = hrd.year;
+        if (hrd.month > hijri.month) y++;
+      }
+
       var jd=intPart((11*y+3)/30)+354*y+30*m-intPart((m-1)/2)+d+1948440-385
       if (jd> 2299160 )
       {
@@ -71,8 +77,9 @@
         y=4*k+n+i-4716
       }
 
-      cdate = new Date(y,m,d);
-      return new Date(cdate.getTime() - 3600*4);
+      cdate = new Date(y,m,d-1);
+      return cdate;
+      //new Date(cdate.getTime() - 3600*4);
     },
 
     getHijriDate: function() {

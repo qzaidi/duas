@@ -51,7 +51,7 @@ var dates = {
       info.page.image = 'http://' + req.host + info.page.image;
     }
     res.render('dates/' + req.params.page, { page: info.page });
-  }
+  },
 };
 
 module.exports = dates;

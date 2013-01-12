@@ -14,34 +14,50 @@ block content
                 deleteAction: '/admin/events/delete'
             },
             fields: {
-                rowid: {
-                  key: true,
-                  list: false,
-                  create: false,
-                  edit: false
-                },
                 urlkey: {
-                  title: 'URLKey'
+                  title: 'URLKey',
+                  width: '5%'
                 },
                 hijridate: {
-                    title: 'Hijri Date'
+                    title: 'Hijri Date',
+                    width: '2%'
                 },
                 hijrimonth: {
-                    title: 'Hijri Month'
+                    title: 'Hijri Month',
+                    display: function(data) {
+                      return hijri.months[data.record.hijrimonth - 1];
+                    },
+                    width: '2%'
                 },
                 name: {
                     title: 'Name'
                 },
                 description: {
                   title: 'Description',
-                  type: 'textarea'
+                  type: 'textarea',
+                  width: '60%'
                 },
                 image: {
                     title: 'Image Path'
                 },
                 offset: {
                   title: 'Offset',
-                  defaultValue: 0
+                  defaultValue: 0,
+                  width: '2%'
+                },
+                crdate: {
+                  title: 'Gregory Date',
+                  create: false,
+                  edit: false,
+                  display: function(data) {
+                    var crdate = hijri.getGregorianDate({ day: data.record.hijridate, month: data.record.hijrimonth - 1});
+                    return [ crdate.getFullYear(), crdate.getMonth() , crdate.getDate() ].join('-');
+                  },
+                  width: '5%'
+                },
+                metadesc: {
+                  title: 'Meta Description',
+                  width: '15%'
                 }
             }
         });

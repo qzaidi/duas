@@ -29,6 +29,10 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+app.configure('production', function() {
+  app.use(require('./routes/mw').error);
+});
+
 require('./routes')(app);
 
 http.createServer(app).listen(app.get('port'), function(){

@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  div(role='main')
+    .page.innerPage#errorPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1
+          a.back.ui-link(href='/')
+            img(src='/img/icon-back.png',alt='')
+          | #{err.message}
+
+        p The page you requested could not be found or an unknown error occured. 
