@@ -34,6 +34,10 @@ var events = {
       page.title = ev.name;
       page.image = ev.image;
       page.description = ev.metadesc;
+      if (page.image.indexOf('http') != 0) {
+        page.image = 'http://' + req.headers.host + page.image;
+      }
+
       ev.crdate = hijri.getGregorianDate({ day: ev.hijridate, month: ev.hijrimonth -1 });
       ev.month = hijri.months[ev.hijrimonth - 1];
       res.render('dates/index', { page: page, event: ev, suffix: get_nth_suffix });
