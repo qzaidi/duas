@@ -2,25 +2,28 @@ extends ../layout
 
 block content
   div(role='main')
-    .page.innerPage(id="#{page.urlkey}",data-role="page")
+    .page.innerPage(id="#{event.urlkey}",data-role="page")
       .topGrahic
       a.menuButton(href="/")
         img(src="/img/menu-button.png",alt="Menu")
 
       .padpage.padtop
-        h1 
-          a.back.ui-link(href='/')
-            img(src='/img/icon-back.png',alt='Back')
-            | #{event.name}
+        div(itemscope,itemtype="http://data-vocabulary.org/Event")
+          h1 
+            a.back.ui-link(href='/')
+              img(src='/img/icon-back.png',alt='Back')
+              span(itemprop="summary") #{event.name}
 
-        .flexslider 
-          img(src="#{page.image}",alt='')
+          .flexslider 
+            img(itemprop="photo",src="#{page.image}",alt="#{event.name}")
 
-        p
-          | #{event.name} is marked on #{event.hijridate} of #{event.month}.
-          | This year, it falls on #{event.crdate.toString().split('00:')[0]}.
+          p
+            | #{event.name} is marked on #{event.hijridate}#{suffix(event.hijridate)} of #{event.month}.
+            | This year, it falls on 
+            span(itemprop="startDate",datetime="#{event.crdate.toISOString()}") #{event.crdate.toString().split('00:')[0]}.
 
-        p
-          | !{event.description} 
+          p
+            span(itemprop="description") 
+              !{event.description} 
 
         include ../sharing
