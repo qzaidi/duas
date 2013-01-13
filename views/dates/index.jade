@@ -18,13 +18,12 @@ block content
             img(itemprop="photo",src="#{page.image}",alt="#{event.name}")
 
           p
-            | #{event.name} is marked on #{event.hijridate}#{suffix(event.hijridate)} of #{event.month}.
+            span(itemprop="description") #{event.name} is marked on #{event.hijridate}#{suffix(event.hijridate)} of #{event.month}.
             | This year, it falls on 
-            span(itemprop="startDate",datetime="#{event.crdate.toISOString()}") #{event.crdate.toString().split('00:')[0]}.
+            span(itemprop="startDate",datetime="#{event.crdate.toISOString()}") #{event.crdate.toString().split('00:')[0]} .
             span.hidden(itemprop="endDate",datetime="#{(new Date(event.crdate.getTime() + 86399)).toISOString()}") #{event.crdate.toString().split('00:')[0]}
 
-          p
-            span(itemprop="description") 
-              !{event.description} 
+          p 
+            | !{event.description} 
 
         include ../sharing
