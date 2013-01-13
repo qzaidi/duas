@@ -46,7 +46,7 @@
       if (!y) {
         var hrd = this.getHijriDate();
         y = hrd.year;
-        if (hrd.month > hijri.month) y++;
+        if ((hrd.month -1) > hijri.month) y++;
       }
 
       var jd=intPart((11*y+3)/30)+354*y+30*m-intPart((m-1)/2)+d+1948440-385

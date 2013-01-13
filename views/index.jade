@@ -21,13 +21,13 @@ block content
                   img(src='/img/icon-imam.png', alt='About')
                   span.text  About Imam
               li.square
-                a.box(href='/duas', data-transition='fade', data-direction='reverse')
-                  img(src='/img/icon-dua.png', alt='About Us')
-                  span.text  Supplications
-              li.square
                 a.box(href='/munajat', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-prayer.png', alt='Munajat')
                   span.text  Whispered Prayers
+              li.square
+                a.box(href='/duas', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-dua.png', alt='About Us')
+                  span.text  Supplications
           li
             ul.section
               li.square
@@ -72,6 +72,5 @@ append footerblock
       } else {
         $('.calendar .day').text(d.day);
       }
-
       $('.calendar .month').text(d.monthName);
     });

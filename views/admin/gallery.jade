@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  #gallerycontainer
+
+  script
+    $(document).ready(function () {
+        $('#gallerycontainer').jtable({
+            title: 'Photo Gallery',
+            actions: {
+                listAction: '/admin/gallery/list',
+                createAction: '/admin/gallery/create',
+                updateAction: '/admin/gallery/update',
+                deleteAction: '/admin/gallery/delete'
+            },
+            fields: {
+                rowid: {
+                  key: true,
+                  list: false,
+                  create: false,
+                  edit: false
+                },
+                name: {
+                    title: 'Name'
+                },
+                description: {
+                  title: 'Description',
+                  type: 'textarea',
+                  width: '60%'
+                },
+                image: {
+                    title: 'Image Path',
+                    display: function(data) {
+                      return '<img src="/img/gallery/' + data.record.image + '" width=135 height=135/>';
+                    }
+                },
+                sort: {
+                  title: 'Offset',
+                  defaultValue: 0,
+                }
+            }
+        });
+ 
+        $('#gallerycontainer').jtable('load');
+    });

@@ -51,7 +51,7 @@ block content
                   edit: false,
                   display: function(data) {
                     var crdate = hijri.getGregorianDate({ day: data.record.hijridate, month: data.record.hijrimonth - 1});
-                    return [ crdate.getFullYear(), crdate.getMonth() , crdate.getDate() ].join('-');
+                    return [ crdate.getFullYear(), crdate.getMonth() + 1 , crdate.getDate() ].join('-');
                   },
                   width: '5%'
                 },

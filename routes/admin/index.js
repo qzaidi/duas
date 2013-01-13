@@ -7,6 +7,7 @@ var munajat = require('./munajat');
 var duas = require('./duas');
 var ziyarat = require('./ziyarat');
 var events = require('./events');
+var gallery = require('./gallery');
 var auth = express.basicAuth('admin','hell0World');
 
 
@@ -36,4 +37,11 @@ module.exports = function(app) {
   app.post('/admin/events/update', auth, events.update);
   app.post('/admin/events/create', auth, events.create);
   app.post('/admin/events/delete', auth, events.remove);
+
+  app.get('/admin/gallery', auth, gallery.index);
+  app.post('/admin/gallery/list', auth, gallery.list);
+  app.post('/admin/gallery/update', auth, gallery.update);
+  app.post('/admin/gallery/create', auth, gallery.create);
+  app.post('/admin/gallery/delete', auth, gallery.remove);
+
 };

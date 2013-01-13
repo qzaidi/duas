@@ -24,7 +24,7 @@ var events = {
       var result = { "Result" : "OK" };
       if (err) {
         result.RESULT = 'ERROR';
-        result.message = err.message;
+        result.Message = err.message;
       } else {
         console.log(data);
         result.Record = req.body;
@@ -44,7 +44,7 @@ var events = {
       if (err) {
         console.log(err);
         result.Result = 'ERROR';
-        result.message = err.message;
+        result.Message = err.message;
       }
       res.json(result);
     });
