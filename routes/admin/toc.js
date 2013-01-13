@@ -25,7 +25,6 @@ var toc = {
   },
 
   update: function(req,res,next) {
-    delete req.body.arname;
     db.update("toc", req.body, [ 'urlkey' ], function(err,data) {
       var result = { "Result": "OK" };
       if (err) {
