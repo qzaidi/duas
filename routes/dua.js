@@ -12,7 +12,11 @@ var langmap = {
 module.exports = function(app) {
 
   app.get('/duas', function(req,res) {
-    db.all('select * from toc where type = "dua"', function(err,rows) {
+    db.all('select * from toc where type = "dua" and collection = "Sahifa-e-Sajjadiya"', function(err,rows) {
+      if (err) {
+        console.log(err);
+        next(err);
+      }
       res.render('duas', { data: rows });
     });
   });

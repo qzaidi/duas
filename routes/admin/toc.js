@@ -9,9 +9,16 @@ var toc = {
   },
 
   create: function(req,res,next) {
-    res.json({
-      "Result": "OK",
-      "Record": req.body
+    db.insert('toc',req.body, function(err,data) {
+      var result = { "Result" : "OK" };
+      if (err) {
+        result.RESULT = 'ERROR';
+        result.Message = err.message;
+      } else {
+        console.log(data);
+        result.Record = req.body;
+      }
+      res.json(result);
     });
   },
 

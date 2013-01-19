@@ -40,9 +40,14 @@ var events = {
 
       ev.crdate = hijri.getGregorianDate({ day: ev.hijridate, month: ev.hijrimonth -1 });
       ev.month = hijri.months[ev.hijrimonth - 1];
-      res.render('dates/index', { page: page, event: ev, suffix: get_nth_suffix });
+      res.render('events/event', { page: page, event: ev, suffix: get_nth_suffix });
     });
+  },
+
+  index: function(req,res,next) {
+    res.render('events/index');
   }
+
 };
 
 module.exports = events;

@@ -15,6 +15,18 @@ var duas = {
         "Records": rows
       });
     });
+  },
+
+  update: function(req,res,next) {
+    db.update(req.params.name, req.body, [ 'rowid' ], function(err,st) {
+      var resp = { "Result": "OK" };
+      if (err) {
+        console.log(err);
+        resp.Result = 'ERROR';
+        resp.Message = err.message;
+      } 
+      res.json(resp);
+    });
   }
 };
 

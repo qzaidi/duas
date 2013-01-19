@@ -15,8 +15,8 @@ module.exports = function(app) {
   app.get('/about', about.index);
   app.get('/about/:page', about.page);
 
-  app.get('/dates/:page', dates.page);
   app.get('/events/:page', events.page);
+  app.get('/events', events.index);
 
   app.get('/teachings', function(req,res) {
     res.render('teachings/index');

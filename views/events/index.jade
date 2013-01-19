@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#socialPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+
+        h1 
+          a.back.ui-link(href='/')
+            img(src='/img/icon-back.png',alt='Back')
+            | Islamic Occasions
+
+        .projects
+          ul(data-role='listview')
+            li
+              a(href='#')
+                img(src='/img/icon-allah.png', alt='Rabi ul Awwal')
+                h3 Rabi-ul-Awwal
+                p 8th of Rabi ul Awwal, Martyrdom of Imam Hasan Askari (AS)
+
+      include ../sharing

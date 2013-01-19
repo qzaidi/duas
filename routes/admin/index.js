@@ -27,6 +27,7 @@ module.exports = function(app) {
 
   app.get('/admin/dua/:name', auth, duas.index);
   app.post('/admin/dua/:name/list', auth, duas.list);
+  app.post('/admin/dua/:name/update', auth, duas.update);
 
   app.get('/admin/ziyarat/:name', auth, ziyarat.index);
   app.post('/admin/ziyarat/:name/list', auth, ziyarat.list);
