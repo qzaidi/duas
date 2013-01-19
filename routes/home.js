@@ -1,5 +1,7 @@
 "use strict";
 
+var hijri = require('../lib/hijri');
+
 var home = {
 
   checkForSpecialOccasion: function(req,res,next) {
@@ -8,6 +10,12 @@ var home = {
     // add popup.js to req.scripts.js array
     // TODO: support both external scripts and inline scripts
     
+    next();
+  },
+
+  hijri: function(req,res,next) {
+    req.hijri = hijri.getHijriDate();
+    req.hijri.month = hijri.months[req.hijri.month -1 ];
     next();
   },
 
@@ -33,6 +41,7 @@ var home = {
     */
 
     res.render('index', {
+      hijri: req.hijri,
       scripts: req.scripts
     });
   }

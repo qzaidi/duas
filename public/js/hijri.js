@@ -19,7 +19,9 @@
     "2-20": "arbaeen",
     "2-24": "zainab-martyrdom",
     "2-28": "prophet-imamhasan",
-    "3-8": "imam-askari-martyrdom"
+    "3-8": "martyrdom-askari",
+    "3-9": "eid-e-zehra",
+    "3-17": "meelad-un-nabi"
     },
 
     months : [

@@ -10,7 +10,7 @@ var events = require('./events');
 var mw = require('./mw');
 
 module.exports = function(app) {
-  app.get('/', home.checkForSpecialOccasion, home.index);
+  app.get('/', home.checkForSpecialOccasion, home.hijri, home.index);
 
   app.get('/about', about.index);
   app.get('/about/:page', about.page);
