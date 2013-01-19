@@ -18,6 +18,7 @@ block content
         p #{info.endesc} 
 
           .section.group
+            .col.span_1_of_2.arabic #{info.arname}
             .col.span_1_of_2
               small
                 a(href='?lang=english') 
@@ -28,12 +29,11 @@ block content
                 |  | &nbsp;  
                 a(href='?lang=engtrans') 
                   span.language Transliteration 
-            .col.span_1_of_2.arabic #{info.arname}
 
           each row in data
             .section.group
-              .col.span_1_of_2(class="#{lang}") #{row[lang]}
               .col.span_1_of_2.arabic #{row.arabic}
+              .col.span_1_of_2(class="#{lang}") #{row[lang]}
 
           != "<script>"
           != "var cues = ["

@@ -16,10 +16,10 @@ block content
         p #{info.endesc}
 
         .section.group
-          .col.span_1_of_2(class="#{lang}") #{langdesc}
           .col.span_1_of_2.arabic #{info.arname}
+          .col.span_1_of_2(class="#{lang}") #{info.enname}
 
         each row in data
           .section.group
-            .col.span_1_of_2(class="#{lang}") #{row[lang]}
             .col.span_1_of_2.arabic #{row.arabic}
+            .col.span_1_of_2(class="#{lang}") #{row[lang]}
