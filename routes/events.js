@@ -66,9 +66,11 @@ var events = {
         if (  (row.hijrimonth >= hijri.month) 
            && (row.hijridate >= hijri.day) ) {
            selected = i;
+           page.image = '//' + req.headers.host + row.image;
            break;
         }
       }
+
       res.render('events/index', { events: rows, datehelper: getDate, page: page, offset: selected });
     });
   }
