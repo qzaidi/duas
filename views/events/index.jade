@@ -16,10 +16,13 @@ block content
 
         .projects
           ul(data-role='listview')
-            li
-              a(href='#')
-                img(src='/img/icon-allah.png', alt='Rabi ul Awwal')
-                h3 Rabi-ul-Awwal
-                p 8th of Rabi ul Awwal, Martyrdom of Imam Hasan Askari (AS)
+            - for (var i =0; i < events.length; i++) {
+              - var event = events[(i+offset)%events.length]
+                li
+                  a(href='/events/#{event.urlkey}')
+                    img(src='/cache/64x64/#{event.image}', alt='#{event.name}')
+                    h3 #{event.name}
+                    p #{datehelper(event)}
+            - }
 
       include ../sharing

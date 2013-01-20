@@ -20,6 +20,12 @@ function get_nth_suffix(date) {
   }
 }
 
+function getDate(ev) {
+  var crdate = hijri.getGregorianDate({ day: ev.hijridate, month: ev.hijrimonth -1 });
+  var month = hijri.months[ev.hijrimonth - 1];
+  return ev.hijridate + get_nth_suffix(ev.hijridate) + ' of ' + month + ' , falls on ' + crdate.toString().split('00:')[0];
+}
+
 var events = {
   
   page: function(req,res,next) {
@@ -45,7 +51,26 @@ var events = {
   },
 
   index: function(req,res,next) {
-    res.render('events/index');
+    db.all('select * from events order by hijrimonth,hijridate', function(err,rows) {
+      var page = { 'title': 'Islamic Occasions', description: 'Upcoming Islamic events with their Hijri and Gregorian dates' };
+      var selected = 0;
+      var hijri = req.hijri;
+      if (err) { 
+        return next(err);
+      }
+
+      for(var i = 0; i < rows.length; i++) {
+        var row = rows[i];
+        //console.log(hijri.month,hijri.day);
+        //console.log(row.hijrimonth,row.hijridate);
+        if (  (row.hijrimonth >= hijri.month) 
+           && (row.hijridate >= hijri.day) ) {
+           selected = i;
+           break;
+        }
+      }
+      res.render('events/index', { events: rows, datehelper: getDate, page: page, offset: selected });
+    });
   }
 
 };

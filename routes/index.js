@@ -10,13 +10,13 @@ var events = require('./events');
 var mw = require('./mw');
 
 module.exports = function(app) {
-  app.get('/', home.checkForSpecialOccasion, home.hijri, home.index);
+  app.get('/', home.checkForSpecialOccasion, mw.hijri, home.index);
 
   app.get('/about', about.index);
   app.get('/about/:page', about.page);
 
   app.get('/events/:page', events.page);
-  app.get('/events', events.index);
+  app.get('/events', mw.hijri, events.index);
 
   app.get('/teachings', function(req,res) {
     res.render('teachings/index');
