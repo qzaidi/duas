@@ -29,8 +29,8 @@ module.exports = function(app) {
         return next(err);
       }
       db.all('select * from ' + req.params.name, function(err,rows) {
-        var page = { title : info.enname + ' from Imam Sajjad' };
-        page.description = info.collection + ' - ' + info.endesc;
+        var page = { title : info.enname + ' with ' + langdesc};
+        page.description = info.collection + ' - ' + info.endesc + ' by Imam Zainul Abideen with ' + langdesc;
         res.render('dua', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc});
       });
     });
@@ -50,8 +50,8 @@ module.exports = function(app) {
         return next(err);
       }
       db.all('select * from ' + req.params.prayer, function(err,rows) {
-        var page = { title : info.enname  + ' from Imam Sajjad'  };
-        page.description = info.collection + ' - ' + info.enname + ' from Imam Zainul Abideen with ' + langdesc;
+        var page = { title : info.enname + ' with ' + langdesc};
+        page.description = info.collection + ' - ' + info.enname + ' by Imam Zainul Abideen with ' + langdesc;
         if (!rows[0][lang]) {
           rows[0][lang] = 'Coming Soon ...';
         }
