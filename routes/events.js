@@ -61,10 +61,7 @@ var events = {
 
       for(var i = 0; i < rows.length; i++) {
         var row = rows[i];
-        //console.log(hijri.month,hijri.day);
-        //console.log(row.hijrimonth,row.hijridate);
-        if (  (row.hijrimonth >= hijri.month) 
-           && (row.hijridate >= hijri.day) ) {
+        if ( ((row.hijrimonth - hijri.month)*30 + row.hijridate - hijri.day) > 0) {
            selected = i;
            page.image = '//' + req.headers.host + row.image;
            break;
