@@ -2292,6 +2292,7 @@ div.calendar
   a, a:visited {
     text-decoration: underline;
   }
+  /*
   a[href]:after {
     content: " (" attr(href) ")";
   }
@@ -2301,6 +2302,7 @@ div.calendar
   .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after {
     content: "";
   }
+  */
   /* Don't show links for images, or javascript/internal links */
   pre, blockquote {
     border: 1px solid #999;
