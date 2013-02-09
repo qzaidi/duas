@@ -31,6 +31,9 @@ module.exports = function(app) {
       db.all('select * from ' + req.params.name, function(err,rows) {
         var page = { title : info.enname + ' with ' + langdesc};
         page.description = info.collection + ' - ' + info.endesc + ' by Imam Zainul Abideen with ' + langdesc;
+        if (!rows[0][lang]) {
+          rows[0][lang] = langdesc + ' Coming Soon ...';
+        }
         res.render('dua', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc});
       });
     });

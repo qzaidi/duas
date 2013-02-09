@@ -10,15 +10,20 @@ block content
       .padpage.padtop
         h1 
           a.back.ui-link(href='/duas')
-            img(src='/img/icon-back.png',alt='Back')
+            img(src='/img/icon-back.png',alt='')
             | #{info.enname}
-          if (info.audio)
-            audio(src="#{info.audio}",controls="controls",preload="none")
+          audio(src="#{info.audio}",controls="controls",preload="none")
         p #{info.endesc}
 
         .section.group
           .col.span_1_of_2.arabic #{info.arname}
-          .col.span_1_of_2(class="#{lang}") #{info.enname}
+          .col.span_1_of_2
+              small
+                a(href='?lang=english') 
+                  span.language English &nbsp;  
+                |  | &nbsp; 
+                a(href='?lang=hindi') 
+                  span.language Hindi &nbsp;
 
         each row in data
           .section.group
