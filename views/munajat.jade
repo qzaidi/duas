@@ -13,7 +13,7 @@ block content
           a.back.ui-link(href='/munajat')
             img(src='/img/icon-back.png',alt='<-')
             | #{info.enname}
-          audio#amtag(src="#{info.audio}",controls="controls",preload="none")
+          audio.noprint#amtag(src="#{info.audio}",controls="controls",preload="none")
 
         p #{info.endesc} 
 

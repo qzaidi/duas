@@ -6,7 +6,9 @@ var langmap = {
   'english': 'English Translation',
   'engtrans': 'English Transliteration',
   'urdu': 'Urdu Translation',
-  'hindi': 'Hindi Translation'
+  'hindi': 'Hindi Translation',
+  'arabiconly' : 'Arabic only',
+  'hindionly' : 'Hindi only'
 };
 
 module.exports = function(app) {

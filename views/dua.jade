@@ -12,7 +12,7 @@ block content
           a.back.ui-link(href='/duas')
             img(src='/img/icon-back.png',alt='')
             | #{info.enname}
-          audio(src="#{info.audio}",controls="controls",preload="none")
+          audio.noprint(src="#{info.audio}",controls="controls",preload="none")
         p #{info.endesc}
 
         .section.group
@@ -24,8 +24,16 @@ block content
                 |  | &nbsp; 
                 a(href='?lang=hindi') 
                   span.language Hindi &nbsp;
+                |  | &nbsp; 
+                a(href='?lang=arabiconly') 
+                  span.language Arabic only &nbsp;
 
-        each row in data
-          .section.group
-            .col.span_1_of_2.arabic #{row.arabic}
-            .col.span_1_of_2(class="#{lang}") #{row[lang]}
+        if (lang.indexOf('only') == -1) 
+          each row in data
+            .section.group
+              .col.span_1_of_2.arabic #{row.arabic}
+              .col.span_1_of_2(class="#{lang}") #{row[lang]}
+        else
+          p.arabic.doublespaced
+            each row in data
+              | #{row.arabic}

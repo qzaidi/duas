@@ -1296,6 +1296,10 @@ form li {
   background-color: #FFFFF2;
 }
 
+.doublespaced {
+  line-height: 200%;
+}
+
 .urdu {
   direction: rtl;
   font-size: 18px;
@@ -2291,6 +2295,10 @@ div.calendar
   /* Black prints faster: h5bp.com/s */
   a, a:visited {
     text-decoration: underline;
+  }
+
+  .noprint {
+    display: none;
   }
   /*
   a[href]:after {
