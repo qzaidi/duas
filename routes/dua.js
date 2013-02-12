@@ -41,6 +41,22 @@ module.exports = function(app) {
     });
   });
 
+  app.get('/naat/:name', function(req,res,next) {
+    var lang = 'urdu';
+    var langdesc = 'Urdu Translation';
+    db.get('select * from toc where urlkey = "' + req.params.name + '" ', function(err,info) {
+      if (err) {
+        return next(err);
+      }
+      db.all('select * from ' + req.params.name, function(err,rows) {
+        var page = { title : info.enname + ' with ' + langdesc};
+        page.description = info.collection + ' - ' + info.endesc + ' by Imam Zainul Abideen with ' + langdesc;
+        res.render('naat', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc});
+      });
+    });
+
+  });
+
   app.get('/munajat', function(req,res) {
     db.all('select * from toc where type = "munajat"', function(err,rows) {
       res.render('munajats', { prayers: rows });
