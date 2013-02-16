@@ -16,7 +16,7 @@ module.exports = function(app) {
     res.render('ziyaraat/salwat');
   });
 
-  app.get('/ziyaraat/:name', function(req,res,next) {
+  app.get('/ziyarat/:name', function(req,res,next) {
     var name = req.params.name;
     db.get('select * from toc where urlkey = "' + name + '"', function(err,info) {
       if (err) {

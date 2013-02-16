@@ -26,7 +26,7 @@ block content
                 | Your mail has been sent.
 
            h4  Write to us 
-            form(action='/settings/feedback', method='POST', data-enhance='false')
+            form.ajaxform(action='/settings/feedback', method='POST', data-enhance='false')
               ul
                 li
                   input#contactName.textbox(type='text', placeholder='Name', required='required', name='contactName')

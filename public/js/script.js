@@ -318,7 +318,7 @@ var App = {
       $(':input[required]').addClass('required');
 
       // Block submit if there are invalid classes found
-      $('form:not(.html5enhanced)').addClass("html5enhanced").submit(function() {
+      $('form.ajaxform:not(.html5enhanced)').addClass("html5enhanced").submit(function() {
         var formEl = this;
         $('input,textarea').each(function() {
           App.Forms.validate(this);

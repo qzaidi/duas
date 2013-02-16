@@ -5,7 +5,7 @@ var imageresize = require('./imageresize');
 var treatise = require('./treatise');
 var home = require('./home');
 var about = require('./about');
-var dates = require('./dates');
+var search = require('./search');
 var events = require('./events');
 var mw = require('./mw');
 
@@ -35,6 +35,8 @@ module.exports = function(app) {
 
   app.get(/^\/cache\/(\d+)x(\d+)\/(.*)$/, imageresize.render);
 
+  app.get('/search', search.do, search.render);
+
   require('./gallery')(app);
   require('./videos')(app);
   require('./dua')(app);
@@ -43,6 +45,7 @@ module.exports = function(app) {
   require('./admin')(app);
 
   app.get('/*', mw.notfound);
+
 
 
 };

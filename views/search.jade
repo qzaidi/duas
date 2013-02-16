@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  div(role='main')
+    .page.innerPage#searchPage(data-cache='never',data-role="page",data-url='#{url}')
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/')
+            img(src='/img/icon-back.png',alt='<-')
+            | Site Search
+
+        br
+        form(action='/search',method='get')
+          input(type="search",name="q",id="q",value="#{search.term}")
+
+        if (search.term)
+          .ui-widget.successMessage
+
+          h3 You searched for '#{search.term}' returned #{search.results.length} results.
+          hr
+
+          .projects
+            ul(data-role='listview')
+              each result in search.results
+                li
+                  a(href='#{result.href}')
+                    img(src='/img/icon-#{result.type}.png', alt='#{result.title}')
+                    h3 #{result.title}
+                    p #{result.description}
