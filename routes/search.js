@@ -2,6 +2,7 @@
 
 var util = require('util');
 var db = require('../model/db');
+var events = require('./events');
 
 function toc_link(x) {
   return '/' + x.type + '/' + x.urlkey;
@@ -9,9 +10,9 @@ function toc_link(x) {
 
 var search = {
   
-  do: function(req,res,next) {
+  toc: function(req,res,next) {
     var query;
-    req.search = { term: '' };
+    req.search = { term: '' , results: []};
     if (!req.query.q) {
       return next();
     }
@@ -20,13 +21,14 @@ var search = {
     query = 'select * from toc where type like "%' + req.search.term + '%" or urlkey like "%' 
              + req.search.term + '%" or enname like "%' + req.search.term + '%"';
     db.all(query, function(err,rows) {
-      var results = [];
+      var results;
       if (err) {
         util.log('error in search ' + err);
+        return next();
       }
 
       if (rows) {
-        results = rows.map(function(x) {
+        req.search.results = rows.map(function(x) {
                     return {
                       title: x.enname,
                       type: x.type,
@@ -36,7 +38,27 @@ var search = {
                   });
       }
 
-      req.search.results = results;
+      next();
+    });
+  },
+
+  events: function(req,res,next) {
+    var query = 'select * from events where name like "%' + req.search.term  + '%" or description like "%'
+                + req.search.term + '%" or urlkey like "%' + req.search.term + '%"';
+    db.all(query, function(err,rows) {
+      var results = req.search.results;
+      if (err) {
+        util.log('error in events search ' + err);
+      }
+      rows.forEach(function(x) {
+        x.type = 'events';
+        results.push({ 
+                        title: x.name, 
+                        type: x.type, 
+                        description: events.getDate(x),
+                        href: toc_link(x) 
+                     });
+      });
       next();
     });
   },

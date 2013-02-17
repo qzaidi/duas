@@ -26,6 +26,7 @@ module.exports = function(app) {
     res.render('teachings/' + req.params.episode);
   });
 
+  app.get('/treatise/list', treatise.list);
   app.get('/treatise', treatise.index);
   app.get('/rights/:right', treatise.right);
 
@@ -35,7 +36,7 @@ module.exports = function(app) {
 
   app.get(/^\/cache\/(\d+)x(\d+)\/(.*)$/, imageresize.render);
 
-  app.get('/search', search.do, search.render);
+  app.get('/search', search.toc, search.events, search.render);
 
   require('./gallery')(app);
   require('./videos')(app);

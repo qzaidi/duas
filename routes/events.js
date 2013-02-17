@@ -20,14 +20,14 @@ function get_nth_suffix(date) {
   }
 }
 
-function getDate(ev) {
-  var crdate = hijri.getGregorianDate({ day: ev.hijridate, month: ev.hijrimonth -1 });
-  var month = hijri.months[ev.hijrimonth - 1];
-  return ev.hijridate + get_nth_suffix(ev.hijridate) + ' of ' + month + ' , falls on ' + crdate.toString().split('00:')[0];
-}
-
 var events = {
-  
+
+  getDate: function(ev) {
+    var crdate = hijri.getGregorianDate({ day: ev.hijridate, month: ev.hijrimonth -1 });
+    var month = hijri.months[ev.hijrimonth - 1];
+    return ev.hijridate + get_nth_suffix(ev.hijridate) + ' of ' + month + ' , falls on ' + crdate.toString().split('00:')[0];
+  },
+
   page: function(req,res,next) {
     var urlkey = req.params.page;
     var sql = 'select * from events where urlkey = "' + urlkey + '"';
@@ -68,7 +68,7 @@ var events = {
         }
       }
 
-      res.render('events/index', { events: rows, datehelper: getDate, page: page, offset: selected });
+      res.render('events/index', { events: rows, datehelper: events.getDate, page: page, offset: selected });
     });
   }
 

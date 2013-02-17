@@ -8,6 +8,7 @@ var duas = require('./duas');
 var ziyarat = require('./ziyarat');
 var events = require('./events');
 var gallery = require('./gallery');
+var treatise = require('./treatise');
 var auth = express.basicAuth('admin','hell0World');
 
 
@@ -44,5 +45,11 @@ module.exports = function(app) {
   app.post('/admin/gallery/update', auth, gallery.update);
   app.post('/admin/gallery/create', auth, gallery.create);
   app.post('/admin/gallery/delete', auth, gallery.remove);
+
+  app.get('/admin/treatise', auth, treatise.index);
+  app.post('/admin/treatise/list', auth, treatise.list);
+  app.post('/admin/treatise/update', auth, treatise.update);
+  app.post('/admin/treatise/create', auth, treatise.create);
+  app.post('/admin/treatise/delete', auth, treatise.remove);
 
 };

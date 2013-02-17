@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#rights(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+
+        h1 
+          a.back.ui-link(href='/treatise')
+            img(src='/img/icon-back.png',alt='Back')
+            | #{info.enname}
+
+        p.arabic #{info.arname}
+
+        p.arabic #{info.arabic} 
+
+        p
+          | #{info.english}
+
+        h4
+          if (next) 
+            a.next.ui-link(href="/rights/#{next}") 
+              | Next
+              img(src="/img/icon-next.png")
+      include ../sharing

@@ -1,0 +1,31 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#treatise(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Home")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/')
+            img(src='/img/icon-back.png',alt='Back')
+            | Treatise of Rights
+        p 
+          | The concluding remarks from Imam Sajjad summarize this best
+
+        blockquote
+          | These are the fifty one rights that surround you and you cannot evade under any circumstances. It is incumbent 
+          | upon you to observe them and exert all efforts to fulfill them. You should seek God the Majestic’s help in 
+          | this respect. And there is no power or strength but in God. And all praise is due to God the Lord of the Worlds.
+
+
+        .clients
+            ul(data-role='listview')
+              each right in rights
+                li
+                  a(href='/rights/#{right.id}')
+                    img.ui-li-icon(src='/img/sample-images/icon1.png', alt='image 2')
+                    | #{right.enname}
+

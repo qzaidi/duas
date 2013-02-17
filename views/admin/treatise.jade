@@ -1,0 +1,41 @@
+extends layout
+
+block content
+  #treatisecontainer
+
+  script
+    $(document).ready(function () {
+        $('#treatisecontainer').jtable({
+            title: 'Treatise',
+            actions: {
+                listAction: '/admin/treatise/list',
+                createAction: '/admin/treatise/create',
+                updateAction: '/admin/treatise/update',
+                deleteAction: '/admin/treatise/delete'
+            },
+            fields: {
+                id: {
+                  key: true,
+                  list: true,
+                  create: false,
+                  edit: false
+                },
+                enname: {
+                    width: '5%',
+                    title: 'English Translation'
+                },
+                arname: {
+                    width: '5%',
+                    title: 'English Transliteration'
+                },
+                arabic: {
+                    title: 'Arabic'
+                },
+                english: {
+                  title: 'English'
+                }
+            }
+        });
+ 
+        $('#treatisecontainer').jtable('load');
+    });
