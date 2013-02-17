@@ -15,11 +15,13 @@ module.exports = function(app) {
 
   app.get('/duas', function(req,res) {
     db.all('select * from toc where type = "dua" and collection = "Sahifa-e-Sajjadiya"', function(err,rows) {
+      var page = { title: 'Duas from Sahifa-e-Sajjadiya', 
+                   description: 'Supplications from Sahifa-e-Sajjadiya, the Pslams of Islam by Imam Zainul Abideen' };
       if (err) {
         console.log(err);
         next(err);
       }
-      res.render('duas', { data: rows });
+      res.render('duas', { data: rows , page: page});
     });
   });
 
@@ -59,7 +61,9 @@ module.exports = function(app) {
 
   app.get('/munajat', function(req,res) {
     db.all('select * from toc where type = "munajat"', function(err,rows) {
-      res.render('munajats', { prayers: rows });
+      var page = { title: 'Munajat from Sahifa-e-Sajjadiya', 
+                   description: 'Whispered Prayers from Sahifa-e-Sajjadiya, the Pslams of Islam by Imam Zainul Abideen' };
+      res.render('munajats', { prayers: rows, page: page });
     });
   });
 

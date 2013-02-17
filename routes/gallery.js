@@ -6,6 +6,7 @@ module.exports = function(app) {
 
   app.get('/gallery', function(req,res) {
     db.all('select * from gallery', function(err,rows) {
+      var page = { title: 'Image gallery', description: 'Images related to Imam Zainul Abideen' };
       var images = [];
       var subarray = [];
       if (err) { return next(err); }
@@ -19,7 +20,7 @@ module.exports = function(app) {
       if (subarray.length) { 
         images.push(subarray);
       }
-      res.render('gallery', { rows: images });
+      res.render('gallery', { rows: images, page: page });
     });
   });
 };
