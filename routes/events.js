@@ -1,6 +1,6 @@
 "use strict";
 
-var db = require('../model/db');
+var db = require('../model/duas');
 var hijri = require('../lib/hijri');
 
 function get_nth_suffix(date) {

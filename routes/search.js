@@ -1,7 +1,7 @@
 "use strict";
 
 var util = require('util');
-var db = require('../model/db');
+var db = require('../model/duas');
 var events = require('./events');
 
 function toc_link(x) {

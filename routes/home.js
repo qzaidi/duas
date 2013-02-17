@@ -1,6 +1,5 @@
 "use strict";
 
-
 var home = {
 
   checkForSpecialOccasion: function(req,res,next) {
