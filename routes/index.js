@@ -7,6 +7,8 @@ var home = require('./home');
 var about = require('./about');
 var search = require('./search');
 var events = require('./events');
+var quran = require('./quran');
+
 var mw = require('./mw');
 
 module.exports = function(app) {
@@ -29,6 +31,9 @@ module.exports = function(app) {
   app.get('/treatise/list', treatise.list);
   app.get('/treatise', treatise.index);
   app.get('/rights/:right', treatise.right);
+
+  app.get('/quran/:chapter/:verse', quran.verse);
+  app.get('/quran/:chapter', quran.chapter);
 
   app.get('/settings', settings.index);
   app.get('/settings/:page', settings.page);

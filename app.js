@@ -35,8 +35,14 @@ app.configure('production', function() {
 
 require('./routes')(app);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+http.createServer(app)
+    .on('error', function(err) {
+      console.log('Error creating server ' + err);
+      process.exit(1);
+    })
+    .listen(app.get('port'), function(){
+      console.log("Express server listening on port " + app.get('port')
+    );
 });
 
 proc.init(app);

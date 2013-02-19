@@ -1295,6 +1295,7 @@ form li {
   direction: rtl;
   background-color: #FFFFF2;
   padding: 5px;
+  text-align: justify;
 }
 
 .doublespaced {
@@ -2281,7 +2282,7 @@ div.calendar
 }
 
 .highlight {
-  background-color: #ffffaa;
+  background-color: #C4ECBD;
 }
 
 @media print {
