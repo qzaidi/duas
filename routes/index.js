@@ -32,6 +32,7 @@ module.exports = function(app) {
   app.get('/treatise', treatise.index);
   app.get('/rights/:right', treatise.right);
 
+  app.get('/quran',quran.index);
   app.get('/quran/:chapter/:verse', quran.verse);
   app.get('/quran/:chapter', quran.chapter);
 

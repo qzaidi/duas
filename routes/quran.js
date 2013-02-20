@@ -17,8 +17,15 @@ function toArabDigits(num) {
 
 var quran = {
 
+  index: function(req,res,next) {
+    console.log('inside index');
+    db.all('select * from chapters', function(err,suras) {
+      res.render('quran/index', { suras: suras });
+    });
+  },
+
   chapter: function(req,res,next) {
-    var chapter = req.params.chapter;
+    var chapter = Number(req.params.chapter);
     db.get('select * from chapters where id=' + chapter , function(err, surat) {
       var page = Number(req.query.p) || 0;
       var offset = page*8 || 0;
