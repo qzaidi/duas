@@ -1,6 +1,6 @@
 "use strict";
 
-var db = require('../../model/db');
+var db = require('../../model/duas');
 
 var events = {
   index: function(req,res,next) {
