@@ -25,6 +25,7 @@ var events = {
       if (err) {
         result.RESULT = 'ERROR';
         result.Message = err.message;
+        console.log(err);
       } else {
         console.log(data);
         result.Record = req.body;

@@ -17,7 +17,7 @@ module.exports = function(dbfile,opt) {
     var keys = Object.keys(obj);
     var values = [];
 
-    sql += '(' + keys.join(',') + ') ';
+    sql += "(" + keys.join(',') + ") ";
 
     keys.forEach(function(key) {
       values.push("'" + obj[key] + "' ");

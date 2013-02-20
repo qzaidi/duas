@@ -61,7 +61,7 @@ var events = {
 
       for(var i = 0; i < rows.length; i++) {
         var row = rows[i];
-        if ( ((row.hijrimonth - hijri.month)*30 + row.hijridate - hijri.day) > 0) {
+        if ( Math.abs((row.hijrimonth - hijri.month)*30 + row.hijridate - hijri.day) < 30) {
            selected = i;
            page.image = '//' + req.headers.host + row.image;
            break;
