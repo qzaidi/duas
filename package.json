@@ -6,6 +6,7 @@
     "start": "node app"
   },
   "dependencies": {
+    "quran": "git://github.com/qzaidi/quran.git",
     "express": "3.0.6",
     "jade": "*",
     "sqlite3": "*",

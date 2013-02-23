@@ -12,11 +12,11 @@ block content
         h1 
           a.back.ui-link(href='/')
             img(src='/img/icon-back.png',alt='Back')
-            | Al Quran (#{verse.chapter}: #{verse.verse})
+            | Al Quran (#{chapter}: #{verse})
 
         p.arabic 
-          | #{verse.arabic} 
-          span.ayaNumber ﴿ #{digits(verse.verse)} ﴾  
+          | #{ayah} 
+          span.ayaNumber ﴿ #{digits(verse)} ﴾  
 
         h4
           if (next) 
