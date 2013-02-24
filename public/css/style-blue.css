@@ -1030,9 +1030,15 @@ h1 a {
 h1 a.back img {
   width: 23px;
 }
+
 a.next img {
   width: 23px;
 }
+
+a.prev img {
+  width: 23px;
+}
+
 h2 {
   background-color: #252525;
   line-height: 30px;

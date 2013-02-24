@@ -11,9 +11,15 @@ block content
         h1 
           a.back.ui-link(href='/settings')
             img(src='/img/icon-back.png',alt='Back')
-          | Select Language
-        p 
-          | Very soon, you would be able to chose the language in which Duas and Munajats are translated. We plan
-          | to support Hindi and Urdu translation, as well as English transliteration to all the Dua's listed here.
+          | Language Settings
+
+        div(data-role="fieldcontain")
+          label(for="language",class="select") Translation Preference
+          select(name="language",id="language")
+            option(value="english") English Translation
+            option(value="english") English Transliteration
+            option(value="urdu") Urdu Translation
+            option(value="hindi") Hindi Translation
+
          
 

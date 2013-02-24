@@ -14,9 +14,11 @@ block content
             img(src='/img/icon-back.png',alt='Back')
             | Al Quran (#{chapter}: #{verse})
 
-        p.arabic 
-          | #{ayah} 
-          span.ayaNumber ﴿ #{digits(verse)} ﴾  
+        .section.group
+          .col.span_1_of_2.arabic 
+            | #{ayah.ar} 
+            span.ayahNumber ﴿ #{digits(verse)} ﴾  
+          .col.span_1_of_2(class="english") #{ayah.en}
 
         h4
           if (next) 

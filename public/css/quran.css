@@ -3,6 +3,10 @@
   margin:3px 0px 7px;
 }
 
+.ayahNumber {
+  white-space:nowrap;
+}
+
 .surahHeaderText {
   text-align: center;
   line-height: 48px;

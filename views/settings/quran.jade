@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/settings')
+            img(src='/img/icon-back.png',alt='Back')
+          | Quran Viewer Settings
+
+        div(data-role="fieldcontain")
+          label(for="language",class="select") Translation Preference
+          select(name="language",id="language")
+            option(value="hindi") No Translation
+            option(value="english") English Translation
+
+        div(data-role="fieldcontain")
+          label(for="language",class="select") Translator Preference
+          select(name="language",id="language")
+            option(value="hindi") M H Shakir
+            option(value="hindi") Pickthall
+
+        div(data-role="fieldcontain")
+          label(for="language",class="select") Arabic Font Size
+          input(type='range',name='fontsize',id='fontsize',value='0',min='0',max='100')
+         
+        div(data-role="fieldcontain")
+          label(for="language",class="select") Translation Font Size
+          input(type='range',name='fontsize',id='fontsize',value='0',min='0',max='100')

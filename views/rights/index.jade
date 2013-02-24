@@ -21,7 +21,10 @@ block content
         p
           | #{info.english}
 
-        h4
+        a.prev.ui-link(href='/',data-rel='back')
+          img(src="/img/icon-back.png",alt='Back')
+          | Previous
+        div.right
           if (next) 
             a.next.ui-link(href="/rights/#{next}") 
               | Next

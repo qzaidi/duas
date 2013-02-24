@@ -16,11 +16,19 @@ block content
 
         .surahHeaderFrame
           .surahHeaderText سورة #{surat.arname}
-          
-        p.arabic.doublespaced
+
+        if (lang.indexOf('ar') == -1) 
           each verse in verses
-            | #{verse.arabic} 
-            span.ayaNumber ﴿#{digits(verse.verse)}﴾  
+            .section.group
+              .col.span_1_of_2.arabic 
+                | #{verse.ar} 
+                span.ayahNumber ﴿#{digits(verse.verse)}﴾  
+              .col.span_1_of_2(class="english") #{verse.en}
+        else
+          p.arabic.doublespaced
+            each verse in verses
+              | #{verse.ar} 
+              span.ayahNumber ﴿#{digits(verse.verse)}﴾  
 
         h4
           if (next) 
