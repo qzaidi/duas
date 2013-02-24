@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   div(role='main')
-    .page.innerPage#startPage(data-role="page")
+    .page.innerPage#languageSettingsPage(data-role="page")
       .topGrahic
       a.menuButton(href="/")
         img(src="/img/menu-button.png",alt="Menu")
@@ -21,5 +21,10 @@ block content
             option(value="urdu") Urdu Translation
             option(value="hindi") Hindi Translation
 
-         
+        div(data-role="fieldcontain")
+          label(for="language",class="select") Arabic Font Size
+          input(type='range',name='arfontsize',id='arfontsize',value='28',min='8',max='100')
 
+        h1 Arabic Preview     
+          
+        div.arabic بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
