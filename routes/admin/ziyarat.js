@@ -1,5 +1,5 @@
 "use strict";
-var db = require('../../model/db');
+var db = require('../../model/duas');
 
 var ziyarat = {
   index: function(req,res,next) {
