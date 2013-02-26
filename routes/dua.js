@@ -44,8 +44,8 @@ module.exports = function(app) {
   });
 
   app.get('/naat/:name', function(req,res,next) {
-    var lang = 'urdu';
-    var langdesc = 'Urdu Translation';
+    var lang = req.query.lang || 'english';
+    var langdesc = langmap[lang];
     db.get('select * from toc where urlkey = "' + req.params.name + '" ', function(err,info) {
       if (err) {
         return next(err);
@@ -53,7 +53,7 @@ module.exports = function(app) {
       db.all('select * from ' + req.params.name, function(err,rows) {
         var page = { title : info.enname + ' with ' + langdesc};
         page.description = info.collection + ' - ' + info.endesc + ' by Imam Zainul Abideen with ' + langdesc;
-        res.render('naat', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc});
+        res.render('munajat', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc});
       });
     });
 
