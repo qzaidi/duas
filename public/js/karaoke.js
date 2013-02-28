@@ -1,16 +1,7 @@
 var cues;
 
-function syncFontSize() {
-  var cursize = $('#arfontsize').val();
-  var cssize = $('.arabic').css('font-size');
-  if (cssize != cursize) {
-    $('.arabic').css({ 'font-size': cursize + 'px' });
-  }
-}
-
 $(document).on('pageinit',function() {
   
-  syncFontSize();
 
   $('audio').on('loadstart',function() {
     var i = 0; // remembers

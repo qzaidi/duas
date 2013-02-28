@@ -13,18 +13,25 @@ block content
             img(src='/img/icon-back.png',alt='Back')
           | Language Settings
 
-        div(data-role="fieldcontain")
-          label(for="language",class="select") Translation Preference
-          select(name="language",id="language")
-            option(value="english") English Translation
-            option(value="english") English Transliteration
-            option(value="urdu") Urdu Translation
-            option(value="hindi") Hindi Translation
+        div #{message}
 
-        div(data-role="fieldcontain")
-          label(for="language",class="select") Arabic Font Size
-          input(type='range',name='arfontsize',id='arfontsize',value='28',min='8',max='100')
+        form(id='langsettings',method='post',action='/settings/language')
+          div(data-role="fieldcontain")
+            label(for="language",class="select") Translation Preference
+            select(name="language",id="language")
+              option(value="english",selected="#{settings.lang.english}") English Translation
+              option(value="engtrans") English Transliteration
+              option(value="urdu") Urdu Translation
+              option(value="hindi") Hindi Translation
+
+          div(data-role="fieldcontain")
+            label(for="language",class="select") Arabic Font Size
+            input(type='range',name='arfontsize',id='arfontsize',value='#{settings.arfontsize}',min='8',max='100')
 
         h1 Arabic Preview     
           
         div.arabic بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+
+        a(id="setlanguage",href="#", data-role="button", data-theme="b", data-transition="slide") Apply Changes
+        a(id="resetlanguage",href="#", data-role="button", data-theme="c", data-transition="slide") Restore Defaults
+

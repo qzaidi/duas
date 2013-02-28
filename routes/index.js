@@ -37,6 +37,7 @@ module.exports = function(app) {
   app.get('/quran/:chapter', quran.chapter);
 
   app.get('/settings', settings.index);
+  app.post('/settings/language',settings.update,settings.page);
   app.get('/settings/:page', settings.page);
   app.post('/settings/feedback', settings.feedback);
 
