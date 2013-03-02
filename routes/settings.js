@@ -2,13 +2,24 @@
 
 var mailer = require('../lib/mailer');
 
+var defaults = {
+  language : {
+    arfontsize: 28
+  },
+  quran: {
+    trans: {
+      ar: "selected"
+    }
+  }
+};
+
 var settings = {
   index: function(req,res,next) {
     res.render('settings/index');
   },
 
   page: function(req,res,next) {
-    var settings = req.session.settings || { lang: {}, arfontsize: 28 };
+    var settings = req.session.settings || defaults;
     var message = req.message || '';
     res.render('settings/' + req.params.page, { message: message, settings: settings });
   },
@@ -24,14 +35,29 @@ var settings = {
     next();
   },
 
-  update: function(req,res,next) {
-    var settings = { lang: { }, arfontsize: req.body.arfontsize };
+  updateLanguage: function(req,res,next) {
+    if (!req.session.settings) {
+      req.session.settings = {};
+    }
+
+    var settings = { arfontsize: req.body.arfontsize };
     req.message = 'Your settings have been applied';
     req.params.page = 'language';
-    settings.lang[req.body.language] = 'selected';
-    req.session.settings = settings;
+    req.session.settings.language = settings;
+    next();
+  },
+
+  updateQuran: function(req,res,next) {
+    if (!req.session.settings) {
+      req.session.settings = defaults;
+    }
+    req.params.page = 'quran';
+    req.session.settings.quran = req.body;
+    console.log(req.session.settings);
     next();
   }
+
+
 };
 
 module.exports = settings;

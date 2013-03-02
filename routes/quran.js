@@ -46,14 +46,17 @@ var quran = {
     var chapter = Number(req.params.chapter);
     qurandb.chapter(chapter,function(err, rows) {
       var surat;
-      var lang = req.query.lang || 'ar';
+      var config = req.session.settings? req.session.settings.quran : { language: 'ar' };
+      var lang = req.query.lang || config.language;
       var page = Number(req.query.p) || 0;
       var offset = page*8 || 0;
+
       if (err) {
         util.log(err);
         return next(err);
       }
       surat = rows[0];
+
 
       qurandb.select({ chapter: chapter } , { limit : 10 , offset: offset, language: lang }, function(err,verses) {
         var link;

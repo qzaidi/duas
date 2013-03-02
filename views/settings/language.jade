@@ -19,14 +19,14 @@ block content
           div(data-role="fieldcontain")
             label(for="language",class="select") Translation Preference
             select(name="language",id="language")
-              option(value="english",selected="#{settings.lang.english}") English Translation
+              option(value="english") English Translation
               option(value="engtrans") English Transliteration
               option(value="urdu") Urdu Translation
               option(value="hindi") Hindi Translation
 
           div(data-role="fieldcontain")
             label(for="language",class="select") Arabic Font Size
-            input(type='range',name='arfontsize',id='arfontsize',value='#{settings.arfontsize}',min='8',max='100')
+            input(type='range',name='arfontsize',id='arfontsize',value='#{settings.language.arfontsize}',min='8',max='100')
 
         h1 Arabic Preview     
           

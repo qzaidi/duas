@@ -27,8 +27,14 @@ $(document).on('pageinit', function(ev) {
   $('#resetlanguage').on('click', function(ev) {
     ev.preventDefault();
     $('#arfontsize').val(28);
+    $('#langsettings').submit();
     return false;
   });
+
+  $('#setquran').on('click', function(ev) {
+    ev.preventDefault();
+    $('#quransettings').submit();
+    return false;
+  });
+
 });
-
-

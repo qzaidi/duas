@@ -13,24 +13,22 @@ block content
             img(src='/img/icon-back.png',alt='Back')
           | Quran Viewer Settings
 
-        div(data-role="fieldcontain")
-          label(for="language",class="select") Translation Preference
-          select(name="language",id="language")
-            option(value="hindi") No Translation
-            option(value="english") English Translation
+        form(id='quransettings',method='post',action='/settings/quran')
+          div(data-role="fieldcontain")
+            label(for="language",class="select") Translation Preference
+            select(name="language",id="language")
+              option(value="ar",selected=settings.quran.langauge == 'ar') No Translation
+              option(value="en",selected=settings.quran.language == 'en') English Translation
+              option(value="ur",selected=settings.quran.language == 'ur') Urdu Translation
 
-        div(data-role="fieldcontain")
-          label(for="language",class="select") Translator Preference
-          select(name="language",id="language")
-            option(value="hindi") M H Shakir
-            option(value="hindi") Pickthall
+          div(data-role="fieldcontain")
+            label(for="translator",class="select") Translator Preference
+            select(name="translator",id="translator")
+              option(value="shakir") M H Shakir
+              option(value="pickthall") Pickthall
 
-        div(data-role="fieldcontain")
-          label(for="vpp",class="select") Verses per page
-          input(type='range',name='vpp',id='vpp',value='5',min='1',max='20')
+          div(data-role="fieldcontain")
+            label(for="vpp",class="select") Verses per page
+            input(type='range',name='vpp',id='vpp',value='5',min='1',max='20')
 
-         
-        div(data-role="fieldcontain")
-          label(for="language",class="select") Translation Font Size
-          input(type='range',name='trfontsize',id='trfontsize',value='20',min='0',max='100')
-
+        a(id="setquran",href="#", data-role="button", data-theme="b", data-transition="slide") Apply Changes
