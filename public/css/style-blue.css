@@ -1313,6 +1313,11 @@ form li {
   font-size: 18px;
 }
 
+.ur {
+  direction: rtl;
+  font-size: 18px;
+}
+
 .english {
 }
 

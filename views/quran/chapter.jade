@@ -23,7 +23,7 @@ block content
               .col.span_1_of_2.arabic 
                 | #{verse.ar} 
                 span.ayahNumber ﴿#{digits(verse.verse)}﴾  
-              .col.span_1_of_2(class="english") #{verse.en}
+              .col.span_1_of_2(class=lang) #{verse[lang]}
         else
           p.arabic.doublespaced
             each verse in verses

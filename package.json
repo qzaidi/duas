@@ -6,7 +6,7 @@
     "start": "node app"
   },
   "dependencies": {
-    "quran": "0.0.2",
+    "quran": "0.0.3",
     "express": "3.0.6",
     "jade": "*",
     "sqlite3": "*",

@@ -86,3 +86,11 @@ var quran = {
 };
 
 module.exports = quran;
+
+(function() {
+  if (require.main == 'module') {
+      qurandb.select({ chapter: 1 } , { limit : 10 , language: 'ur' }, function(err,verses) {
+        console.log(err || verses);
+      });
+  }
+}());

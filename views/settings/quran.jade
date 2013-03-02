@@ -20,12 +20,14 @@ block content
               option(value="ar",selected=settings.quran.langauge == 'ar') No Translation
               option(value="en",selected=settings.quran.language == 'en') English Translation
               option(value="ur",selected=settings.quran.language == 'ur') Urdu Translation
+              option(value="hi",selected=settings.quran.language == 'hi') Hindi Translation
 
           div(data-role="fieldcontain")
             label(for="translator",class="select") Translator Preference
             select(name="translator",id="translator")
-              option(value="shakir") M H Shakir
-              option(value="pickthall") Pickthall
+              option.en(value="shakir") M H Shakir
+              option.ur(value="jawadi") Allama Zeeshan Haidar Jawadi
+              option.hi(value="hindi") Sohail Farooq and Saifur Rahman Nadwi
 
           div(data-role="fieldcontain")
             label(for="vpp",class="select") Verses per page
