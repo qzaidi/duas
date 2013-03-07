@@ -15,7 +15,7 @@ block content
             | Ziyaraat
 
         p
-          | Ziyarat is an arabic term that literally means a visit, and is used for piligrimage to sites associated with Prophet Muhammad and his pure
+          | Ziyarat is an arabic term that literally means a visit, and is used to refer piligrimage to sites associated with Prophet Muhammad and his pure
           | progeny.
        .padpage
          h2
@@ -40,23 +40,8 @@ block content
          span.h2 Other Ziyarat's
 
        ul(data-role='listview')
-        li
-          a(href='/ziyarat/warisa')
-            img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Ziyarat-e-Warisa')
-            | Ziyarat-e-Warisa
-        li
-          a(href='/ziyarat/ashura')
-            img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Ziyarat-e-Ashura')
-            | Ziyarat-e-Ashura
-        li
-          a(href='/ziyarat/arbaeen')
-            img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Ziyarat-e-Arbaeen')
-            | On the Day of Arbaeen
-        li
-          a(href='/ziyarat/zainab')
-            img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Ziyarat-e-Sayyida-Zainab')
-            | Ziyarat of Lady Zainab (AS)
-        li
-          a(href='/ziyarat/ziaratkazim')
-            img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Ziyarat of Imam Kazim')
-            | Imam Musa Kazim (AS)
+         each ziyarat in ziyarats
+           li
+             a(href='/ziyarat/#{ziyarat.urlkey}')
+               img.ui-li-icon(src='/img/sample-images/icon2.png', alt='#{ziyarat.enname}')
+               | #{ziyarat.enname}

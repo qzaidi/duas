@@ -4,8 +4,14 @@ var db = require('../model/duas');
 
 module.exports = function(app) {
 
-  app.get('/ziyaraat', function(req,res) {
-    res.render('ziyaraat/index');
+  app.get('/ziyaraat', function(req,res) { 
+    res.redirect('/ziyarat');
+  });
+
+  app.get('/ziyarat', function(req,res) {
+    db.all('select * from toc where collection = "Ziyarat"', function(err,info) {
+      res.render('ziyaraat/index', { ziyarats: info });
+    });
   });
 
   app.get('/ziyaraat/entry', function(req,res) {
