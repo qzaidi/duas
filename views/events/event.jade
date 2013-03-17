@@ -26,4 +26,9 @@ block content
           p 
             | !{event.description} 
 
+          each link in event.links
+            h4
+              a.next.ui-link(href=link.href) #{link.title}
+                img(src='/img/icon-next.png')
+
         include ../sharing

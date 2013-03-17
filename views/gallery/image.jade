@@ -1,0 +1,19 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#galleryPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/',data-rel="back")
+            img(src='/img/icon-back.png',alt='<-')
+          | #{info.name}
+
+        p #{info.description}
+
+        img(src="/img/gallery/" + info.image)

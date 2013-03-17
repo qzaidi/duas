@@ -8,6 +8,7 @@ var about = require('./about');
 var search = require('./search');
 var events = require('./events');
 var quran = require('./quran');
+var gallery = require('./gallery');
 
 var mw = require('./mw');
 
@@ -44,9 +45,11 @@ module.exports = function(app) {
 
   app.get(/^\/cache\/(\d+)x(\d+)\/(.*)$/, imageresize.render);
 
-  app.get('/search', search.toc, search.events, search.render);
+  app.get('/search', search.toc, events.search, gallery.search, search.render);
 
-  require('./gallery')(app);
+  app.get('/gallery',gallery.index);
+  app.get('/gallery/:image',gallery.render);
+
   require('./videos')(app);
   require('./dua')(app);
   require('./ziyarat')(app);

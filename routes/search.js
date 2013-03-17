@@ -42,27 +42,6 @@ var search = {
     });
   },
 
-  events: function(req,res,next) {
-    var query = 'select * from events where name like "%' + req.search.term  + '%" or description like "%'
-                + req.search.term + '%" or urlkey like "%' + req.search.term + '%"';
-    db.all(query, function(err,rows) {
-      var results = req.search.results;
-      if (err) {
-        util.log('error in events search ' + err);
-      }
-      rows.forEach(function(x) {
-        x.type = 'events';
-        results.push({ 
-                        title: x.name, 
-                        type: x.type, 
-                        description: events.getDate(x),
-                        href: toc_link(x) 
-                     });
-      });
-      next();
-    });
-  },
-
   render: function(req,res,next) {
     res.render('search', { search: req.search, url: req.url });
   }

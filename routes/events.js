@@ -3,6 +3,10 @@
 var db = require('../model/duas');
 var hijri = require('../lib/hijri');
 
+function toc_link(x) {
+  return '/' + x.type + '/' + x.urlkey;
+}
+
 function get_nth_suffix(date) {
   switch (date) {
     case 1:
@@ -44,6 +48,13 @@ var events = {
         page.image = 'http://' + req.headers.host + page.image;
       }
 
+      try {
+        ev.links = JSON.parse(ev.links || '[]');
+      } catch(e) {
+        console.log(e);
+        ev.links = [];
+      }
+
       ev.crdate = hijri.getGregorianDate({ day: ev.hijridate, month: ev.hijrimonth -1 });
       ev.month = hijri.months[ev.hijrimonth - 1];
       res.render('events/event', { page: page, event: ev, suffix: get_nth_suffix });
@@ -70,8 +81,28 @@ var events = {
 
       res.render('events/index', { events: rows, datehelper: events.getDate, page: page, offset: selected });
     });
-  }
+  },
 
+  search: function(req,res,next) {
+    var query = 'select * from events where name like "%' + req.search.term  + '%" or description like "%'
+                + req.search.term + '%" or urlkey like "%' + req.search.term + '%"';
+    db.all(query, function(err,rows) {
+      var results = req.search.results;
+      if (err) {
+        util.log('error in events search ' + err);
+      }
+      rows.forEach(function(x) {
+        x.type = 'events';
+        results.push({ 
+                        title: x.name, 
+                        type: x.type, 
+                        description: events.getDate(x),
+                        href: toc_link(x) 
+                     });
+      });
+      next();
+    });
+  }
 };
 
 module.exports = events;
