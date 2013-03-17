@@ -38,7 +38,7 @@ module.exports = function(app) {
         if (!rows[0][lang]) {
           rows[0][lang] = langdesc + ' Coming Soon ...';
         }
-        res.render('dua', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc});
+        res.render('munajat', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc});
       });
     });
   });

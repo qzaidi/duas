@@ -10,10 +10,11 @@ block content
 
       .padpage.padtop
         h1 
-          a.back.ui-link(href='/munajat')
+          a.back.ui-link(href='/',data-rel="back")
             img(src='/img/icon-back.png',alt='<-')
             | #{info.enname}
-          audio.noprint#amtag(src="#{info.audio}",controls="controls",preload="none")
+          if (info.audio)
+            audio.noprint#amtag(src="#{info.audio}",controls="controls",preload="none")
 
         p #{info.endesc} 
 
@@ -21,19 +22,34 @@ block content
             .col.span_1_of_2.arabic #{info.arname}
             .col.span_1_of_2
               small
-                a(href='?lang=english') 
-                  span.language English &nbsp;  
-                |  | &nbsp; 
-                a(href='?lang=urdu') 
-                  span.language Urdu &nbsp;
-                |  | &nbsp;  
-                a(href='?lang=engtrans') 
-                  span.language Transliteration 
+                a(href='?lang=arabiconly') 
+                  span.language Arabic only &nbsp;
+                if (data[0].english)
+                  |  | &nbsp; 
+                  a(href='?lang=english') 
+                    span.language English &nbsp;  
+                if (data[0].urdu)
+                  |  | &nbsp; 
+                  a(href='?lang=urdu') 
+                    span.language Urdu &nbsp;
+                if (data[0].hindi)
+                  |  | &nbsp; 
+                  a(href='?lang=hindi') 
+                    span.language Hindi &nbsp;
+                if (data[0].engtrans)
+                  |  | &nbsp;  
+                  a(href='?lang=engtrans') 
+                    span.language Transliteration 
 
+        if (lang.indexOf('only') == -1) 
           each row in data
             .section.group
               .col.span_1_of_2.arabic #{row.arabic}
               .col.span_1_of_2(class="#{lang}") #{row[lang]}
+        else
+          p.arabic.doublespaced
+            each row in data
+              | #{row.arabic} &nbsp;
 
           != "<script>"
           != "var cues = ["
