@@ -9,7 +9,7 @@
     "quran": "0.0.3",
     "express": "3.0.6",
     "jade": "*",
-    "sqlite3": "git://github.com/developmentseed/node-sqlite3.git",
+    "sqlite3": "*",
     "ptmproc": "git+ssh://git@admedly.unfuddle.com:admedly/proc.git",
     "magickwand": "*",
     "nodemailer": "*"
