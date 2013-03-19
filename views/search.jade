@@ -13,21 +13,5 @@ block content
             img(src='/img/icon-back.png',alt='<-')
             | Site Search
 
-        br
-        form(action='/search',method='get')
-          input(type="search",name="q",id="q",value="#{search.term}")
-
-        if (search.term)
-          .ui-widget.successMessage
-
-          h3 You searched for '#{search.term}' returned #{search.results.length} results.
-          hr
-
-          .projects
-            ul(data-role='listview')
-              each result in search.results
-                li
-                  a(href='#{result.href}')
-                    img(src='/img/icon-#{result.type}.png', alt='#{result.title}')
-                    h3 #{result.title}
-                    p #{result.description}
+        .projects
+          ul#autocomplete(data-role='listview',data-inset="true",data-filter="true",data-filter-placeholder="Search")

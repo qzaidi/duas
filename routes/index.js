@@ -45,7 +45,8 @@ module.exports = function(app) {
 
   app.get(/^\/cache\/(\d+)x(\d+)\/(.*)$/, imageresize.render);
 
-  app.get('/search', search.toc, events.search, gallery.search, search.render);
+  app.get('/searchpage', search.render);
+  app.get('/search', search.toc, events.search, gallery.search, search.json);
 
   app.get('/gallery',gallery.index);
   app.get('/gallery/:image',gallery.render);

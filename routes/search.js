@@ -43,7 +43,11 @@ var search = {
   },
 
   render: function(req,res,next) {
-    res.render('search', { search: req.search, url: req.url });
+    res.render('search');
+  },
+
+  json: function(req,res,next) {
+    return res.jsonp(req.search.results);
   }
 };
 

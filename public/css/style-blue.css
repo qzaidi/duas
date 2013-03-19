@@ -2297,6 +2297,10 @@ div.calendar
   background-color: #C4ECBD;
 }
 
+.ui-listview-filter-inset {
+  margin-top: 0;
+}
+
 @media print {
   * {
     background: transparent !important;
