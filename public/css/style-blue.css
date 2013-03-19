@@ -2005,6 +2005,7 @@ form li {
   font-size: 12px;
   font-weight: 200;
   left: 5px;
+  text-shadow: none;
 }
 .menu li ul .square img {
   width: 50%;
