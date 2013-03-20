@@ -28,16 +28,20 @@ window.onerror = function(message,url,line) {
   ]);
 };
 
-$('[data-role=page]').live('pageshow', function (event, ui) {
+function trackPageview(page) {
   try {
     _gaq.push(['_setAccount', 'UA-27791118-2']);
-    hash = location.hash;
-    if (hash) {
-      _gaq.push(['_trackPageview', hash.substr(1)]);
+    if (page) {
+      _gaq.push(['_trackPageview', page]);
     } else {
       _gaq.push(['_trackPageview']);
     }
   } catch(err) {
-
   }
+}
+
+
+$('[data-role=page]').live('pageshow', function (event, ui) {
+    var hash = location.hash;
+    trackPageview(hash?hash.substr(1):undefined);
 });

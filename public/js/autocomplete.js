@@ -1,5 +1,4 @@
 $( document ).on( "pageinit", "#searchPage", function() {
-  var lastqry = {};
   $( "#autocomplete" ).on("listviewbeforefilter", function ( e, data ) {
     var $ul = $( this ),
     $input = $( data.input ),
@@ -19,8 +18,6 @@ $( document ).on( "pageinit", "#searchPage", function() {
       })
       .then( function ( response ) {
         var type; 
-        lastqry.term = value;
-        lastqry.rcount = response.length;
         if (response.length) {
           html = '';
           $.each( response, function ( i, val ) {
@@ -30,6 +27,7 @@ $( document ).on( "pageinit", "#searchPage", function() {
             }
             html += "<li><a href='" + val.href + "'><h3>" + val.title + "</h3><p>" + val.description + "</p></a></li>";
           });
+          trackPageview('/search?q=' + value);
         } 
         $ul.html( html );
         $ul.listview( "refresh" );
