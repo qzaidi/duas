@@ -11,7 +11,26 @@ block content
         h1 
           a.back.ui-link(href='/')
             img(src='/img/icon-back.png',alt='<-')
-            | Site Search
+            | Start Here
 
         .projects
           ul#autocomplete(data-role='listview',data-inset="true",data-filter="true",data-filter-placeholder="Search")
+
+        p 
+          | Type in a few characters and let's suggest some results. If you aren't looking for anything particular, 
+          a.next.ui-link(href='/random/') 
+            | view a randomly chosen supplication or ziyarat.
+            img(src="/img/icon-next.png")
+
+        p 
+          | Don't know who was Imam Zainul Abideen? Read more about this 
+          a.next.ui-link(href='/about/')
+            |  great grandson of Prophet Muhammad
+            img(src="/img/icon-next.png") 
+          |  who authored such maginficient works as the Pslams of Islam and Treatise of Rights. Browse through his
+          |  supplications and prayers, 
+          a.next.ui-link(href='/duas/noble')
+            img(src="/img/icon-next.png")
+          |  or read about some inspirational incidents from his life.
+          a.next.ui-link(href='/teachings')
+            img(src="/img/icon-next.png")

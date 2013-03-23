@@ -14,7 +14,21 @@ var langmap = {
 
 module.exports = function(app) {
 
-  app.get('/duas', function(req,res) {
+  app.get('/random', function(req,res) {
+    var sql = 'select count(*) as total from toc';
+    db.get(sql, function(err,c) {
+      var total = c.total;
+      var random = Math.floor(Math.random()*total);
+      var sql = 'select urlkey,type from toc limit 1 offset ' + random;
+      console.log(sql);
+      db.get(sql, function(err,info) {
+        console.log(err || info);
+        res.redirect('/' + info.type + '/' + info.urlkey);
+      });
+    });
+  });
+
+  app.get('/duas', function(req,res,next) {
     db.all('select * from toc where type = "dua" and collection = "Sahifa-e-Sajjadiya"', function(err,rows) {
       var page = { title: 'Duas from Sahifa-e-Sajjadiya', 
                    description: 'Supplications from Sahifa-e-Sajjadiya, the Pslams of Islam by Imam Zainul Abideen' };
