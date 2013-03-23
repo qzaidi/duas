@@ -1,24 +1,26 @@
 "use strict";
 
 var express = require('express');
+var db = require('../../model/duas');
 
-var toc = require('./toc');
 var munajat = require('./munajat');
 var duas = require('./duas');
 var ziyarat = require('./ziyarat');
-var events = require('./events');
-var gallery = require('./gallery');
-var treatise = require('./treatise');
-var auth = express.basicAuth('admin','hell0World');
 
+var auth = express.basicAuth('admin','hell0World');
 
 module.exports = function(app) {
 
-  app.get('/admin/', auth, toc.index);
-  app.post('/admin/toc/list', auth, toc.list);
-  app.post('/admin/toc/create', auth, toc.create);
-  app.post('/admin/toc/delete', auth, toc.remove);
-  app.post('/admin/toc/update', auth, toc.update);
+  app.get('/admin', function(req,res) {
+    res.redirect('/admin/toc');
+  });
+
+  require('./table')(app,db,auth,'toc');
+  require('./table')(app,db,auth,'events');
+  require('./table')(app,db,auth,'gallery');
+  require('./table')(app,db,auth,'treatise');
+
+  require('./table')(app,db,auth,'/munajat/:name');
 
   app.get('/admin/munajat/:name', auth, munajat.index);
   app.post('/admin/munajat/:name/list', auth, munajat.list);
@@ -33,23 +35,4 @@ module.exports = function(app) {
   app.get('/admin/ziyarat/:name', auth, ziyarat.index);
   app.post('/admin/ziyarat/:name/list', auth, ziyarat.list);
   app.post('/admin/ziyarat/:name/update', auth, ziyarat.update);
-
-  app.get('/admin/events', auth, events.index);
-  app.post('/admin/events/list', auth, events.list);
-  app.post('/admin/events/update', auth, events.update);
-  app.post('/admin/events/create', auth, events.create);
-  app.post('/admin/events/delete', auth, events.remove);
-
-  app.get('/admin/gallery', auth, gallery.index);
-  app.post('/admin/gallery/list', auth, gallery.list);
-  app.post('/admin/gallery/update', auth, gallery.update);
-  app.post('/admin/gallery/create', auth, gallery.create);
-  app.post('/admin/gallery/delete', auth, gallery.remove);
-
-  app.get('/admin/treatise', auth, treatise.index);
-  app.post('/admin/treatise/list', auth, treatise.list);
-  app.post('/admin/treatise/update', auth, treatise.update);
-  app.post('/admin/treatise/create', auth, treatise.create);
-  app.post('/admin/treatise/delete', auth, treatise.remove);
-
 };

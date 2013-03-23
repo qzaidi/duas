@@ -1,0 +1,59 @@
+"use strict";
+
+module.exports = function(app,dbmodel,auth,table) {
+  var db = dbmodel;
+  var routes = {
+
+    index: function(req,res,next) {
+      res.render('admin/' + table);
+    },
+
+    create: function(req,res,next) {
+      db.insert(table,req.body, function(err,data) {
+        var result = { "Result" : "OK" };
+        if (err) {
+          result.RESULT = 'ERROR';
+          result.Message = err.message;
+        } else {
+          result.Record = req.body;
+        }
+        res.json(result);
+      });
+    },
+
+    list: function(req,res,next) {
+      db.all('select rowid,* from ' + table, function(err,data) {
+        res.json({
+          "Result":"OK",
+          "Records": data
+        });
+      });
+    },
+
+    update: function(req,res,next) {
+      db.update(table, req.body, [ 'rowid' ], function(err,data) {
+        var result = { "Result": "OK" };
+        if (err) {
+          console.log(err);
+          result.Result = 'ERROR';
+          result.message = err.message;
+        }
+
+        res.json(result);
+      });
+    },
+
+    remove: function(req,res,next) {
+      res.json({
+        "Result": "OK"
+      });
+    }
+  };
+  console.log('installing routes for ' + table);
+
+  app.get('/admin/' + table, auth,routes.index);
+  app.post('/admin/' + table + '/list', auth, routes.list);
+  app.post('/admin/' + table + '/create', auth, routes.create);
+  app.post('/admin/' + table + '/update', auth, routes.update);
+  app.post('/admin/' + table + '/remove', auth, routes.remove);
+};
