@@ -11,38 +11,43 @@ block content
                 listAction: '/admin/toc/list',
                 createAction: '/admin/toc/create',
                 updateAction: '/admin/toc/update',
-                deleteAction: '/admin/toc/delete'
+                deleteAction: '/admin/toc/remove'
             },
             fields: {
+              rowid: {
+                key: true,
+                list: false,
+                create: false,
+                edit: false
+              },
               urlkey: {
                 title: 'URL Key',
-                  width: '5%',
-                    key: true
+                width: '5%'
+              },
+              audio: {
+                title: 'Audio',
+                width: '10%'
                 },
-                audio: {
-                  title: 'Audio',
-                  width: '10%'
-                },
-                type: {
-                  title: 'Content Type',
-                    width: '5%'
-                },
-                collection: {
-                  width: '5%',
-                    title: 'Collection'
-                },
-                enname: {
-                  title: 'Name',
-                  display: function(data) {
-                    return '<a href="/admin/' + data.record.type + '/' + data.record.urlkey + '">' + data.record.enname + '</a>'
-                  }
-                },
-                endesc: {
-                  title: 'Description'
-                },
-                arname: {
-                  title: 'Arabic Name'
+              type: {
+                title: 'Content Type',
+                width: '5%'
+              },
+              collection: {
+                width: '5%',
+                title: 'Collection'
+              },
+              enname: {
+                title: 'Name',
+                display: function(data) {
+                  return '<a href="/admin/' + data.record.type + '/' + data.record.urlkey + '">' + data.record.enname + '</a>'
                 }
+              },
+              endesc: {
+                title: 'Description'
+              },
+              arname: {
+                title: 'Arabic Name'
+              }
             }
         });
  

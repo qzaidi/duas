@@ -1,6 +1,7 @@
 "use strict";
 
 var db = require('../model/duas');
+var verses = require('./verses');
 
 var langmap = {
   'english': 'English Translation',
@@ -26,22 +27,11 @@ module.exports = function(app) {
   });
 
   app.get('/dua/:name', function(req,res,next) {
-    var lang = req.query.lang || 'english';
-    var langdesc = langmap[lang];
     db.get('select * from toc where urlkey = "' + req.params.name + '" ', function(err,info) {
-      if (err) {
-        return next(err);
-      }
-      db.all('select * from ' + req.params.name, function(err,rows) {
-        var page = { title : info.enname + ' with ' + langdesc};
-        page.description = info.collection + ' - ' + info.endesc + ' by Imam Zainul Abideen with ' + langdesc;
-        if (!rows[0][lang]) {
-          rows[0][lang] = langdesc + ' Coming Soon ...';
-        }
-        res.render('munajat', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc});
-      });
+      req.info = info;
+      next(err);
     });
-  });
+  },verses.render);
 
   app.get('/naat/:name', function(req,res,next) {
     var lang = req.query.lang || 'english';
@@ -56,7 +46,6 @@ module.exports = function(app) {
         res.render('munajat', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc});
       });
     });
-
   });
 
   app.get('/munajat', function(req,res) {
@@ -67,23 +56,12 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/munajat/:prayer', function(req,res) {
-    db.get('select * from toc where urlkey = "' + req.params.prayer + '" ', function(err,info) {
-      var lang = req.query.lang || 'english';
-      var langdesc = langmap[lang];
-      if (err) {
-        return next(err);
-      }
-      db.all('select * from ' + req.params.prayer, function(err,rows) {
-        var page = { title : info.enname + ' with ' + langdesc};
-        page.description = info.collection + ' - ' + info.enname + ' by Imam Zainul Abideen with ' + langdesc;
-        if (!rows[0][lang]) {
-          rows[0][lang] = 'Coming Soon ...';
-        }
-        res.render('munajat', { data: rows, info: info, lang: lang, page: page, langdesc: langdesc });
-      });
+  app.get('/munajat/:name', function(req,res,next) {
+    db.get('select * from toc where urlkey = "' + req.params.name + '" ', function(err,info) {
+      req.info = info;
+      next(err);
     });
-  });
+  },verses.render);
 
 
 };

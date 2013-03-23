@@ -49,6 +49,17 @@ module.exports = function(dbfile,opt) {
     this.run(sql,cb);
   };
 
+  db.delete = function(table,keyobj,cb) {
+    var sql = 'delete from ' + table + ' where ';
+    var filters = [];
+    Object.keys(keyobj).forEach(function(k) {
+      filters.push(' ' + k + '="' + keyobj[k] + '"');
+    });
+
+    sql += filters.join(' and ');
+    this.run(sql,cb);
+  };
+
   return db;
 
 }

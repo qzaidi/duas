@@ -1,6 +1,7 @@
 "use strict";
 
 var db = require('../model/duas');
+var verses = require('./verses');
 
 module.exports = function(app) {
 
@@ -25,20 +26,8 @@ module.exports = function(app) {
   app.get('/ziyarat/:name', function(req,res,next) {
     var name = req.params.name;
     db.get('select * from toc where urlkey = "' + name + '"', function(err,info) {
-      var page = {};
-      if (err) {
-        return next(err);
-      }
-
-      page.title = info.enname;
-      page.description = info.endesc;
-
-      db.all('select * from "' + name + '"', function(err,rows) {
-        if (err) {
-          return next(err);
-        }
-        res.render('ziyaraat/baqeeh', { data: rows, info: info, lang: 'english', page: page });
-      });
+      req.info = info;
+      next(err);
     });
-  });
+  },verses.render);
 };

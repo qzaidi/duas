@@ -44,8 +44,10 @@ module.exports = function(app,dbmodel,auth,table) {
     },
 
     remove: function(req,res,next) {
-      res.json({
-        "Result": "OK"
+      db.delete(table, req.body, function(err,data) {
+        res.json({
+          "Result": "OK"
+        });
       });
     }
   };

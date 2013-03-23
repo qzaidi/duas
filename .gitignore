@@ -4,3 +4,4 @@ public/js/min
 views/layout/css.jade
 views/layout/footerjs.jade
 public/cache/
+resources/db/seed/
