@@ -33,4 +33,6 @@ module.exports = function(app) {
   app.get('/admin/ziyarat/:name', auth, ziyarat.index);
   app.post('/admin/ziyarat/:name/list', auth, ziyarat.list);
   app.post('/admin/ziyarat/:name/update', auth, ziyarat.update);
+
+  app.post('/admin/cues/:name', duas.cues);
 };

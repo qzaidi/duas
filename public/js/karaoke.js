@@ -1,14 +1,13 @@
 var cues;
 
-$(document).on('pageinit',function() {
+$(document).on('pageinit','#versePage',function() {
   
-
   $('audio').on('loadstart',function() {
     var i = 0; // remembers
     var trigger = 0;
     function timeupdate() {
       var curTime = $(this)[0].currentTime;
-      var text;
+      var text,focus;
 
       if (curTime < trigger) return;
 
@@ -18,11 +17,17 @@ $(document).on('pageinit',function() {
 
       trigger = cues[i];
       text = $('.arabic');
+      
 
       if (i > 0) {
         text.eq(i-1).removeClass('highlight');
       }
-      text.eq(i).addClass('highlight');
+      focus = text.eq(i);
+
+      focus.addClass('highlight');
+      if (i % 4 == 0) {
+        $.mobile.silentScroll(focus.offset().top);
+      }
 
       if ( i == cues.length) {
         i = 0;
@@ -35,4 +40,14 @@ $(document).on('pageinit',function() {
       $(this).on('timeupdate', timeupdate);
     }
   });
+
+  if (!cues || cues.length ==0 ) {
+    cues = [];
+    console.log('installing handler - press x to record a cue');
+    $('#versePage').keypress(function(ev) {
+      if (ev.charCode == 120) {
+        cues.push(Math.floor($('audio')[0].currentTime));
+      } 
+    });
+  }
 });

@@ -3,7 +3,7 @@ extends layout
 block content
   div(role='main')
 
-    .page.innerPage#startPage(data-role="page")
+    .page.innerPage#versePage(data-role="page")
       .topGrahic
       a.menuButton(href="/")
         img(src="/img/menu-button.png",alt="Home")
@@ -51,9 +51,9 @@ block content
             each row in data
               | #{row.arabic} &nbsp;
 
-          != "<script>"
-          != "var cues = ["
-          if (data[0].cue)
-            each row in data
-              !{row.cue},
-          != " ]; </script>"
+        != "<script>"
+        != "var cues = ["
+        if (data[0].cue)
+          each row in data
+            !{row.cue},
+        != " ]; </script>"

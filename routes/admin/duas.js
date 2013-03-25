@@ -1,6 +1,7 @@
 "use strict";
 var db = require('../../model/duas');
 
+
 var duas = {
   index: function(req,res,next) {
     db.get('select * from toc where urlkey = "' + req.params.name + '" and type="dua"', function(err,info) {
@@ -27,6 +28,19 @@ var duas = {
       } 
       res.json(resp);
     });
+  },
+
+  cues: function(req,res,next) {
+    var cues = req.body.cues;
+    var table = req.params.name;
+
+    function updateCue(c,i) {
+      var sql = 'update ' + table + ' set cue = ' + c + ' where rowid = ' + Number(i+1);
+      console.log(sql);
+      db.run(sql);
+    };
+    cues.forEach(updateCue);
+    res.json({});
   }
 };
 
