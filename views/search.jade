@@ -17,10 +17,7 @@ block content
           ul#autocomplete(data-role='listview',data-inset="true",data-filter="true",data-filter-placeholder="Search")
 
         p 
-          | Type in a few characters and let's suggest some results. If you aren't looking for anything particular, 
-          a.next.ui-link(href='/random/') 
-            | view a randomly chosen supplication or ziyarat.
-            img(src="/img/icon-next.png")
+          | Type in a few characters and let's suggest some results. 
 
         p 
           | Don't know who was Imam Zainul Abideen? Read more about this 
@@ -34,3 +31,18 @@ block content
           |  or read about some inspirational incidents from his life.
           a.next.ui-link(href='/teachings')
             img(src="/img/icon-next.png")
+
+        .projects
+          ul(data-role='listview')
+            li
+              a(href='/random/')
+                img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Random Supplication')
+                | Random Supplication/Ziyarat
+            li
+              a(href='/dua/#{day}')
+                img.ui-li-icon(src='/img/sample-images/icon2.png',alt='Dua of the day')
+                | Supplication on #{day}s.
+            li
+              a(href='/about/')
+                img.ui-li-icon(src='/img/sample-images/icon1.png', alt='about Imam')
+                | About Imam Zainul Abideen (AS)
