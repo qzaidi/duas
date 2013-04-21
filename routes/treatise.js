@@ -27,6 +27,12 @@ var treatise = {
 
   right: function(req,res,next) {
     var id = Number(req.params.right);
+    if (!id) {
+      var err = new Error('Not Found');
+      err.status = 404;
+      return next(err);
+    }
+
     db.get('select * from treatise where id=' + id, function(err,info) {
       var page;
       var link = (id < 51) ? info.id + 1: undefined;
