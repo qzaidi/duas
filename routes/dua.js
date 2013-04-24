@@ -3,15 +3,6 @@
 var db = require('../model/duas');
 var verses = require('./verses');
 
-var langmap = {
-  'english': 'English Translation',
-  'engtrans': 'English Transliteration',
-  'urdu': 'Urdu Translation',
-  'hindi': 'Hindi Translation',
-  'arabiconly' : 'Arabic only',
-  'hindionly' : 'Hindi only'
-};
-
 module.exports = function(app) {
 
   app.get('/random', function(req,res) {

@@ -8,7 +8,8 @@ var langmap = {
   'urdu': 'Urdu Translation',
   'hindi': 'Hindi Translation',
   'arabiconly' : 'Arabic only',
-  'hindionly' : 'Hindi only'
+  'hindionly' : 'Hindi only',
+  'hintrans' : 'Hindi Transliteration'
 };
 
 var verses = {

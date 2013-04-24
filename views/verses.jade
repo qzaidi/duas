@@ -33,9 +33,13 @@ block content
                   a(href='?lang=urdu') 
                     span.language Urdu &nbsp;
                 if (data[0].hindi)
-                  |  | &nbsp; 
+                  |  | &nbsp;  
                   a(href='?lang=hindi') 
                     span.language Hindi &nbsp;
+                if (data[0].hintrans)
+                  |  | &nbsp;  
+                  a(href='?lang=hintrans') 
+                    span.language Hindi Transliteration 
                 if (data[0].engtrans)
                   |  | &nbsp;  
                   a(href='?lang=engtrans') 

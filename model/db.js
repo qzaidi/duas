@@ -7,6 +7,11 @@ var dbopts = {
   'w': sqlite3.OPEN_READWRITE
 };
 
+function sqlite3Escape(str) {
+  str.replace(/"/g,'""');
+  return str;
+}
+
 module.exports = function(dbfile,opt) {
   var db;
   var options = dbopts[opt || 'r'];
@@ -35,7 +40,7 @@ module.exports = function(dbfile,opt) {
 
     Object.keys(obj).forEach(function(key) {
       if (not_updates.indexOf(key) == -1) {
-        updates.push(key + '="' + obj[key] + '"');
+        updates.push(key + "='" + sqlite3Escape(obj[key]) + "'");
       }
     });
 
