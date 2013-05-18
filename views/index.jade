@@ -9,9 +9,10 @@ block content
     #menuPage.page.iscroll(data-role='page', data-cache='never')
       .scroller
         .company
-          .calendar
-            span.month #{hijri.monthName}
-            span.day #{hijri.day}
+          a(href='/month/')
+            .calendar
+              span.month #{hijri.monthName}
+              span.day #{hijri.day}
           img(src='/img/cover.jpg', alt='Sahifa-e-Sajjadiya')
         ul.menu
           li

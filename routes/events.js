@@ -44,14 +44,14 @@ var events = {
       var page = { 'title': 'Islamic Occasions', description: 'Upcoming Islamic events with their Hijri and Gregorian dates' };
       var selected = 0;
       var i,row;
-      var hijri = req.hijri;
+      var hdate = req.hijri;
       if (err) { 
         return next(err);
       }
 
       for(i = 0; i < rows.length; i++) {
         row = rows[i];
-        if ( Math.abs((row.hijrimonth - hijri.month)*30 + row.hijridate - hijri.day) < 30) {
+        if ( Math.abs((row.hijrimonth - hdate.month)*30 + row.hijridate - hdate.day) < 30) {
            selected = i;
            page.image = '//' + req.headers.host + row.image;
            break;
