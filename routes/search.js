@@ -43,7 +43,7 @@ var search = {
   },
 
   render: function(req,res,next) {
-    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday', 'Saturday'];
+    var days = ['sunday','monday','tuesday','wednesday','thursday','friday', 'saturday'];
     var d = days[(new Date()).getDay()];
     res.render('search', { day: d });
   },
