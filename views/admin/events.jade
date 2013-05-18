@@ -14,6 +14,12 @@ block content
                 deleteAction: '/admin/events/delete'
             },
             fields: {
+                rowid: {
+                  key: true,
+                  list: false,
+                  create: false,
+                  edit: false
+                },
                 urlkey: {
                   title: 'URLKey',
                   width: '5%'

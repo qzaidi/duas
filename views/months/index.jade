@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#eventPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+
+        h1 
+          a.back.ui-link(href='/',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Islamic Events in the month of #{month}
+
+        .projects
+          ul(data-role='listview')
+            each event in events
+              li
+                a(href='/events/#{event.urlkey}')
+                  img(src='/cache/64x64/#{event.image}', alt='#{event.name}')
+                  h3 #{event.name}
+                  p #{datehelper(event.hijridate,event.hijrimonth)}
+
+      include ../sharing

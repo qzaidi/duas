@@ -2,35 +2,13 @@
 
 var db = require('../model/duas');
 var hijri = require('../lib/hijri');
+var util = require('util');
 
 function toc_link(x) {
   return '/' + x.type + '/' + x.urlkey;
 }
 
-function get_nth_suffix(date) {
-  switch (date) {
-    case 1:
-    case 21:
-    case 31:
-      return 'st';
-    case 2:
-    case 22:
-      return 'nd';
-    case 3:
-    case 23:
-      return 'rd';
-    default:
-      return 'th';
-  }
-}
-
 var events = {
-
-  getDate: function(ev) {
-    var crdate = hijri.getGregorianDate({ day: ev.hijridate, month: ev.hijrimonth -1 });
-    var month = hijri.months[ev.hijrimonth - 1];
-    return ev.hijridate + get_nth_suffix(ev.hijridate) + ' of ' + month + ' , falls on ' + crdate.toString().split('00:')[0];
-  },
 
   page: function(req,res,next) {
     var urlkey = req.params.page;
@@ -57,7 +35,7 @@ var events = {
 
       ev.crdate = hijri.getGregorianDate({ day: ev.hijridate, month: ev.hijrimonth -1 });
       ev.month = hijri.months[ev.hijrimonth - 1];
-      res.render('events/event', { page: page, event: ev, suffix: get_nth_suffix });
+      res.render('events/event', { page: page, event: ev, suffix: hijri.get_nth_suffix(ev.hijridate) });
     });
   },
 
@@ -65,13 +43,14 @@ var events = {
     db.all('select * from events order by hijrimonth,hijridate', function(err,rows) {
       var page = { 'title': 'Islamic Occasions', description: 'Upcoming Islamic events with their Hijri and Gregorian dates' };
       var selected = 0;
+      var i,row;
       var hijri = req.hijri;
       if (err) { 
         return next(err);
       }
 
-      for(var i = 0; i < rows.length; i++) {
-        var row = rows[i];
+      for(i = 0; i < rows.length; i++) {
+        row = rows[i];
         if ( Math.abs((row.hijrimonth - hijri.month)*30 + row.hijridate - hijri.day) < 30) {
            selected = i;
            page.image = '//' + req.headers.host + row.image;
@@ -79,7 +58,7 @@ var events = {
         }
       }
 
-      res.render('events/index', { events: rows, datehelper: events.getDate, page: page, offset: selected });
+      res.render('events/index', { events: rows, datehelper: hijri.getDate, page: page, offset: selected });
     });
   },
 
@@ -93,10 +72,11 @@ var events = {
       }
       rows.forEach(function(x) {
         x.type = 'events';
+        console.log(x);
         results.push({ 
                         title: x.name, 
                         type: x.type, 
-                        description: events.getDate(x),
+                        description: hijri.getDate(x.hijridate,x.hijrimonth),
                         href: toc_link(x) 
                      });
       });

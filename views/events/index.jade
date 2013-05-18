@@ -22,7 +22,7 @@ block content
                   a(href='/events/#{event.urlkey}')
                     img(src='/cache/64x64/#{event.image}', alt='#{event.name}')
                     h3 #{event.name}
-                    p #{datehelper(event)}
+                    p #{datehelper(event.hijridate,event.hijrimonth)}
             - }
 
       include ../sharing

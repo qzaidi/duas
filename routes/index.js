@@ -7,6 +7,7 @@ var home = require('./home');
 var about = require('./about');
 var search = require('./search');
 var events = require('./events');
+var months = require('./months');
 var quran = require('./quran');
 var gallery = require('./gallery');
 
@@ -20,6 +21,9 @@ module.exports = function(app) {
 
   app.get('/events/:page', events.page);
   app.get('/events', mw.hijri, events.index);
+
+  app.get('/month/:month',months.getName, months.events,months.render);
+  app.get('/month/', mw.hijri,months.events,months.render);
 
   app.get('/teachings', function(req,res) {
     res.render('teachings/index');

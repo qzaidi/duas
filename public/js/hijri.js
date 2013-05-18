@@ -10,6 +10,22 @@
 
   var method;
   var hijri = {
+    get_nth_suffix: function (date) {
+      switch (date) {
+        case 1:
+        case 21:
+        case 31:
+          return 'st';
+        case 2:
+        case 22:
+          return 'nd';
+        case 3:
+        case 23:
+          return 'rd';
+        default:
+          return 'th';
+      }
+    },
 
     keydates : {
     "1-1": "moharram",
@@ -38,6 +54,13 @@
       "Dhul Qa'dah",
       "Dhul Hijjah"
     ],
+
+    getDate: function(date,month) {
+      var crdate = hijri.getGregorianDate({ day: date, month: month -1 });
+      var month = hijri.months[month - 1];
+      return date + hijri.get_nth_suffix(date) + ' of ' + month + ' , falls on ' + crdate.toString().split('00:')[0];
+    },
+
 
     getGregorianDate: function(hijri) {
       var d = hijri.day;
