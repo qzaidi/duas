@@ -46,6 +46,7 @@ module.exports = function(app) {
   app.post('/settings/quran',settings.updateQuran,settings.page);
   app.get('/settings/:page', settings.page);
   app.post('/settings/feedback', settings.feedback);
+  app.get('/privacy',mw.render('settings/privacy'));
 
   app.get(/^\/cache\/(\d+)x(\d+)\/(.*)$/, imageresize.render);
 

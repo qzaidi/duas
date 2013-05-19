@@ -16,6 +16,12 @@ var middleware = {
   hijri: function(req,res,next) {
     req.hijri = hijri.getHijriDate();
     next();
+  },
+
+  render: function(page) {
+    return function(req,res,next) {
+      res.render(page);
+    };
   }
 };
 

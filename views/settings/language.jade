@@ -28,9 +28,17 @@ block content
             label(for="language",class="select") Arabic Font Size
             input(type='range',name='arfontsize',id='arfontsize',value='#{settings.language.arfontsize}',min='8',max='100')
 
+          div(data-role="fieldcontain")
+            label(for="language",class="select") Urdu Font Size
+            input(type='range',name='urfontsize',id='urfontsize',value=#{settings.language.urfontsize},min='8',max='100')
+
         h1 Arabic Preview     
           
         div.arabic بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+
+        h1 Urdu Preview
+
+        div.urdu 
 
         a(id="setlanguage",href="#", data-role="button", data-theme="b", data-transition="slide") Apply Changes
         a(id="resetlanguage",href="#", data-role="button", data-theme="c", data-transition="slide") Restore Defaults
