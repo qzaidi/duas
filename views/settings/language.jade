@@ -15,7 +15,7 @@ block content
 
         div #{message}
 
-        form(id='langsettings',method='post',action='/settings/language')
+        form(id='langsettings',method='post',action='/settings/language',data-ajax='false')
           div(data-role="fieldcontain")
             label(for="language",class="select") Translation Preference
             select(name="language",id="language")
@@ -30,7 +30,11 @@ block content
 
           div(data-role="fieldcontain")
             label(for="language",class="select") Urdu Font Size
-            input(type='range',name='urfontsize',id='urfontsize',value=#{settings.language.urfontsize},min='8',max='100')
+            input(type='range',name='urfontsize',id='urfontsize',value='#{settings.language.urfontsize}',min='8',max='100')
+
+          div(data-role="fieldcontain")
+            label(for="language",class="select") Hindi Font Size
+            input(type='range',name='hifontsize',id='hifontsize',value='#{settings.language.hifontsize}',min='8',max='100')
 
         h1 Arabic Preview     
           
@@ -38,7 +42,14 @@ block content
 
         h1 Urdu Preview
 
-        div.urdu 
+        div.urdu عظیم اور دائمی رحمتوں والے خدا کے نام سے
+
+        h1 Hindi Preview
+
+        div.hindi.right अल्लाह के नाम से जो रहमान व रहीम है
+
+        br
+        br
 
         a(id="setlanguage",href="#", data-role="button", data-theme="b", data-transition="slide") Apply Changes
         a(id="resetlanguage",href="#", data-role="button", data-theme="c", data-transition="slide") Restore Defaults

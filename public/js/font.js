@@ -1,22 +1,38 @@
 function syncFontSize() {
-  var cursize = $('#arfontsizecur').val();
-  var cssize = $('.arabic').css('font-size');
-  if (cssize != cursize) {
-    $('.arabic').css({ 'font-size': cursize + 'px' });
-  }
+  var langmap = { 
+    'ar': 'arabic', 
+    'ur': 'urdu',
+    'hi': 'hindi' 
+  };
+
+  Object.keys(langmap)
+        .forEach(function(lang) {
+           var cursize = $('#' + lang + 'fontsizecur').val();
+           var cssize = $('.' + langmap[lang]).css('font-size');
+           if (cssize != cursize) {
+             $('.' + langmap[lang]).css({ 'font-size': cursize + 'px' });
+           }
+        });
 }
 
-
-$(document).on('pageinit', function(ev) {
-
-  syncFontSize();
-
-  $('#arfontsize').on('change', function(ev) {
-    var fsize = Math.floor($('#arfontsize').val(),0);
-    $('#arfontsizecur').val(fsize);
+function setfontcontrol(lang) {
+  $('#' + lang + 'fontsize').on('change', function(ev) {
+    var fsize = $('#' + lang + 'fontsize').val()|0;
+    $('#' + lang + 'fontsizecur').val(fsize);
     syncFontSize();
     return false;
   });
+}
+
+$(document).on('pageinit', function(ev) {
+  syncFontSize();
+});
+
+$(document).on('pageinit','#languageSettingsPage', function(ev) {
+
+  setfontcontrol('ar');
+  setfontcontrol('ur');
+  setfontcontrol('hi');
 
   $('#setlanguage').on('click', function(ev) {
     ev.preventDefault();
@@ -27,6 +43,9 @@ $(document).on('pageinit', function(ev) {
   $('#resetlanguage').on('click', function(ev) {
     ev.preventDefault();
     $('#arfontsize').val(28);
+    $('#urfontsize').val(18);
+    $('#hifontsize').val(18);
+    syncFontSize();
     $('#langsettings').submit();
     return false;
   });
@@ -36,5 +55,4 @@ $(document).on('pageinit', function(ev) {
     $('#quransettings').submit();
     return false;
   });
-
 });

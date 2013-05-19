@@ -4,7 +4,9 @@ var mailer = require('../lib/mailer');
 
 var defaults = {
   language : {
-    arfontsize: 28
+    arfontsize: 28,
+    hifontsize: 18,
+    urfontsize: 18
   },
   quran: {
     trans: {
@@ -40,8 +42,8 @@ var settings = {
       req.session.settings = {};
     }
 
-    var settings = { arfontsize: req.body.arfontsize };
-    req.message = 'Your settings have been applied';
+    var settings = { arfontsize: req.body.arfontsize, urfontsize: req.body.urfontsize, hifontsize: req.body.hifontsize };
+    req.message = 'Your settings have been applied.';
     req.params.page = 'language';
     req.session.settings.language = settings;
     next();
