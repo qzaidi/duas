@@ -1,0 +1,46 @@
+extends ../layout
+
+append htmlhead
+  script(src='/js/offline/dust-core-1.2.3.min.js')
+  script(src='/js/offline/dust-templ.js')
+  script(src='/js/offline/quran-data.js')
+
+block content
+  div(role='main')
+
+    .page.innerPage#quranOffline(data-role="page")
+      .topGrahic
+      a.menuButton(href="#",data-rel="back")
+        img(src="/img/menu-button.png",alt="Home")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/')
+            img(src='/img/icon-back.png',alt='Back')
+            | Offline Quran Browser
+
+        .clients
+            ul#chapterlist(data-role='listview')
+
+
+    .page.innerPage#offquran(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+
+        h1 
+          a.back.ui-link(href='/offline',data-rel='back')
+            img(src='/img/icon-back.png',alt='Back')
+            span#header Loading ...
+
+        .surahHeaderFrame
+          .surahHeaderText سورة 
+            span#name
+
+        p.arabic.doublespaced#surat
+
+append footerblock
+  script(src='/js/offline/init.js',defer='defer')
+  script(src='/js/offline/loadchapter.js',defer='defer')

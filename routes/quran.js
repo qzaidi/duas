@@ -66,13 +66,37 @@ var quran = {
         }
 
         link = getlink(page,offset,surat);
-        res.render('quran/chapter', { verses: verses,  next: link, digits:toArabDigits, surat: surat, lang: lang });
+        req.data = { verses: verses,  next: link, digits:toArabDigits, surat: surat, lang: lang };
+        next();
       });
     });
   },
 
+  html : function(req,res,next) {
+    res.render('quran/chapter', req.data);
+  },
+
+  json: function(req,res,next) {
+    var data = req.data;
+    var rows = req.data.map(function(verse) {
+      return [ verse.chapter, verse.verse, verse.ar ];
+    });
+    res.json(rows);
+  },
+
+  api: function(req,res,next) {
+    var chapter = req.params.chapter|1;
+    qurandb.select(null, function(err,rows) {
+      req.data = rows;
+      next();
+    });
+  },
+
   verse: function(req,res,next) {
-    qurandb.selectWithTrans({ chapter: req.params.chapter, verse: req.params.verse }, { language: 'en' } , function(err,rows) {
+    var chapter = req.params.chapter|0;
+    var verse = req.params.verse|0;
+
+    qurandb.select({ chapter: chapter, verse: verse }, { language: 'en' } , function(err,rows) {
       var link = '/quran/' + req.params.chapter + '/' + (Number(req.params.verse) + 1);
       var ayah;
       if (err || rows.length == 0) {
@@ -88,8 +112,9 @@ var quran = {
 module.exports = quran;
 
 (function() {
-  if (require.main == 'module') {
-      qurandb.select({ chapter: 1 } , { limit : 10 , language: 'ur' }, function(err,verses) {
+  if (require.main == module) {
+    console.log('fetching all verses');
+      qurandb.select(null , function(err,verses) {
         console.log(err || verses);
       });
   }

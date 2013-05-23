@@ -39,7 +39,9 @@ module.exports = function(app) {
 
   app.get('/quran',quran.index);
   app.get('/quran/:chapter/:verse', quran.verse);
-  app.get('/quran/:chapter', quran.chapter);
+  app.get('/quran/:chapter', quran.chapter, quran.html);
+  app.get('/api/quran', quran.api, quran.json);
+  app.get('/offline', mw.render('quran/offline'));
 
   app.get('/settings', settings.index);
   app.post('/settings/language',settings.updateLanguage,settings.page);
@@ -63,7 +65,5 @@ module.exports = function(app) {
   require('./admin')(app);
 
   app.get('/*', mw.notfound);
-
-
 
 };
