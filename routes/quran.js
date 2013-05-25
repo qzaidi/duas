@@ -25,7 +25,9 @@ function getlink(page,offset, surat) {
   } else {
     page += 1;
   }
-  link = util.format('/quran/%d?p=%d',chapter,page);
+  if (chapter > 0 && chapter < 115) {
+    link = util.format('/quran/%d?p=%d',chapter,page);
+  }
   return link;
 }
 
