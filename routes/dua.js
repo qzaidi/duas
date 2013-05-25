@@ -32,7 +32,7 @@ module.exports = function(app) {
   });
 
   app.get('/dua/:name', function(req,res,next) {
-    db.get('select * from toc where urlkey = "' + req.params.name + '" ', function(err,info) {
+    db.get('select * from toc where urlkey = "' + req.params.name.toLowerCase() + '" ', function(err,info) {
       req.info = info;
       next(err);
     });
