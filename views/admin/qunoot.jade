@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  #qunootcontainer
+
+  script
+    $(document).ready(function () {
+        $('#qunootcontainer').jtable({
+            title: 'Qunoot Verses',
+            actions: {
+                listAction: '/admin/qunoot/list',
+                createAction: '/admin/qunoot/create',
+                updateAction: '/admin/qunoot/update',
+                deleteAction: '/admin/qunoot/remove'
+            },
+            fields: {
+                rowid: {
+                  key: true,
+                  list: false,
+                  create: false,
+                  edit: false
+                },
+                chapter: {
+                    title: 'Surat'
+                },
+                verse: {
+                    title: 'Ayat'
+                },
+                numverses: {
+                    title: 'Total Verses'
+                },
+                description: {
+                  title: 'Description',
+                  type: 'textarea',
+                  width: '60%'
+                },
+                urlkey: {
+                    title: 'URL Key'
+                }
+            }
+        });
+ 
+        $('#qunootcontainer').jtable('load');
+    });

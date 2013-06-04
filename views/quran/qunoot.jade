@@ -12,18 +12,34 @@ block content
         h1 
           a.back.ui-link(href='#',data-rel='back')
             img(src='/img/icon-back.png',alt='Qunoot')
-            | #{chapter.tname}: #{verse}
+            |  #{chapter.tname}: #{verse}
 
         p.arabic
           | !{ayah.ar} 
-          span.ayahNumber ﴿ #{digits(verse)} ﴾  
+          span.ayahNumber ﴿#{digits(verse)}﴾  
+          each v in verses
+            | #{v.ar} 
+            span.ayahNumber ﴿#{digits(v.verse)}﴾  
+          | !{arhtml}
 
         p.english
           | !{ayah.en}
+          each v in verses
+            |. #{v.en} 
+          | !{enhtml}
+
+        hr
+
+        p(style='font-size: 14px;')
+          | #{description}
+
 
         h4
-          if (next) 
-            a.next.ui-link(href="#{next}") 
+          a.prev.ui-link(href='/qunoot/#{id - 1}')
+            img(src="/img/icon-back.png",alt='Previous')
+            | Previous
+          div.right
+            a.next.ui-link(href="/qunoot/#{id + 1}") 
               | Next
               img(src="/img/icon-next.png")
 

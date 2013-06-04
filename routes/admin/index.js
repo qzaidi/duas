@@ -19,6 +19,7 @@ module.exports = function(app) {
   require('./table')(app,db,auth,'events');
   require('./table')(app,db,auth,'gallery');
   require('./table')(app,db,auth,'treatise');
+  require('./table')(app,db,auth,'qunoot');
 
   app.get('/admin/munajat/:name', auth, munajat.index);
   app.post('/admin/munajat/:name/list', auth, munajat.list);

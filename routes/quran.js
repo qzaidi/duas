@@ -35,7 +35,7 @@ function getlink(page,offset, surat) {
 var page = {
   title: 'The Holy Quran',
   description: 'Al-Quran, the book of Allah, with english translation',
-  image: '/img/icon-quran.png',
+  image: '//duas.mobi/img/icon-quran.png',
   author: 'Al-Quran'
 };
 
@@ -106,16 +106,21 @@ var quran = {
   },
 
   getverse: function(req,res,next) {
-    var chapter = req.params.chapter|0;
-    var verse = req.params.verse|0;
+    var filter = { chapter: req.params.chapter };
+    var option = req.dbopts || { language: 'en' };
 
-    qurandb.select({ chapter: chapter, verse: verse }, { language: 'en' } , function(err,rows) {
+    if (req.params.verse) {
+      filter.verse = req.params.verse;
+    }
+
+    qurandb.select(filter, option , function(err,rows) {
       var ayah;
       if (err || rows.length == 0) {
         util.log(err);
         return next(err);
       }
       req.ayah = rows[0];
+      req.verses = rows.slice(1);
       next();
     });
   },
@@ -143,7 +148,9 @@ var quran = {
       }
 
       req.params.chapter = row.chapter;
-      req.params.verse = row.verse;
+      req.dbopts = { offset: row.verse - 1, limit: row.numverses, language: 'en' };
+
+      req.description = row.description || '';
 
       next();
     });
@@ -151,18 +158,27 @@ var quran = {
 
 
   renderqunoot: function(req,res,next) {
-    var breaks = { 'Our Lord': 0, 'My Lord': 0, 'say:' : 4, 'said:' : 5 };
+    var breaks = { 'Our Lord': 0, 'My Lord': 0, 'say:' : 4, 'said:' : 5, ':': 1 };
+    var arbreaks = { 'رَبَّنَا': 0, 'رَبِّ ': 0,'قُل': 3 };
     var ayah = req.ayah;
     var en = ayah.en;
+    var ar = ayah.ar;
     var pindex;
     var id = req.id;
-    var page = { title: 'Prayers from the Holy Quran', description: ayah.en, author: 'Al-Quran', image: '/img/icon-quran.png' };
+    var enhtml = '',arhtml = '';
+    var page = { author: 'Al-Quran', description: req.description };
 
-    var link = '/qunoot/' + Number(id + 1);
+    page.title = req.chapterInfo.tname + ':' + ayah.verse + ' - Holy Quran';
 
-    pindex = ayah.ar.indexOf('رَبَّنَا');
-    if (pindex != -1) {
-      ayah.ar = [ ayah.ar.substring(0,pindex-1), ayah.ar.substring(pindex)].join('&nbsp;&nbsp;<em style="color:blue;">') + '</em>';
+    if (Object.keys(arbreaks).some(function(bp) {
+      var idx = ar.indexOf(bp);
+      if (idx != -1) {
+        pindex = idx + arbreaks[bp];
+        return true;
+      }
+    })) {
+      ayah.ar = [ ayah.ar.substring(0,pindex), ayah.ar.substring(pindex)].join('<em style="color:blue;">');
+      arhtml = '</em>';
     }
 
     if (Object.keys(breaks).some(function(bp) {
@@ -172,10 +188,12 @@ var quran = {
         return true;
       }
     })) {
-      ayah.en = [ ayah.en.substring(0,pindex-1), ayah.en.substring(pindex)].join('<blockquote><em>') + '</em></blockquote>';
+      ayah.en = [ ayah.en.substring(0,pindex-1), ayah.en.substring(pindex)].join('<blockquote><em>') ;
+      enhtml = '</em></blockquote>';
     }
 
-    res.render('quran/qunoot', { ayah: ayah, chapter: req.chapterInfo, verse: ayah.verse, digits: toArabDigits, next: link, page: page });
+    res.render('quran/qunoot', { ayah: ayah, verses: req.verses, description: req.description, chapter: req.chapterInfo, 
+                                 verse: ayah.verse, digits: toArabDigits, id: id, page: page , enhtml: enhtml, arhtml:arhtml});
   }
 };
 
