@@ -38,8 +38,9 @@ module.exports = function(app) {
   app.get('/rights/:right', treatise.right);
 
   app.get('/quran',quran.index);
-  app.get('/quran/:chapter/:verse', quran.verse);
-  app.get('/quran/:chapter', quran.chapter, quran.html);
+  app.get('/qunoot/:id', quran.qunoot,quran.chapterInfo,quran.getverse,quran.renderqunoot);
+  app.get('/quran/:chapter/:verse', quran.getverse,quran.renderverse);
+  app.get('/quran/:chapter', quran.chapterInfo,quran.chapter, quran.html);
   app.get('/api/quran', quran.api, quran.json);
   app.get('/offline', mw.render('quran/offline'));
 

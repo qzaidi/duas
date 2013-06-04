@@ -3,6 +3,7 @@
 //var db = require('../model/quran');
 var util = require('util');
 var qurandb = require('quran');
+var db = require('../model/duas');
 
 var arabdigits = [ '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧',  '٨','٩' ];
 
@@ -44,33 +45,37 @@ var quran = {
     });
   },
 
-  chapter: function(req,res,next) {
+  chapterInfo: function(req,res,next) {
     var chapter = Number(req.params.chapter);
     qurandb.chapter(chapter,function(err, rows) {
-      var surat;
-      var config = req.session.settings? req.session.settings.quran : { language: 'ar' };
-      var lang = req.query.lang || config.language;
-      var page = Number(req.query.p) || 0;
-      var offset = page*8 || 0;
-
       if (err) {
         util.log(err);
         return next(err);
       }
-      surat = rows[0];
+
+      req.chapterInfo = rows[0];
+      next();
+    });
+  },
 
 
-      qurandb.select({ chapter: chapter } , { limit : 10 , offset: offset, language: lang }, function(err,verses) {
-        var link;
-        if (err) {
-          util.log(err);
-          return next(err);
-        }
+  chapter: function(req,res,next) {
+    var surat = req.chapterInfo;
+    var config = req.session.settings? req.session.settings.quran : { language: 'ar' };
+    var lang = req.query.lang || config.language;
+    var page = Number(req.query.p) || 0;
+    var offset = page*8 || 0;
 
-        link = getlink(page,offset,surat);
-        req.data = { verses: verses,  next: link, digits:toArabDigits, surat: surat, lang: lang };
-        next();
-      });
+    qurandb.select({ chapter: req.params.chapter } , { limit : 10 , offset: offset, language: lang }, function(err,verses) {
+      var link;
+      if (err) {
+        util.log(err);
+        return next(err);
+      }
+
+      link = getlink(page,offset,surat);
+      req.data = { verses: verses,  next: link, digits:toArabDigits, surat: surat, lang: lang };
+      next();
     });
   },
 
@@ -94,20 +99,76 @@ var quran = {
     });
   },
 
-  verse: function(req,res,next) {
+  getverse: function(req,res,next) {
     var chapter = req.params.chapter|0;
     var verse = req.params.verse|0;
 
     qurandb.select({ chapter: chapter, verse: verse }, { language: 'en' } , function(err,rows) {
-      var link = '/quran/' + req.params.chapter + '/' + (Number(req.params.verse) + 1);
       var ayah;
       if (err || rows.length == 0) {
         util.log(err);
         return next(err);
       }
-      ayah = rows[0];
-      res.render('quran/verse', { verse: req.params.verse, ayah: ayah, chapter: req.params.chapter, next: link, digits:toArabDigits });
+      req.ayah = rows[0];
+      next();
     });
+  },
+
+  renderverse: function(req,res,next) {
+    var link = '/quran/' + req.params.chapter + '/' + (Number(req.params.verse) + 1);
+    res.render('quran/verse', { verse: req.params.verse, ayah: req.ayah, chapter: req.params.chapter, next: link, digits:toArabDigits });
+  },
+
+  qunoot: function(req,res,next) {
+    var id = req.params.id|0;
+
+    if (id == 0) { 
+      id = 1;
+    }
+
+    req.id = id;
+
+    db.get('select * from qunoot where rowid = ' + id, function(err,row) {
+
+      if (err || !row) {
+        // this is probably because we are at the end, so reset id
+        util.log('error occured ' + err);
+        return err?next(err):res.redirect('/qunoot/1');
+      }
+
+      req.params.chapter = row.chapter;
+      req.params.verse = row.verse;
+
+      next();
+    });
+  },
+
+
+  renderqunoot: function(req,res,next) {
+    var breaks = { 'Our Lord': 0, 'My Lord': 0, 'say:' : 4, 'said:' : 5 };
+    var ayah = req.ayah;
+    var en = ayah.en;
+    var pindex;
+    var id = req.id;
+
+    var link = '/qunoot/' + Number(id + 1);
+
+    pindex = ayah.ar.indexOf('رَبَّنَا');
+    if (pindex != -1) {
+      ayah.ar = [ ayah.ar.substring(0,pindex-1), ayah.ar.substring(pindex)].join('&nbsp;&nbsp;<em style="color:blue;">') + '</em>';
+    }
+
+    if (Object.keys(breaks).some(function(bp) {
+      var idx = en.indexOf(bp);
+      if (idx != -1) {
+        pindex = idx + breaks[bp];
+        return true;
+      }
+    })) {
+      ayah.en = [ ayah.en.substring(0,pindex-1), ayah.en.substring(pindex)].join('<blockquote><em>') + '</em></blockquote>';
+    }
+
+    res.render('quran/qunoot', { ayah: ayah, chapter: req.chapterInfo, verse: ayah.verse, digits: toArabDigits, next: link });
   }
 };
 
