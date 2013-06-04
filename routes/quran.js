@@ -177,6 +177,7 @@ var quran = {
     var page = { author: 'Al-Quran', description: req.description };
 
     page.title = req.chapterInfo.tname + ':' + ayah.verse + ' - Holy Quran';
+    page.image = res.locals.host + '/img/icon-quran.png';
 
     if (Object.keys(arbreaks).some(function(bp) {
       var idx = ar.indexOf(bp);
