@@ -1317,6 +1317,7 @@ form li {
 .ur {
   direction: rtl;
   font-size: 18px;
+  word-spacing: 5px;
 }
 
 .english {

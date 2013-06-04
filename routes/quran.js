@@ -148,7 +148,7 @@ var quran = {
       }
 
       req.params.chapter = row.chapter;
-      req.dbopts = { offset: row.verse - 1, limit: row.numverses, language: 'en' };
+      req.dbopts = { offset: row.verse - 1, limit: row.numverses, language: [ 'en', 'ur' ] };
 
       req.description = row.description || '';
 
@@ -160,12 +160,20 @@ var quran = {
   renderqunoot: function(req,res,next) {
     var breaks = { 'Our Lord': 0, 'My Lord': 0, 'say:' : 4, 'said:' : 5, ':': 1 };
     var arbreaks = { 'رَبَّنَا': 0, 'رَبِّ ': 0,'قُل': 3 };
+    var urbreaks = {  
+                     'پروردگار': 0,
+                     'خدایا': 0,
+                     'کہئے کہ':  7,
+                     'کہ ': 3
+
+                   };
     var ayah = req.ayah;
     var en = ayah.en;
     var ar = ayah.ar;
+    var ur = ayah.ur;
     var pindex;
     var id = req.id;
-    var enhtml = '',arhtml = '';
+    var enhtml = '',arhtml = '', urhtml = '';
     var page = { author: 'Al-Quran', description: req.description };
 
     page.title = req.chapterInfo.tname + ':' + ayah.verse + ' - Holy Quran';
@@ -181,6 +189,18 @@ var quran = {
       arhtml = '</em>';
     }
 
+    if (Object.keys(urbreaks).some(function(bp) {
+      var idx = ur.indexOf(bp);
+      if (idx != -1) {
+        pindex = idx + urbreaks[bp];
+        return true;
+      }
+    })) {
+      ayah.ur = [ ayah.ur.substring(0,pindex), ayah.ur.substring(pindex)].join('<blockquote class="ur"><em>');
+      urhtml = '</em></blockquote>';
+    }
+
+
     if (Object.keys(breaks).some(function(bp) {
       var idx = en.indexOf(bp);
       if (idx != -1) {
@@ -193,7 +213,8 @@ var quran = {
     }
 
     res.render('quran/qunoot', { ayah: ayah, verses: req.verses, description: req.description, chapter: req.chapterInfo, 
-                                 verse: ayah.verse, digits: toArabDigits, id: id, page: page , enhtml: enhtml, arhtml:arhtml});
+                                 verse: ayah.verse, digits: toArabDigits, id: id, page: page , enhtml: enhtml, arhtml:arhtml,
+                                 urhtml: urhtml });
   }
 };
 
