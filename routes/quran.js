@@ -34,13 +34,15 @@ function getlink(page,offset, surat) {
 
 var page = {
   title: 'The Holy Quran',
-  description: 'Al-Quran, the book of Allah, with english translation'
+  description: 'Al-Quran, the book of Allah, with english translation',
+  image: '/img/icon-quran.png',
+  author: 'Al-Quran'
 };
 
 var quran = {
 
   home: function(req,res) {
-    res.render('quran/home');
+    res.render('quran/home', { page: page });
   },
 
   index: function(req,res,next) {
@@ -78,7 +80,7 @@ var quran = {
       }
 
       link = getlink(page,offset,surat);
-      req.data = { verses: verses,  next: link, digits:toArabDigits, surat: surat, lang: lang };
+      req.data = { verses: verses,  next: link, digits:toArabDigits, surat: surat, lang: lang, page: page };
       next();
     });
   },
@@ -120,7 +122,7 @@ var quran = {
 
   renderverse: function(req,res,next) {
     var link = '/quran/' + req.params.chapter + '/' + (Number(req.params.verse) + 1);
-    res.render('quran/verse', { verse: req.params.verse, ayah: req.ayah, chapter: req.params.chapter, next: link, digits:toArabDigits });
+    res.render('quran/verse', { verse: req.params.verse, ayah: req.ayah, chapter: req.params.chapter, next: link, digits:toArabDigits , page: page});
   },
 
   qunoot: function(req,res,next) {
@@ -154,6 +156,7 @@ var quran = {
     var en = ayah.en;
     var pindex;
     var id = req.id;
+    var page = { title: 'Prayers from the Holy Quran', description: ayah.en, author: 'Al-Quran', image: '/img/icon-quran.png' };
 
     var link = '/qunoot/' + Number(id + 1);
 
@@ -172,7 +175,7 @@ var quran = {
       ayah.en = [ ayah.en.substring(0,pindex-1), ayah.en.substring(pindex)].join('<blockquote><em>') + '</em></blockquote>';
     }
 
-    res.render('quran/qunoot', { ayah: ayah, chapter: req.chapterInfo, verse: ayah.verse, digits: toArabDigits, next: link });
+    res.render('quran/qunoot', { ayah: ayah, chapter: req.chapterInfo, verse: ayah.verse, digits: toArabDigits, next: link, page: page });
   }
 };
 
