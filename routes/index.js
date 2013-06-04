@@ -37,7 +37,8 @@ module.exports = function(app) {
   app.get('/treatise', treatise.index);
   app.get('/rights/:right', treatise.right);
 
-  app.get('/quran',quran.index);
+  app.get('/quran',quran.home);
+  app.get('/quran/index',quran.index);
   app.get('/qunoot/:id', quran.qunoot,quran.chapterInfo,quran.getverse,quran.renderqunoot);
   app.get('/quran/:chapter/:verse', quran.getverse,quran.renderverse);
   app.get('/quran/:chapter', quran.chapterInfo,quran.chapter, quran.html);

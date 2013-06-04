@@ -39,6 +39,10 @@ var page = {
 
 var quran = {
 
+  home: function(req,res) {
+    res.render('quran/home');
+  },
+
   index: function(req,res,next) {
     qurandb.chapter(function(err,suras) {
       res.render('quran/index', { suras: suras , page: page});
