@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#rights(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+
+        h1 
+          a.back.ui-link(href='/')
+            img(src='/img/icon-back.png',alt='Back')
+            | #{chapter.tname}: #{verse}
+
+        p.arabic
+          | !{ayah.ar} 
+          span.ayahNumber ﴿ #{digits(verse)} ﴾  
+
+        p.english
+          | !{ayah.en}
+
+        h4
+          if (next) 
+            a.next.ui-link(href="#{next}") 
+              | Next
+              img(src="/img/icon-next.png")
+
+      include ../sharing
