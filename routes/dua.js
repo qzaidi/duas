@@ -5,7 +5,7 @@ var verses = require('./verses');
 
 module.exports = function(app) {
 
-  app.get('/random', function(req,res) {
+  app.get('/random/dua', function(req,res) {
     var sql = 'select count(*) as total from toc';
     db.get(sql, function(err,c) {
       var total = c.total;

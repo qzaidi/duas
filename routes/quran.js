@@ -156,6 +156,13 @@ var quran = {
     });
   },
 
+  random: function(req,res,next) {
+    db.get('select count(*) as total from qunoot', function(err,row) {
+      var total = row.total;
+      var random = Math.random()*total|0 + 1;
+      res.redirect('/qunoot/' + random);
+    });
+  },
 
   renderqunoot: function(req,res,next) {
     var breaks = { 'Our Lord': 0, 'My Lord': 0, 'say:' : 4, 'said:' : 5, ':': 1 };

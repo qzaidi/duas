@@ -1,7 +1,7 @@
 "use strict";
 
-var db = require('../model/duas');
-var hijri = require('../lib/hijri');
+var db = require('../../model/duas');
+var hijri = require('../../lib/hijri');
 
 var months = {
   getName: function(req,res,next) {
