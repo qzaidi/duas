@@ -20,7 +20,9 @@ block content
           p
             span(itemprop="description") #{event.name} is marked on #{event.hijridate}#{suffix} of #{event.month}.
             | This year, it falls on 
-            span(itemprop="startDate",datetime="#{event.crdate.toISOString()}") #{event.crdate.toString().split('00:')[0]} .
+            span(itemprop="startDate",datetime="#{event.crdate.toISOString()}") #{event.crdate.toString().split('00:')[0]}. 
+            sup
+              a(href='#sighting') [1]
             span.hidden(itemprop="endDate",datetime="#{(new Date(event.crdate.getTime() + 86399)).toISOString()}") #{event.crdate.toString().split('00:')[0]}
 
           p 
@@ -31,4 +33,10 @@ block content
               a.next.ui-link(href=link.href) #{link.title}
                 img(src='/img/icon-next.png')
 
+        hr
+        ol
+          li
+            a(name='sighting') Actual date may depend on the local sighting of moon. This is an estimate.
+
         include ../sharing
+
