@@ -19,7 +19,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/duas', function(req,res,next) {
+  app.get('/dua', function(req,res,next) {
     db.all('select * from toc where type = "dua" and collection = "Sahifa-e-Sajjadiya"', function(err,rows) {
       var page = { title: 'Duas from Sahifa-e-Sajjadiya', 
                    description: 'Supplications from Sahifa-e-Sajjadiya, the Pslams of Islam by Imam Zainul Abideen' };
@@ -29,6 +29,10 @@ module.exports = function(app) {
       }
       res.render('duas', { data: rows , page: page});
     });
+  });
+
+  app.get('/duas', function(req,res,next) {
+    res.redirect('/dua');
   });
 
   app.get('/dua/:name', function(req,res,next) {

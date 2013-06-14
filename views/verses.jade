@@ -16,6 +16,8 @@ block content
           if (info.audio)
             audio.noprint#amtag(src="#{info.audio}",controls="controls",preload="none")
 
+        mixin breadcrumb([ { href: '/' + info.type, text: titlecase(info.type) }])
+
         p #{info.endesc} 
 
           .section.group
@@ -61,3 +63,4 @@ block content
           each row in data
             !{row.cue},
         != " ]; </script>"
+

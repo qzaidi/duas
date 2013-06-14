@@ -9,6 +9,7 @@ var search = require('./search');
 var events = require('./events');
 var months = require('./months/months');
 var quran = require('./quran');
+var quote = require('./quote');
 var gallery = require('./gallery');
 
 var mw = require('./mw');
@@ -41,6 +42,7 @@ module.exports = function(app) {
   app.get('/random/quran',quran.random);
   app.get('/quran/index',quran.index);
   app.get('/qunoot/:id', quran.qunoot,quran.chapterInfo,quran.getverse,quran.renderqunoot);
+  app.get('/quote/:tag', quote.fetch,quote.render);
   app.get('/quran/:chapter/:verse', quran.getverse,quran.renderverse);
   app.get('/quran/:chapter', quran.chapterInfo,quran.chapter, quran.html);
   app.get('/api/quran', quran.api, quran.json);

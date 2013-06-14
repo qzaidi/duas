@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  #quotescontainer
+
+  script
+    $(document).ready(function () {
+        $('#quotescontainer').jtable({
+            title: 'Quotes',
+            actions: {
+                listAction: '/admin/quotes/list',
+                createAction: '/admin/quotes/create',
+                updateAction: '/admin/quotes/update',
+                deleteAction: '/admin/quotes/remove'
+            },
+            fields: {
+                rowid: {
+                  key: true,
+                  list: false,
+                  create: false,
+                  edit: false
+                },
+                arabic: {
+                    title: 'Arabic',
+                    width: '20%'
+                },
+                english: {
+                    title: 'English',
+                    width: '20%'
+                },
+                author: {
+                    title: 'Author',
+                    width: '10%'
+                },
+                description: {
+                  title: 'Description',
+                  type: 'textarea',
+                  width: '40%'
+                },
+                urlkey: {
+                    title: 'URL Key'
+                }
+            }
+        });
+ 
+        $('#quotescontainer').jtable('load');
+    });

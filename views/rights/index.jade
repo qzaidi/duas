@@ -12,7 +12,9 @@ block content
         h1 
           a.back.ui-link(href='/treatise')
             img(src='/img/icon-back.png',alt='Back')
-            | #{info.enname}
+            | #{titlecase(info.enname)}
+
+        mixin breadcrumb([{ href:'/treatise', text: 'Treatise of Rights' }])
 
         p.arabic #{info.arname}
 

@@ -14,6 +14,8 @@ block content
             img(src='/img/icon-back.png',alt='Back')
             | #{surat.enname} - #{surat.tname}
 
+        mixin breadcrumb([{ href: '/quran', text: 'Quran' }, { href: '/quran/index', text: 'Chapters' }])
+
         .surahHeaderFrame
           .surahHeaderText سورة #{surat.arname}
 

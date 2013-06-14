@@ -14,8 +14,6 @@ block content
             img(src='/img/icon-back.png',alt='Qunoot')
             |  #{chapter.tname}: #{verse}
 
-        mixin breadcrumb([{ href: '/quran', text: 'Quran' }])
-
         p.arabic
           | !{ayah.ar} 
           span.ayahNumber ﴿#{digits(verse)}﴾  

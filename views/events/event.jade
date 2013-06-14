@@ -14,6 +14,8 @@ block content
               img(src='/img/icon-back.png',alt='Back')
               span(itemprop="summary") #{event.name}
 
+          mixin breadcrumb([ { href: '/events', text: 'Events' }, { href:'/month/' + event.month, text: titlecase(event.month) } ])
+
           .flexslider 
             img(itemprop="photo",src="#{page.image}",alt="#{event.name}")
 
