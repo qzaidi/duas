@@ -2,7 +2,7 @@ mixin breadcrumb(crumbs)
   h4 
     div(itemscope,itemtype="http://data-vocabulary.org/Breadcrumb",style="display:inline;")
       a(href="/",itemprop="url") 
-        span(itemtprop="title") Home
+        span(itemtprop="title") Home 
     - each c in crumbs
       |  &gt;
       div(itemscope,itemtype="http://data-vocabulary.org/Breadcrumb",style="display:inline;")

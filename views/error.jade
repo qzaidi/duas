@@ -2,7 +2,7 @@ extends layout
 
 block content
   div(role='main')
-    .page.innerPage#errorPage(data-role="page")
+    .page.innerPage#searchPage(data-role="page")
       .topGrahic
       a.menuButton(href="/")
         img(src="/img/menu-button.png",alt="Menu")
@@ -13,4 +13,15 @@ block content
             img(src='/img/icon-back.png',alt='')
           | #{err.message}
 
-        p The page you requested could not be found or an unknown error occured. 
+
+        p We are sorry - the page you requested could not be found. Here's what you can do.
+
+        p - Go back to the 
+            a(href='/') homepage
+        
+        p - Type in a few characters and let's see if we can find it for you.
+
+        .projects
+          ul#autocomplete(data-role='listview',data-inset="true",data-filter="true",data-filter-placeholder="Search")
+
+
