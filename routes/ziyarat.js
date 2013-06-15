@@ -3,6 +3,12 @@
 var db = require('../model/duas');
 var verses = require('./verses');
 
+
+var page = { 
+              title: 'Ziyarats of Prophet Muhammad and his pure progeny - duas.mobi', 
+              description: 'Ziyarat, Izne-Dukhool, Supplications on Prophet Muhammad and his progeny.'
+           };
+
 module.exports = function(app) {
 
   app.get('/ziyaraat', function(req,res) { 
@@ -11,7 +17,7 @@ module.exports = function(app) {
 
   app.get('/ziyarat', function(req,res) {
     db.all('select * from toc where collection = "Ziyarat"', function(err,info) {
-      res.render('ziyaraat/index', { ziyarats: info });
+      res.render('ziyaraat/index', { ziyarats: info, page: page });
     });
   });
 
@@ -25,6 +31,7 @@ module.exports = function(app) {
 
   app.get('/ziyarat/:name', function(req,res,next) {
     var name = req.params.name;
+    res.locals(page);
     db.get('select * from toc where urlkey = "' + name + '"', function(err,info) {
       req.info = info;
       next(err);
