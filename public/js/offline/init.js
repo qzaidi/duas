@@ -34,6 +34,20 @@ function showTOC() {
 function init() {
   "use strict";
 
+  (function() {
+    $(window).scroll(function() {
+      if($(this).scrollTop() > 150) {
+        $('#toTop').fadeIn();    
+      } else {
+        $('#toTop').fadeOut();
+      }
+    });
+
+    $('#toTop').click(function() {
+      $('body,html').animate({scrollTop:0},800);
+    });    
+  }());
+
   function errCallback(tx,err){
     console.log("Oh noes! There haz bin a datamabase error!");
     console.log(err);
@@ -75,33 +89,45 @@ function init() {
    });
  };
 
+ function doLoad() {
+   $.mobile.showPageLoadingMsg('e','Loading Quran Metadata ...');
+   var data = QuranData.Sura.slice(1,115);
+   data.forEach(function(x,id) {
+     var chapter = id + 1;
+     x.push(chapter);
+   });
+   saveMeta(data,function(ins) {
+     $.mobile.showPageLoadingMsg('e','Loaded Quran Metadata.');
+   });
+
+   $.mobile.showPageLoadingMsg('e','Downloading Quran Text ..');
+   $.getJSON('/api/quran',function(res) {
+     $.mobile.showPageLoadingMsg('e','Saving Quran Text for offline viewing ..');
+     saveQuran(res, function(ins) {
+       $.mobile.showPageLoadingMsg('e','Completed');
+       $.mobile.hidePageLoadingMsg();
+       showTOC();
+     });
+   });
+ }
+
  /* Load TOC */
  db.transaction(function(tx) {
    tx.executeSql(("select count(*) as len from metadata;"),
    null, function(tx,res) {
     var len = res.rows.item(0).len;
     if (len != 114) { 
-      $.mobile.showPageLoadingMsg('e','Loading Quran Metadata ...');
-      var data = QuranData.Sura.slice(1,115);
-      data.forEach(function(x,id) {
-        var chapter = id + 1;
-        x.push(chapter);
-      });
-      saveMeta(data,function(ins) {
-        $.mobile.showPageLoadingMsg('e','Loaded Quran Metadata.');
-      });
-
-      $.mobile.showPageLoadingMsg('e','Downloading Quran Text ..');
-      $.getJSON('/api/quran',function(res) {
-        $.mobile.showPageLoadingMsg('e','Saving Quran Text for offline viewing ..');
-        saveQuran(res, function(ins) {
-          $.mobile.showPageLoadingMsg('e','Completed');
-          $.mobile.hidePageLoadingMsg();
+      doLoad();
+     } else {
+      tx.executeSql(("select count(*) as len from quran;"),
+        null, function(tx,res) {
+        var len = res.rows.item(0).len;
+        if (len != 6236) {
+          doLoad();
+        } else {
           showTOC();
-        });
+        }
       });
-    } else {
-      showTOC();
     }
    }, errCallback);
  });
@@ -111,7 +137,6 @@ $(document).on('pageinit','#quranOffline', init);
 
 $( document ).on( "pagebeforechange", function( e, data ) {
   if (typeof data.toPage === 'string') {
-    console.log('topage' + data.toPage);
     if (data.toPage.indexOf('#offquran') > 1){
       $.mobile.chapter = data.toPage.substring(data.toPage.indexOf('?')+1);
     }

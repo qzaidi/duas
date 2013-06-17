@@ -1306,7 +1306,7 @@ form li {
 }
 
 .doublespaced {
-  line-height: 200%;
+  line-height: 2.35em;
 }
 
 .urdu {
@@ -2302,6 +2302,9 @@ div.calendar
 .ui-listview-filter-inset {
   margin-top: 0;
 }
+
+#toTop { position: fixed; bottom: 50px; left: 0px; width: 38px; padding: 4px; background-color: #CCC; cursor: pointer; display: none; }
+
 
 @media print {
   * {

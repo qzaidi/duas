@@ -1,6 +1,20 @@
 var cues;
 
 $(document).on('pageinit','#versePage',function() {
+
+  (function() {
+    $(window).scroll(function() {
+      if($(this).scrollTop() > 150) {
+        $('#toTop').fadeIn();    
+      } else {
+        $('#toTop').fadeOut();
+      }
+    });
+
+    $('#toTop').click(function() {
+      $('body,html').animate({scrollTop:0},800);
+    });    
+  }());
   
   $('audio').on('loadstart',function() {
     var i = 0; // remembers

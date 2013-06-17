@@ -56,7 +56,7 @@ function loadchapter(e,data) {
    }
    title = info.rows.item(0);
    dust.render("surat",{ verses: items }, function(err,out) {
-     $('#surat').append(out);
+     $('#surat').html(out);
    });
    $('#name').text(title.arname);
    $('#header').text(title.enname + '-' + title.tname);
