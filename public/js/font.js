@@ -50,6 +50,9 @@ $(document).on('pageinit','#languageSettingsPage', function(ev) {
     return false;
   });
 
+});
+
+$(document).on('pageinit','#quranSettingsPage', function(ev) {
   $('#setquran').on('click', function(ev) {
     ev.preventDefault();
     $('#quransettings').submit();
