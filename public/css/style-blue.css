@@ -1911,6 +1911,16 @@ form li {
          */
 
 }
+
+#coverVerse {
+  position: absolute;
+  font-family: 'Scheherazade', serif;
+  font-size: 2em;
+  margin-top: 15%;
+  margin-left: 5%;
+}
+
+
 .scroller {
   float: left;
   height: 90%;
@@ -2022,9 +2032,6 @@ form li {
   display: block;
 }
 /*end menu*/
-/*
-}
-   */
 /*end menuPage*/
 /* ==|== media queries ====================================================== */
 @media only screen and (max-height: 280px) {
@@ -2037,10 +2044,12 @@ form li {
   .menu li ul .square span.text {
     font-size: 70%;
   }
+  #coverVerse {
+    font-size: 1em;
+  }
 }
 /* Screen width <= 320px */
 @media only screen and (max-width: 320px) {
-  
 }
 /* Screen width > 320px */
 @media only screen and (min-width: 321px) and (max-width: 480px) {
