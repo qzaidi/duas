@@ -13,7 +13,18 @@ block content
             img(src='/img/icon-back.png',alt='Back')
           | Quran Viewer Settings
 
-        form(id='quransettings',method='post',action='/settings/quran')
+        .cutContainer.moreUpperMargin
+          span.cutTop
+          span.cutBottom
+           .ui-widget.successMessage
+             .ui-state-highlight.ui-corner-all
+               p
+                 span.ui-icon.ui-icon-info(style='')
+                 strong Success!
+                 | Your settings have been applied. 
+                 a Go to Quran Viewer.
+
+        form.ajaxform(id='quransettings',method='post',action='/settings/quran')
           div(data-role="fieldcontain")
             label(for="language",class="select") Translation Preference
             select(name="language",id="language")

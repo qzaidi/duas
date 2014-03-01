@@ -19,7 +19,18 @@ block content
           | progeny.
        .padpage
          h2
-         span.h2 Imam Ali Ibn. Husain
+         span.h2 Popular Ziyarats
+
+       ul(data-role='listview')
+         each ziyarat in ziyarats
+           li
+             a(href='/ziyarat/#{ziyarat.urlkey}')
+               img.ui-li-icon(src='/img/sample-images/icon2.png', alt='#{ziyarat.enname}')
+               | #{ziyarat.enname}
+
+       .padpage
+         h2
+         span.h2 Ziyarats of Imam Ali Ibn. Husain
 
         ul(data-role='listview')
           li
@@ -35,13 +46,4 @@ block content
               img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Salwat')
               | Ziyarat of Imams in Jannatul Baqeeh
 
-       .padpage
-         h2
-         span.h2 Other Ziyarat's
 
-       ul(data-role='listview')
-         each ziyarat in ziyarats
-           li
-             a(href='/ziyarat/#{ziyarat.urlkey}')
-               img.ui-li-icon(src='/img/sample-images/icon2.png', alt='#{ziyarat.enname}')
-               | #{ziyarat.enname}
