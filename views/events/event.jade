@@ -30,6 +30,10 @@ block content
           p 
             | !{event.description} 
 
+          p
+            | Location: 
+            span(itemprop="location") #{event.location}
+
           each link in event.links
             h4
               a.next.ui-link(href=link.href) #{link.title}
