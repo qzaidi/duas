@@ -13,8 +13,10 @@ block content
           a.back.ui-link(href='/',data-rel="back")
             img(src='/img/icon-back.png',alt='<-')
             | #{info.enname}
+          include plusone
           if (info.audio)
             audio.noprint#amtag(src="#{info.audio}",controls="controls",preload="none")
+
 
         mixin breadcrumb([ { href: '/' + info.type, text: titlecase(info.type) }])
 
@@ -65,4 +67,5 @@ block content
           each row in data
             !{row.cue},
         != " ]; </script>"
+
 
