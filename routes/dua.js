@@ -25,9 +25,37 @@ module.exports = function(app) {
                    description: 'Supplications from Sahifa-e-Sajjadiya, the Pslams of Islam by Imam Zainul Abideen' };
       if (err) {
         console.log(err);
-        next(err);
+        return next(err);
       }
       res.render('duas', { data: rows , page: page});
+    });
+  });
+
+  app.get('/collections', function(req,res,next) {
+    db.all('select distinct(collection) from toc where type = "dua" order by collection', function(err,rows) {
+      var page = { title: 'Duas from Ahlul Bayt',
+                   description: 'Supplications from the house of Prophet' };
+      if (err) {
+        console.log(err);
+        return next(err);
+      }
+      res.render('collection/index' , { data: rows, page: page });
+    });
+  });
+
+  app.get('/collection/:name', function(req,res,next) {
+    var name = req.params.name;
+    console.log('fetching from ' + name);
+    db.all('select * from toc where type = "dua" and collection = "' + name + '"', function(err,rows) {
+      var page;
+      
+      if (err) {
+        console.log(err);
+        return next(err);
+      }
+
+      page = { title: 'Duas from ' + name, description: rows.length + 'Supplications from ' + name };
+      res.render('collection/collection' , { data: rows, page: page, collection: rows[0].collection });
     });
   });
 

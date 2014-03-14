@@ -17,13 +17,21 @@ block content
           | At all phases of his life, Imam Sajjad(s) spent his time in supplication and prayers. His 
           | keenness in supplication and prayers was so strange that wherever his sacred name is called, mourning, 
           | insistence in worship, invocations and prayers will come to our mind. Sahifa-e-Kamela, also known as the 
-          | Psalms of Islam, is a collection of those invocations.
+          | Psalms of Islam, is a collection of those invocations. 
+          |
+        p 
+          | Browse through the Sahifa, or view other Duas from the family
+          | of Prophet below.
 
-        .clients
+        .projects
             ul(data-role='listview')
-              each row in data
-                li
-                  a(href='/dua/#{row.urlkey}')
-                    img.ui-li-icon(src='img/sample-images/icon2.png', alt='image 2')
-                    | #{row.enname}
-
+              li
+                a(href='/collection/Sahifa-e-Sajjadiya')
+                  img(src='/img/icon-imam.png', alt='Sahifa-e-Kamela')
+                  h3 Sahifa-e-Kamila
+                  p Duas from Imam Zainul Abideen
+              li
+                a(href='/collections')
+                  img(src='/img/icon-dua.png', alt='Dua Collections')
+                  h3 Duas from Ahlul Bayt
+                  p Duas from Holy Prophet (PBUH) and his pure progeny

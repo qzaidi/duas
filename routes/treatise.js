@@ -5,7 +5,11 @@ var db = require('../model/duas');
 var treatise = {
 
   index: function(req,res,next) {
-    res.render('treatise');
+    res.render('treatise', { page: { 
+                                     title: 'Resalutul Huquq (Treatise of Rights), by Imam Zainul Abideen',
+                                     description: 'Treatise of Rights, Magna Cart of Islam, authored by Prophet\'s Grandson'
+                                   }
+                           });
   },
 
   list: function(req,res,next) {

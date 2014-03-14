@@ -45,7 +45,7 @@ var search = {
   render: function(req,res,next) {
     var days = ['sunday','monday','tuesday','wednesday','thursday','friday', 'saturday'];
     var d = days[(new Date()).getDay()];
-    res.render('search', { day: d });
+    res.render('search', { day: d , page: { title: 'Search for duas', description: 'Search Islamic Supplications, Ziyarats'  }});
   },
 
   json: function(req,res,next) {

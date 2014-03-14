@@ -40,7 +40,7 @@ module.exports = function(dbfile,opt) {
 
     Object.keys(obj).forEach(function(key) {
       if (not_updates.indexOf(key) == -1) {
-        updates.push(key + "='" + sqlite3Escape(obj[key]) + "'");
+        updates.push(key + '="' + sqlite3Escape(obj[key]) + '"');
       }
     });
 

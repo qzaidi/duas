@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/')
+            img(src='/img/icon-back.png',alt='Back')
+            | The Dua collections
+
+        p
+          | We have incredible riches of supplications in the narrations of the Ahl al-Bayt (AS) and subtle 
+          | concepts in the whispered prayers (munajat) transmitted to us from them.
+
+        .clients
+            ul(data-role='listview')
+              each row in data
+                li
+                  a(href='/collection/#{row.collection}')
+                    img.ui-li-icon(src='/img/sample-images/icon2.png', alt='duas')
+                    | Supplications from #{row.collection} 
+

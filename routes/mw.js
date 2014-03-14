@@ -4,6 +4,7 @@ var hijri = require('../lib/hijri');
 
 var middleware = {
   error: function(err,req,res,next) {
+    console.log(err.message);
     res.status(err.status || 500).render('error', { err: err});
   },
 

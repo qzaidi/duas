@@ -25,9 +25,16 @@ var months = {
   render: function(req,res,next) {
     var hdate = req.hijri;
     var month = hijri.months[hdate.month - 1];
-    res.render('months', { events: req.events, month: month , datehelper: hijri.getDate });
+    res.render('months', { 
+                           events: req.events, 
+                           month: month , 
+                           datehelper: hijri.getDate,
+                           page: {
+                            title: month,
+                            description: 'Supplications for the month of ' + month
+                           }
+                         });
   }
-
 };
 
 module.exports = months;
