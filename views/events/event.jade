@@ -11,7 +11,7 @@ block content
         div(itemscope,itemtype="http://data-vocabulary.org/Event")
           h1 
             a.back.ui-link(href='/')
-              img(src='/img/icon-back.png',alt='Back')
+              img(src='/img/icon-back.png',alt='☾')
               span(itemprop="summary") #{event.name}
 
           mixin breadcrumb([ { href: '/events', text: 'Events' }, { href:'/month/' + event.month, text: titlecase(event.month) } ])
