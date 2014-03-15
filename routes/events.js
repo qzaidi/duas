@@ -22,6 +22,7 @@ var events = {
       page.title = ev.name;
       page.image = ev.image;
       page.description = ev.metadesc;
+      page.keywords = "when,is," + urlkey;
       if (page.image.indexOf('http') != 0) {
         page.image = 'http://' + req.headers.host + page.image;
       }

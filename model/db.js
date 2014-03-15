@@ -8,8 +8,7 @@ var dbopts = {
 };
 
 function sqlite3Escape(str) {
-  str.replace(/"/g,'""');
-  return str;
+  return str.replace(/"/g,'""').replace(/'/g,"''");
 }
 
 module.exports = function(dbfile,opt) {
