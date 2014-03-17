@@ -8,11 +8,11 @@ var db = require('../model/duas');
 var arabdigits = [ '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧',  '٨','٩' ];
 
 function toArabDigits(num) {
-  var anum = '';
-  num = Number(num);
-  while (num) {
-   anum += arabdigits[num%10]; 
-   num = Math.floor(num/10,0);
+  var anum = '', len;
+  num = num.toString();
+  var i;
+  for (i = 0, len = num.length; i < len; i++) {
+    anum += arabdigits[num[i]];
   }
   return anum;
 }
@@ -69,8 +69,8 @@ var quran = {
     var surat = req.chapterInfo;
     var config = req.session.settings? req.session.settings.quran : { language: 'ar' };
     var lang = req.query.lang || config.language;
-    var page = Number(req.query.p) || 0;
-    var offset = page*8 || 0;
+    var pnum = Number(req.query.p) || 0;
+    var offset = pnum*8 || 0;
 
     qurandb.select({ chapter: req.params.chapter } , { limit : 10 , offset: offset, language: lang }, function(err,verses) {
       var link;
@@ -79,7 +79,7 @@ var quran = {
         return next(err);
       }
 
-      link = getlink(page,offset,surat);
+      link = getlink(pnum,offset,surat);
       req.data = { verses: verses,  next: link, digits:toArabDigits, surat: surat, lang: lang, page: page };
       next();
     });
