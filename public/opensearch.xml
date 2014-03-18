@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>duas.mobi</ShortName>
+  <Description>Search duas.mobi</Description>
+  <Tags>duas</Tags>
+  <Url type="application/json" template="http://duas.mobi/search?q={searchTerms}"/>
+  <Url type="application/x-suggestions+json" template="http://duas.mobi/autocomplete.json?q={searchTerms}"/>
+</OpenSearchDescription>

@@ -50,6 +50,12 @@ var search = {
 
   json: function(req,res,next) {
     return res.jsonp(req.search.results);
+  },
+
+  autocomplete: function(req,res,next) {
+    var data = [ req.query.q ];
+    data.push(req.search.results.map(function(x) { return x.title; }));
+    res.json(data);
   }
 };
 

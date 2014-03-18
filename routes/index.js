@@ -59,6 +59,7 @@ module.exports = function(app) {
 
   app.get('/searchpage', search.render);
   app.get('/search', search.toc, events.search, gallery.search, search.json);
+  app.get('/autocomplete.json', search.toc, search.autocomplete);
 
   app.get('/gallery',gallery.index);
   app.get('/gallery/:image',gallery.render);

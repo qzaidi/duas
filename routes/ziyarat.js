@@ -16,7 +16,7 @@ module.exports = function(app) {
   });
 
   app.get('/ziyarat', function(req,res) {
-    db.all('select * from toc where collection = "Ziyarat"', function(err,info) {
+    db.all('select * from toc where type = "ziyarat" order by collection', function(err,info) {
       res.render('ziyaraat/index', { ziyarats: info, page: page });
     });
   });
