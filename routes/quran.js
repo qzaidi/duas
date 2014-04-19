@@ -20,7 +20,7 @@ function toArabDigits(num) {
 function getlink(page,offset, surat) {
   var chapter = Number(surat.id);
   var link;
-  if (offset + 8 > surat.ayas) {
+  if (offset + 8 >= surat.ayas) {
     chapter += 1;
     page = 0;
   } else {

@@ -20,6 +20,9 @@ var verses = {
       var info = req.info;
       var page = { title : info.enname + ' with ' + langdesc};
       page.description = info.collection + ' - ' + info.endesc + ' with ' + langdesc;
+      if (info.audio) {
+        page.description += ' and mp3 audio';
+      }
       if (!rows[0][lang]) {
         rows[0][lang] = langdesc + ' Coming Soon ...';
       }

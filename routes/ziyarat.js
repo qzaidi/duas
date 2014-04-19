@@ -6,7 +6,8 @@ var verses = require('./verses');
 
 var page = { 
               title: 'Ziyarats of Prophet Muhammad and his pure progeny - duas.mobi', 
-              description: 'Ziyarat, Izne-Dukhool, Supplications on Prophet Muhammad and his progeny.'
+              description: 'Ziyarat, Izne-Dukhool, Supplications on Prophet Muhammad and his progeny.',
+              image: '//duas.mobi/img/icon-ziyarat.png'
            };
 
 module.exports = function(app) {
