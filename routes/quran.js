@@ -40,6 +40,8 @@ var page = {
 };
 
 var quran = {
+  
+  digits: toArabDigits,
 
   home: function(req,res) {
     res.render('quran/home', { page: page });
@@ -111,6 +113,10 @@ var quran = {
 
     if (req.params.verse) {
       filter.verse = req.params.verse;
+    }
+
+    if (!req.params.chapter && !req.params.verse) {
+      return next();
     }
 
     qurandb.select(filter, option , function(err,rows) {

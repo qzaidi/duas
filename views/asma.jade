@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+
+      .padpage.padtop 
+        h1 
+          a.back.ui-link(href='#',data-rel='back')
+            img(src='/img/icon-back.png',alt='Names of Allah')
+            | #{engtrans} - #{english}
+
+        mixin breadcrumb([{ href: '/asmaulhusna', text: 'Asma ul Husna' }, { text: engtrans }])
+
+        p(style='font-size: 48px; text-align:center')
+          | !{arabic}
+
+        p
+          | #{description}
+
+
+        if (ayah) 
+          h3 #{engtrans} in the Quran (Chapter #{ayah.chapter})
+          p.arabic
+            | #{ayah.ar} 
+            span.ayahNumber ﴿#{digits(ayah.verse)}﴾  
+
+          p.english
+            | #{ayah.en}
+
+        h4
+          if (id > 1)
+            a.prev.ui-link(href='/asmaulhusna/#{id - 1}')
+              img(src="/img/icon-back.png",alt='Previous')
+              | Previous
+          if (id < 99)
+            div.right
+              a.next.ui-link(href="/asmaulhusna/#{id + 1}") 
+                | Next 
+                img(src="/img/icon-next.png")
+
+

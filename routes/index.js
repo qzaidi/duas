@@ -11,6 +11,7 @@ var months = require('./months/months');
 var quran = require('./quran');
 var quote = require('./quote');
 var gallery = require('./gallery');
+var names = require('./names');
 
 var mw = require('./mw');
 
@@ -19,6 +20,8 @@ module.exports = function(app) {
 
   app.get('/about', about.index);
   app.get('/about/:page', about.page);
+
+  app.get('/asmaulhusna/:id', names.get, quran.getverse, names.render);
 
   app.get('/events/:page', events.page);
   app.get('/events', mw.hijri, events.index);

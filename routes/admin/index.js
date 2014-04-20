@@ -21,6 +21,7 @@ module.exports = function(app) {
   require('./table')(app,db,auth,'treatise');
   require('./table')(app,db,auth,'qunoot');
   require('./table')(app,db,auth,'quotes');
+  require('./table')(app,db,auth,'asmaulhusna');
 
   app.get('/admin/munajat/:name', auth, munajat.index);
   app.post('/admin/munajat/:name/list', auth, munajat.list);

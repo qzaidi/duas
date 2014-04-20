@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  #duacontainer
+
+  script
+    $(document).ready(function () {
+        $('#duacontainer').jtable({
+            title: "Asma ul Husna",
+            actions: {
+                listAction: '/admin/asmaulhusna/list',
+                createAction: '/admin/asmaulhusna/create',
+                updateAction: '/admin/asmaulhusna/update',
+                deleteAction: '/admin/asmaulhusna/delete'
+            },
+            fields: {
+                rowid: {
+                  key: true,
+                  list: false,
+                  create: false,
+                  edit: false
+                },
+                english: {
+                    title: 'English'
+                },
+                arabic: {
+                    title: 'Arabic'
+                },
+                engtrans: {
+                    title: 'English Transliteration'
+                },
+                description: {
+                  title: 'Description'
+                },
+                verse: {
+                  title: 'Verses'
+                }
+            }
+        });
+ 
+        $('#duacontainer').jtable('load');
+    });

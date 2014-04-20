@@ -5,7 +5,7 @@ var db = require('../../model/duas');
 var duas = {
   index: function(req,res,next) {
     db.get('select * from toc where urlkey = "' + req.params.name + '" and type="dua"', function(err,info) {
-      res.render('admin/dua', { info: info });
+      res.render('admin/dua', { info: info || { enname: req.params.name, urlkey: req.params.name } });
     });
   },
 

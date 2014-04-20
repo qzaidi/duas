@@ -10,15 +10,6 @@ AppUtility.mobile = {
                                     ismobile = list[d];
                             }
                     }
-
-                    if (ismobile) {
-                        //$("body").addClass("mobile").addClass(ismobile);
-                        
-                        //write your code to redirect to the mobile website.
-                        //window.location = "website.com/mobile";
-                        //window.location = "m.website.com";
-                        
-                    }
                     return ismobile;
             },
             
