@@ -26,6 +26,9 @@ var verses = {
       if (!rows[0][lang]) {
         rows[0][lang] = langdesc + ' Coming Soon ...';
       }
+      if (info.link) {
+        info.link = JSON.parse(info.link);
+      }
       res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc});
     });
   }

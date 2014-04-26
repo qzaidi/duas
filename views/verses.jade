@@ -61,6 +61,17 @@ block content
             each row in data
               | #{row.arabic} &nbsp;
 
+        if info.link
+          h3 Related Links
+          ol
+          each link in info.link
+            li
+              a.next.ui-link(href=link.href) #{link.title}
+                img(src='/img/icon-next.png')
+
+        br
+        br
+
         != "<script>"
         != "var cues = ["
         if (data[0].cue)
