@@ -21,6 +21,7 @@ module.exports = function(app) {
   app.get('/about', about.index);
   app.get('/about/:page', about.page);
 
+  app.get('/asmaulhusna', names.index);
   app.get('/asmaulhusna/:id', names.get, quran.getverse, names.render);
 
   app.get('/events/:page', events.page);

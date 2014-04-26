@@ -5,6 +5,17 @@ var quran = require('./quran');
 
 var names = {
 
+  index: function(req,res,next) {
+
+   db.all('select rowid,* from asmaulhusna', function(err,rows) {
+    if (err) {
+      return next(err);
+    }
+
+    res.render('names/index', { names: rows });
+   });
+  },
+
   get: function(req,res,next) {
     var id = Number(req.params.id);
     var sql = 'select * from asmaulhusna where rowid = "' + id + '"';
@@ -28,7 +39,12 @@ var names = {
   render: function(req,res,next) {
     req.name.ayah = req.ayah;
     req.name.digits = quran.digits;
-    res.render('asma',req.name);
+    req.name.page = {
+      title: req.name.engtrans + '-' + req.name.english,
+      description: req.name.engtrans + ' - Asma-Ul-Husna, the beautiful names of Allah',
+      image: '//duas.mobi/img/icon-allah.png',
+    };
+    res.render('names/asma',req.name);
   }
 
 };

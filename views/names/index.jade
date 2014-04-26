@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#eventPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+
+        h1 
+          a.back.ui-link(href='/',data-rel="back")
+            img(src='/img/icon-back.png',alt='☾')
+            | Asma-ul-Husna
+
+        p
+          | The 99 beautiful names of Allah in Islam are the names by which Muslims regard God. 
+          | Click on a name below to know its meaning.
+
+        .projects
+          ul(data-role='listview')
+            each name in names
+              li
+                a(href='/asmaulhusna/#{name.rowid}')
+                  img.ui-li-icon(src='/img/sample-images/icon2.png', alt='#{name.english}')
+                  | #{name.engtrans}
+                  span.right #{name.arabic}
+
+      include ../sharing
