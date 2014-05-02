@@ -19,6 +19,9 @@ var verses = {
       var langdesc = langmap[lang];
       var info = req.info;
       var page = { title : info.enname + ' with ' + langdesc};
+      if (info.arname) {
+        page.title += ' - ' + info.arname;
+      }
       page.description = info.collection + ' - ' + info.endesc + ' with ' + langdesc;
       if (info.audio) {
         page.description += ' and mp3 audio';
