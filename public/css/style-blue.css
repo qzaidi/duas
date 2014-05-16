@@ -2314,6 +2314,9 @@ div.calendar
 
 #toTop { position: fixed; bottom: 50px; left: 0px; width: 38px; padding: 4px; background-color: #CCC; cursor: pointer; display: none; }
 
+#praytable td,th {
+  padding: 0px 10px;
+}
 
 @media print {
   * {

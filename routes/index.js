@@ -12,6 +12,7 @@ var quran = require('./quran');
 var quote = require('./quote');
 var gallery = require('./gallery');
 var names = require('./names');
+var praytimes = require('./praytimes');
 
 var mw = require('./mw');
 
@@ -65,6 +66,8 @@ module.exports = function(app) {
   app.get('/search', search.toc, events.search, gallery.search, search.json);
   app.get('/autocomplete.json', search.toc, search.autocomplete);
 
+  app.get('/prayertimes', praytimes.render);
+
   app.get('/gallery',gallery.index);
   app.get('/gallery/:image',gallery.render);
 
@@ -75,6 +78,7 @@ module.exports = function(app) {
   require('./admin')(app);
 
   require('./months')(app);
+
 
   app.get('/*', mw.notfound);
 
