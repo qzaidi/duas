@@ -28,8 +28,8 @@ module.exports = function(app) {
   app.get('/events/:page', events.page);
   app.get('/events', mw.hijri, events.index);
 
-  app.get('/month/:month',months.getName, months.events,months.render);
-  app.get('/month/', mw.hijri,months.events,months.render);
+  app.get('/month/:month',months.getName, months.getInfo, months.events,months.render);
+  app.get('/month/', mw.hijri, months.getInfo, months.redirect);
 
   app.get('/teachings', function(req,res) {
     res.render('teachings/index');

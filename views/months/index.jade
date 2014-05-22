@@ -14,6 +14,9 @@ block content
             img(src='/img/icon-back.png',alt='Back')
             | Islamic Events in the month of #{month}
 
+        p
+          !{info.description}
+
         .projects
           ul(data-role='listview')
             each event in events

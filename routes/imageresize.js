@@ -16,6 +16,7 @@ var imageresize = {
     if (mime.lookup(req.params[2]).match('image') == null) {
       var err = new Error('Not Found');
       err.status = 404;
+      console.log(src + ' was not found');
       return next(err);
     }
 

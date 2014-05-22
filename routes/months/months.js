@@ -6,12 +6,37 @@ var hijri = require('../../lib/hijri');
 var months = {
   getName: function(req,res,next) {
     var month = hijri.months.indexOf(req.params.month);
-    if (!month && Number(month)) {
-
+    if (month == -1) {
+      return next();
     }
     req.hijri = { month: month+1, date: 1 };
-    
     next();
+  },
+
+  getInfo: function(req,res,next) {
+    var query = 'select rowid,* from months where ';
+    
+    if (req.hijri) {
+      query += 'rowid = ' + req.hijri.month;
+    } else {
+      query += 'urlkey = "' + req.params.month + '"';
+    }
+
+    console.log(query);
+
+    db.get(query, function(err,info) {
+      if (err || !info) {
+        return next(new Error('Invalid Month'));
+      }
+      req.info = info;
+      req.hijri = { month: info.rowid, date : 1 };
+      next();
+    });
+
+  },
+
+  redirect: function(req,res,next) {
+    res.redirect('/month/' + req.info.english);
   },
 
   events: function(req,res,next) {
@@ -29,6 +54,7 @@ var months = {
                            events: req.events, 
                            month: month , 
                            datehelper: hijri.getDate,
+                           info: req.info,
                            page: {
                             title: month,
                             description: 'Supplications for the month of ' + month
