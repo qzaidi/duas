@@ -25,7 +25,7 @@ block content
 
         if (ayah) 
           h3 #{engtrans} in the Quran (Chapter #{ayah.chapter})
-          p.arabic
+          p.arabic(style="line-height: 2;")
             | #{ayah.ar} 
             span.ayahNumber ﴿#{digits(ayah.verse)}﴾  
 

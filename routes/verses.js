@@ -30,7 +30,11 @@ var verses = {
         rows[0][lang] = langdesc + ' Coming Soon ...';
       }
       if (info.link) {
-        info.link = JSON.parse(info.link);
+        try {
+          info.link = JSON.parse(info.link);
+        } catch(e) {
+          console.error('Failed to parse link for ' + req.params.name , info.link);
+        }
       }
       res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc});
     });

@@ -33,6 +33,8 @@ function readFile(file,cb) {
         case 1: 
           break;
         case 2: 
+          break;
+        case 3:
           rows.push(row);
           row = [];
           console.log(row);
@@ -62,9 +64,9 @@ function initdb(rows) {
   var db = new sqlite3.Database('duas');
   var table = process.argv[2];
   db.serialize(function() {
-    db.run("CREATE TABLE " + table + " (english TEXT,arabic TEXT)",function(err) {
+    db.run("CREATE TABLE " + table + " (arabic TEXT,engtrans TEXT,english TEXT)",function(err) {
       if (!err) {
-        var stmt = db.prepare("INSERT INTO " + table + " VALUES (?,?)");
+        var stmt = db.prepare("INSERT INTO " + table + " VALUES (?,?,?)");
 
         rows.forEach(function(row) {
           stmt.run(row);
