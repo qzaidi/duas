@@ -52,7 +52,7 @@ var events = {
 
       for(i = 0; i < rows.length; i++) {
         row = rows[i];
-        if ( Math.abs((row.hijrimonth - hdate.month)*30 + row.hijridate - hdate.day) < 30) {
+        if ( Math.abs((row.hijrimonth - hdate.month)*30 + row.hijridate - hdate.day) < 7) {
            selected = i;
            page.image = '//' + req.headers.host + row.image;
            break;
