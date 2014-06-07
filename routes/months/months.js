@@ -22,12 +22,18 @@ var months = {
       query += 'urlkey = "' + req.params.month + '"';
     }
 
-    console.log(query);
-
     db.get(query, function(err,info) {
       if (err || !info) {
         return next(new Error('Invalid Month'));
       }
+
+      if (info.info) {
+        try {
+          info.info = JSON.parse(info.info);
+        } catch (e) {
+        }
+      }
+
       req.info = info;
       req.hijri = { month: info.rowid, date : 1 };
       next();
