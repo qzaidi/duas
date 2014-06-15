@@ -2,7 +2,6 @@ extends layout
 
 block content
   div(role='main')
-
     .page.innerPage#versePage(data-role="page")
       .topGrahic
       a.menuButton(href="/")
@@ -14,14 +13,14 @@ block content
             img(src='/img/icon-back.png',alt='<-')
             | #{info.enname}
           include plusone
-          if (info.audio)
-            audio.noprint#amtag(src="#{info.audio}",controls="controls",preload="none")
 
 
         mixin breadcrumb([ { href: '/' + info.type, text: titlecase(info.type) }])
 
         #toTop ↑ Top
 
+
+      .ui-content(data-role="content")
         p #{info.endesc} 
 
           .section.group
@@ -71,6 +70,10 @@ block content
 
         br
         br
+        
+      if (info.audio)
+        div(data-role="footer",data-position="fixed")
+          audio.noprint#amtag(style="width: 100%",src="#{info.audio}",controls="controls",preload="none")
 
         != "<script>"
         != "var cues = ["

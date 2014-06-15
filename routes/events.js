@@ -73,7 +73,6 @@ var events = {
       }
       rows.forEach(function(x) {
         x.type = 'events';
-        console.log(x);
         results.push({ 
                         title: x.name, 
                         type: x.type, 
