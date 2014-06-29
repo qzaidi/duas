@@ -1309,17 +1309,6 @@ form li {
   line-height: 2.35em;
 }
 
-.urdu {
-  direction: rtl;
-  font-size: 18px;
-}
-
-.ur {
-  direction: rtl;
-  font-size: 18px;
-  word-spacing: 5px;
-}
-
 .english {
 }
 

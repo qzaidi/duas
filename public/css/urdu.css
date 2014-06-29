@@ -1,0 +1,22 @@
+.urdu {
+  font-family: 'Jameel Noori Nastaleeq';
+  direction: rtl;
+  font-size: 14px;
+  word-spacing: 5px;
+}
+
+.ur {
+  direction: rtl;
+  font-size: 18px;
+  word-spacing: 5px;
+}
+
+@font-face {
+  font-family:"Jameel Noori Nastaleeq";
+  src:url("/fonts/nafees-nastaleeq-webfont.eot?") format("eot"),
+  url("/fonts/nafees-nastaleeq-webfont.woff") format("woff"),
+  url("/fonts/nafees-nastaleeq-webfont.ttf") format("truetype"),
+  url("/fonts/nafees-nastaleeq-webfont.svg#Jameel Noori Nastaleeq") format("svg");
+  font-weight:normal;
+  font-style:normal;
+}
