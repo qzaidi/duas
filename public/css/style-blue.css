@@ -2307,6 +2307,10 @@ div.calendar
   padding: 0px 10px;
 }
 
+#iftartable td {
+  padding: 0px 10px;
+}
+
 @media print {
   * {
     background: transparent !important;

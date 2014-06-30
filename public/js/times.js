@@ -6,16 +6,26 @@ $(document).on('pageinit','#prayerTimesPage', function(ev) {
     var date = new Date();
     var times = prayTimes.getTimes(date, [latitude, longitude]);
     var list = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha', 'Midnight'];
+    var iftar;
+    var table;
 
-    /*
-    var html = '<table id="timetable">';
-    html += '<tr><th colspan="2">'+ date.toLocaleDateString()+ '</th></tr>';
-    */
-    console.log(list);
     for(var i = 0; i < list.length; i++)  {
       document.getElementById('label_'+i).innerHTML = list[i];
       document.getElementById('time_'+i).innerHTML = times[list[i].toLowerCase()];
     }
+
+    table = '<table><tr><th>Date</th><th>Sehar</th><th>Iftar</th></tr>';
+
+    for (var i = 1; i < 30; i++) {
+      date = new Date(2014,06,i);
+      times = prayTimes.getTimes(date, [latitude, longitude]);
+      iftar = times.maghrib.split(':').map(function(k,i) { return (i==1)?Number(k) + 10:k; }).join(':');
+      
+      table += '<tr><td>' + date.toLocaleDateString() + '</td><td>' + times.imsak + '</td><td>' + iftar + '</td></tr>';
+    }
+    table += '</table>';
+
+    document.getElementById('iftartable').innerHTML = table;
 
     $.ajax('http://api.geonames.org/findNearbyPlaceNameJSON?lat=' + latitude + '&lng=' + longitude + '&username=qasim', 
       { 
