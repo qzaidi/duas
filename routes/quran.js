@@ -17,17 +17,18 @@ function toArabDigits(num) {
   return anum;
 }
 
-function getlink(page,offset, surat) {
+function getlink(page,npp, surat,lang) {
   var chapter = Number(surat.id);
-  var link;
-  if (offset + 8 >= surat.ayas) {
+  var link = {};
+  if ((page + 1)*npp >= surat.ayas) {
     chapter += 1;
     page = 0;
   } else {
     page += 1;
   }
+
   if (chapter > 0 && chapter < 115) {
-    link = util.format('/quran/%d?p=%d',chapter,page);
+    link.next = util.format('/quran/%d?p=%d&lang=%s',chapter,page,lang);
   }
   return link;
 }
@@ -72,17 +73,32 @@ var quran = {
     var config = req.session.settings? req.session.settings.quran : { language: 'ar' };
     var lang = req.query.lang || config.language;
     var pnum = Number(req.query.p) || 0;
-    var offset = pnum*8 || 0;
+    var npp = 8;
+    var offset = pnum*npp || 0;
+    var bismillah = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ';
 
-    qurandb.select({ chapter: req.params.chapter } , { limit : 10 , offset: offset, language: lang }, function(err,verses) {
+    qurandb.select({ chapter: req.params.chapter } , { limit : npp , offset: offset, language: lang }, function(err,verses) {
       var link;
+      var partial;
+
       if (err) {
         util.log(err);
         return next(err);
       }
 
-      link = getlink(pnum,offset,surat);
-      req.data = { verses: verses,  next: link, digits:toArabDigits, surat: surat, lang: lang, page: page };
+      link = getlink(pnum,npp,surat,lang);
+
+      req.data = { verses: verses,  next: link.next, digits:toArabDigits, surat: surat, lang: lang, page: page };
+
+      if (pnum == 0 && verses[0].verse == 1) {
+        partial = verses[0].ar.replace(bismillah,'');
+        if (partial.length < verses[0].ar.length) {
+          var v = { verse: 0, chapter: verses[0].chapter, ar: bismillah };
+          verses[0].ar = partial;
+          req.data.verses.unshift(v);
+        }
+      }
+
       next();
     });
   },
