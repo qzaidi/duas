@@ -1,13 +1,8 @@
-.urdu {
+.urdu, .ur {
   font-family: 'Jameel Noori Nastaleeq';
   direction: rtl;
-  font-size: 14px;
-  word-spacing: 5px;
-}
-
-.ur {
-  direction: rtl;
-  font-size: 18px;
+  font-size: 16px;
+  line-height: 150%;
   word-spacing: 5px;
 }
 

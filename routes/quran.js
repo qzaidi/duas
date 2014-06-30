@@ -19,17 +19,33 @@ function toArabDigits(num) {
 
 function getlink(page,npp, surat,lang) {
   var chapter = Number(surat.id);
-  var link = {};
+  var pnum = page;
+  var link = { cur: '/quran/' + chapter + '?p=' + page };
   if ((page + 1)*npp >= surat.ayas) {
     chapter += 1;
-    page = 0;
+    pnum = 0;
   } else {
-    page += 1;
+    pnum += 1;
   }
 
   if (chapter > 0 && chapter < 115) {
-    link.next = util.format('/quran/%d?p=%d&lang=%s',chapter,page,lang);
+    link.next = util.format('/quran/%d?p=%d&lang=%s',chapter,pnum,lang);
   }
+
+  pnum = page;
+  chapter = Number(surat.id);
+
+  if (page == 0 && chapter > 0) {
+    chapter -= 1;
+    pnum = 999;
+  } else {
+    pnum -= 1;
+  }
+
+  if (chapter > 0 && chapter < 115) {
+    link.prev = util.format('/quran/%d?p=%d&lang=%s',chapter,pnum,lang);
+  }
+
   return link;
 }
 
@@ -77,6 +93,11 @@ var quran = {
     var offset = pnum*npp || 0;
     var bismillah = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ';
 
+    if (pnum*npp > surat.ayas) {
+      pnum = (surat.ayas/8)|0;
+      offset = pnum*npp || 0;
+    }
+
     qurandb.select({ chapter: req.params.chapter } , { limit : npp , offset: offset, language: lang }, function(err,verses) {
       var link;
       var partial;
@@ -88,7 +109,7 @@ var quran = {
 
       link = getlink(pnum,npp,surat,lang);
 
-      req.data = { verses: verses,  next: link.next, digits:toArabDigits, surat: surat, lang: lang, page: page };
+      req.data = { verses: verses, prev: link.prev, url: link.cur,  next: link.next, digits:toArabDigits, surat: surat, lang: lang, page: page };
 
       if (pnum == 0 && verses[0].verse == 1) {
         partial = verses[0].ar.replace(bismillah,'');

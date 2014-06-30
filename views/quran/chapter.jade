@@ -16,6 +16,17 @@ block content
 
         mixin breadcrumb([{ href: '/quran', text: 'Quran' }, { href: '/quran/index', text: 'Chapters' }])
 
+        p.right
+          a(href="#{url}&lang=ar") Arabic 
+          | |
+          a(href="#{url}&lang=en") English
+          | |
+          a(href="#{url}&lang=ur") Urdu
+          | |
+          a(href="#{url}&lang=hi") Hindi
+        br
+        br
+
         .surahHeaderFrame
           .surahHeaderText سورة #{surat.arname}
 
@@ -34,8 +45,13 @@ block content
 
         h4
           if (next) 
-            a.next.ui-link(href="#{next}") 
-              | Next
-              img(src="/img/icon-next.png")
+            div.right
+              a.next.ui-link(href="#{next}") 
+                | Next
+                img(src="/img/icon-next.png")
+          if (prev)
+            a.prev.ui-link(href="#{prev}")
+              img(src="/img/icon-back.png")
+              | Previous
 
       include ../sharing
