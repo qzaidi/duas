@@ -2,6 +2,7 @@
 
 var db = require('../model/duas');
 var verses = require('./verses');
+var ratings = require('./ratings');
 
 
 var page = { 
@@ -37,5 +38,5 @@ module.exports = function(app) {
       req.info = info;
       next(err);
     });
-  },verses.render);
+  },ratings.get,verses.render);
 };

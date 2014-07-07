@@ -13,6 +13,8 @@ block content
             img(src='/img/icon-back.png',alt='<-')
             | #{info.enname}
           include plusone
+          .raty.right(data-score="#{rating}")
+            meta(itemprop="rating",content="#{rating}")
 
 
         mixin breadcrumb([ { href: '/' + info.type, text: titlecase(info.type) }])

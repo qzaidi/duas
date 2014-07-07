@@ -1,6 +1,7 @@
 "use strict";
 
 var db = require('../model/duas');
+var ratings = require('./ratings');
 var verses = require('./verses');
 
 module.exports = function(app) {
@@ -68,7 +69,7 @@ module.exports = function(app) {
       req.info = info;
       next(err);
     });
-  },verses.render);
+  }, ratings.get, verses.render);
 
   app.get('/munajat', function(req,res) {
     db.all('select * from toc where type = "munajat"', function(err,rows) {
@@ -83,7 +84,7 @@ module.exports = function(app) {
       req.info = info;
       next(err);
     });
-  },verses.render);
+  },ratings.get,verses.render);
 
 
 };

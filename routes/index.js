@@ -13,6 +13,7 @@ var quote = require('./quote');
 var gallery = require('./gallery');
 var names = require('./names');
 var praytimes = require('./praytimes');
+var ratings = require('./ratings');
 
 var mw = require('./mw');
 
@@ -79,6 +80,8 @@ module.exports = function(app) {
 
   require('./months')(app);
 
+  app.get('/rating',ratings.get,ratings.render);
+  app.post('/rating',ratings.set);
 
   app.get('/*', mw.notfound);
 

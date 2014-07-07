@@ -16,6 +16,16 @@ $(document).on('pageinit','#versePage',function() {
     });    
   }());
   
+  $('.raty').raty({ 
+    score: function() {
+      return $(this).attr('data-score');
+    }, 
+    path: '/img' ,
+    click: function(score, evt) {
+      $.post('/rating?u='+document.location.pathname,"star="+score);
+    }
+  });
+
   $('audio').on('loadstart',function() {
     var i = 0; // remembers
     var trigger = 0;
