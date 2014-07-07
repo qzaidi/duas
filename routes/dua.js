@@ -32,7 +32,8 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/collections', function(req,res,next) {
+  
+  function duasCollection(req,res,next) {
     db.all('select distinct(collection) from toc where type = "dua" order by collection', function(err,rows) {
       var page = { title: 'Duas from Ahlul Bayt',
                    description: 'Supplications from the house of Prophet' };
@@ -42,11 +43,14 @@ module.exports = function(app) {
       }
       res.render('collection/index' , { data: rows, page: page });
     });
-  });
+  }
 
-  app.get('/collection/:name', function(req,res,next) {
+  app.get('/collections', duasCollection);
+  app.get('/duas/collections', duasCollection);
+
+  
+  function duaFromCollection(req,res,next) {
     var name = req.params.name;
-    console.log('fetching from ' + name);
     db.all('select * from toc where type = "dua" and collection = "' + name + '"', function(err,rows) {
       var page;
       
@@ -56,9 +60,12 @@ module.exports = function(app) {
       }
 
       page = { title: 'Duas from ' + name, description: rows.length + 'Supplications from ' + name };
-      res.render('collection/collection' , { data: rows, page: page, collection: rows[0].collection });
+      res.render('collection/collection' , { data: rows, page: page, collection: rows[0].collection, title: 'Supplications', url: '/duas/collection/'+name });
     });
-  });
+  }
+
+  app.get('/collection/:name',duaFromCollection);
+  app.get('/duas/collection/:name',verses.collection('dua'));
 
   app.get('/duas', function(req,res,next) {
     res.redirect('/dua');
@@ -66,6 +73,10 @@ module.exports = function(app) {
 
   app.get('/dua/:name', function(req,res,next) {
     db.get('select * from toc where urlkey = "' + req.params.name.toLowerCase() + '" ', function(err,info) {
+      if (!info) {
+        err = new Error('Not Found');
+        err.status = 404;
+      }
       req.info = info;
       next(err);
     });
@@ -86,5 +97,6 @@ module.exports = function(app) {
     });
   },ratings.get,verses.render);
 
+  app.get('/munajats/collection/:name',verses.collection('munajat'));
 
 };

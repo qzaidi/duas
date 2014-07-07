@@ -11,7 +11,7 @@ block content
         h1 
           a.back.ui-link(href='/collections')
             img(src='/img/icon-back.png',alt='Back')
-            | Supplications from #{collection}
+            | #{title} tagged in #{collection} collection
 
         mixin breadcrumb([ { href: '/' + data[0].type, text: titlecase(data[0].type) }, { href: '/collection/' + collection, text: collection }])
 

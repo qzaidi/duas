@@ -13,12 +13,31 @@ var langmap = {
 };
 
 var verses = {
+  collection: function(type) {
+    return function(req,res,next) {
+      var name = req.params.name;
+      var title = type[0].toUpperCase() + type.substr(1)
+
+      db.all('select * from toc where type = "' + type + '" and collection = "' + name + '"', function(err,rows) {
+        var page;
+
+        if (err) {
+          console.log(err);
+          return next(err);
+        }
+
+        page = { title: type + 's from ' + name, description: rows.length + 'Supplications/Munajats/Ziyarats tagged in ' + name };
+        res.render('collection/collection' , { title: title, data: rows, page: page, collection: rows[0].collection });
+      });
+    };
+  },
+
   render: function(req,res,next) {
     db.all('select * from ' + req.params.name, function(err,rows) {
       var lang = req.query.lang || 'english';
       var langdesc = langmap[lang];
       var info = req.info;
-      var page = { title : info.enname + ' with ' + langdesc};
+      var page = { title : info.enname + ' with ' + langdesc, image: '//duas.mobi/img/icon-' + info.type + '.png'};
       if (info.arname) {
         page.title += ' - ' + info.arname;
       }

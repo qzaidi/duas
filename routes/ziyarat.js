@@ -23,6 +23,8 @@ module.exports = function(app) {
     });
   });
 
+  app.get('/ziyarats/collection/:name', verses.collection('ziyarat'));
+
   app.get('/ziyaraat/entry', function(req,res) {
     res.render('ziyaraat/entry');
   });
@@ -33,7 +35,6 @@ module.exports = function(app) {
 
   app.get('/ziyarat/:name', function(req,res,next) {
     var name = req.params.name;
-    res.locals(page);
     db.get('select * from toc where urlkey = "' + name + '"', function(err,info) {
       req.info = info;
       next(err);

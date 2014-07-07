@@ -17,7 +17,7 @@ block content
             meta(itemprop="rating",content="#{rating}")
 
 
-        mixin breadcrumb([ { href: '/' + info.type, text: titlecase(info.type) }])
+        mixin breadcrumb([ { href: '/' + info.type, text: titlecase(info.type) }, { href: '/' + info.type + 's/collection/' + info.collection , text: info.collection }])
 
         #toTop ↑ Top
 
