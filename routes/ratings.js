@@ -11,6 +11,7 @@ var ratings = {
         r.count = 1;
       }
       req.rating=(r.sum/r.count);
+      req.votes = r.count;
       next();
     });
   },

@@ -55,7 +55,7 @@ var verses = {
           console.error('Failed to parse link for ' + req.params.name , info.link);
         }
       }
-      res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, rating: req.rating|0});
+      res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, rating: req.rating|0, votes: req.votes|0});
     });
   }
 };

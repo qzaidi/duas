@@ -14,8 +14,7 @@ block content
             | #{info.enname}
           include plusone
           .raty.right(data-score="#{rating}")
-            meta(itemprop="rating",content="#{rating}")
-
+            meta(itemprop="ratingValue",content="#{rating}")
 
         mixin breadcrumb([ { href: '/' + info.type, text: titlecase(info.type) }, { href: '/' + info.type + 's/collection/' + info.collection , text: info.collection }])
 
@@ -70,9 +69,23 @@ block content
               a.next.ui-link(href=link.href) #{link.title}
                 img(src='/img/icon-next.png')
 
+        if (votes > 1)
+          hr
+          .left(itemscope,itemtype="http://data-vocabulary.org/Review-aggregate")
+            span(itemprop="itemreviewed") #{info.enname} 
+            img.hidden(itemprop="photo",src="#{page.image}") 
+            span(itemprop="rating",itemscope itemtype="http://data-vocabulary.org/Rating")
+              | rated 
+              span(itemprop="average") #{rating} 
+              | out of 
+              span(itemprop="best") 5 
+              | based on 
+              span(itemprop="votes") #{votes} 
+              | ratings. 
+          include sharing
+
         br
-        br
-        
+
       if (info.audio)
         div(data-role="footer",data-position="fixed")
           audio.noprint#amtag(style="width: 100%",src="#{info.audio}",controls="controls",preload="none")
