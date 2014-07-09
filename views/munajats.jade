@@ -17,12 +17,26 @@ block content
           | There are fifteen such prayers in Sahifa-e-Kamela. For the Duas in Sahifa-e-Kamela,
           a(href='/duas') visit the Duas section.
 
+        h4 Munajat's from Sahifa-e-Sajjadiya
         .clients
             ul(data-role='listview')
               each prayer in prayers
-                li
-                  a(href='/munajat/#{prayer.urlkey}')
-                    img.ui-li-icon(src='/img/sample-images/icon1.png', alt='image 2')
-                    | #{prayer.enname}
-                    span.arabic.right(style='background: transparent;') #{prayer.arname}
+                if (prayer.collection == 'Sahifa-e-Sajjadiya')
+                  li
+                    a(href='/munajat/#{prayer.urlkey}')
+                      img.ui-li-icon(src='/img/sample-images/icon1.png', alt='image 2')
+                      | #{prayer.enname}
+                      span.arabic.right(style='background: transparent;') #{prayer.arname}
+
+        h4 Other Munajat's
+        .clients
+            ul(data-role='listview')
+              each prayer in prayers
+                if (prayer.collection != 'Sahifa-e-Sajjadiya')
+                  li
+                    a(href='/munajat/#{prayer.urlkey}')
+                      img.ui-li-icon(src='/img/sample-images/icon1.png', alt='image 2')
+                      | #{prayer.enname}
+                      span.arabic.right(style='background: transparent;') #{prayer.arname}
+
 
