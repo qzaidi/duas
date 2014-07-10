@@ -87,8 +87,9 @@ block content
         br
 
       if (info.audio)
-        div(data-role="footer",data-position="fixed")
-          audio.noprint#amtag(style="width: 100%",src="#{info.audio}",controls="controls",preload="none")
+        div(data-role="footer",data-position="fixed",itemscope,itemtype="http://schema.org/MusicRecording")
+          meta(itemprop="name",content="#{info.enname}")
+          audio.noprint#amtag(itemprop="audio",style="width: 100%",src="#{info.audio}",controls="controls",preload="none")
 
         != "<script>"
         != "var cues = ["
