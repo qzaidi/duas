@@ -89,6 +89,9 @@ block content
       if (info.audio)
         div(data-role="footer",data-position="fixed",itemscope,itemtype="http://schema.org/MusicRecording")
           meta(itemprop="name",content="#{info.enname}")
+          meta(itemprop="url",content="#{url}")
+          if (data[data.length-1].cue)
+            meta(itemprop="duration",content="#{data[data.length-1].cue+5}")
           audio.noprint#amtag(itemprop="audio",style="width: 100%",src="#{info.audio}",controls="controls",preload="none")
 
         != "<script>"
