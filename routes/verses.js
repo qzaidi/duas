@@ -38,6 +38,8 @@ var verses = {
       var langdesc = langmap[lang];
       var info = req.info;
       var page = { title : info.enname + ' with ' + langdesc, image: '//duas.mobi/img/icon-' + info.type + '.png'};
+      var duration, min,sec,ptm;
+
       if (info.arname) {
         page.title += ' - ' + info.arname;
       }
@@ -48,6 +50,14 @@ var verses = {
       if (!rows[0][lang]) {
         rows[0][lang] = langdesc + ' Coming Soon ...';
       }
+
+      if (duration = rows[rows.length - 1].cue) {
+        min = (duration/60)|0;
+        sec = duration - min*60;
+        ptm = 'PT' + min + 'M' + sec + 'S'
+        console.log(req.url + ' playtime ' + ptm);
+      }
+
       if (info.link) {
         try {
           info.link = JSON.parse(info.link);
@@ -55,7 +65,8 @@ var verses = {
           console.error('Failed to parse link for ' + req.params.name , info.link);
         }
       }
-      res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, rating: req.rating|0, votes: req.votes|0});
+      res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, 
+                             rating: req.rating|0, votes: req.votes|0, duration: ptm});
     });
   }
 };
