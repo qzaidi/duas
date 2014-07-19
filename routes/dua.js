@@ -82,6 +82,25 @@ module.exports = function(app) {
     });
   }, ratings.get, verses.render);
 
+  app.get('/sermon/:name', function(req,res,next) {
+    db.get('select * from toc where urlkey = "' + req.params.name.toLowerCase() + '" ', function(err,info) {
+      if (!info) {
+        err = new Error('Not Found');
+        err.status = 404;
+      }
+      req.info = info;
+      next(err);
+    });
+  }, ratings.get, verses.render);
+
+  app.get('/sermon', function(req,res,next) {
+    db.all('select * from toc where type = "sermon"', function(err,rows) {
+      var page = { title: 'Munajat from Sahifa-e-Sajjadiya', 
+                   description: 'Whispered Prayers from Sahifa-e-Sajjadiya, the Pslams of Islam by Imam Zainul Abideen' };
+      res.render('sermon', { prayers: rows, page: page });
+    });
+  });
+
   app.get('/munajat', function(req,res) {
     db.all('select * from toc where type = "munajat"', function(err,rows) {
       var page = { title: 'Munajat from Sahifa-e-Sajjadiya', 

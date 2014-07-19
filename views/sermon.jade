@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Home")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/')
+            img(src='/img/icon-back.png',alt='Back')
+            | The Sermons
+        p
+          | A collection of eloquent speeches and sermons delivered by the Ahlul Bayt
+
+        .clients
+            ul(data-role='listview')
+              each prayer in prayers
+                if (prayer.collection != 'Sahifa-e-Sajjadiya')
+                  li
+                    a(href='/munajat/#{prayer.urlkey}')
+                      img.ui-li-icon(src='/img/sample-images/icon1.png', alt='image 2')
+                      | #{prayer.enname}
+                      span.arabic.right(style='background: transparent;') #{prayer.arname}
+
+

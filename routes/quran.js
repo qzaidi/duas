@@ -21,7 +21,7 @@ function getlink(page,npp, surat,lang) {
   var chapter = Number(surat.id);
   var pnum = page;
   var link = { cur: '/quran/' + chapter + '?p=' + page };
-  if ((page + 1)*npp >= surat.ayas) {
+  if ((page + 1)*npp > surat.ayas) {
     chapter += 1;
     pnum = 0;
   } else {
@@ -93,8 +93,8 @@ var quran = {
     var offset = pnum*npp || 0;
     var bismillah = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ';
 
-    if (pnum*npp > surat.ayas) {
-      pnum = (surat.ayas/8)|0;
+    if (pnum*npp >= surat.ayas) {
+      pnum = ((surat.ayas-1)/8)|0;
       offset = pnum*npp || 0;
     }
 
