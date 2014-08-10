@@ -25,7 +25,7 @@ $(document).on('pageinit','#prayerTimesPage', function(ev) {
     }
     table += '</table>';
 
-    document.getElementById('iftartable').innerHTML = table;
+    //document.getElementById('iftartable').innerHTML = table;
 
     $.ajax('http://api.geonames.org/findNearbyPlaceNameJSON?lat=' + latitude + '&lng=' + longitude + '&username=qasim', 
       { 

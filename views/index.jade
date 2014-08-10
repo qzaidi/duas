@@ -19,9 +19,9 @@ block content
           li
             ul.section
               li.square
-                a.box(href='/duas/ramadhan', data-transition='fade', data-direction='reverse')
-                  img(src='/img/icon-ramadhan.png', alt='Ramadhan')
-                  span.text  Ramadhan-ul-Mubarak
+                a.box(href='/quran', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-quran.png', alt='videos')
+                  span.text  Al-Quran
               li.square
                 a.box(href='/munajat', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-munajat.png', alt='Munajat')
@@ -37,19 +37,15 @@ block content
                   img(src='/img/icon-search.png', alt='Search')
                   span.text  Start Here
               li.square
-                a.box(href='/quran', data-transition='fade', data-direction='reverse')
-                  img(src='/img/icon-quran.png', alt='videos')
-                  span.text  Al-Quran
-              li.square
                 a.box(href='/events', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-events.png', alt='Events')
                   span.text  Events 
-          li
-            ul.section
               li.square
                 a.box(href='/ziyarat', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-ziyarat.png', alt='Ziyaraat')
                   span.text  Ziyaraat
+          li
+            ul.section
               li.square
                 a.box(href='/asmaulhusna', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-allah.png', alt='Asma-ul-Husna')
@@ -58,31 +54,27 @@ block content
                 a.box(href='/prayertimes', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-praytimes.png', alt='Prayer Times')
                   span.text Prayer Times
-          li
-            ul.section
               li.square
                 a.box(href='/gallery', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-gallery.png', alt='Gallery')
                   span.text  Gallery 
+          li
+            ul.section
               li.square
                 a.box(href='/teachings', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-tesbih.png', alt='Teachings')
                   span.text Pearls of Wisdom
               li.square
-                a.box(href='/settings', data-transition='fade', data-direction='reverse')
-                  img(src='/img/icon-settings.png', alt='Settings')
-                  span.text  Settings
-          li
-            ul.section
-              li.square
                 a.box(href='/treatise', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-rights.png', alt='Treatise of Rights')
                   span.text Treatise of Rights
-
+              li.square
+                a.box(href='/settings', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-settings.png', alt='Settings')
+                  span.text  Settings
 
     if (scripts.js)
       script(src="#{scripts.js}",defer="defer");
-    a(href="https://plus.google.com/+DuasMobi",rel="publisher") Find us on Google+
 
 append footerblock
   script(src='/js/hijri.js')
