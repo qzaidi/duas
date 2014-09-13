@@ -39,10 +39,14 @@ var verses = {
       var info = req.info;
       var page = { title : info.enname + ' with ' + langdesc, image: '//duas.mobi/img/icon-' + info.type + '.png'};
       var duration, min,sec,ptm;
+      var cls = {};
 
       if (info.arname) {
         page.title += ' - ' + info.arname;
       }
+
+      cls[lang] = 'ui-btn-active';
+
       page.description = info.collection + ' - ' + info.endesc + ' with ' + langdesc;
       if (info.audio) {
         page.description += ' and mp3 audio';
@@ -65,7 +69,7 @@ var verses = {
           console.error('Failed to parse link for ' + req.params.name , info.link);
         }
       }
-      res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, 
+      res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, cls: cls,
                              rating: req.rating|0, votes: req.votes|0, duration: ptm});
     });
   }

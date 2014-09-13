@@ -41,7 +41,7 @@ function trackPageview(page) {
 }
 
 
-$('[data-role=page]').live('pageshow', function (event, ui) {
+$('[data-role=page]').on('pageshow', function (event, ui) {
     var hash = location.hash;
     trackPageview(hash?hash.substr(1):undefined);
 });

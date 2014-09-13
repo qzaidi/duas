@@ -406,14 +406,3 @@ var pageChange = function(){
 }
 
 $(document).bind('pagechange', pageChange);
-$('div').live('pagehide', function (event, ui) { 
-  var page = jQuery(event.target);
-
-  if (page.attr('data-cache') == 'never') { 
-    page.remove(); 
-  }; 
-});
-
-
-
-

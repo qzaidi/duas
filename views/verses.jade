@@ -19,6 +19,19 @@ block content
         mixin breadcrumb([ { href: '/' + info.type, text: titlecase(info.type) }, { href: '/' + info.type + 's/collection/' + info.collection , text: info.collection }])
 
         #toTop ↑ Top
+        div.ui-field-contain(data-role="controlgroup",data-type="horizontal",data-mini="true")
+          if (data[0].english)
+            a(class=cls.english,href='?lang=english',data-role="button") English
+          if (data[0].urdu)
+            a(class=cls.urdu,href='?lang=urdu',data-role="button") Urdu
+            a(class=cls.arabic,href='?lang=arabiconly',data-role="button") Arabic
+          if (data[0].hindi)
+            a(href='?lang=hindi',data-role="button") Hindi
+          if (data[0].hintrans)
+            a(href='?lang=hintrans',data-role="button") Hindi Transliteration
+          if (data[0].engtrans)
+            a(class=cls.engtrans,href='?lang=engtrans',data-role="button") Transliteration
+
 
 
       .ui-content(data-role="content")
@@ -27,30 +40,6 @@ block content
           .section.group
             .col.span_1_of_2.arabic #{info.arname}
             .col.span_1_of_2
-              small
-                a(href='?lang=arabiconly') 
-                  span.language Arabic only &nbsp;
-                if (data[0].english)
-                  |  | &nbsp; 
-                  a(href='?lang=english') 
-                    span.language English &nbsp;  
-                if (data[0].urdu)
-                  |  | &nbsp; 
-                  a(href='?lang=urdu') 
-                    span.language Urdu &nbsp;
-                if (data[0].hindi)
-                  |  | &nbsp;  
-                  a(href='?lang=hindi') 
-                    span.language Hindi &nbsp;
-                if (data[0].hintrans)
-                  |  | &nbsp;  
-                  a(href='?lang=hintrans') 
-                    span.language Hindi Transliteration 
-                if (data[0].engtrans)
-                  |  | &nbsp;  
-                  a(href='?lang=engtrans') 
-                    span.language Transliteration 
-
         if (lang.indexOf('only') == -1) 
           each row in data
             .section.group
