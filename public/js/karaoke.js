@@ -1,13 +1,27 @@
 var cues;
 
-$(document).on('pageinit','#versePage',function() {
-
+$(document).on('pageinit','.versePage',function() {
   (function() {
     $(window).scroll(function() {
       if($(this).scrollTop() > 150) {
         $('#toTop').fadeIn();    
       } else {
         $('#toTop').fadeOut();
+      }
+    });
+
+    if ($('.span_1_of_2').css('width') == '48%') {
+      $('.colswitch').val('on').slider('refresh')
+    }
+
+    $('.colswitch').on('change',function(e) { 
+      var state = $(this).val();
+      if (state == 'off') {
+        $('.col').css('float','none')
+        $('.span_1_of_2').css('width','100%');
+      } else {
+        $('.col').css('float','right')
+        $('.span_1_of_2').css('width','48%');
       }
     });
 
@@ -29,6 +43,7 @@ $(document).on('pageinit','#versePage',function() {
   $('audio').on('loadstart',function() {
     var i = 0; // remembers
     var trigger = 0;
+
     function timeupdate() {
       var curTime = $(this)[0].currentTime;
       var text,focus;
@@ -40,8 +55,7 @@ $(document).on('pageinit','#versePage',function() {
       }
 
       trigger = cues[i];
-      text = $('.arabic');
-      
+      text = $(this).parent().parent().find('.arabic');
 
       if (i > 0) {
         text.eq(i-1).removeClass('highlight');
@@ -60,15 +74,13 @@ $(document).on('pageinit','#versePage',function() {
     }
 
     if (cues && cues.length) {
-      console.log('this page has cues');
       $(this).on('timeupdate', timeupdate);
     }
   });
 
   if (!cues || cues.length ==0 ) {
     cues = [];
-    console.log('installing handler - press x to record a cue');
-    $('#versePage').keypress(function(ev) {
+    $('.versePage').keypress(function(ev) {
       if (ev.charCode == 120) {
         cues.push(Math.floor($('audio')[0].currentTime));
       } 

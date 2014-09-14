@@ -2,7 +2,7 @@ extends layout
 
 block content
   div(role='main')
-    .page.innerPage#versePage(data-role="page")
+    .page.innerPage.versePage(data-role="page")
       .topGrahic
       a.menuButton(href="/")
         img(src="/img/menu-button.png",alt="Home")
@@ -31,7 +31,10 @@ block content
             a(href='?lang=hintrans',data-role="button") Hindi Transliteration
           if (data[0].engtrans)
             a(class=cls.engtrans,href='?lang=engtrans',data-role="button") Transliteration
-
+          | &nbsp;
+          select.colswitch(name="flip-mini",data-role="slider",data-mini="true")
+            option(value="off") 1 Col
+            option(value="on") 2 Col
 
 
       .ui-content(data-role="content")
