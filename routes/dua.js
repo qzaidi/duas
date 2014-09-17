@@ -111,6 +111,10 @@ module.exports = function(app) {
 
   app.get('/munajat/:name', function(req,res,next) {
     db.get('select * from toc where urlkey = "' + req.params.name + '" ', function(err,info) {
+      if (!err && !info) {
+        err = new Error('Not Found');
+        err.status = 404;
+      }
       req.info = info;
       next(err);
     });

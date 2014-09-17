@@ -17,16 +17,17 @@ block content
         p
           | Ziyarat is an arabic term that literally means a visit, and is used to refer piligrimage to sites associated with Prophet Muhammad and his pure
           | progeny.
-       .padpage
-         h2
-         span.h2 Popular Ziyarats
 
-       ul(data-role='listview')
-         each ziyarat in ziyarats
-           li
-             a(href='/ziyarat/#{ziyarat.urlkey}')
-               img.ui-li-icon(src='/img/sample-images/icon2.png', alt='#{ziyarat.enname}')
-               | #{ziyarat.enname}
+       each collection,name in collections
+         .padpage
+           h2
+           span.h2 #{name}
+         ul(data-role='listview')
+           each ziyarat in collection
+             li
+               a(href='/ziyarat/#{ziyarat.urlkey}')
+                 img.ui-li-icon(src='/img/sample-images/icon2.png', alt='#{ziyarat.enname}')
+                 | #{ziyarat.enname}
 
        .padpage
          h2

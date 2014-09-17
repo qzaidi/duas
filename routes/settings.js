@@ -34,7 +34,7 @@ var settings = {
     }, function(err,res) {
       console.log(err || res);
     });
-    next();
+    res.end(200);
   },
 
   updateLanguage: function(req,res,next) {

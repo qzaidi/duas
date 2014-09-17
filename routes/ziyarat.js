@@ -19,7 +19,16 @@ module.exports = function(app) {
 
   app.get('/ziyarat', function(req,res) {
     db.all('select * from toc where type = "ziyarat" order by collection', function(err,info) {
-      res.render('ziyaraat/index', { ziyarats: info, page: page });
+      var collections = {};
+
+      if (!err) {
+        info.forEach(function(ziyarat) {
+          var c = collections[ziyarat.collection] || [];
+          c.push(ziyarat);
+          collections[ziyarat.collection] = c;
+        });
+      }
+      res.render('ziyaraat/index', { ziyarats: info, page: page, collections: collections });
     });
   });
 
@@ -36,6 +45,10 @@ module.exports = function(app) {
   app.get('/ziyarat/:name', function(req,res,next) {
     var name = req.params.name;
     db.get('select * from toc where urlkey = "' + name + '"', function(err,info) {
+      if (!err && !info) {
+        err = new Error('Not Found');
+        err.status = 404;
+      }
       req.info = info;
       next(err);
     });

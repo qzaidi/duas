@@ -16,14 +16,11 @@ block content
 
         mixin breadcrumb([{ href: '/quran', text: 'Quran' }, { href: '/quran/index', text: 'Chapters' }])
 
-        p.right
-          a(href="#{url}&lang=ar") Arabic 
-          | |
-          a(href="#{url}&lang=en") English
-          | |
-          a(href="#{url}&lang=ur") Urdu
-          | |
-          a(href="#{url}&lang=hi") Hindi
+        div.ui-field-contain(data-role="controlgroup",data-type="horizontal",data-mini="true")
+          a(href="#{url}&lang=ar",data-role="button") Arabic 
+          a(href="#{url}&lang=en",data-role="button") English
+          a(href="#{url}&lang=ur",data-role="button") Urdu
+          a(href="#{url}&lang=hi",data-role="button") Hindi
         br
         br
 

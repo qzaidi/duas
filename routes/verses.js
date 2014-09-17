@@ -40,6 +40,7 @@ var verses = {
       var page = { title : info.enname + ' with ' + langdesc, image: '//duas.mobi/img/icon-' + info.type + '.png'};
       var duration, min,sec,ptm;
       var cls = {};
+      var url;
 
       if (info.arname) {
         page.title += ' - ' + info.arname;
@@ -48,6 +49,8 @@ var verses = {
       cls[lang] = 'ui-btn-active';
 
       page.description = info.collection + ' - ' + info.endesc + ' with ' + langdesc;
+      url = 'http://duas.mobi/' + info.type + '/' + info.urlkey;
+
       if (info.audio) {
         page.description += ' and mp3 audio';
       }
@@ -59,7 +62,6 @@ var verses = {
         min = (duration/60)|0;
         sec = duration - min*60;
         ptm = 'PT' + min + 'M' + sec + 'S'
-        console.log(req.url + ' playtime ' + ptm);
       }
 
       if (info.link) {
@@ -70,7 +72,7 @@ var verses = {
         }
       }
       res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, cls: cls,
-                             rating: req.rating|0, votes: req.votes|0, duration: ptm});
+                             rating: req.rating|0, votes: req.votes|0, duration: ptm, url: url});
     });
   }
 };

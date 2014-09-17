@@ -109,7 +109,7 @@ var quran = {
 
       link = getlink(pnum,npp,surat,lang);
 
-      req.data = { verses: verses, prev: link.prev, url: link.cur,  next: link.next, digits:toArabDigits, surat: surat, lang: lang, page: page };
+      req.data = { verses: verses, prev: link.prev, url: link.cur,  next: link.next, digits:toArabDigits, surat: surat, lang: lang };
 
       if (pnum == 0 && verses[0].verse == 1) {
         partial = verses[0].ar.replace(bismillah,'');
@@ -119,6 +119,14 @@ var quran = {
           req.data.verses.unshift(v);
         }
       }
+
+      req.data.page = { 
+        title: surat.tname + ' - The Holy Quran',
+        description: surat.tname + ' verse ' + verses[0].verse + ' to ' + (verses[0].verse + verses.length)   
+                     + '  - Al-Quran, the book of Allah, with english translation',
+        image: '//duas.mobi/img/icon-quran.png',
+        author: 'Al-Quran'
+      };
 
       next();
     });
