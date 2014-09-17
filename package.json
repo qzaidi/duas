@@ -17,6 +17,6 @@
   },
   "devDependencies": {
     "uglify-js": "*",
-    "clean-css": "*"
+    "clean-css": "1.1.3"
   }
 }

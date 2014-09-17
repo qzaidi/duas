@@ -1,3 +1,14 @@
+$(document).on('pageinit','#menuPage',function() {
+  var d = hijri.getHijriDate();
+  var keydates = hijri.keydates;
+  if (link = (keydates[d.month + '-' + d.day] || keydates[d.month + '-' + (d.day + 1)] || keydates[d.month + '-' + (d.day + 2)])) {
+    $('.calendar .day').html('<a href="/events/' + link + '">'+ d.day + '*</a>');
+  } else {
+    $('.calendar .day').text(d.day);
+  }
+  $('.calendar .month').text(d.monthName);
+});
+
 $(document).on('pageinit','#prayerTimesPage', function(ev) {
   function render(latlong) {
     var latitude = latlong.coords.latitude;
@@ -42,5 +53,4 @@ $(document).on('pageinit','#prayerTimesPage', function(ev) {
   if (Modernizr.geolocation) {
     navigator.geolocation.getCurrentPosition(render);
   }
-
 })
