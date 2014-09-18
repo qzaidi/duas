@@ -3,7 +3,7 @@ extends layout
 block content
   #toctablecontainer
 
-  script
+  script(type="text/javascript").
     $(document).ready(function () {
         $('#toctablecontainer').jtable({
             title: 'Table of Contents',
@@ -26,7 +26,10 @@ block content
               },
               audio: {
                 title: 'Audio',
-                width: '2%'
+                width: '2%',
+                display: function(data) {
+                  return data.record.audio?'<audio src="' + data.record.audio + '" controls="controls" preload="none"></audio>':'NA';
+                }
               },
               type: {
                 title: 'Content Type',
