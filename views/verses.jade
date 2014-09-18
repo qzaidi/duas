@@ -87,7 +87,7 @@ block content
           meta(itemprop="inAlbum",content="#{titlecase(info.type)}-#{info.collection}")
           audio.noprint#amtag(itemprop="audio",style="width: 100%",src="#{info.audio}",controls="controls",preload="none")
 
-        != "<script>"
+        != "<script type='text/javascript'>"
         != "var cues = ["
         if (data[0].cue)
           each row in data

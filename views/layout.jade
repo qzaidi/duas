@@ -1,4 +1,4 @@
-doctype 5
+doctype html
 
 include layout/mixins
 
@@ -44,9 +44,9 @@ html(xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#",xmlns:fb=
 
     block content
 
-    input(type='hidden',id='arfontsizecur',name='arfontsizecur',value="#{settings.language.arfontsize}");
-    input(type='hidden',id='urfontsizecur',name='urfontsizecur',value="#{settings.language.urfontsize}");
-    input(type='hidden',id='hifontsizecur',name='hifontsizecur',value="#{settings.language.hifontsize}");
+    input(type='hidden',id='arfontsizecur',name='arfontsizecur',value="#{settings.language.arfontsize}")
+    input(type='hidden',id='urfontsizecur',name='urfontsizecur',value="#{settings.language.urfontsize}")
+    input(type='hidden',id='hifontsizecur',name='hifontsizecur',value="#{settings.language.hifontsize}")
 
     include layout/footerjs
     block footerblock
