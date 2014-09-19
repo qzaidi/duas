@@ -14,11 +14,12 @@ var gallery = require('./gallery');
 var names = require('./names');
 var praytimes = require('./praytimes');
 var ratings = require('./ratings');
+var verseofday = require('./verseofday');
 
 var mw = require('./mw');
 
 module.exports = function(app) {
-  app.get('/', home.checkForSpecialOccasion, mw.hijri, home.index);
+  app.get('/', home.checkForSpecialOccasion, mw.hijri, verseofday.get, home.index);
 
   app.get('/about', about.index);
   app.get('/about/:page', about.page);

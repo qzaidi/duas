@@ -34,7 +34,8 @@ var home = {
 
     res.render('index', {
       hijri: req.hijri,
-      scripts: req.scripts
+      scripts: req.scripts,
+      verse: req.verseofday
     });
   }
 
