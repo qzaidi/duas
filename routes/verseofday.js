@@ -1,0 +1,52 @@
+"use strict";
+
+var vod = {
+
+  verses: [
+    { 
+      arabic: 'أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُو',
+      href:'/quran/13/28', 
+      attrib: 'Al-Quran' 
+    },
+    {
+      arabic: 'وَنَحْنُ أَقْرَبُ إِلَيْهِ مِنْ حَبْلِ ٱلْوَرِيدِ',
+      href: '/quran/50/16',
+      attrib: 'Al-Quran' 
+    },
+    {
+      arabic: 'أَفَلَا يَتَدَبَّرُونَ ٱلْقُرْءَانَ',
+      href: '/quran/4/82',
+      attrib: 'Al-Quran' 
+    },
+    {
+      arabic: 'فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى ٱللَّهِ',
+      href: '/quran/3/159',
+      attrib: 'Al-Quran'
+    },
+    {
+      arabic: 'إِنَّا لِلَّهِ وَإِنَّآ إِلَيْهِ رَٰجِعُونَ',
+      href: '/quran/2/156',
+      attrib: 'Al-Quran'
+    },
+    {
+      arabic: 'أَوَلَمْ يَتَفَكَّرُوا۟ فِىٓ أَنفُسِهِم',
+      href: '/quran/30/8',
+      attrib: 'Al-Quran'
+    },
+    {
+      arabic: 'كِتَٰبٌ أَنزَلْنَٰهُ إِلَيْكَ مُبَٰرَكٌ لِّيَدَّبَّرُوٓا۟ ءَايَٰتِهِ',
+      href: '/quran/38/29',
+      attrib: 'Al-Quran'
+    }
+  ],
+
+  get: function(req,res,next) {
+    var l = vod.verses.length;
+    var i = ((Math.random()*l)|0)%l;
+    req.verseofday = vod.verses[i];
+    next();
+  }
+
+};
+
+module.exports = vod;
