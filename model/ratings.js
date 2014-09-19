@@ -9,11 +9,11 @@ var ratings = {
   // keys are strings
   
   get: function(key,cb) {
-    console.log('fetching for ' + key);
     db.get(key,function(err,res) {
       if (err) {
         res = { sum: 0, count: 0 };
       }
+      console.log('fetched for ' + key);
       cb(undefined,res);
     });
   },
