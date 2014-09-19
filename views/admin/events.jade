@@ -41,7 +41,11 @@ block content
                 description: {
                   title: 'Description',
                   type: 'textarea',
-                  width: '60%'
+                  width: '60%',
+                  display: function(data) {
+                    var desc = data.record.description;
+                    return desc.length>128?desc.substring(0,125) + '...':desc;
+                  }
                 },
                 image: {
                     title: 'Image Path'
