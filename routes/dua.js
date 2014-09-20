@@ -6,6 +6,10 @@ var verses = require('./verses');
 
 module.exports = function(app) {
 
+  app.get('/landing', function(req,res) {
+    res.render('events/landing');
+  });
+
   app.get('/random/dua', function(req,res) {
     var sql = 'select count(*) as total from toc';
     db.get(sql, function(err,c) {
