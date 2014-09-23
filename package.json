@@ -12,7 +12,7 @@
     "magickwand": "*",
     "nodemailer": "*",
     "ptmproc": "git+ssh://git@admedly.unfuddle.com:admedly/proc.git",
-    "quran": "0.0.5",
+    "quran": "0.0.6",
     "sqlite3": "*"
   },
   "devDependencies": {

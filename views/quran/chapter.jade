@@ -2,9 +2,9 @@ extends ../layout
 
 block content
   div(role='main')
-    .page.innerPage#rights(data-role="page")
+    .page.innerPage.suratPage#quranSurah(data-role="page")
       .topGrahic
-      a.menuButton(href="/")
+      a.menuButton(href="/",data-rel="back")
         img(src="/img/menu-button.png",alt="Menu")
 
       .padpage.padtop
@@ -30,14 +30,14 @@ block content
         if (lang.indexOf('ar') == -1) 
           each verse in verses
             .section.group
-              .col.span_1_of_2.arabic 
-                | #{verse.ar} 
+              .col.span_1_of_2.arabic(class=verse.class)
+                a(class=verse.class) #{verse.ar} 
                 span.ayahNumber ﴿#{digits(verse.verse)}﴾  
               .col.span_1_of_2(class=lang) #{verse[lang]}
         else
           p.arabic.doublespaced
             each verse in verses
-              | #{verse.ar} 
+              a(class=verse.class) #{verse.ar} 
               span.ayahNumber ﴿#{digits(verse.verse)}﴾  
 
         h4

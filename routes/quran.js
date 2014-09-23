@@ -70,6 +70,25 @@ var quran = {
     });
   },
 
+  juz: function(req,res,next) {
+    var npp = 8;
+    
+    qurandb.juz(function(err,ajza) {
+      if (err) {
+        return next(err);
+      }
+
+      ajza.forEach(function(juzInfo) {
+        var pnum,hl;
+        pnum = ((juzInfo.ayah - 1)/npp)|0;
+        hl = (juzInfo.ayah - (pnum*npp) + 7)%8;
+        juzInfo.href = '/quran/'+juzInfo.surah+'?p=' + pnum + '&hl=' + hl;
+      });
+
+      res.render('quran/juzindex',{ ajza: ajza.slice(1,31) });
+    });
+  },
+
   chapterInfo: function(req,res,next) {
     var chapter = Number(req.params.chapter);
     qurandb.chapter(chapter,function(err, rows) {
@@ -90,6 +109,7 @@ var quran = {
     var lang = req.query.lang || config.language;
     var pnum = Number(req.query.p) || 0;
     var npp = 8;
+    var hl = req.query.hl;
     var offset = pnum*npp || 0;
     var bismillah = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ';
 
@@ -109,6 +129,10 @@ var quran = {
 
       link = getlink(pnum,npp,surat,lang);
 
+      if (hl) {
+        link.cur += '&hl=' + hl;
+      }
+
       req.data = { verses: verses, prev: link.prev, url: link.cur,  next: link.next, digits:toArabDigits, surat: surat, lang: lang };
 
       if (pnum == 0 && verses[0].verse == 1) {
@@ -118,6 +142,10 @@ var quran = {
           verses[0].ar = partial;
           req.data.verses.unshift(v);
         }
+      }
+
+      if (hl) {
+        verses[hl%npp].class = 'highlight';
       }
 
       req.data.page = { 

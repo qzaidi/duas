@@ -87,3 +87,10 @@ $(document).on('pageinit','.versePage',function() {
     });
   }
 });
+
+$(document).on('pageshow','.suratPage',function() {
+  var el = $('a.highlight');
+  if (el && el.length) {
+    setTimeout(function() {$.mobile.silentScroll(el.offset().top)},200);
+  }
+});

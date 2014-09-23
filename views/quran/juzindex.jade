@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#quranIndex(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Home")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='#',data-rel='back')
+            img(src='/img/icon-back.png',alt='Back')
+            | The Holy Quran
+
+
+        .clients
+            ul(data-role='listview')
+              each juz in ajza
+                li
+                  a(href=juz.href)
+                    img.ui-li-icon(src='/img/quran.png',width='16',height='16')
+                    | Juz #{juz.id}
+
