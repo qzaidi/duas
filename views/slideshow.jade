@@ -1,11 +1,11 @@
-extends ../layout
+extends layout
 
 block content
   div(role='main')
     .page.innerPage.padpage.padtop.padbottom#galleryPage(data-role="page")
       .topGrahic
       a.menuButton(href="/")
-        img(src="/img/menu-button.png",alt="Duas Home")
+        img(src="/img/menu-button.png",alt="Home")
 
       h1
         a.back.ui-link(href='/',data-rel="back")
@@ -17,11 +17,11 @@ block content
       .iscroll#galleryScroller(data-ajax='false')
         .scroller
           ul.menu
-            each row in rows
-              li
-                ul.section
-                  each image in row
-                    li.square
-                      a.box.gallery-item(href='/img/gallery/#{image.image}')
-                        img(src='/cache/135x135/img/gallery/#{image.image}',alt='#{image.description}')
-
+            li
+              ul.section
+                li.square
+                  a.box.gallery-item(href='/img/leaves.jpg')
+                    img(src='/cache/135x135/img/leaves.jpg',alt='Hello world')
+                li.square
+                  a.box.gallery-item(href='/img/leaves.jpg')
+                    img(src='/cache/135x135/img/leaves.jpg',alt='Second Line')

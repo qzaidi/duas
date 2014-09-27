@@ -12,13 +12,16 @@ block content
         h1 
           a.back.ui-link(href='/')
             img(src='/img/icon-back.png',alt='Back')
-            | Al Quran (#{chapter}: #{verse})
+            | Al Quran (#{chapter.tname}: #{verse})
 
-        .section.group
-          .col.span_1_of_2.arabic 
-            | #{ayah.ar}  
-            span.ayahNumber ﴿#{digits(verse)}﴾  
-          .col.span_1_of_2(class="english") #{ayah.en}
+        mixin breadcrumb([{ href: '/quran', text: 'Quran' }, { href: '/quran/index', text: 'Chapters'},{ href: '/quran/'+chapter.id, text: chapter.tname }])
+
+        p.arabic
+          | !{ayah.ar} 
+          span.ayahNumber ﴿#{digits(verse)}﴾  
+
+        p.english
+          | !{ayah.en}
 
         h4
           if (next) 

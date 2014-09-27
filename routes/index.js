@@ -51,7 +51,7 @@ module.exports = function(app) {
   app.get('/quran/juz', quran.juz);
   app.get('/qunoot/:id', quran.qunoot,quran.chapterInfo,quran.getverse,quran.renderqunoot);
   app.get('/quote/:tag', quote.fetch,quote.render);
-  app.get('/quran/:chapter/:verse', quran.getverse,quran.renderverse);
+  app.get('/quran/:chapter/:verse', quran.chapterInfo, quran.getverse,quran.renderverse);
   app.get('/quran/:chapter', quran.chapterInfo,quran.chapter, quran.html);
   app.get('/api/quran', quran.api, quran.json);
   app.get('/offline', mw.render('quran/offline'));

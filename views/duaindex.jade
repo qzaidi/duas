@@ -1,21 +1,11 @@
 extends layout
 
-append htmlhead
-  if (scripts.css)
-    link(href='#{scripts.css}',rel='stylesheet',type='text/css')
-
 block content
   div(role='main')
-    #menuPage.page.iscroll(data-role='page', data-cache='never')
+    #duaPage.page.iscroll(data-role='page', data-cache='never')
       .scroller
-        .company
-          a(href='/month/')
-            .calendar
-              span.month #{hijri.monthName}
-              span.day #{hijri.day}
-          #coverVerse(style="#{verse.style}") 
-            a(href=verse.href,alt=verse.attrib) #{verse.arabic} 
-          img(style="vertical-align:middle",src='/img/covers/#{verse.background}', alt='Sahifa-e-Sajjadiya')
+        .company(style="width:280px;")
+          include events/landing
         ul.menu
           li
             ul.section
@@ -73,6 +63,3 @@ block content
                 a.box(href='/settings', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-settings.png', alt='Settings')
                   span.text  Settings
-
-    if (scripts.js)
-      script(src="#{scripts.js}",defer="defer")

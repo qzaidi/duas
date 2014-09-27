@@ -3,6 +3,13 @@
 var vod = {
 
   verses: [
+    {
+      arabic: 'وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ',
+      style: 'color: black;',
+      background: 'mecca.jpg',
+      href: '/quran/2/196',
+      attrib: 'Al-Quran'
+    },
     { 
       arabic: 'أَلَا بِذِكْرِ ٱللَّهِ تَطْمَئِنُّ ٱلْقُلُو',
       href:'/quran/13/28', 
@@ -37,13 +44,27 @@ var vod = {
       arabic: 'كِتَٰبٌ أَنزَلْنَٰهُ إِلَيْكَ مُبَٰرَكٌ لِّيَدَّبَّرُوٓا۟ ءَايَٰتِهِ',
       href: '/quran/38/29',
       attrib: 'Al-Quran'
+    },
+    {
+      arabic: 'وَٱذْكُر رَّبَّكَ إِذَا نَسِيتَ ',
+      href: '/quran/18/24',
+      attrib: 'Al-Quran'
+    },
+    {
+      arabic: 'فَٱذْكُرُونِىٓ أَذْكُرْكُمْ',
+      href: '/quran/2/152',
+      attrib: 'Al-Quran'
     }
   ],
 
   get: function(req,res,next) {
     var l = vod.verses.length;
-    var i = ((Math.random()*l)|0)%l;
+    var i = 0 ; // ((Math.random()*l)|0)%l;
     req.verseofday = vod.verses[i];
+    
+    req.verseofday.background = vod.verses[i].background || 'quranlight.jpg';
+    req.verseofday.style = vod.verses[i].style || '';
+
     next();
   }
 

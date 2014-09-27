@@ -206,7 +206,8 @@ var quran = {
 
   renderverse: function(req,res,next) {
     var link = '/quran/' + req.params.chapter + '/' + (Number(req.params.verse) + 1);
-    res.render('quran/verse', { verse: req.params.verse, ayah: req.ayah, chapter: req.params.chapter, next: link, digits:toArabDigits , page: page});
+    res.render('quran/verse', { verse: req.params.verse, ayah: req.ayah, chapter: req.chapterInfo, 
+                                next: link, digits:toArabDigits , page: page});
   },
 
   qunoot: function(req,res,next) {

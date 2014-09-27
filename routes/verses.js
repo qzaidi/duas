@@ -49,6 +49,7 @@ var verses = {
       cls[lang] = 'ui-btn-active';
 
       page.description = info.collection + ' - ' + info.endesc + ' with ' + langdesc;
+      page.keywords = info.meta || '';
       url = 'http://duas.mobi/' + info.type + '/' + info.urlkey;
 
       if (info.audio) {
@@ -71,6 +72,7 @@ var verses = {
           console.error('Failed to parse link for ' + req.params.name , info.link);
         }
       }
+      console.log(page);
       res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, cls: cls,
                              rating: req.rating|0, votes: req.votes|0, duration: ptm, url: url});
     });
