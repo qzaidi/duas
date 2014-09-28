@@ -5,7 +5,7 @@ var vod = {
   verses: [
     {
       arabic: 'وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ',
-      style: 'color: black;',
+      style: 'color: black;margin-top:8%;',
       background: 'mecca.jpg',
       href: '/quran/2/196',
       attrib: 'Al-Quran'

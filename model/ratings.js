@@ -13,7 +13,6 @@ var ratings = {
       if (err) {
         res = { sum: 0, count: 0 };
       }
-      console.log('fetched for ' + key);
       cb(undefined,res);
     });
   },

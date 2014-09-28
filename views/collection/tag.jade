@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/collections',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Supplications &amp; Ziyarats for #{tag}
+
+        .clients
+            ul(data-role='listview')
+              each row in data
+                li
+                  a(href='/#{row.type}/#{row.prayer}')
+                    img.ui-li-icon(src='/img/sample-images/icon2.png', alt='duas')
+                    | #{row.prayername}
+

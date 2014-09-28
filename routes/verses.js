@@ -72,7 +72,6 @@ var verses = {
           console.error('Failed to parse link for ' + req.params.name , info.link);
         }
       }
-      console.log(page);
       res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, cls: cls,
                              rating: req.rating|0, votes: req.votes|0, duration: ptm, url: url});
     });

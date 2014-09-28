@@ -1,0 +1,42 @@
+extends layout
+
+block content
+  #collectioncontainer
+
+  script(type="text/javascript").
+    $(document).ready(function () {
+        $('#collectioncontainer').jtable({
+            title: 'Collections',
+            actions: {
+                listAction: '/admin/collection_map/list',
+                createAction: '/admin/collection_map/create',
+                updateAction: '/admin/collection_map/update',
+                deleteAction: '/admin/collection_map/remove'
+            },
+            fields: {
+                rowid: {
+                  key: true,
+                  list: false,
+                  create: false,
+                  edit: false
+                },
+                collection: {
+                    title: 'Collection'
+                },
+                prayer: {
+                    title: 'Prayer Key'
+                },
+                prayername: {
+                    title: 'Prayer Name'
+                },
+                type: {
+                    title: 'Type'
+                },
+                sort: {
+                    title: 'Sort Index'
+                }
+            }
+        });
+ 
+        $('#collectioncontainer').jtable('load');
+    });

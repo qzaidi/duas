@@ -19,7 +19,7 @@ var search = {
 
     req.search.term = req.query.q;
     query = 'select * from toc where type like "%' + req.search.term + '%" or urlkey like "%' 
-             + req.search.term + '%" or enname like "%' + req.search.term + '%"';
+             + req.search.term + '%" or enname like "%' + req.search.term + '%" order by type';
     db.all(query, function(err,rows) {
       var results;
       if (err) {

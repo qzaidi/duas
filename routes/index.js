@@ -15,6 +15,7 @@ var names = require('./names');
 var praytimes = require('./praytimes');
 var ratings = require('./ratings');
 var verseofday = require('./verseofday');
+var tag = require('./tag');
 
 var mw = require('./mw');
 
@@ -85,6 +86,9 @@ module.exports = function(app) {
   app.get('/rating',ratings.get,ratings.render);
   app.post('/rating',ratings.set);
 
+  app.get('/tag/:tag', tag.listing);
+
   app.get('/*', mw.notfound);
+
 
 };

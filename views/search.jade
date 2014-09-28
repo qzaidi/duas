@@ -17,23 +17,14 @@ block content
           ul#autocomplete(data-role='listview',data-inset="true",data-filter="true",data-filter-placeholder="Search")
 
         p 
-          | Looking for a supplication? Type in a few characters and let's suggest.
-
-        p 
-          | Don't know who was Imam Zainul Abideen? Read more about this 
-          a.next.ui-link(href='/about/')
-            |  great grandson of Prophet Muhammad
-            img(src="/img/icon-next.png") 
-          |  who authored such maginficient works as the Pslams of Islam and Treatise of Rights. Browse through his
-          |  supplications and prayers, 
-          a.next.ui-link(href='/dua/morals')
-            img(src="/img/icon-next.png")
-          |  or read about some inspirational incidents from his life.
-          a.next.ui-link(href='/teachings')
-            img(src="/img/icon-next.png")
+          | Looking for a supplication? Type in a few characters and let's suggest. Or try a link from below.
 
         .projects
           ul(data-role='listview')
+            li
+              a(href='/tag/#{day}')
+                img.ui-li-icon(src='/img/sample-images/icon2.png',alt='Dua of the day')
+                | Supplications &amp; Ziyarats for #{day}s.
             li
               a(href='/random/quran')
                 img.ui-li-icon(src='/img/icon-quran.png', alt='Random Prayer from Quran')
@@ -42,10 +33,6 @@ block content
               a(href='/random/dua')
                 img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Random Supplication')
                 | Random Supplication/Ziyarat
-            li
-              a(href='/dua/#{day}')
-                img.ui-li-icon(src='/img/sample-images/icon2.png',alt='Dua of the day')
-                | Supplication on #{day}s.
             li
               a(href='/month/')
                 img.ui-li-icon(src='/img/sample-images/icon2.png',alt='Dua of the day')

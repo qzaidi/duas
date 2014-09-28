@@ -13,18 +13,18 @@ block content
             img(src='/img/icon-back.png',alt='<-')
             | #{info.enname}
           include plusone
-          .raty.right(data-score="#{rating}")
+          .raty.right.noprint(data-score="#{rating}")
             meta(itemprop="ratingValue",content="#{rating}")
 
         mixin breadcrumb([ { href: '/' + info.type, text: titlecase(info.type) }, { href: '/' + info.type + 's/collection/' + info.collection , text: info.collection }])
 
         #toTop ↑ Top
-        div.ui-field-contain(data-role="controlgroup",data-type="horizontal",data-mini="true")
+        div.noprint.ui-field-contain(data-role="controlgroup",data-type="horizontal",data-mini="true")
           if (data[0].english)
             a(class=cls.english,href='?lang=english',data-role="button") English
           if (data[0].urdu)
             a(class=cls.urdu,href='?lang=urdu',data-role="button") Urdu
-            a(class=cls.arabic,href='?lang=arabiconly',data-role="button") Arabic
+          a(class=cls.arabic,href='?lang=arabiconly',data-role="button") Arabic
           if (data[0].hindi)
             a(href='?lang=hindi',data-role="button") Hindi
           if (data[0].hintrans)
