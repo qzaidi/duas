@@ -16,6 +16,7 @@ var praytimes = require('./praytimes');
 var ratings = require('./ratings');
 var verseofday = require('./verseofday');
 var tag = require('./tag');
+var duasorg = require('./duasorg');
 
 var mw = require('./mw');
 
@@ -87,6 +88,8 @@ module.exports = function(app) {
   app.post('/rating',ratings.set);
 
   app.get('/tag/:tag', tag.listing);
+
+  app.get('/landing', mw.hijri, duasorg.render);
 
   app.get('/*', mw.notfound);
 

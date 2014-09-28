@@ -1,0 +1,54 @@
+extends ../../layout
+
+block content
+  div(role='main')
+    .page.innerPage#eventPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+
+      .padpage.padtop
+
+        h1(style="text-align:center;") 
+          a(href="http://duas.mobi")
+            img(src="/img/duasorg.png",alt="Duas.org")
+        p(style="text-align:center;")
+          a(href="http://duas.org") Switch to Desktop view
+          |  | 
+          a(href="http://duas.mobi") More Duas
+
+        .projects
+          ul(data-role='listview')
+            li
+              a(href="/month/Dhul%20Hijjah")
+               img.ui-li-icon(src='/img/icon-events.png', alt='Month of Zilhijj',width="16",height="16")
+               h3 Month of Zilhajj
+            li
+              a(href="/duas/collection/Zilhijj")
+               img.ui-li-icon(src='/img/icon-munajat.png', alt='First 10 days',width="16",height="16")
+               h3(style="font-weight:normal;") Dua's for the first 10 days 
+            li
+              a(href="/events/imambaqir-martyrdom")
+               img.ui-li-icon(src='/img/icon-karbala.png', alt='Martyrdom',width="16",height="16")
+               h3 7th - Martyrdom of Imam Mohammed al Baqir (as)
+            li
+              a(href="/tag/arafaeve")
+               img.ui-li-icon(src='/img/icon-eid.jpg', alt='Eid',width="16",height="16")
+               h3(style="font-weight:normal;") 8th - Eve of Arafah
+            li
+              a(href="/events/arafa")
+               img.ui-li-icon(src='/img/icon-eid.jpg', alt='Eid',width="16",height="16")
+               h3(style="font-weight:normal;") 9th - Day of Arafah
+            li
+              a(href="/events/eid-ul-azha")
+               img.ui-li-icon(src='/img/icon-events.png', alt='Eid Uz Zuha',width="16",height="16")
+               h3(style="color:red;") 10th - Eid uz Zuha
+            li
+              a(href="/events/ghadeer")
+               img.ui-li-icon(src='/img/icon-events.png', alt='Ghadeer',width="16",height="16")
+               h3(style="color:red;") 18th - Eid Ghadeer
+            li
+              a(href="/events/mubahila")
+               img.ui-li-icon(src='/img/icon-events.png', alt='Mubahela',width="16",height="16")
+               h3(style="color:red;") 24th - Eid Mubahela
