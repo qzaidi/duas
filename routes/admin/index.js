@@ -23,6 +23,7 @@ module.exports = function(app) {
   require('./table')(app,db,auth,'quotes');
   require('./table')(app,db,auth,'asmaulhusna');
   require('./table')(app,db,auth,'collection_map');
+  require('./table')(app,db,auth,'covers');
 
   app.get('/admin/munajat/:name', auth, munajat.index);
   app.post('/admin/munajat/:name/list', auth, munajat.list);

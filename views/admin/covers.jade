@@ -1,0 +1,54 @@
+extends layout
+
+block content
+  #coverscontainer
+
+  script(type="text/javascript").
+    $(document).ready(function () {
+        $('#coverscontainer').jtable({
+            title: 'Photo Gallery',
+            actions: {
+                listAction: '/admin/covers/list',
+                createAction: '/admin/covers/create',
+                updateAction: '/admin/covers/update',
+                deleteAction: '/admin/covers/delete'
+            },
+            fields: {
+                rowid: {
+                  key: true,
+                  list: false,
+                  create: false,
+                  edit: false
+                },
+                arabic: {
+                    title: 'Verse'
+                },
+                attrib: {
+                  title: 'Attribution',
+                },
+                href: {
+                  title: 'Link'
+                },
+                image: {
+                    title: 'Background',
+                    display: function(data) {
+                      if (data.record.image) {
+                        return '<img src="/img/covers/' + data.record.image + '" width=135 height=135/>';
+                      }
+                      return 'default';
+                    }
+                },
+                style: {
+                  title: 'Style'
+                },
+                month: {
+                  title: 'Month'
+                },
+                dates: {
+                  title: 'Dates Applicable'
+                }
+            }
+        });
+ 
+        $('#coverscontainer').jtable('load');
+    });
