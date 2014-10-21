@@ -13,8 +13,8 @@ block content
             .calendar
               span.month #{hijri.monthName}
               span.day #{hijri.day}
-          #coverVerse(style="#{verse.style}") 
-            a(href=verse.href,alt=verse.attrib) #{verse.arabic} 
+          #coverVerse(style=verse.style) 
+            a(href=verse.href,alt=verse.attrib) !{verse.arabic} 
           img(style="vertical-align:middle",src='/img/covers/#{verse.background}', alt='Sahifa-e-Sajjadiya')
         ul.menu
           li

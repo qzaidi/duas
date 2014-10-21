@@ -17,7 +17,7 @@ block content
         p
           !{info.description}
 
-       .projects
+        .projects
           ul(data-role='listview')
             each event in events
               li
@@ -26,13 +26,8 @@ block content
                   h3 #{event.name}
                   p #{datehelper(event.hijridate,event.hijrimonth)}
 
-        if info.info
-          h3 Supplications for the month of #{month}
-          ol
-          each link in info.info
-            li
-              a.next.ui-link(href=link.href) #{link.title}
-                img(src='/img/icon-next.png')
-
+         if info.collection
+           h4 
+             a(href='/tag/' + info.collection) Supplications &amp; Ziyarats for #{month}
  
-      include ../sharing
+       include ../sharing

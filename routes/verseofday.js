@@ -19,12 +19,12 @@ var vod = {
 
   get: function(req,res,next) {
     var l = vod.verses.length;
-    var i = 15 ; // ((Math.random()*l)|0)%l;
+    var i = 16 ; // ((Math.random()*l)|0)%l;
     var selected = vod.verses[i];
     req.verseofday = { arabic: selected.arabic, href: selected.href };
     
     req.verseofday.background = selected.image || 'quranlight.jpg';
-    req.verseofday.style = selected.tyle || '';
+    req.verseofday.style = selected.style || '';
 
     next();
   }
