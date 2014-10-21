@@ -12,7 +12,6 @@ var vod = {
 
     db.all('select * from covers', function(err,res) {
       vod.verses = res;
-      console.log(res);
       next();
     });
   },
