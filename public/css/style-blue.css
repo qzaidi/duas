@@ -2323,7 +2323,8 @@ div.calendar
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   font-size: 18px;
-  position: absolute;
+  float: left;
+  margin-right: 8px;
   padding: 10px 8px;
   text-align: center;
 }
