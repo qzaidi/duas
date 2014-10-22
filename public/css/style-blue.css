@@ -2311,6 +2311,23 @@ div.calendar
   padding: 0px 10px;
 }
 
+.ayahBox {
+  border: 1px dotted; background-color: #fffff2; padding: 8px; margin: 5px;
+}
+
+.ayahBoxNum {
+  display: block;
+  background: #FEF2DA;
+  text-decoration: none;
+  color: #D6B169;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  font-size: 18px;
+  position: absolute;
+  padding: 10px 8px;
+  text-align: center;
+}
+
 @media print {
   * {
     background: transparent !important;

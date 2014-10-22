@@ -10,3 +10,15 @@ mixin breadcrumb(crumbs)
           span(itemprop="title") #{c.text}
 
 
+mixin sharing(text,url)
+  .footer
+    .social.right
+      a(href="http://twitter.com/intent/tweet?url=#{url}&text=#{text}",target="_blank")
+        img(src="/img/icon-twitter.png",alt="Share on Twitter")
+
+      a(href="//www.facebook.com/sharer.php?u=#{url}")
+        img(src="/img/icon-facebook.png",alt="Share on Facebook")
+
+      a(href="whatsapp://send?text=#{text}")
+        img(src="/img/icon-whatsapp.png",alt="Share on Whatsapp")  
+

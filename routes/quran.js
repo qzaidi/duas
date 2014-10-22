@@ -188,6 +188,12 @@ var quran = {
       filter.verse = req.params.verse;
     }
 
+    if (req.query.ctx) {
+      option.limit = 3;
+      option.offset = filter.verse - 2;
+      filter.verse = undefined;
+    }
+
     if (!req.params.chapter && !req.params.verse) {
       return next();
     }
@@ -206,6 +212,8 @@ var quran = {
 
   renderverse: function(req,res,next) {
     var link = '/quran/' + req.params.chapter + '/' + (Number(req.params.verse) + 1);
+    page.title = req.chapterInfo.tname + ':' + req.ayah.verse + ' - Holy Quran';
+    page.description = 'Surat ' + req.chapterInfo.tname + ' (' + req.chapterInfo.arname + ' ) verse '  + req.params.verse + ' - Holy Quran ';
     res.render('quran/verse', { verse: req.params.verse, ayah: req.ayah, chapter: req.chapterInfo, 
                                 next: link, digits:toArabDigits , page: page});
   },
@@ -273,6 +281,7 @@ var quran = {
         return true;
       }
     })) {
+      console.log(pindex);
       ayah.ar = [ ayah.ar.substring(0,pindex), ayah.ar.substring(pindex)].join('<em style="color:blue;">');
       arhtml = '</em>';
     }

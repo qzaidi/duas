@@ -12,16 +12,22 @@ block content
         h1 
           a.back.ui-link(href='/')
             img(src='/img/icon-back.png',alt='Back')
-            | Al Quran (#{chapter.tname}: #{verse})
+            | Surat #{chapter.tname} (#{chapter.enname}) - #{chapter.arname}
 
         mixin breadcrumb([{ href: '/quran', text: 'Quran' }, { href: '/quran/index', text: 'Chapters'},{ href: '/quran/'+chapter.id, text: chapter.tname }])
 
-        p.arabic
-          | !{ayah.ar} 
-          span.ayahNumber ﴿#{digits(verse)}﴾  
 
-        p.english
-          | !{ayah.en}
+        div.ayahBox
+          a.ayahBoxNum(href="/quran/#{chapter.id}/#{verse}") #{chapter.id}:#{verse}
+          p.arabic.textbox
+            | !{ayah.ar} 
+            span.ayahNumber ﴿#{digits(verse)}﴾  
+
+          p.english
+            | !{ayah.en}
+
+        p This is a portion of the entire surah. View the 
+          a(href="/quran/#{chapter.id}") entire surah here.
 
         h4
           if (next) 
@@ -29,4 +35,4 @@ block content
               | Next
               img(src="/img/icon-next.png")
 
-      include ../sharing
+      mixin sharing(ayah.en,url)
