@@ -26,8 +26,10 @@ block content
           p.english
             | !{ayah.en}
 
-        p This is a portion of the entire surah. View the 
-          a(href="/quran/#{chapter.id}") entire surah here.
+        p This is a portion of the entire surah. View 
+          a.ui-link(href="#{ctx}") this verse in context, 
+          | or view the 
+          a.ui-link(href="/quran/#{chapter.id}") entire surah here.
 
         h4
           if (next) 

@@ -17,6 +17,11 @@ function toArabDigits(num) {
   return anum;
 }
 
+function getPNum(verse) {
+ var npp = 8;
+ return  ((verse - 1)/npp)|0;
+}
+
 function getlink(page,npp, surat,lang) {
   var chapter = Number(surat.id);
   var pnum = page;
@@ -212,10 +217,18 @@ var quran = {
 
   renderverse: function(req,res,next) {
     var link = '/quran/' + req.params.chapter + '/' + (Number(req.params.verse) + 1);
+    var pnum = getPNum(req.params.verse);
     page.title = req.chapterInfo.tname + ':' + req.ayah.verse + ' - Holy Quran';
     page.description = 'Surat ' + req.chapterInfo.tname + ' (' + req.chapterInfo.arname + ' ) verse '  + req.params.verse + ' - Holy Quran ';
-    res.render('quran/verse', { verse: req.params.verse, ayah: req.ayah, chapter: req.chapterInfo, 
-                                next: link, digits:toArabDigits , page: page});
+    
+    res.render('quran/verse', { verse: req.params.verse, 
+                                ayah: req.ayah, 
+                                chapter: req.chapterInfo, 
+                                next: link, 
+                                digits:toArabDigits , 
+                                page: page, 
+                                ctx: '/quran/' + req.chapterInfo.id + '?p=' + pnum + '&hl=' + (req.params.verse - 1)
+                              });
   },
 
   qunoot: function(req,res,next) {
