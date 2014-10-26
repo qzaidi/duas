@@ -1,0 +1,50 @@
+extends ../../layout
+
+block content
+  div(role='main')
+    .page.innerPage#eventPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+
+      .padpage.padtop
+
+        h1(style="text-align:center;") 
+          a(href="http://duas.mobi")
+            img(src="/img/duasorg.png",alt="Duas.org")
+        p(style="text-align:center;")
+          a(href="http://duas.org") Switch to Desktop view
+          |  | 
+          a(href="http://duas.mobi") More Duas
+
+        .projects
+          ul(data-role='listview')
+            li
+              a(href="/month/moharram")
+               img.ui-li-icon(src='/img/icon-events.png', alt='Month of Moharram ul Haram',width="16",height="16")
+               h3 Month of Muharram
+            li
+              a(href="/dua/moharram1")
+               img.ui-li-icon(src='/img/icon-munajat.png', alt='First 10 days',width="16",height="16")
+               h3(style="font-weight:normal;") Dua's for 1st Moharram
+            li
+              a(href="/dua/moharram1")
+               img.ui-li-icon(src='/img/icon-munajat.png', alt='First 10 days',width="16",height="16")
+               h3(style="font-weight:normal;") A gift from Imam Husain (AS) to his son
+            li
+              a(href="/ziyarat/warisa")
+               img.ui-li-icon(src='/img/icon-karbala.png', alt='Ziyarat Waritha',width="16",height="16")
+               h3 Ziyarat Waritha
+            li
+              a(href="/events/ashura")
+               img.ui-li-icon(src='/img/icon-karbala.png', alt='Ashura',width="16",height="16")
+               h3 10th - Martyrdom of Imam Husain (as)
+            li
+              a(href="/ziyarat/ashura")
+               img.ui-li-icon(src='/img/icon-karbala.png', alt='Ashura',width="16",height="16")
+               h3 Ziyarat Ashura
+            li
+              a(href="/tag/moharram")
+               img.ui-li-icon(src='/img/icon-events.png', alt='Moharram',width="16",height="16")
+               h3 All Ziyarats for Moharram
