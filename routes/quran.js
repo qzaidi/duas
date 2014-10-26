@@ -7,6 +7,13 @@ var db = require('../model/duas');
 
 var arabdigits = [ '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧',  '٨','٩' ];
 
+var langmap = {
+  'en': 'with English Translation',
+  'ur': 'with Urdu Translation',
+  'hi': 'with Hindi Translation',
+  'ar' : 'Arabic text',
+};
+
 function toArabDigits(num) {
   var anum = '', len;
   num = num.toString();
@@ -156,7 +163,7 @@ var quran = {
       req.data.page = { 
         title: surat.tname + ' - The Holy Quran',
         description: surat.tname + ' verse ' + verses[0].verse + ' to ' + (verses[0].verse + verses.length)   
-                     + '  - Al-Quran, the book of Allah, with english translation',
+                     + '  - Al-Quran, the book of Allah, ' + langmap[lang],
         image: '//duas.mobi/img/icon-quran.png',
         author: 'Al-Quran'
       };
