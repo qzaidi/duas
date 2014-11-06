@@ -91,6 +91,8 @@ module.exports = function(app) {
 
   app.get('/landing', mw.hijri, duasorg.render);
 
+  app.get('/nahjulbalagha',mw.render('nahj'));
+
   app.get('/*', mw.notfound);
 
 
