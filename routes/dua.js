@@ -95,8 +95,8 @@ module.exports = function(app) {
 
   app.get('/sermon', function(req,res,next) {
     db.all('select * from toc where type = "sermon"', function(err,rows) {
-      var page = { title: 'Munajat from Sahifa-e-Sajjadiya', 
-                   description: 'Whispered Prayers from Sahifa-e-Sajjadiya, the Pslams of Islam by Imam Zainul Abideen' };
+      var page = { title: 'Sermons from Ahlebait', 
+                   description: 'Sermons from ahle-bait' };
       res.render('sermon', { prayers: rows, page: page });
     });
   });
