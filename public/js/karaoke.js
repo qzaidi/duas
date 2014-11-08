@@ -40,7 +40,7 @@ $(document).on('pageinit','.versePage',function() {
     }
   });
 
-  $('audio').on('loadstart',function() {
+  $('audio').on('loadeddata',function() {
     var i = 0; // remembers
     var trigger = 0;
 
