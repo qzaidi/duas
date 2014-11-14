@@ -2329,6 +2329,12 @@ div.calendar
   text-align: center;
 }
 
+.limit250 {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 250px;
+}
+
 @media print {
   * {
     background: transparent !important;

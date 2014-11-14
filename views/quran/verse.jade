@@ -17,14 +17,37 @@ block content
         mixin breadcrumb([{ href: '/quran', text: 'Quran' }, { href: '/quran/index', text: 'Chapters'},{ href: '/quran/'+chapter.id, text: chapter.tname }])
 
 
-        div.ayahBox
-          a.ayahBoxNum(href="/quran/#{chapter.id}/#{verse}") #{chapter.id}:#{verse}
-          p.arabic.textbox
-            | !{ayah.ar} 
-            span.ayahNumber ﴿#{digits(verse)}﴾  
+        table.quran(cellpadding=0,cellspacing=0,border=0)
+          tbody
+            tr
+              td 
+                img(src='/img/quran/tl.jpg',width=54,border=0,alt='')
+              td(background='/img/quran/t.jpg')
+                img(src='/img/quran/pixel.gif',width=54,height=54,border=0,alt='')
+              td
+                img(src='/img/quran/tr.jpg',width=54,height=54,alt='')
+            tr
+              td(background='/img/quran/l.jpg')
+                img(src='/img/quran/pixel.gif',border=0,width=54)
+              td
+                div.ayahBox
+                  a.ayahBoxNum(href="/quran/#{chapter.id}/#{verse}") #{chapter.id}:#{verse}
+                  p.arabic.textbox
+                    | !{ayah.ar} 
+                    span.ayahNumber ﴿#{digits(verse)}﴾  
 
-          p.english
-            | !{ayah.en}
+                  p.english
+                    | !{ayah.en}
+
+              td(background='/img/quran/r.jpg',border=0,alt='',width=54)
+                img(src='/img/quran/pixel.gif',width=54)
+            tr
+              td
+                img(src='/img/quran/bl.jpg',width=54,height=54)
+              td(background='/img/quran/b.jpg')
+                img(src='/img/quran/pixel.gif',width=54)
+              td
+                img(src='/img/quran/br.jpg',width=54,height=54)
 
         p This is a portion of the entire surah. View 
           a.ui-link(href="#{ctx}") this verse in context, 
@@ -37,4 +60,4 @@ block content
               | Next
               img(src="/img/icon-next.png")
 
-      mixin sharing(ayah.en,url)
+      mixin sharing(ayah.ar + '%20%0a%0d' + ayah.en,url)

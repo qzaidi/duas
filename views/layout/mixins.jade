@@ -19,6 +19,6 @@ mixin sharing(text,url)
       a(href="//www.facebook.com/sharer.php?u=#{url}")
         img(src="/img/icon-facebook.png",alt="Share on Facebook")
 
-      a(href="whatsapp://send?text=#{text}")
+      a(href='whatsapp://send?text="#{text}"')
         img(src="/img/icon-whatsapp.png",alt="Share on Whatsapp")  
 
