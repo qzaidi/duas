@@ -20,7 +20,7 @@ block content
               each prayer in prayers
                 if (prayer.collection != 'Sahifa-e-Sajjadiya')
                   li
-                    a(href='/munajat/#{prayer.urlkey}')
+                    a(href='/sermon/#{prayer.urlkey}')
                       img.ui-li-icon(src='/img/sample-images/icon1.png', alt='image 2')
                       | #{prayer.enname}
                       span.limit250.arabic.right(style='background: transparent;') #{prayer.arname}
