@@ -1,0 +1,68 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#quranIndex(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Home")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='#',data-rel='back')
+            img(src='/img/icon-back.png',alt='Back')
+            | Recitations after Salaat
+
+
+        .clients
+          p
+            | According to a Hadith of Imam Ja‘far al-Sādiq (a), when the 
+            | following four passages were being revealed they complained to 
+            | Almighty Allah. Clinging to the  throne they said: 
+          blockquote 
+            | Where are You  sending us, O Our Lord, to those that do 
+            | wrong and commit sins? 
+          p The Almighty replied: 
+          blockquote 
+            | I swear by my Might and my  Honor, whenever a Shia of Muhammad 
+            | and his family reads you after every  Salaat, I will look at him with mercy 
+            | seventy times every day, at each look I  will fulfill seventy of his wishes, and I 
+            | will fulfill his wishes even if he is  disobedient to me. (Mafātīh al-Jinān).
+
+          p
+            | We pray to Allah to give us tawfīq
+            | to recite the four passages after
+            | each and every prayer or after
+            | every other prayer or to recite
+            | them at least after one of the daily
+            | five prayers. May Allah grant us the
+            | rewards of their recitation!
+
+          h3 Surat al Fatiha (1:1-7)
+          p
+            each row in fatiha
+              .section.group
+                .col.span_1_of_2.arabic #{row.ar}
+                .col.span_1_of_2(class="english") #{row.en}
+
+          h3 Ayat al Kursi (2:255-257)
+          p
+            each row in kursi
+              .section.group
+                .col.span_1_of_2.arabic #{row.ar}
+                .col.span_1_of_2(class="english") #{row.en}
+
+
+          h3 Ayat al Shahadah (3:18-19)
+          p
+            each row in shahadah
+              .section.group
+                .col.span_1_of_2.arabic #{row.ar}
+                .col.span_1_of_2(class="english") #{row.en}
+
+          h3 Ayat al Mulk (3:26-27)
+          p
+            each row in mulk
+              .section.group
+                .col.span_1_of_2.arabic #{row.ar}
+                .col.span_1_of_2(class="english") #{row.en}

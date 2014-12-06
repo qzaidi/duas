@@ -332,6 +332,24 @@ var quran = {
     res.render('quran/qunoot', { ayah: ayah, verses: req.verses, description: req.description, chapter: req.chapterInfo, 
                                  verse: ayah.verse, digits: toArabDigits, id: id, page: page , enhtml: enhtml, arhtml:arhtml,
                                  urhtml: urhtml });
+  },
+
+  getverses: function(key,chapter,offset,limit) {
+    return function(req,res,next) {
+      if (!req.data) {
+        req.data = {};
+      }
+
+      qurandb.select({ chapter: chapter } , { limit : limit , offset: offset, language: 'en' }, function(err,verses) {
+        req.data[key] = verses;
+        next();
+      });
+    };
+  },
+
+  salat: function(req,res,next) {
+    console.log(req.data);
+    res.render('quran/salat',req.data);
   }
 };
 

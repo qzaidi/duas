@@ -51,7 +51,7 @@ block content
         else
           p.arabic.doublespaced
             each row in data
-              | #{row.arabic} &nbsp;
+              | !{handleEllipsis(row.arabic)} &nbsp;
 
         if info.link
           h3 Related Links

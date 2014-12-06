@@ -12,6 +12,13 @@ var langmap = {
   'hintrans' : 'Hindi Transliteration'
 };
 
+function handleEllipsis(row) {
+  if (row == '...') {
+    return '<br/>'
+  }
+  return row;
+}
+
 var verses = {
   collection: function(type) {
     return function(req,res,next) {
@@ -73,7 +80,7 @@ var verses = {
         }
       }
       res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, cls: cls,
-                             rating: req.rating|0, votes: req.votes|0, duration: ptm, url: url});
+                             rating: (req.rating*10|0)/10, votes: req.votes|0, duration: ptm, url: url, handleEllipsis: handleEllipsis});
     });
   }
 };
