@@ -12,19 +12,17 @@ block content
         h1
           a.back.ui-link(href='/',data-rel="back")
             img(src='/img/icon-back.png',alt='☾')
-            | Prayer Times 
+            | Prayer Times for 
+            span#location
 
-        div#praytable
-          table
-            tr
-              th#location(colspan=2)
-            -for (var i = 0; i < 7; i++)
-              tr
-                td(style="background: url(/img/times.png) no-repeat 0 #{(7-i)*22-153}px; width: 34px; height: 22px; padding: 0px")
-                td(id='label_'+i)
-                td(id='time_'+i)
-
+        .projects#praytable
+          ul(data-role='listview')
+            -for (var i = 0; i < 6; i++) 
+              li
+                img(src='/img/salat/#{i}.png',alt='Subah')
+                h3(id='time_'+i) loading ..
+                span(id='label_' + i)
+                p.right(id='delay_'+i) 
+                  | ...
 
         div#iftartable
-
-

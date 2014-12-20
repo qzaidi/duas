@@ -573,6 +573,6 @@ var DMath = {
 //---------------------- Init Object -----------------------
 
 
-var prayTimes = new PrayTimes();
+var prayTimes = new PrayTimes('Jafari');
 
 

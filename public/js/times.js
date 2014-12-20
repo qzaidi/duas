@@ -9,6 +9,25 @@ $(document).on('pageinit','#menuPage',function() {
   $('.calendar .month').text(d.monthName);
 });
 
+function relativeTime(time,now) {
+  var next = new Date(now.getTime());
+  var hm = time.split(':')
+  var isfuture;
+  var rh,rm;
+
+  next.setHours(hm[0]);
+  next.setMinutes(hm[1]);
+
+  seconds = (next.getTime() - now.getTime())/1000;
+  if (seconds > 0) {
+    rh = (seconds/3600)|0;
+    rm = (seconds - rh*3600)/60
+    return ' in ' + rh + ' hours ' + rm + ' minutes.'
+  }
+
+  return '';
+}
+
 $(document).on('pageinit','#prayerTimesPage', function(ev) {
   function render(latlong) {
     var latitude = latlong.coords.latitude;
@@ -16,13 +35,15 @@ $(document).on('pageinit','#prayerTimesPage', function(ev) {
 
     var date = new Date();
     var times = prayTimes.getTimes(date, [latitude, longitude]);
-    var list = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha', 'Midnight'];
+    var list = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
     var iftar;
     var table;
 
     for(var i = 0; i < list.length; i++)  {
+      var key = list[i].toLowerCase();
       document.getElementById('label_'+i).innerHTML = list[i];
-      document.getElementById('time_'+i).innerHTML = times[list[i].toLowerCase()];
+      document.getElementById('delay_'+ i).innerHTML = relativeTime(times[key],date);
+      document.getElementById('time_'+i).innerHTML = times[key];
     }
 
     table = '<table><tr><th>Date</th><th>Sehar</th><th>Iftar</th></tr>';
