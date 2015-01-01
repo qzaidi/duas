@@ -30,9 +30,10 @@ block content
           p 
             | !{event.description} 
 
-          p
-            | Location: 
-            span(itemprop="location") #{event.location}
+          if (event.location)
+            p
+              | Location: 
+              span(itemprop="location") #{event.location}
 
           each link in event.links
             h4
