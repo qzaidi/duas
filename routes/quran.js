@@ -147,7 +147,8 @@ var quran = {
 
       req.data = { verses: verses, prev: link.prev, url: link.cur,  next: link.next, digits:toArabDigits, surat: surat, lang: lang };
 
-      if (pnum == 0 && verses[0].verse == 1) {
+      // if we are starting a surah, add bismillah
+      if (pnum == 0 && verses[0].verse == 1 && verses[0].chapter != 1) {
         partial = verses[0].ar.replace(bismillah,'');
         if (partial.length < verses[0].ar.length) {
           var v = { verse: 0, chapter: verses[0].chapter, ar: bismillah };
