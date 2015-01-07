@@ -14,6 +14,7 @@ function relativeTime(time,now) {
   var hm = time.split(':')
   var isfuture;
   var rh,rm;
+  var str = ' in ';
 
   next.setHours(hm[0]);
   next.setMinutes(hm[1]);
@@ -22,7 +23,11 @@ function relativeTime(time,now) {
   if (seconds > 0) {
     rh = (seconds/3600)|0;
     rm = (seconds - rh*3600)/60
-    return ' in ' + rh + ' hours ' + rm + ' minutes.'
+    if (rh) {
+      str = rh + ' hours ';
+    }
+    str += rm + ' minutes.'
+    return str;
   }
 
   return '';
@@ -32,6 +37,10 @@ $(document).on('pageinit','#prayerTimesPage', function(ev) {
   function render(latlong) {
     var latitude = latlong.coords.latitude;
     var longitude = latlong.coords.longitude;
+
+    if (latitude && longitude) {
+      $.post('/prayertimes/savepos', latlong.coords, null,'json');
+    }
 
     var date = new Date();
     var times = prayTimes.getTimes(date, [latitude, longitude]);

@@ -53,6 +53,10 @@ block content
             each row in data
               | !{handleEllipsis(row.arabic)} &nbsp;
 
+        hr
+        p #{info.enname} is tagged in #{info.collection} collection. See other duas from 
+          a(href='/' + info.type + 's/collection/' + info.collection) #{info.collection}
+
         if info.link
           h3 Related Links
           ol

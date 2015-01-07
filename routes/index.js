@@ -76,6 +76,7 @@ module.exports = function(app) {
   app.get('/autocomplete.json', search.toc, search.autocomplete);
 
   app.get('/prayertimes', praytimes.render);
+  app.post('/prayertimes/savepos', praytimes.save);
 
   app.get('/gallery',gallery.index);
   app.get('/gallery/:image',gallery.render);
