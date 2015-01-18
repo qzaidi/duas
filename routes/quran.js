@@ -61,6 +61,10 @@ function getlink(page,npp, surat,lang) {
   return link;
 }
 
+function leadZeroes(num,lead) {
+  return new Array(lead+1 - String(num).length).join('0') + String(num) ;
+}
+
 var page = {
   title: 'The Holy Quran',
   description: 'Al-Quran, the book of Allah, with english translation',
@@ -226,8 +230,12 @@ var quran = {
   renderverse: function(req,res,next) {
     var link = '/quran/' + req.params.chapter + '/' + (Number(req.params.verse) + 1);
     var pnum = getPNum(req.params.verse);
+    var audio = 'http://www.everyayah.com/data/Abdul_Basit_Mujawwad_128kbps/' +
+              leadZeroes(req.params.chapter,3) + leadZeroes(req.params.verse,3) + '.mp3';
+
     page.title = req.chapterInfo.tname + ':' + req.ayah.verse + ' - Holy Quran';
     page.description = 'Surat ' + req.chapterInfo.tname + ' (' + req.chapterInfo.arname + ' ) verse '  + req.params.verse + ' - Holy Quran ';
+    
     
     res.render('quran/verse', { verse: req.params.verse, 
                                 ayah: req.ayah, 
@@ -235,6 +243,7 @@ var quran = {
                                 next: link, 
                                 digits:toArabDigits , 
                                 page: page, 
+                                audio: audio,
                                 ctx: '/quran/' + req.chapterInfo.id + '?p=' + pnum + '&hl=' + (req.params.verse - 1)
                               });
   },
@@ -302,7 +311,6 @@ var quran = {
         return true;
       }
     })) {
-      console.log(pindex);
       ayah.ar = [ ayah.ar.substring(0,pindex), ayah.ar.substring(pindex)].join('<em style="color:blue;">');
       arhtml = '</em>';
     }
@@ -349,7 +357,6 @@ var quran = {
   },
 
   salat: function(req,res,next) {
-    console.log(req.data);
     res.render('quran/salat',req.data);
   }
 };

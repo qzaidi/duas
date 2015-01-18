@@ -24,7 +24,7 @@ function relativeTime(time,now) {
     rh = (seconds/3600)|0;
     rm = (seconds - rh*3600)/60
     if (rh) {
-      str = rh + ' hours ';
+      str += rh + ' hours ';
     }
     str += rm + ' minutes.'
     return str;
