@@ -5,6 +5,7 @@ var imageresize = require('./imageresize');
 var treatise = require('./treatise');
 var home = require('./home');
 var about = require('./about');
+var salat = require('./salat');
 var search = require('./search');
 var events = require('./events');
 var months = require('./months/months');
@@ -97,6 +98,13 @@ module.exports = function(app) {
   app.get('/landing', mw.hijri, duasorg.render);
 
   app.get('/nahjulbalagha',mw.render('nahj'));
+
+  app.get('/salat', salat.index);
+  app.get('/salat/:page', quran.getverses('inna',2,155,1),
+                          quran.getverses('fatiha',1,0,7),
+                          quran.getverses('kursi',2,254,1), 
+                          quran.getverses('qadr',97,0,5),
+                          salat.page);
 
   app.get('/*', mw.notfound);
 
