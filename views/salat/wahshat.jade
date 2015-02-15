@@ -16,10 +16,7 @@ block content
         p
           | When you hear the sad news of a believer who has passed away, recite as recommended in this verse
         p
-          each row in inna
-            .section.group
-              .col.span_1_of_2.arabic #{row.ar}
-              .col.span_1_of_2(class="english") #{row.en}
+          mixin verses(inna)
 
         p 
           | It's mustahab (recommended) that on the first night after the burial of the deceased, between Maghrib and 
@@ -35,18 +32,12 @@ block content
             details
               summary Recite Surah al-Fatiha 
               p
-                each row in fatiha
-                  .section.group
-                    .col.span_1_of_2.arabic #{row.ar}
-                    .col.span_1_of_2(class="english") #{row.en}
+                mixin verses(fatiha)
           li 
             details
               summary After Al Fatiha, recite Ayat al Kursi
               p
-                each row in kursi
-                  .section.group
-                    .col.span_1_of_2.arabic #{row.ar}
-                    .col.span_1_of_2(class="english") #{row.en}
+                mixin verses(kursi)
 
           li Perform Ruku and Sajdah as any other prayer
           li Recite Surah al-Fatiha for the second unit
@@ -54,10 +45,7 @@ block content
             details
               summary After Al Fatiha,  recite Surah Qadr 10 Times
               p
-                each row in qadr
-                  .section.group
-                    .col.span_1_of_2.arabic #{row.ar}
-                    .col.span_1_of_2(class="english") #{row.en}
+                mixin verses(qadr)
 
           li Perform Qunoot, ruku and sajdah as usual
           li Conclude the prayer with Tashahud and Salaam

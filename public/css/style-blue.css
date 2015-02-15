@@ -991,7 +991,7 @@ p {
   margin: 0;
   padding: 0;
 }
-ul, li {
+ul li {
   list-style: none;
 }
 a,

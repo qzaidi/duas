@@ -16,6 +16,7 @@ var names = require('./names');
 var praytimes = require('./praytimes');
 var ratings = require('./ratings');
 var verseofday = require('./verseofday');
+var verses = require('./verses');
 var tag = require('./tag');
 var duasorg = require('./duasorg');
 
@@ -100,11 +101,26 @@ module.exports = function(app) {
   app.get('/nahjulbalagha',mw.render('nahj'));
 
   app.get('/salat', salat.index);
-  app.get('/salat/:page', quran.getverses('inna',2,155,1),
+  app.get('/salat/wahshat', quran.getverses('inna',2,155,1),
                           quran.getverses('fatiha',1,0,7),
                           quran.getverses('kursi',2,254,1), 
                           quran.getverses('qadr',97,0,5),
-                          salat.page);
+                          mw.render('salat/wahshat'));
+  app.get('/salat/hilal', quran.getverses('hood',11,5,1), 
+                          quran.getverses('fatiha',1,0,7),
+                          quran.getverses('qadr',97,0,5),
+                          quran.getverses('ikhlaas',112,0,4),
+                          quran.getverses('yunus',10,106,1),
+                          verses.get('ruyatihilal'),
+                          mw.render('salat/hilal'));
+
+  app.get('/salat/layl', 
+                         quran.getverses('fatiha',1,0,7),
+                         verses.get('qunootlayl'),
+                         quran.getverses('ikhlaas',112,0,4),
+                         quran.getverses('falaq',113,0,5),
+                         quran.getverses('naas',114,0,6),
+                         mw.render('salat/layl'));
 
   app.get('/*', mw.notfound);
 

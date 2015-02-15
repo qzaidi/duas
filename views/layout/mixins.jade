@@ -22,3 +22,14 @@ mixin sharing(text,url)
       a(href='whatsapp://send?text="#{text}"')
         img(src="/img/icon-whatsapp.png",alt="Share on Whatsapp")  
 
+mixin verses(key)
+  each row in key
+    .section.group
+      .col.span_1_of_2.arabic #{row.ar}
+      .col.span_1_of_2(class="english") #{row.en}
+
+mixin dua(key)
+  each row in key
+    .section.group
+      .col.span_1_of_2.arabic #{row.arabic}
+      .col.span_1_of_2(class="english") #{row.english}

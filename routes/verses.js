@@ -39,6 +39,17 @@ var verses = {
     };
   },
 
+  get: function(key) {
+    return function(req,res,next) {
+      db.all('select * from ' + key, function(err,rows) {
+        if (!err) {
+          req.data[key] = rows;
+        } 
+        next(err);
+      });
+    }
+  },
+
   render: function(req,res,next) {
     db.all('select * from ' + req.params.name, function(err,rows) {
       var lang = req.query.lang || 'english';

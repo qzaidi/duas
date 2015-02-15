@@ -1,0 +1,112 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#bestplace(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/salat',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Salatul Layl
+        
+        p
+          | The time for praying Salatul-Layl is from midnight (midnight is reckoned as the time which is exactly 
+          | half the time between sunset and the actual dawn) to the time of Adhan for Fajr prayers. However, 
+          | it can be prayed at anytime after Isha prayers but it is better to pray during the last part of the 
+          | night near to the time of Fajr prayers. If it is not possible to pray after midnight or before Fajr, 
+          | then it can be recited in the morning or any part of the day with the niyyah (intention) of Qadha. 
+          | It is better to recite with the niyyah of Qadha during the day time than to pray in the early part of the night. 
+
+
+        p
+          Salatul-Layl is made up of Eleven Rak’ats.
+ 
+        ul
+          li The first 8(eight) Rak’ats are prayed as normal in pairs of two Rak’ats each with the niyyah of Nawafilatul-Layl.
+          li The next 2 (two) Rak’ats are prayed with the Niyyah of 'Salatul Shaf’a'.
+          li The remaining 1(one) Rak’at is prayed (as below) with the Niyyah of 'Salatul Witr.'
+
+        h3 Salat of Witr (1 unit)
+
+        ol
+          li Make Niyah and say Takbir
+          li
+            details
+              summary Recite Al Fatiha
+              p
+                mixin verses(fatiha)
+
+          li 
+             details
+               summary Recite Surat al Ikhlaas 3 times
+               p
+                 mixin verses(ikhlaas)
+
+          li 
+            details
+              summary Recite Surat al Falaq once
+              p
+                mixin verses(falaq)
+          li 
+            details
+              summary Recite Surat an Naas once
+              p 
+                mixin verses(naas)
+
+          li 
+            details 
+              summary Say Takbir and recite this Qunoot
+              p 
+                mixin dua(qunootlayl)
+
+          li
+            details 
+              summary Pray for forgiveness of 40 or more believers (living or dead) as follows
+              p
+                | You may hold tasbih in the right hand to keep a count, and only raise the left hand for qunoot
+                .section.group
+                  .col.span_1_of_2.arabic اَللّهُمَّ اغْفِرْ ل...
+                  .col.span_1_of_2(class="english") O Allah forgive (so and so)
+          li
+             details
+               summary Continuing the qunoot, recite the following Istighfar 70 times
+               p
+                 .section.group
+                   .col.span_1_of_2.arabic  اَسْتَغْفِرُ اللّهَ رَبِّي وَ اَتُوْبُ اِلَيْه
+                   .col.span_1_of_2(class="english") I seek forgiveness of Allah my Lord and I turn to Him
+
+          li
+             details
+               summary Still continuing further while raising the left hand, recite the following dua 7 times
+               p
+                 .section.group
+                   .col.span_1_of_2.arabic هذَا مَقَامُ الْعَآئِذِ بِكَ مِنَ النَّارِ
+                   .col.span_1_of_2(class="english") This is the position of one who seeks refuge in You from the fire [of Hell]
+
+          li
+             details
+               summary Continuing yet further while still raising the left hand, seek forgiveness 300 times
+               p
+                 .section.group
+                   .col.span_1_of_2.arabic  اَلْعَفْوَ
+                   .col.span_1_of_2(class="english") (I ask for) forgiveness
+
+          li
+             details
+               summary Finally, utter this dua of Holy Prophet once
+               p
+                .section.group
+                  .col.span_1_of_2.arabic  رب اغفر لي و ارحمني و تب علي
+                  .col.span_1_of_2(class="english") 
+                  | Lord, please forgive me and have mercy upon me and turn back towards me. Verily You are the Oft-Turning back, Most Merciful
+
+          li
+             details
+               summary Complete the rest of the salat in a normal way.
+               p Go to Ruku, followed by Sajdah, Tashhud and Salam, thus ending salatul layl
+                 
+       include ../sharing
