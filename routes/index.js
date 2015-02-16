@@ -122,6 +122,24 @@ module.exports = function(app) {
                          quran.getverses('naas',114,0,6),
                          mw.render('salat/layl'));
 
+  app.get('/salat/ghufayla', quran.getverses('fatiha',1,0,7),
+                             verses.get('ghufayla'),
+                             quran.getverses('yunus',21,86,2),
+                             quran.getverses('anaam',6,58,1),
+                             mw.render('salat/ghufayla'));
+
+  app.get('/salat/jafartayyar', quran.getverses('fatiha',1,0,7),
+                                verses.get('jafartayyardua'),
+                                verses.get('jafartayyardua2'),
+                                verses.get('jafartayyarsajda'),
+                                quran.getverses('zilzaal',99,0),
+                                quran.getverses('aadiyat',100,0),
+                                quran.getverses('nasr',110,0),
+                                quran.getverses('ikhlaas',112,0),
+                                mw.render('salat/jafartayyar'));
+
+
+
   app.get('/*', mw.notfound);
 
 

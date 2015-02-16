@@ -1,0 +1,100 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#bestplace(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/salat',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Salat-e-Jafar-e-Tayyar
+        
+        p
+          |  Salaat of -Ja’far-e-Tayyar (brother of Imam Ali (as) is among the prayers that are greatly emphasized and 
+          |  it is famous among all sects. It was a gift of love bestowed by the Holy Prophet ( s.a.w.s.) to his cousin 
+          |  upon his return from the journey.
+
+        p
+          | Imam Sadiq has said
+          blockquote 
+            | On the day of the conquest of Khyber when Ja’far returned from Abyssinia the Holy Prophet ( s.a.w.s.) asked: 
+            | Don’t you want a reward? Don’t you want a gift?   Hazrat Ja’far replied: Why not, O Messenger of Allah? 
+            | The Messenger of Allah ( s.a.w.s.) said: I am giving you something that if you perform it everyday it would 
+            | better than all those things that are present in the world. And if you perform it once in two days the Almighty 
+            | will forgive the sins of both these days and if you perform it every Friday or every month or every year the Almighty 
+            | will forgive all the sins committed in between.
+
+        p
+          | The best time to perform it is on Friday before noon. This prayer can be counted as the Nafila of the night 
+          | or the Nafila of the day. It is a 4 rakat salat, divided into 2 parts of 2 rakat each, much like the fajr salat
+          | with some adjustments.
+
+        p 
+          | Tasbeeh Arbaaa is recited 75 times in each rakaat, as per schedule below, but for ease, it is allowed to recite it 
+          | 300 (75x4) times at the end of this prayer.
+
+        ol
+          li 
+            details
+              summary In the first rakaat, after Surah Al Fatiha, recite Surah Zilzaal
+              p
+                mixin verses(zilzaal)
+          li 
+            details 
+              summary Recite Tasbeehatul Arbaa 15 times after the recitation of each surah
+              p
+                .section.group
+                  .col.span_1_of_2.arabic سبحان الله والحمد لله، ولا إله إلا الله والله أكبر،
+                  .col.span_1_of_2(class="english")  Glory be to Allah, Praise be to Allah, there is no god but Allah, and Allah is Great.
+
+          li 
+            details
+              summary In this Ruku (and in each Ruku), recite the same tasbeeh another 10 times. Recite another 10 times in Qiyaam after ruku
+              p
+                .section.group
+                  .col.span_1_of_2.arabic سبحان الله والحمد لله، ولا إله إلا الله والله أكبر،
+                  .col.span_1_of_2(class="english")  Glory be to Allah, Praise be to Allah, there is no god but Allah, and Allah is Great.
+
+          li Recite Tasbeeh Arbaa in each Sajda 10 times, and another times after the second sajdah of each rakaat. 
+             | This way each rakaat has 75 recitations of Tasbeeh Arbaaa.
+          
+          li 
+            details 
+              summary In the second rakaat, after Al Fatiha, recite Surah Al Aadiyat
+              p
+                mixin verses(aadiyat)
+
+          li 
+            details
+              summary After Surah Al Hamd in the third Rak'at, recite Surah Nasr
+              p
+                mixin verses(nasr)
+
+          li 
+            details
+              summary In the final rakaat, recite Surah Ikhlaas
+              p
+                mixin verses(ikhlaas)
+
+          li
+            details
+              summary Recite the dua from Imam Jafer As Sadiq in the last sajdah of fourth rakaat. It can also be recited after the prayer
+              p
+                mixin dua(jafartayyarsajda)
+
+          li
+            details
+              summary Recite this dua from Imam Jafar as Sadiq after the prayer is over
+              p
+                mixin dua(jafartayyardua2)
+          li
+            details
+              summary After commencement of the prayer, recite this dua
+              p
+                mixin dua(jafartayyardua)
+
+       include ../sharing

@@ -349,7 +349,13 @@ var quran = {
         req.data = {};
       }
 
-      qurandb.select({ chapter: chapter } , { limit : limit , offset: offset, language: 'en' }, function(err,verses) {
+      var options = { offset: offset, language: 'en' };
+
+      if (limit) {
+        options.limit = limit;
+      }
+
+      qurandb.select({ chapter: chapter } , options, function(err,verses) {
         req.data[key] = verses;
         next();
       });
