@@ -15,7 +15,8 @@ block content
               span.day #{hijri.day}
           #coverVerse(style=verse.style) 
             a(href=verse.href,alt=verse.attrib) !{verse.arabic} 
-          img(style="vertical-align:middle",src='/img/covers/#{verse.background}', alt='Sahifa-e-Sajjadiya')
+          a(href=verse.href)
+            img(style="vertical-align:middle",src='/img/covers/#{verse.background}', alt='Sahifa-e-Sajjadiya')
         ul.menu
           li
             ul.section
@@ -66,9 +67,9 @@ block content
                   img(src='/img/icon-tesbih.png', alt='Teachings')
                   span.text Pearls of Wisdom
               li.square
-                a.box(href='/treatise', data-transition='fade', data-direction='reverse')
-                  img(src='/img/icon-rights.png', alt='Treatise of Rights')
-                  span.text Treatise of Rights
+                a.box(href='/salat', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-munajat.png', alt='Salat')
+                  span.text  Salat
               li.square
                 a.box(href='/nahjulbalagha', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-nahj.png', alt='Nahjul Balagha')
@@ -80,9 +81,9 @@ block content
                   img(src='/img/icon-sermon.png', alt='Sermons')
                   span.text Sermons
               li.square
-                a.box(href='/salat', data-transition='fade', data-direction='reverse')
-                  img(src='/img/icon-munajat.png', alt='Salat')
-                  span.text  Salat
+                a.box(href='/treatise', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-rights.png', alt='Treatise of Rights')
+                  span.text Treatise of Rights
               li.square
                 a.box(href='/settings', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-settings.png', alt='Settings')

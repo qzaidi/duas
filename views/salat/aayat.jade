@@ -1,0 +1,53 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#bestplace(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/salat',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Salat-e-Aayat
+        
+        p
+          | Namaz-e-Ayaat consists of two Rak'ats, and there are five Ruku in each. Its method is as follows
+          | After making niyyat of offering the prayers, one should say takbir (Allahu Akbar) and recite Surah al-Hamd 
+          | and the other Surah, and then perform the Ruku. Thereafter, he should stand and recite Surah al-Hamd and a Surah 
+          | and then perform another Ruku. He should repeat this action five times, and, when he stands after the fifth Ruku, 
+          | he should perform two Sajdah, and then stand up to perform the second Rak'at in the same manner as he 
+          | has done in the first. Then he should recite tashahhud and Salam.
+
+        ol
+          li Make Niyat of Ruyatil Hilal
+          li 
+            details
+              summary In first Rakat recite Sura Fatiha 
+              p
+                mixin verses(fatiha)
+
+          li 
+            details 
+              summary Recite Sooratul Ikhlass 30 times
+              p
+                mixin verses(ikhlaas)
+
+          li In the second rakat recite Sura Fatiha  
+          li 
+            details
+              summary Recite Sooratul Qadr 30 times
+              p
+                mixin verses(qadr)
+
+          li After Salaam Recite the following Ayats 
+              p 
+                mixin verses(hood)
+              p
+                mixin verses(yunus)
+              p
+                mixin dua(ruyatihilal)
+
+       include ../sharing

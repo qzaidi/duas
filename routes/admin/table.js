@@ -22,10 +22,22 @@ module.exports = function(app,dbmodel,auth,table) {
     },
 
     list: function(req,res,next) {
-      db.all('select rowid,* from ' + table, function(err,data) {
-        res.json({
-          "Result":"OK",
-          "Records": data
+      var query = 'select rowid, * from ' + table;
+      if (req.query.jtPageSize) {
+        query += ' limit ' + req.query.jtPageSize;
+      }
+      if (req.query.jtStartIndex) {
+        query += ' offset ' + req.query.jtStartIndex;
+      }
+      console.log(query);
+
+      db.all(query, function(err,data) {
+        db.get('select count(1) as count from ' + table, function(err,count) {
+          res.json({
+            "TotalRecordCount": count.count,
+            "Result":"OK",
+            "Records": data
+          });
         });
       });
     },

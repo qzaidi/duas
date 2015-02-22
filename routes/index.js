@@ -139,8 +139,10 @@ module.exports = function(app) {
                                 mw.render('salat/jafartayyar'));
 
 
+  app.get('/salat/prophet', quran.getverses('qadr',97,0,5),
+                            verses.get('prophetsalat'),
+                            mw.render('salat/prophet'));
 
   app.get('/*', mw.notfound);
-
 
 };

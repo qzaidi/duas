@@ -18,11 +18,19 @@ var vod = {
 
   get: function(req,res,next) {
     var l = vod.verses.length;
-    var i = 18 ; // ((Math.random()*l)|0)%l;
     var selected = vod.verses.filter(function(v) {
       return v.selected;
     })[0];
-    req.verseofday = { arabic: selected.arabic, href: selected.href };
+
+    req.verseofday = { };
+
+    if (selected.arabic) {
+      req.verseofday.arabic = selected.arabic;
+    }
+
+    if (selected.href) {
+      req.verseofday.href = selected.href;
+    }
     
     req.verseofday.background = selected.image || 'quranlight.jpg';
     req.verseofday.style = selected.style || '';

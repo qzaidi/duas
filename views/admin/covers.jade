@@ -7,6 +7,9 @@ block content
     $(document).ready(function () {
         $('#coverscontainer').jtable({
             title: 'Photo Gallery',
+            selecting: true,
+            multiselect: false,
+            paging: true,
             actions: {
                 listAction: '/admin/covers/list',
                 createAction: '/admin/covers/create',
@@ -29,9 +32,6 @@ block content
                 href: {
                   title: 'Link'
                 },
-                selected: {
-                  title: 'Enabled'
-                },
                 image: {
                     title: 'Background',
                     display: function(data) {
@@ -49,6 +49,12 @@ block content
                 },
                 dates: {
                   title: 'Dates Applicable'
+                },
+                selected: {
+                  title: 'Active',
+                  type: 'checkbox',
+                  values: { 'false': 0, 'true': 1 },
+                  defaultValue: 'false'
                 }
             }
         });

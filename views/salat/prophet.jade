@@ -1,0 +1,46 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#bestplace(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/salat',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Holy Prophet's Prayer
+        
+        p
+          |  Its reported by Sayyid Ibn Tawuus via Imam Ali Ridha, through an authenticated chain that the Prophet used
+          |  to perform a 2 rakat prayer as described.
+
+        ol
+          li 
+            details
+              summary In the first rakaat, after Surah Al Fatiha, recite Surah Qadr, 97 times
+              p
+                mixin verses(qadr)
+          li In the ruku, repeat Surah Qadr again 15 times
+
+          li In the Qayam after ruku, repeat Al Qadr again, 15 times.
+
+          li When you do the prostration (sujood), recite it again 15 times
+          
+          li When you raise your head from sujood, recite it another 15 times
+
+          li When you do the second prostration, recite it 15 times
+
+          li When you raise your head, recite it again 15 times
+
+          li Perform the second rakat in the same way as first
+
+          li
+            details
+              summary After the prayer, recite this dua from Holy Prophet
+              p
+                mixin dua(prophetsalat)
+
+       include ../sharing
