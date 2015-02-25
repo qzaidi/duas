@@ -59,6 +59,7 @@ module.exports = function(app) {
 
   app.get('/qunoot/:id', quran.qunoot,quran.chapterInfo,quran.getverse,quran.renderqunoot);
   app.get('/quote/:tag', quote.fetch,quote.render);
+  app.get('/quran/:chapter/:verse-:v2',quran.chapterInfo,quran.getverse,quran.renderverse);
   app.get('/quran/:chapter/:verse', quran.chapterInfo, quran.getverse,quran.renderverse);
   app.get('/quran/:chapter', quran.chapterInfo,quran.chapter, quran.html);
   app.get('/api/quran', quran.api, quran.json);
@@ -142,6 +143,12 @@ module.exports = function(app) {
   app.get('/salat/prophet', quran.getverses('qadr',97,0,5),
                             verses.get('prophetsalat'),
                             mw.render('salat/prophet'));
+
+  app.get('/salat/eid', quran.getverses('shams',91,0),
+                            quran.getverses('fatiha',1,0,7),
+                            quran.getverses('aala',87,0),
+                            verses.get('eidqunoot'),
+                            mw.render('salat/eid'));
 
   app.get('/*', mw.notfound);
 

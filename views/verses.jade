@@ -47,11 +47,11 @@ block content
           each row in data
             .section.group
               .col.span_1_of_2.arabic #{row.arabic}
-              .col.span_1_of_2(class="#{lang}") #{row[lang]}
+              .col.span_1_of_2(class="#{lang}") !{helpers.embellish(row[lang])}
         else
           p.arabic.doublespaced
             each row in data
-              | !{handleEllipsis(row.arabic)} &nbsp;
+              | !{helpers.handleEllipsis(row.arabic)} &nbsp;
 
         hr
         p #{info.enname} is tagged in #{info.collection} collection. See other duas from 

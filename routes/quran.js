@@ -201,11 +201,17 @@ var quran = {
     var filter = { chapter: req.params.chapter };
     var option = req.dbopts || { language: 'en' };
 
+
     if (req.params.verse) {
       filter.verse = req.params.verse;
     }
 
-    if (req.query.ctx) {
+    // /quran/21/107-109 syntax
+    if (req.params.v2) {
+      option.limit = (req.params.v2 - req.params.verse + 1) | 0;
+      option.offset = filter.verse - 1;
+      filter.verse = undefined;
+    } else if (req.query.ctx) {
       option.limit = 3;
       option.offset = filter.verse - 2;
       filter.verse = undefined;
@@ -244,6 +250,7 @@ var quran = {
                                 digits:toArabDigits , 
                                 page: page, 
                                 audio: audio,
+                                verses: req.verses,
                                 ctx: '/quran/' + req.chapterInfo.id + '?p=' + pnum + '&hl=' + (req.params.verse - 1)
                               });
   },

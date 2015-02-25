@@ -35,6 +35,7 @@ module.exports = function(app) {
   
   function duasCollection(req,res,next) {
     db.all('select distinct(collection) from toc where type = "dua" order by collection', function(err,rows) {
+      console.log(rows);
       var page = { title: 'Duas from Ahlul Bayt',
                    description: 'Supplications from the house of Prophet' };
       if (err) {

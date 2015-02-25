@@ -18,6 +18,11 @@ var ziyarat = {
   },
 
   update: function(req,res,next) {
+    Object.keys(req.body).forEach(function(k) {
+      if (req.body[k] == '') {
+        delete req.body[k];
+      }
+    });
     db.update(req.params.name, req.body, [ 'rowid' ], function(err,data) {
       var result = { "Result": "OK" };
       if (err) {

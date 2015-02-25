@@ -43,6 +43,12 @@ module.exports = function(app,dbmodel,auth,table) {
     },
 
     update: function(req,res,next) {
+      Object.keys(req.body).forEach(function(k) {
+        if (req.body[k] == '') {
+          delete req.body[k];
+        }
+      });
+
       db.update(table, req.body, [ 'rowid' ], function(err,data) {
         var result = { "Result": "OK" };
         if (err) {

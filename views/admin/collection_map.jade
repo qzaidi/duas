@@ -7,6 +7,7 @@ block content
     $(document).ready(function () {
         $('#collectioncontainer').jtable({
             title: 'Collections',
+            paging: true,
             actions: {
                 listAction: '/admin/collection_map/list',
                 createAction: '/admin/collection_map/create',
@@ -21,19 +22,22 @@ block content
                   edit: false
                 },
                 collection: {
-                    title: 'Collection'
+                  title: 'Collection'
                 },
                 prayer: {
-                    title: 'Prayer Key'
+                  title: 'Prayer Key'
                 },
                 prayername: {
-                    title: 'Prayer Name'
+                  title: 'Prayer Name'
                 },
                 type: {
-                    title: 'Type'
+                  title: 'Type'
+                },
+                filters: {
+                  title: 'Filters'
                 },
                 sort: {
-                    title: 'Sort Index'
+                  title: 'Sort Index'
                 }
             }
         });

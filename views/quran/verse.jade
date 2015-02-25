@@ -10,7 +10,7 @@ block content
       .padpage.padtop
 
         h1 
-          a.back.ui-link(href='/')
+          a.back.ui-link(href='/',data-rel="back")
             img(src='/img/icon-back.png',alt='Back')
             | Surat #{chapter.tname} (#{chapter.enname}) - #{chapter.arname}
 
@@ -35,9 +35,14 @@ block content
                   p.arabic.textbox
                     | !{ayah.ar} 
                     span.ayahNumber ﴿#{digits(verse)}﴾  
+                    each verse in verses
+                      a(class=verse.class) #{verse.ar} 
+                      span.ayahNumber ﴿#{digits(verse.verse)}﴾  
 
                   p.english
-                    | !{ayah.en}
+                    | !{ayah.en} 
+                    each verse in verses
+                      a(class=verse.class) #{verse.en} 
 
               td(background='/img/quran/r.png',border=0,alt='',width=54)
                 img(src='/img/quran/pixel.gif',width=54)
@@ -50,9 +55,9 @@ block content
                 img(src='/img/quran/br.png',width=54,height=54)
 
         p This is a portion of the entire surah. View 
-          a.ui-link(href="#{ctx}") this verse in context, 
+          a.ui-link(href="#{ctx}",style="color:blue;") this verse in context, 
           | or view the 
-          a.ui-link(href="/quran/#{chapter.id}") entire surah here.
+          a.ui-link(href="/quran/#{chapter.id}", style="color:blue;") entire surah here.
 
         div(data-role="footer",data-position="fixed")
           audio.noprint#amtag(itemprop="audio",style="width: 100%",src="#{audio}",controls="controls",preload="none")

@@ -12,12 +12,28 @@ var langmap = {
   'hintrans' : 'Hindi Transliteration'
 };
 
-function handleEllipsis(row) {
-  if (row == '...') {
-    return '<br/>'
+var helpers = {
+
+  handleEllipsis: function(row) {
+    if (row == '...') {
+      return '<br/>'
+    }
+    return row;
+  },
+
+  embellish: function(row) {
+    if (/\([0-9]*:[0-9-]*\)/.test(row)) {
+      return row.replace(/\(([0-9]*:[0-9-]*)\)/,function(verse,p1) {
+        var link = '/quran/' + p1.replace(':','/');
+        var res = "<a style='color:blue;' href='" + link + "'>" + verse + "</a>"; 
+        return res;
+      });
+    }
+
+    return row;
   }
-  return row;
-}
+
+};
 
 var verses = {
   collection: function(type) {
@@ -91,9 +107,16 @@ var verses = {
         }
       }
       res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, cls: cls,
-                             rating: (req.rating*10|0)/10, votes: req.votes|0, duration: ptm, url: url, handleEllipsis: handleEllipsis});
+                             rating: (req.rating*10|0)/10, votes: req.votes|0, duration: ptm, url: url, helpers: helpers});
     });
   }
 };
 
 module.exports = verses;
+
+(function(){
+  if (require.main == module) {
+    //console.log(helpers.embellish("and repay those who do good with goodness' (53:31),"));
+    console.log(helpers.embellish("'in a book inscribed, witnessed by those brought nigh' (83:20-21),"));
+  }
+}())
