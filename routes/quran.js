@@ -82,7 +82,15 @@ var quran = {
 
   index: function(req,res,next) {
     qurandb.chapter(function(err,suras) {
-      res.render('quran/index', { suras: suras , page: page});
+      res.render('quran/index', { suras: suras , page: page });
+    });
+  },
+
+  hadith: function(req,res,next) {
+    var id = Math.min(req.params.id,40);
+    db.get('select * from ahadith where rowid = ' + id, function(err,row) {
+      req.data = { hadith: row, id: id };
+      next();
     });
   },
 

@@ -49,13 +49,15 @@ module.exports = function(app) {
   app.get('/treatise', treatise.index);
   app.get('/rights/:right', treatise.right);
 
-  app.get('/quran',quran.home);
+  app.get('/quran',quran.getverses('nahl',16,97,1), mw.render('quran/home'));
   app.get('/random/quran',quran.random);
-  app.get('/quran/index',quran.index);
+  app.get('/quran/index', quran.index);
   app.get('/quran/juz', quran.juz);
   app.get('/quran/salat', quran.getverses('fatiha',1,0,7), quran.getverses('kursi',2,254,3),
                           quran.getverses('mulk',3,25,2), quran.getverses('shahadah',3,17,2), 
                           quran.salat);
+
+  app.get('/quran/hadith/:id', quran.hadith, mw.render('quran/hadith'));
 
   app.get('/qunoot/:id', quran.qunoot,quran.chapterInfo,quran.getverse,quran.renderqunoot);
   app.get('/quote/:tag', quote.fetch,quote.render);
