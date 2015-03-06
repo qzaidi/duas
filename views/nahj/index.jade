@@ -2,10 +2,7 @@ extends ../layout
 
 block content
   div(role='main')
-    .page.innerPage#startPage(data-role="page")
-      .topGrahic
-      a.menuButton(href="/",data-rel="back")
-        img(src="/img/menu-button.png",alt="Duas Home")
+    include ../layout/search
 
       .padpage.padtop
         h1 

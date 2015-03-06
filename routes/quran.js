@@ -14,6 +14,7 @@ var langmap = {
   'ar' : 'Arabic text',
 };
 
+
 function toArabDigits(num) {
   var anum = '', len;
   num = num.toString();
@@ -60,6 +61,14 @@ function getlink(page,npp, surat,lang) {
 
   return link;
 }
+
+var helpers = {
+  appendQueryToURL: function(url,query) {
+    return url + (url.indexOf('?')?'?':'&') + query;
+  },
+  digits: toArabDigits
+};
+
 
 function leadZeroes(num,lead) {
   return new Array(lead+1 - String(num).length).join('0') + String(num) ;
@@ -207,7 +216,7 @@ var quran = {
 
   getverse: function(req,res,next) {
     var filter = { chapter: req.params.chapter };
-    var option = req.dbopts || { language: 'en' };
+    var option = req.dbopts || { language: req.query.lang || 'en' };
 
 
     if (req.params.verse) {
@@ -255,9 +264,10 @@ var quran = {
                                 ayah: req.ayah, 
                                 chapter: req.chapterInfo, 
                                 next: link, 
-                                digits:toArabDigits , 
+                                helpers: helpers,
                                 page: page, 
                                 audio: audio,
+                                lang: req.query.lang || 'en',
                                 verses: req.verses,
                                 ctx: '/quran/' + req.chapterInfo.id + '?p=' + pnum + '&hl=' + (req.params.verse - 1)
                               });

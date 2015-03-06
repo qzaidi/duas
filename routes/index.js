@@ -41,6 +41,12 @@ module.exports = function(app) {
     res.render('teachings/index');
   });
 
+
+  app.get('/teachings/ahlebait', quran.getverses('mubahila',3,60,1),
+                                 quran.getverses('book',6,37,1),
+                                 quran.getverses('descent',6,83,2),
+                                 mw.render('teachings/ahlebait'));
+
   app.get('/teachings/:episode', function(req,res) {
     res.render('teachings/' + req.params.episode);
   });
