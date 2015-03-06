@@ -2,7 +2,10 @@ extends ../layout
 
 block content
   div(role='main')
-    include ../layout/search
+    .page.innerPage.suratPage#quranSurah(data-role="page")
+      .topGrahic
+      a.menuButton(href="/",data-rel="back")
+        img(src="/img/menu-button.png",alt="Quran Home")
 
       .padtop
 
@@ -14,10 +17,10 @@ block content
         mixin breadcrumb([{ href: '/quran', text: 'Quran' }, { href: '/quran/index', text: 'Chapters' }])
 
         div.ui-field-contain(data-role="controlgroup",data-type="horizontal",data-mini="true")
-          a(href="#{url}?lang=ar",data-role="button") Arabic 
-          a(href="#{url}?lang=en",data-role="button") English
-          a(href="#{url}?lang=ur",data-role="button") Urdu
-          a(href="#{url}?lang=hi",data-role="button") Hindi
+          a(href="#{url}&lang=ar",data-role="button") Arabic 
+          a(href="#{url}&lang=en",data-role="button") English
+          a(href="#{url}&lang=ur",data-role="button") Urdu
+          a(href="#{url}&lang=hi",data-role="button") Hindi
         br
 
         .surahHeaderFrame

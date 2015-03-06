@@ -2,7 +2,10 @@ extends ../layout
 
 block content
   div(role='main')
-    include ../layout/search
+    .page.innerPage#rights(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
 
       .padpage.padtop
 
@@ -13,12 +16,6 @@ block content
 
         mixin breadcrumb([{ href: '/quran', text: 'Quran' }, { href: '/quran/index', text: 'Chapters'},{ href: '/quran/'+chapter.id, text: chapter.tname }])
 
-        div.ui-field-contain(data-role="controlgroup",data-type="horizontal",data-mini="true")
-          a(href="#{helpers.appendQueryToURL(url,'lang=ar')}",data-role="button") Arabic 
-          a(href="#{helpers.appendQueryToURL(url,'lang=en')}",data-role="button") English
-          a(href="#{helpers.appendQueryToURL(url,'lang=ur')}",data-role="button") Urdu
-          a(href="#{helpers.appendQueryToURL(url,'lang=hi')}",data-role="button") Hindi
-        br
 
         table.quran(cellpadding=0,cellspacing=0,border=0)
           tbody
@@ -37,16 +34,15 @@ block content
                   a.ayahBoxNum(href="/quran/#{chapter.id}/#{verse}") #{chapter.id}:#{verse}
                   p.arabic.textbox
                     | !{ayah.ar} 
-                    span.ayahNumber ﴿#{helpers.digits(verse)}﴾  
+                    span.ayahNumber ﴿#{digits(verse)}﴾  
                     each verse in verses
                       a(class=verse.class) #{verse.ar} 
-                      span.ayahNumber ﴿#{helpers.digits(verse.verse)}﴾  
+                      span.ayahNumber ﴿#{digits(verse.verse)}﴾  
 
-                  if (lang != 'ar' && ayah[lang])
-                    p(class=lang)
-                      | !{ayah[lang]} 
-                      each verse in verses
-                        a(class=verse.class) #{verse[lang]} 
+                  p.english
+                    | !{ayah.en} 
+                    each verse in verses
+                      a(class=verse.class) #{verse.en} 
 
               td(background='/img/quran/r.png',border=0,alt='',width=54)
                 img(src='/img/quran/pixel.gif',width=54)

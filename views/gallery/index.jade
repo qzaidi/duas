@@ -2,7 +2,10 @@ extends ../layout
 
 block content
   div(role='main')
-    include ../layout/search
+    .page.innerPage.padpage.padtop.padbottom#galleryPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Duas Home")
 
       h1
         a.back.ui-link(href='/',data-rel="back")

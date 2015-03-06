@@ -2,7 +2,11 @@ extends ../../layout
 
 block content
   div(role='main')
-    include ../../layout/search
+    .page.innerPage#eventPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
 
       .padpage.padtop
 

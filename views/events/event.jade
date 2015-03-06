@@ -2,7 +2,10 @@ extends ../layout
 
 block content
   div(role='main')
-    include ../layout/search
+    .page.innerPage(id="#{event.urlkey}",data-role="page")
+      .topGrahic
+      a.menuButton(href="#",data-rel='back')
+        img(src="/img/menu-button.png",alt="Home")
 
       .padpage.padtop
         div(itemscope,itemtype="http://data-vocabulary.org/Event")
