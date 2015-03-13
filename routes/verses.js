@@ -1,6 +1,7 @@
 "use strict";
 
 var db = require('../model/duas');
+var helpers = require('./helpers');
 
 var langmap = {
   'english': 'English Translation',
@@ -12,28 +13,6 @@ var langmap = {
   'hintrans' : 'Hindi Transliteration'
 };
 
-var helpers = {
-
-  handleEllipsis: function(row) {
-    if (row == '...') {
-      return '<br/>'
-    }
-    return row;
-  },
-
-  embellish: function(row) {
-    if (/\([0-9]*:[0-9-]*\)/.test(row)) {
-      return row.replace(/\(([0-9]*:[0-9-]*)\)/,function(verse,p1) {
-        var link = '/quran/' + p1.replace(':','/');
-        var res = "<a style='color:blue;' href='" + link + "'>" + verse + "</a>"; 
-        return res;
-      });
-    }
-
-    return row;
-  }
-
-};
 
 var verses = {
   collection: function(type) {
@@ -116,7 +95,6 @@ module.exports = verses;
 
 (function(){
   if (require.main == module) {
-    //console.log(helpers.embellish("and repay those who do good with goodness' (53:31),"));
     console.log(helpers.embellish("'in a book inscribed, witnessed by those brought nigh' (83:20-21),"));
   }
 }())

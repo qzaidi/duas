@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#hadithPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Home")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='#',data-rel='back')
+            img(src='/img/icon-back.png',alt='Back')
+            | Hadith Collections
+
+
+        .clients
+            ul(data-role='listview')
+              each hadith in ahadith
+                li
+                  a(href='/ahadith/#{hadith.urlkey}/1')
+                    img.ui-li-icon(src='/img/icon-ahlebait.png',width='16',height='16',alt='Quran Ahadith')
+                    | #{hadith.enname}

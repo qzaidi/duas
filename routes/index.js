@@ -19,6 +19,7 @@ var verseofday = require('./verseofday');
 var verses = require('./verses');
 var tag = require('./tag');
 var duasorg = require('./duasorg');
+var hadith = require('./hadith');
 
 var mw = require('./mw');
 
@@ -62,7 +63,11 @@ module.exports = function(app) {
                           quran.getverses('mulk',3,25,2), quran.getverses('shahadah',3,17,2), 
                           quran.salat);
 
-  app.get('/quran/hadith/:id', quran.hadith, mw.render('quran/hadith'));
+  app.get('/quran/hadith/:id', function(req,res) { res.redirect('/ahadith/quran/' + req.params.id, 301); });
+
+  app.get('/ahadith/:hadith/:id', hadith.fetch, mw.render('hadith/hadith'));
+  app.get('/ahadith', hadith.index, mw.render('hadith/index'));
+  app.get('/random/hadith', hadith.random, mw.render('hadith/hadith'));
 
   app.get('/qunoot/:id', quran.qunoot,quran.chapterInfo,quran.getverse,quran.renderqunoot);
   app.get('/quote/:tag', quote.fetch,quote.render);

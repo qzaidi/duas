@@ -23,7 +23,8 @@ var middleware = {
     return function(req,res,next) {
       res.render(page,req.data);
     };
-  }
+  },
+
 };
 
 module.exports = middleware;
