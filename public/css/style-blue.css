@@ -2335,6 +2335,22 @@ div.calendar
   width: 250px;
 }
 
+.ui-icon-duas-translit {
+  background-image: url("/img/icon-translit.png");
+}
+
+.ui-icon-duas-urdu {
+  background-image: url("/img/icon-urdu.png");
+}
+
+.ui-icon-duas-arabic {
+  background-image: url("/img/icon-arabic.png");
+}
+
+.ui-icon-duas-english {
+  background-image: url("/img/icon-english.png");
+}
+
 @media print {
   * {
     background: transparent !important;

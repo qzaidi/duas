@@ -87,7 +87,7 @@ module.exports = function(app) {
   app.get(/^\/cache\/(\d+)x(\d+)\/(.*)$/, imageresize.render);
 
   app.get('/searchpage', search.render);
-  app.get('/search', search.toc, events.search, gallery.search, search.json);
+  app.get('/search', search.toc, events.search, gallery.search, salat.search, search.json);
   app.get('/autocomplete.json', search.toc, search.autocomplete);
 
   app.get('/prayertimes', praytimes.render);
@@ -114,53 +114,10 @@ module.exports = function(app) {
   app.get('/nahjulbalagha',mw.render('nahj'));
 
   app.get('/salat', salat.index);
-  app.get('/salat/wahshat', quran.getverses('inna',2,155,1),
-                          quran.getverses('fatiha',1,0,7),
-                          quran.getverses('kursi',2,254,1), 
-                          quran.getverses('qadr',97,0,5),
-                          mw.render('salat/wahshat'));
-  app.get('/salat/hilal', quran.getverses('hood',11,5,1), 
-                          quran.getverses('fatiha',1,0,7),
-                          quran.getverses('qadr',97,0,5),
-                          quran.getverses('ikhlaas',112,0,4),
-                          quran.getverses('yunus',10,106,1),
-                          verses.get('ruyatihilal'),
-                          mw.render('salat/hilal'));
 
-  app.get('/salat/layl', 
-                         quran.getverses('fatiha',1,0,7),
-                         verses.get('qunootlayl'),
-                         quran.getverses('ikhlaas',112,0,4),
-                         quran.getverses('falaq',113,0,5),
-                         quran.getverses('naas',114,0,6),
-                         mw.render('salat/layl'));
+  app.get('/salat/:key', salat.verses, salat.duas, salat.render);
 
-  app.get('/salat/ghufayla', quran.getverses('fatiha',1,0,7),
-                             verses.get('ghufayla'),
-                             quran.getverses('yunus',21,86,2),
-                             quran.getverses('anaam',6,58,1),
-                             mw.render('salat/ghufayla'));
-
-  app.get('/salat/jafartayyar', quran.getverses('fatiha',1,0,7),
-                                verses.get('jafartayyardua'),
-                                verses.get('jafartayyardua2'),
-                                verses.get('jafartayyarsajda'),
-                                quran.getverses('zilzaal',99,0),
-                                quran.getverses('aadiyat',100,0),
-                                quran.getverses('nasr',110,0),
-                                quran.getverses('ikhlaas',112,0),
-                                mw.render('salat/jafartayyar'));
-
-
-  app.get('/salat/prophet', quran.getverses('qadr',97,0,5),
-                            verses.get('prophetsalat'),
-                            mw.render('salat/prophet'));
-
-  app.get('/salat/eid', quran.getverses('shams',91,0),
-                            quran.getverses('fatiha',1,0,7),
-                            quran.getverses('aala',87,0),
-                            verses.get('eidqunoot'),
-                            mw.render('salat/eid'));
+  app.get('/newsletter', mw.render('newsletter'));
 
   app.get('/*', mw.notfound);
 

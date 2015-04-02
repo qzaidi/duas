@@ -86,6 +86,7 @@ $(document).on('pageinit','.versePage',function() {
       } 
     });
   }
+
 });
 
 $(document).on('pageshow','.suratPage',function() {

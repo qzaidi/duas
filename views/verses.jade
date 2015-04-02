@@ -21,17 +21,19 @@ block content
         #toTop ↑ Top
         div.noprint.ui-field-contain(data-role="controlgroup",data-type="horizontal",data-mini="true")
           if (data[0].english)
-            a(class=cls.english,href='?lang=english',data-role="button") English
+            a(class=cls.english,href='?lang=english',data-role="button",data-icon="duas-english") En
           if (data[0].urdu)
-            a(class=cls.urdu,href='?lang=urdu',data-role="button") Urdu
-          a(class=cls.arabic,href='?lang=arabiconly',data-role="button") Arabic
+            a(class=cls.urdu,href='?lang=urdu',data-role="button",data-icon="duas-urdu") Ur
+          a(class=cls.arabic,href='?lang=arabiconly',data-role="button",data-icon="duas-arabic") Ar
           if (data[0].hindi)
             a(href='?lang=hindi',data-role="button") Hindi
           if (data[0].hintrans)
             a(href='?lang=hintrans',data-role="button") Hindi Transliteration
           if (data[0].engtrans)
-            a(class=cls.engtrans,href='?lang=engtrans',data-role="button") Transliteration
+            a(class=cls.engtrans,href='?lang=engtrans',data-role="button",data-icon="duas-translit") Tr
           | &nbsp;
+          a(data-role="button",data-icon="plus",onclick="changeFont('ar','+')") A
+          a(data-role="button",data-icon="minus",onclick="changeFont('ar','-')") a
           select.colswitch(name="flip-mini",data-role="slider",data-mini="true")
             option(value="off") 1 Col
             option(value="on") 2 Col
@@ -90,6 +92,7 @@ block content
             meta(itemprop="duration",content="#{duration}")
           meta(itemprop="inAlbum",content="#{titlecase(info.type)}-#{info.collection}")
           audio.noprint#amtag(itemprop="audio",style="width: 100%",src="#{info.audio}",controls="controls",preload="none")
+
 
         != "<script type='text/javascript'>"
         != "var cues = ["

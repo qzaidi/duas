@@ -24,6 +24,21 @@ function setfontcontrol(lang) {
   });
 }
 
+function changeFont(lang,dir) {
+  var langmap = { 
+    'ar': 'arabic', 
+    'ur': 'urdu',
+    'hi': 'hindi' 
+  };
+  var fsize = parseInt($('.' + langmap[lang]).css('font-size'));
+  if (dir == '+') {
+      $('#' + lang + 'fontsizecur').val(fsize+1);
+  } else if (dir ==  '-' ) {
+      $('#' + lang + 'fontsizecur').val(fsize-1);
+  }
+  syncFontSize()
+}
+
 $(document).on('pageinit', function(ev) {
   syncFontSize();
 });
