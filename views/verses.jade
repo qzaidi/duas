@@ -69,19 +69,21 @@ block content
 
         if (votes > 1)
           hr
-          .left(itemscope,itemtype="http://data-vocabulary.org/Review-aggregate")
-            span(itemprop="itemreviewed") #{info.enname} 
-            img.hidden(itemprop="photo",src="#{page.image}") 
-            span(itemprop="rating",itemscope itemtype="http://data-vocabulary.org/Rating")
+          .left(itemscope,itemtype="http://schema.org/Article")
+            span(itemprop="name",itemtype="http://schema.org/Article") #{info.enname} 
+            img.hidden(itemprop="thumbnailUrl",src="#{page.image}") 
+            span(itemprop="aggregateRating",itemscope itemtype="http://schema.org/AggregateRating")
               | rated 
-              span(itemprop="average") #{rating} 
-              | out of 
-              span(itemprop="best") 5 
-              | based on 
-              span(itemprop="votes") #{votes} 
-              | ratings. 
-          include sharing
+              span(itemprop="ratingValue") #{rating} 
+              | on a 
+              span(itemprop="worstRating") 1
+              | to
+              span(itemprop="bestRating") 5 
+              | point scale based on 
+              span(itemprop="ratingCount") #{votes} 
+              | votes. 
 
+         include sharing
         br
 
       if (info.audio)
