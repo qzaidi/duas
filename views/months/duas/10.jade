@@ -1,0 +1,26 @@
+extends ../../layout
+
+block content
+  div(role='main')
+    .page.innerPage#eventPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+
+      .padpage.padtop
+
+        h1(style="text-align:center;") 
+          a(href="http://duas.mobi")
+            img(src="/img/duasorg.png",alt="Duas.org")
+        p(style="text-align:center;")
+          a(href="http://duas.org") Switch to Desktop view
+          |  | 
+          a(href="http://duas.mobi") More Duas
+
+        .projects
+          ul(data-role='listview')
+            li
+              a(href="/month/shawwal")
+               img.ui-li-icon(src='/img/icon-events.png', alt='Month of Shawwal',width="16",height="16")
+               h3 Month of Shawwal

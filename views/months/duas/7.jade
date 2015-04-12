@@ -1,0 +1,50 @@
+extends ../../layout
+
+block content
+  div(role='main')
+    .page.innerPage#eventPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+
+      .padpage.padtop
+
+        h1(style="text-align:center;") 
+          a(href="http://duas.mobi")
+            img(src="/img/duasorg.png",alt="Duas.org")
+        p(style="text-align:center;")
+          a(href="http://duas.org") Switch to Desktop view
+          |  | 
+          a(href="http://duas.mobi") More Duas
+
+        .projects
+          ul(data-role='listview')
+            li
+              a(href="/month/safar")
+               img.ui-li-icon(src='/img/icon-events.png', alt='Month of Rajab',width="16",height="16")
+               h3 Month of Rajab
+            li
+              a(href="/dua/rajabmoon")
+               img.ui-li-icon(src='/img/icon-munajat.png', alt='Rajab Moon sighting',width="16",height="16")
+               h3(style="font-weight:normal;") Sighting the moon
+            li
+              a(href="/salat/salman")
+               img.ui-li-icon(src='/img/icon-munajat.png', alt='Rajab Salat',width="16",height="16")
+               h3(style="font-weight:normal;") Salat for 1st,15th and 30th of Rajab
+            li
+              a(href="/dua/rajabnight")
+               img.ui-li-icon(src='/img/icon-munajat.png', alt='Rajab night dua',width="16",height="16")
+               h3(style="font-weight:normal;") Dua for 1st Night
+            li
+              a(href="/events/wiladata-imambaqir")
+               img.ui-li-icon(src='/img/icon-events.png', alt='Birth of Imam Baqir (AS)',width="16",height="16")
+               h3 1st - Birth of Imam Muhammad Al Baqir (AS)
+            li
+              a(href="/events/imamnaqi-martyrdom")
+               img.ui-li-icon(src='/img/icon-karbala.png', alt='Arbaeen',width="16",height="16")
+               h3 3rd - Martyrdom of Imam Ali Naqi (AS)
+            li
+              a(href="/events/13rajab")
+               img.ui-li-icon(src='/img/icon-events.png', alt='Imam Ali',width="16",height="16")
+               h3 Birth of Imam Ali (AS)
