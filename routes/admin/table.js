@@ -22,7 +22,7 @@ module.exports = function(app,dbmodel,auth,table) {
     },
 
     list: function(req,res,next) {
-      var query = 'select rowid, * from ' + table;
+      var query = 'select rowid, * from ' + table + ' order by rowid desc';
       if (req.query.jtPageSize) {
         query += ' limit ' + req.query.jtPageSize;
       }
