@@ -3,7 +3,9 @@ var db = require('../../model/duas');
 
 var ziyarat = {
   index: function(req,res,next) {
-    db.get('select * from toc where urlkey = "' + req.params.name + '" and type="ziyarat"', function(err,info) {
+    var sql = 'select * from toc where urlkey = "' + req.params.name + '" and type="ziyarat"';
+
+    db.get(sql, function(err,info) {
       res.render('admin/ziyarat', { info: info });
     });
   },
