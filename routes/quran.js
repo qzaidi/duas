@@ -4,8 +4,8 @@
 var util = require('util');
 var qurandb = require('quran');
 var db = require('../model/duas');
+var helpers = require('./helpers');
 
-var arabdigits = [ '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧',  '٨','٩' ];
 
 var langmap = {
   'en': 'with English Translation',
@@ -15,15 +15,6 @@ var langmap = {
 };
 
 
-function toArabDigits(num) {
-  var anum = '', len;
-  num = num.toString();
-  var i;
-  for (i = 0, len = num.length; i < len; i++) {
-    anum += arabdigits[num[i]];
-  }
-  return anum;
-}
 
 function getPNum(verse) {
  var npp = 8;
@@ -62,14 +53,6 @@ function getlink(page,npp, surat,lang) {
   return link;
 }
 
-var helpers = {
-  appendQueryToURL: function(url,query) {
-    return url + (url.indexOf('?')?'?':'&') + query;
-  },
-  digits: toArabDigits
-};
-
-
 function leadZeroes(num,lead) {
   return new Array(lead+1 - String(num).length).join('0') + String(num) ;
 }
@@ -83,7 +66,7 @@ var page = {
 
 var quran = {
   
-  digits: toArabDigits,
+  digits: helpers.digits,
 
   home: function(req,res) {
     res.render('quran/home', { page: page });
@@ -166,7 +149,7 @@ var quran = {
         link.cur += '&hl=' + hl;
       }
 
-      req.data = { verses: verses, prev: link.prev, url: link.cur,  next: link.next, digits:toArabDigits, surat: surat, lang: lang };
+      req.data = { verses: verses, prev: link.prev, url: link.cur,  next: link.next, digits:helpers.digits, surat: surat, lang: lang };
 
       // if we are starting a surah, add bismillah
       if (pnum == 0 && verses[0].verse == 1 && verses[0].chapter != 1) {
@@ -364,7 +347,7 @@ var quran = {
     }
 
     res.render('quran/qunoot', { ayah: ayah, verses: req.verses, description: req.description, chapter: req.chapterInfo, 
-                                 verse: ayah.verse, digits: toArabDigits, id: id, page: page , enhtml: enhtml, arhtml:arhtml,
+                                 verse: ayah.verse, digits: helpers.digits, id: id, page: page , enhtml: enhtml, arhtml:arhtml,
                                  urhtml: urhtml });
   },
 

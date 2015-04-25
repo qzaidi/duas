@@ -68,8 +68,24 @@ var salat = {
             options.limit = (x[1] - x[0]) || 1;
           }
           qurandb.select({ chapter: chapter }, options, function(err,verses) {
+            var row = {};
+            var ar;
             data[key] = verses;
             count--;
+            
+
+            if (!options.offset && verses[0].ar && chapter != 1) {
+              row.en = 'In the name of Allah, the Beneficent, the Merciful.';
+              row.ar = 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ';
+              row.chapter = verses[0].chapter;
+              row.verse = 0;
+              ar = verses[0].ar.replace(row.ar,'');
+              console.log(ar);
+              if (ar != verses[0].ar) {
+                verses[0].ar = ar;
+                data[key].unshift(row);
+              }
+            }
 
             if (count ==0) {
               req.data = data;

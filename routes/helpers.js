@@ -1,5 +1,7 @@
 "use strict";
 
+var arabdigits = [ '٠', '١', '٢', '٣', '٤', '٥', '٦', '٧',  '٨','٩' ];
+
 var helpers = {
   handleEllipsis: function(row) {
     if (row == '...') {
@@ -18,6 +20,26 @@ var helpers = {
     }
 
     return row;
+  },
+
+  setLanguage: function(url,val) {
+    var newurl = url.replace(/lang=[^&]*/,'lang='+val)
+    if (newurl.indexOf('?') == -1) {
+      newurl += '?lang=' + val;
+    }
+    console.log(newurl);
+    return newurl;
+  },
+
+
+  digits: function(num) {
+    var anum = '', len;
+    num = num.toString();
+    var i;
+    for (i = 0, len = num.length; i < len; i++) {
+      anum += arabdigits[num[i]];
+    }
+    return anum;
   }
 
 };

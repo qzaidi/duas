@@ -15,39 +15,52 @@ block content
         
         p
           | Namaz-e-Ayaat consists of two Rak'ats, and there are five Ruku in each. Its method is as follows
-          | After making niyyat of offering the prayers, one should say takbir (Allahu Akbar) and recite Surah al-Hamd 
-          | and the other Surah, and then perform the Ruku. Thereafter, he should stand and recite Surah al-Hamd and a Surah 
-          | and then perform another Ruku. He should repeat this action five times, and, when he stands after the fifth Ruku, 
-          | he should perform two Sajdah, and then stand up to perform the second Rak'at in the same manner as he 
-          | has done in the first. Then he should recite tashahhud and Salam.
 
         ol
-          li Make Niyat of Ruyatil Hilal
+          li Make Niyat of Salat-e-Aayat
           li 
             details
               summary In first Rakat recite Sura Fatiha 
               p
-                mixin verses(fatiha)
+                mixin verses(q1)
 
           li 
             details 
-              summary Recite Sooratul Ikhlass 30 times
+              summary Recite Surah Fatiha
               p
-                mixin verses(ikhlaas)
+                mixin verses(q1)
+
+          li
+            p After Surah Fatiha, recite any surah but split it into 5 parts and perform a ruku after each part. 
+
+          each verse,idx in q112
+            li 
+              p Recite verse in Qayam
+              p.arabic #{verse.ar}
+            li 
+              p Recite Takbir
+              p.arabic اَللهُ اَكْبَر
+            li 
+              p Perform Ruku # #{idx+1}
+              p.arabic  سُبْحَانَ الله (3x)
+              p.arabic سُبْحَانَ رَبِّىَ الْعَضِيْمِ وَ بِحَمْدِهِ
+            li 
+              p Recite Takbir again after the Ruku
+              - if (idx == 4)
+                p.arabic سَمِعَ اللهُ لِمَنْ حَمِدَهُ
+              p.arabic اَللهُ اَكْبَر
+
+
+          li Perform the sujud as usual and complete the first unit
 
           li In the second rakat recite Sura Fatiha  
-          li 
-            details
-              summary Recite Sooratul Qadr 30 times
-              p
-                mixin verses(qadr)
 
-          li After Salaam Recite the following Ayats 
-              p 
-                mixin verses(hood)
-              p
-                mixin verses(yunus)
-              p
-                mixin dua(ruyatihilal)
+          li Recite Surah Ikhlaas as in the first rakaat, in 5 parts separated by ruku
+
+          li Before the last (e.g. 10th) Ruku, recite Qunut
+
+          li Perform the sujud as usual followed by tashshud
+
+          li Say salaam and complete the prayer
 
        include ../sharing

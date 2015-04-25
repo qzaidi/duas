@@ -17,10 +17,10 @@ block content
         mixin breadcrumb([{ href: '/quran', text: 'Quran' }, { href: '/quran/index', text: 'Chapters'},{ href: '/quran/'+chapter.id, text: chapter.tname }])
 
         div.ui-field-contain(data-role="controlgroup",data-type="horizontal",data-mini="true")
-          a(href="#{helpers.appendQueryToURL(url,'lang=ar')}",data-role="button") Arabic 
-          a(href="#{helpers.appendQueryToURL(url,'lang=en')}",data-role="button") English
-          a(href="#{helpers.appendQueryToURL(url,'lang=ur')}",data-role="button") Urdu
-          a(href="#{helpers.appendQueryToURL(url,'lang=hi')}",data-role="button") Hindi
+          a(href="#{helpers.setLanguage(url,'ar')}",data-role="button") Arabic 
+          a(href="#{helpers.setLanguage(url,'en')}",data-role="button") English
+          a(href="#{helpers.setLanguage(url,'ur')}",data-role="button") Urdu
+          a(href="#{helpers.setLanguage(url,'hi')}",data-role="button") Hindi
         br
 
         table.quran(cellpadding=0,cellspacing=0,border=0)
