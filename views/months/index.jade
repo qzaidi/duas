@@ -17,6 +17,14 @@ block content
         p
           !{info.description}
 
+         if info.collection
+           h4 
+              a(href='/tag/' + info.collection) Supplications &amp; Ziyarats for #{month}
+ 
+      .padpage
+        h2
+        span.h2 Events in #{month}
+
         .projects
           ul(data-role='listview')
             each event in events
@@ -26,8 +34,4 @@ block content
                   h3 #{event.name}
                   p #{datehelper(event.hijridate,event.hijrimonth)}
 
-         if info.collection
-           h4 
-             a(href='/tag/' + info.collection) Supplications &amp; Ziyarats for #{month}
- 
        include ../sharing
