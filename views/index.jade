@@ -14,7 +14,11 @@ block content
               span.month #{hijri.monthName}
               span.day #{hijri.day}
           #coverVerse(style=verse.style) 
-            a(href=verse.href,alt=verse.attrib) !{verse.arabic} 
+            if (verse.href)
+              a(href=verse.href,alt=verse.attrib) !{verse.arabic} 
+            else
+              !{verse.arabic}
+            span.right #{verse.attrib}
           a(href=verse.href)
             img(style="vertical-align:middle",src='/img/covers/#{verse.background}', alt='Sahifa-e-Sajjadiya')
         ul.menu

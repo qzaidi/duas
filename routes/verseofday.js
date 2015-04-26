@@ -34,6 +34,7 @@ var vod = {
     
     req.verseofday.background = selected.image || 'quranlight.jpg';
     req.verseofday.style = selected.style || '';
+    req.verseofday.attrib = selected.attrib || '';
 
     next();
   }
