@@ -16,8 +16,8 @@ block content
           #coverVerse(style=verse.style) 
             if (verse.href)
               a(href=verse.href,alt=verse.attrib) !{verse.arabic} 
-            else
-              !{verse.arabic}
+            else 
+              div !{verse.arabic}
             span.right #{verse.attrib}
           a(href=verse.href)
             img(style="vertical-align:middle",src='/img/covers/#{verse.background}', alt='Sahifa-e-Sajjadiya')
@@ -98,6 +98,10 @@ block content
                 a.box(href='/settings', data-transition='fade', data-direction='reverse')
                   img(src='/img/icon-settings.png', alt='Settings')
                   span.text  Settings
+              li.square
+                a.box(href='http://duas.org', data-transition='fade', data-direction='reverse')
+                  img(src='/img/duas_logo.png', alt='Settings')
+                  span.text  Desktop Site
 
     if (scripts.js)
       script(src="#{scripts.js}",defer="defer")
