@@ -20,7 +20,9 @@ block content
               div !{verse.arabic}
             span.right #{verse.attrib}
           a(href=verse.href)
-            img(style="vertical-align:middle",src='/img/covers/#{verse.background}', alt='Sahifa-e-Sajjadiya')
+            img(usemap="#imagemap",style="vertical-align:middle",src='/img/covers/#{verse.background}',alt='Sahifa-e-Sajjadiya')
+            map(name="imagemap",id="imagemap")
+              area(alt="Desktop Site",title="http://duas.org/",Href="http://duas.org/",shape="rect",coords="72,558,220,615",style="outline:none;")
         ul.menu
           li
             ul.section
