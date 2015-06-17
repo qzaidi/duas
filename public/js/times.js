@@ -55,18 +55,23 @@ $(document).on('pageinit','#prayerTimesPage', function(ev) {
       document.getElementById('time_'+i).innerHTML = times[key];
     }
 
-    table = '<table><tr><th>Date</th><th>Sehar</th><th>Iftar</th></tr>';
+    hd = hijri.getHijriDate()
+    gd = new Date()
 
-    for (var i = 1; i < 30; i++) {
-      date = new Date(2014,06,i);
-      times = prayTimes.getTimes(date, [latitude, longitude]);
-      iftar = times.maghrib.split(':').map(function(k,i) { return (i==1)?Number(k) + 10:k; }).join(':');
-      
-      table += '<tr><td>' + date.toLocaleDateString() + '</td><td>' + times.imsak + '</td><td>' + iftar + '</td></tr>';
+    if (hd.month == 8 && hd.day > 26 || hd.month == 9 ) {
+      table = '<table><tr><th>Date</th><th>Sehar</th><th>Iftar</th></tr>';
+
+      for (var i = 1; i < 33; i++) {
+        date = new Date(gd.getTime() + i*86400000);
+        times = prayTimes.getTimes(date, [latitude, longitude]);
+        iftar = times.maghrib.split(':').map(function(k,i) { return (i==1)?Number(k) + 10:k; }).join(':');
+        
+        table += '<tr><td>' + date.toLocaleDateString() + '</td><td>' + times.imsak + '</td><td>' + iftar + '</td></tr>';
+      }
+      table += '</table>';
+
+      document.getElementById('iftartable').innerHTML = table;
     }
-    table += '</table>';
-
-    //document.getElementById('iftartable').innerHTML = table;
 
     $.ajax('http://api.geonames.org/findNearbyPlaceNameJSON?lat=' + latitude + '&lng=' + longitude + '&username=qasim', 
       { 
