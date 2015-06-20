@@ -19,10 +19,10 @@ block content
             else 
               div !{verse.arabic}
             span.right #{verse.attrib}
-          a(href=verse.href)
-            img(usemap="#imagemap",style="vertical-align:middle",src='/img/covers/#{verse.background}',alt='Sahifa-e-Sajjadiya')
-            map(name="imagemap",id="imagemap")
-              area(alt="Desktop Site",title="http://duas.org/",Href="http://duas.org/",shape="rect",coords="72,558,220,615",style="outline:none;")
+          img(id="image-maps-2015-06-20-002144",src="/img/covers/#{verse.background}",border="0",usemap="#image-maps-2015-06-20-002144",alt="")
+          map(name="image-maps-2015-06-20-002144",id="image-maps-2015-06-20-002144")
+            area(alt="Duas.org",title="Duas.org",href="http://duas.org",shape="rect",coords="81,500,220,600",style="outline:none;",target="_blank")
+            area(alt="",title="",href="#{verse.href}",shape="rect",coords="0,0,300,500",style="outline:none;",target="_self")
         ul.menu
           li
             ul.section
