@@ -385,18 +385,16 @@ var quran = {
         return next()
       }
 
-      console.log('searching for ' + req.search.term);
-
       qurandb.chapter(null, function(err,chapters) {
         rows.forEach(function(x) {
+          var desc = (x.en.length > 80)?x.en.substring(0,77) + '...':x.en
           results.push({ 
-            title: x.chapter + ':' + x.verse, 
+            title: x.chapter + ':' + x.verse + ' - ' + chapters[x.chapter].arname, 
             type: 'quran',
-            description: chapters[x.chapter].tname + ' verse ' + x.verse,
+            description: chapters[x.chapter].tname + ' - ' + desc,
             href: '/quran/' + x.chapter + '/' + x.verse
           });
         });
-        console.log(results);
         next();
       });
     })

@@ -1,11 +1,17 @@
 $( document ).on( "pageinit", "#searchPage", function() {
   $( "#autocomplete" ).on("listviewbeforefilter", function ( e, data ) {
     var $ul = $( this ),
+    threshold = 2;
     $input = $( data.input ),
     value = $input.val(),
     html = "<li>Your query returned no results.</li>";
+
     $ul.html( "" );
-    if ( value && value.length > 2 ) {
+    if (document.location.search == "?sc=quran") {
+      threshold = 3
+    }
+
+    if ( value && value.length > threshold ) {
       $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
       $ul.listview( "refresh" );
       $.ajax({

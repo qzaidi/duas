@@ -9,8 +9,6 @@ var hadith = {
     var id = Math.min(req.params.id,40);
     var query = 'select * from toc where type = "hadith" and urlkey = "' + key + '"';
 
-    console.log(query);
-
     db.get(query, function(err,data) {
       if (err || !data) {
         err = new Error('Not Found');
@@ -30,7 +28,6 @@ var hadith = {
     var query = 'select * from toc where type = "hadith"';
     db.all(query, function(err,rows) {
       if (err || !rows || rows.length == 0) {
-        console.log(err,rows);
         err = new Error('Not Found');
         err.status = 404;
       }
@@ -49,7 +46,6 @@ var hadith = {
       var rand2 = (Math.random()*40)|0 + 1;
       var selected = rows[rand1];
       var query = 'select * from ' + selected.tabname + ' where rowid = ' + rand2;
-      console.log(query);
       db.get(query, function(err,row) {
         req.data = { hadith: row, id: rand2, collection: selected.urlkey, name: selected.enname , helpers: helpers};
         next(err);
