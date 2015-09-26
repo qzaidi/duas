@@ -9,7 +9,7 @@ $( document ).on( "pageinit", "#searchPage", function() {
       $ul.html( "<li><div class='ui-loader'><span class='ui-icon ui-icon-loading'></span></div></li>" );
       $ul.listview( "refresh" );
       $.ajax({
-        url: "/search",
+        url: "/search" + document.location.search,
         dataType: "jsonp",
         crossDomain: true,
         data: {

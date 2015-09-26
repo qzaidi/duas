@@ -372,6 +372,34 @@ var quran = {
 
   salat: function(req,res,next) {
     res.render('quran/salat',req.data);
+  },
+
+  search : function(req,res,next) {
+    qurandb.search('en',req.search.term, function(err,rows) {
+      var results = req.search.results;
+      if (err) {
+        console.log('error in quran search ' + err);
+      }
+
+      if (err || rows.length == 0 || req.query.sc != 'quran') {
+        return next()
+      }
+
+      console.log('searching for ' + req.search.term);
+
+      qurandb.chapter(null, function(err,chapters) {
+        rows.forEach(function(x) {
+          results.push({ 
+            title: x.chapter + ':' + x.verse, 
+            type: 'quran',
+            description: chapters[x.chapter].tname + ' verse ' + x.verse,
+            href: '/quran/' + x.chapter + '/' + x.verse
+          });
+        });
+        console.log(results);
+        next();
+      });
+    })
   }
 };
 

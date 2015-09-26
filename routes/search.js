@@ -9,14 +9,18 @@ function toc_link(x) {
 }
 
 var search = {
+
+  setup: function(req,res,next) {
+    var query;
+    req.search = { term: req.query.q , results: []};
+    if (!req.query.q) {
+      return next(new Error('search query missing'))
+    }
+    next()
+  },
   
   toc: function(req,res,next) {
     var query;
-    req.search = { term: '' , results: []};
-    if (!req.query.q) {
-      return next();
-    }
-
     req.search.term = req.query.q;
     query = 'select * from toc where type like "%' + req.search.term + '%" or urlkey like "%' 
              + req.search.term + '%" or enname like "%' + req.search.term + '%" order by type';
@@ -28,14 +32,15 @@ var search = {
       }
 
       if (rows) {
-        req.search.results = rows.map(function(x) {
-                    return {
-                      title: x.enname,
-                      type: x.type,
-                      description: x.endesc,
-                      href: toc_link(x)
-                    };
-                  });
+        results = req.search.results;
+        rows.forEach(function(x) {
+          results.push({
+                        title: x.enname,
+                        type: x.type,
+                        description: x.endesc,
+                        href: toc_link(x)
+                      });
+        });
       }
 
       next();

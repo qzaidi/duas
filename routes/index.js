@@ -87,7 +87,7 @@ module.exports = function(app) {
   app.get(/^\/cache\/(\d+)x(\d+)\/(.*)$/, imageresize.render);
 
   app.get('/searchpage', search.render);
-  app.get('/search', search.toc, events.search, gallery.search, salat.search, search.json);
+  app.get('/search', search.setup, quran.search, search.toc, events.search, gallery.search, salat.search, search.json);
   app.get('/autocomplete.json', search.toc, search.autocomplete);
 
   app.get('/prayertimes', praytimes.render);
