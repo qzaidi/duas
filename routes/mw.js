@@ -21,7 +21,6 @@ var middleware = {
 
   render: function(page) {
     return function(req,res,next) {
-      console.log(req.data);
       res.render(page,req.data);
     };
   },
