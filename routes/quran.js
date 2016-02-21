@@ -5,6 +5,7 @@ var util = require('util');
 var qurandb = require('quran');
 var db = require('../model/duas');
 var helpers = require('./helpers');
+var topics = require('./quran-topics')
 
 
 var langmap = {
@@ -103,6 +104,47 @@ var quran = {
 
       res.render('quran/juzindex',{ ajza: ajza.slice(1,31) });
     });
+  },
+
+  // dir, from a to z
+  topicdir: function(req,res,next) {
+    var alpha = Object.keys(topics.byalphabet).map(function(x) {
+      return x.toUpperCase()
+    })
+    res.render('quran/topic/topic', { topics: alpha, link: function(x,idx) {
+      return '/quran/topics/' + x.toLowerCase();
+    },
+    text: function(x,idx) {
+      return x
+    },
+    title: "Topic Index"
+    });
+  },
+
+  // quran/topics/i
+  topics: function(req,res,next) {
+    var alpha = req.params.alpha;
+    res.render('quran/topic/topic', { topics: topics.byalphabet[alpha] , 
+    link: function(x,idx) {
+      return '/quran/topic/' + idx;
+    },
+    text: function(x,idx) {
+      return topics.data[idx][0]
+    },
+    title: alpha.toUpperCase()
+    });
+  },
+
+  topic: function(req,res,next) {
+    var topic = req.params.topic
+    var data = topics.data[topic]
+    var ayats = data.slice(1)
+    res.render('quran/topic/topic', { topics: ayats, title: data[0] , link: function(x,idx) {
+      return '/quran/' + x.split(':').join('/');
+    },
+    text: function(x,idx) {
+      return x
+    }});
   },
 
   chapterInfo: function(req,res,next) {

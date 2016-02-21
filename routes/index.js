@@ -59,6 +59,11 @@ module.exports = function(app) {
   app.get('/random/quran',quran.random);
   app.get('/quran/index', quran.index);
   app.get('/quran/juz', quran.juz);
+
+  app.get('/quran/topic/:topic', quran.topic);
+  app.get('/quran/topics/:alpha',quran.topics);
+  app.get('/quran/topics',quran.topicdir);
+
   app.get('/quran/salat', quran.getverses('fatiha',1,0,7), quran.getverses('kursi',2,254,3),
                           quran.getverses('mulk',3,25,2), quran.getverses('shahadah',3,17,2), 
                           quran.salat);
