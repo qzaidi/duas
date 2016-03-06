@@ -11,6 +11,18 @@ var page = {
               image: '//duas.mobi/img/icon-ziyarat.png'
            };
 
+function validate(req,res,next) {
+  var name = req.params.name;
+  db.get('select * from toc where urlkey = "' + name + '"', function(err,info) {
+    if (!err && !info) {
+      err = new Error('Not Found');
+      err.status = 404;
+    }
+    req.info = info;
+    next(err);
+  });
+}
+
 module.exports = function(app) {
 
   app.get('/ziyaraat', function(req,res) { 
@@ -42,15 +54,6 @@ module.exports = function(app) {
     res.render('ziyaraat/salwat');
   });
 
-  app.get('/ziyarat/:name', function(req,res,next) {
-    var name = req.params.name;
-    db.get('select * from toc where urlkey = "' + name + '"', function(err,info) {
-      if (!err && !info) {
-        err = new Error('Not Found');
-        err.status = 404;
-      }
-      req.info = info;
-      next(err);
-    });
-  },ratings.get,verses.render);
+  app.get('/ziyarat/:name/slides',validate,ratings.get,verses.reveal);
+  app.get('/ziyarat/:name', validate,ratings.get,verses.render);
 };

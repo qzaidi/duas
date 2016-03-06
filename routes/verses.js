@@ -45,52 +45,57 @@ var verses = {
     }
   },
 
-  render: function(req,res,next) {
+  render: generator('verses'),
+  reveal: generator('reveal')
+};
+
+function generator(templ) { 
+  return function(req,res,next) {
     db.all('select * from ' + req.params.name, function(err,rows) {
       var lang = req.query.lang || 'english';
       var langdesc = langmap[lang];
       var info = req.info;
       var page = { title : info.enname + ' with ' + langdesc, image: '//duas.mobi/img/icon-' + info.type + '.png'};
-      var duration, min,sec,ptm;
-      var cls = {};
-      var url;
+        var duration, min,sec,ptm;
+        var cls = {};
+        var url;
 
-      if (info.arname) {
-        page.title += ' - ' + info.arname;
-      }
-
-      cls[lang] = 'ui-btn-active';
-
-      page.description = info.collection + ' - ' + info.endesc + ' with ' + langdesc;
-      page.keywords = info.meta || '';
-      url = 'http://duas.mobi/' + info.type + '/' + info.urlkey;
-
-      if (info.audio) {
-        page.description += ' and mp3 audio';
-      }
-      if (!rows[0][lang]) {
-        rows[0][lang] = langdesc + ' Coming Soon ...';
-      }
-
-      if (duration = rows[rows.length - 1].cue) {
-        min = (duration/60)|0;
-        sec = duration - min*60;
-        ptm = 'PT' + min + 'M' + sec + 'S'
-      }
-
-      if (info.link) {
-        try {
-          info.link = JSON.parse(info.link);
-        } catch(e) {
-          console.error('Failed to parse link for ' + req.params.name , info.link);
+        if (info.arname) {
+          page.title += ' - ' + info.arname;
         }
-      }
-      var templ = req.query.reveal?'reveal':'verses';
-      res.render(templ, { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, cls: cls,
-                             rating: (req.rating*10|0)/10, votes: req.votes|0, duration: ptm, url: url, helpers: helpers});
+
+        cls[lang] = 'ui-btn-active';
+
+        page.description = info.collection + ' - ' + info.endesc + ' with ' + langdesc;
+        page.keywords = info.meta || '';
+        url = 'http://duas.mobi/' + info.type + '/' + info.urlkey;
+
+        if (info.audio) {
+          page.description += ' and mp3 audio';
+        }
+        if (!rows[0][lang]) {
+          rows[0][lang] = langdesc + ' Coming Soon ...';
+        }
+
+        if (duration = rows[rows.length - 1].cue) {
+          min = (duration/60)|0;
+          sec = duration - min*60;
+          ptm = 'PT' + min + 'M' + sec + 'S'
+        }
+
+        if (info.link) {
+          try {
+            info.link = JSON.parse(info.link);
+          } catch(e) {
+            console.error('Failed to parse link for ' + req.params.name , info.link);
+          }
+        }
+        res.render(templ, { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, cls: cls,
+          rating: (req.rating*10|0)/10, votes: req.votes|0, duration: ptm, url: url, helpers: helpers});
     });
   }
-};
+
+}
 
 module.exports = verses;
 
