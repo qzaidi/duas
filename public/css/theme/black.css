@@ -3,8 +3,6 @@
  *
  * Copyright (C) 2015 Hakim El Hattab, http://hakim.se
  */
-@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600');
-
 @font-face {
   font-family: 'Scheherazade';
   src: url('/fonts/scheherazade-webfont.eot') format('embedded-opentype'),
