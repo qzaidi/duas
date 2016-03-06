@@ -1,0 +1,5 @@
+if environment == 'development'
+  script(src='/js/reveal.js')
+  script(src='/js/revealaudio.js')
+else
+  script(src="#{static_url('/js/<PLACEHOLDERFORMINIFIEDFILE>')}",defer='defer')

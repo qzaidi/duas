@@ -1295,16 +1295,6 @@ form li {
 
 }
 
-.arabic {
-  font-family: 'Scheherazade', serif;
-  font-size: 28px;
-  direction: rtl;
-  background-color: #FFFFF2;
-  padding: 5px;
-  text-align: justify;
-  word-spacing: 5px;
-}
-
 .doublespaced {
   line-height: 2.35em;
 }

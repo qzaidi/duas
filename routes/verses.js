@@ -85,7 +85,8 @@ var verses = {
           console.error('Failed to parse link for ' + req.params.name , info.link);
         }
       }
-      res.render('verses', { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, cls: cls,
+      var templ = req.query.reveal?'reveal':'verses';
+      res.render(templ, { data: rows, info: info, page: page, lang: lang , langdesc: langdesc, cls: cls,
                              rating: (req.rating*10|0)/10, votes: req.votes|0, duration: ptm, url: url, helpers: helpers});
     });
   }

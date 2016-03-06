@@ -81,6 +81,7 @@ function minifyJS(tmpl) {
     try {
       minified = uglify.minify(flist);
     } catch(e) {
+      console.log(flist)
       errHandler(e);
     }
 
@@ -112,6 +113,8 @@ function errHandler(e) {
 process.on('uncaughtException', errHandler);
 
 minifyCSS('views/layout/css');
+minifyCSS('views/layout/revealcss');
+minifyJS('views/layout/revealjs');
 minifyJS('views/layout/footerjs');
 
 console.log('deployment completed');

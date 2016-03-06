@@ -1,0 +1,45 @@
+doctype html
+html(xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#",xmlns:fb="https://www.facebook.com/2008/fbml")
+  head
+    meta(charset="utf-8")
+    title #{page.title}
+    meta(name="description",content=page.description)
+    meta(name="keywords",content=page.keywords)
+    meta(name="author",content=page.author)
+    meta(property="og:image",content="#{page.image}")
+    meta( name="apple-mobile-web-app-capable",content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style",content="black-translucent")
+    meta(name="viewport",content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui")
+    link(rel="search",title="Search Duas,Ziyarats",href="opensearch.xml",type="application/opensearchdescription+xml")
+    link(href="https://plus.google.com/+DuasMobi",rel="publisher")
+    include layout/revealcss
+    include ga
+
+
+  body
+    if data[0].cue && info.audio
+      div(style="position:absolute; bottom:0; left:0; display:block; border:none;") 
+         img#audiocontrol(src="/img/icon-audio.png",width=32,height=32,title="Audio available. Press a to pause/resume, or use arrow keys for manual play")
+         small(style='color: #ffffff') Press 'a' on your keyboard to pause/resume audio, and use &larr; or &rarr; for manual control
+    .reveal
+      .slides
+        section(data-autoslide=data[0].cue*1000)
+          h1.arabic #{info.arname}
+          br
+          p #{info.enname}
+        each row,idx in data
+          section(data-autoslide=helpers.interval(data,idx))
+            h1.arabic #{row.arabic}
+            br
+            p #{row[lang]}
+    != "<script type='text/javascript'>"
+    != "var cues = ["
+       if (data[0].cue)
+         each row in data 
+           | !{row.cue} ,
+    != " ]; </script>"
+    include layout/revealjs
+    script.
+      
+    if data[0].cue
+      audio.noprint#amtag(itemprop="audio",style="width: 100%",src="#{info.audio}",controls="controls",autoplay="true")

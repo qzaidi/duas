@@ -40,7 +40,15 @@ var helpers = {
       anum += arabdigits[num[i]];
     }
     return anum;
+  },
+
+  interval: function(data,idx) {
+    if (data.length-1 == idx) {
+      return false
+    }
+    return (data[idx+1].cue - data[idx].cue)*1000
   }
+
 
 };
 
