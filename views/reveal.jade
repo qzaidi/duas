@@ -6,7 +6,7 @@ html(xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#",xmlns:fb=
     meta(name="description",content=page.description)
     meta(name="keywords",content=page.keywords)
     meta(name="author",content=page.author)
-    meta(property="og:image",content="#{page.image}")
+    meta(property="og:image",content="/img/slidecover"+helpers.Oneof(info.cover,"duabg.jpg"))
     meta( name="apple-mobile-web-app-capable",content="yes")
     meta(name="apple-mobile-web-app-status-bar-style",content="black-translucent")
     meta(name="viewport",content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui")
@@ -23,7 +23,7 @@ html(xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#",xmlns:fb=
          small(style='color: #ffffff') Press 'a' on your keyboard to pause/resume audio, and use &larr; or &rarr; for manual control
     .reveal
       .slides
-        section(data-autoslide=data[0].cue*1000)
+        section(data-autoslide=data[0].cue*1000,data-background="/img/slidecover/" + helpers.Oneof(info.cover,"duabg.jpg"))
           h1.arabic #{info.arname}
           br
           p #{info.enname}

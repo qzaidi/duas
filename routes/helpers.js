@@ -47,7 +47,13 @@ var helpers = {
       return false
     }
     return (data[idx+1].cue - data[idx].cue)*1000
+  },
+
+  Oneof: function(data1,data2) {
+    return data1 || data2 
   }
+
+
 
 
 };

@@ -36,6 +36,19 @@ var ziyarat = {
     });
   },
 
+  create: function(req,res,next) {
+    db.insert(req.params.name,req.body, function(err,data) {
+      var result = { "Result" : "OK" };
+      if (err) {
+        result.RESULT = 'ERROR';
+        result.Message = err.message;
+      } else {
+        result.Record = req.body;
+      }
+      res.json(result);
+    });
+  },
+
 };
 
 module.exports = ziyarat;

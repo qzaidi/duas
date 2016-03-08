@@ -17,7 +17,13 @@ var hadith = {
       }
 
       db.get('select * from  ' + data.tabname + ' where rowid = ' + id, function(err,row) {
-        req.data = { hadith: row, id: id, collection: key, name: data.enname , helpers: helpers};
+        var page = {
+          title: 'Traditions - ' + key + ': duas.mobi',
+          image: '//duas.mobi/img/icon-hadith.png',
+          keywords: 'Traditions, Islam, Ahadith, hadith, Ahlulbayt, ' + key,
+          description: 'Islamic Traditions from the Ahlulbayt, Hadith about ' + key,
+        }
+        req.data = { hadith: row, id: id, collection: key, name: data.enname , helpers: helpers, page: page};
         next(err);
       });
 

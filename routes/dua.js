@@ -4,6 +4,29 @@ var db = require('../model/duas');
 var ratings = require('./ratings');
 var verses = require('./verses');
 
+function validateMunajat(req,res,next) {
+  db.get('select * from toc where urlkey = "' + req.params.name + '" ', function(err,info) {
+    if (!err && !info) {
+      err = new Error('Not Found');
+      err.status = 404;
+    }
+    req.info = info;
+    next(err);
+  });
+}
+
+function validateDua(req,res,next) {
+  db.get('select * from toc where urlkey = "' + req.params.name.toLowerCase() + '" ', function(err,info) {
+    if (!info) {
+      err = new Error('Not Found');
+      err.status = 404;
+    }
+    req.info = info;
+    next(err);
+  });
+}
+
+
 module.exports = function(app) {
 
   app.get('/random/dua', function(req,res) {
@@ -72,16 +95,8 @@ module.exports = function(app) {
     res.redirect('/dua');
   });
 
-  app.get('/dua/:name', function(req,res,next) {
-    db.get('select * from toc where urlkey = "' + req.params.name.toLowerCase() + '" ', function(err,info) {
-      if (!info) {
-        err = new Error('Not Found');
-        err.status = 404;
-      }
-      req.info = info;
-      next(err);
-    });
-  }, ratings.get, verses.render);
+  app.get('/dua/:name/slides', validateDua,ratings.get, verses.reveal);
+  app.get('/dua/:name', validateDua,ratings.get, verses.render);
 
   app.get('/sermon/:name', function(req,res,next) {
     db.get('select * from toc where urlkey = "' + req.params.name.toLowerCase() + '" ', function(err,info) {
@@ -110,16 +125,8 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/munajat/:name', function(req,res,next) {
-    db.get('select * from toc where urlkey = "' + req.params.name + '" ', function(err,info) {
-      if (!err && !info) {
-        err = new Error('Not Found');
-        err.status = 404;
-      }
-      req.info = info;
-      next(err);
-    });
-  },ratings.get,verses.render);
+  app.get('/munajat/:name/slides',validateMunajat,ratings.get,verses.reveal);
+  app.get('/munajat/:name',validateMunajat,ratings.get,verses.render);
 
   app.get('/munajats/collection/:name',verses.collection('munajat'));
 

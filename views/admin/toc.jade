@@ -60,6 +60,15 @@ block content
               meta: {
                 title: 'Keywords'
               },
+              cover: {
+                title: 'Cover',
+                  display: function(data) {
+                    if (data.record.cover) {
+                      return '<img src="/img/slidecover/' + data.record.cover + '" width=135 height=135/>';
+                    }
+                    return 'n/a';
+                  }
+              },
               link: {
                 title: 'Links'
               }
