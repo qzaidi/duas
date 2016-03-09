@@ -4,6 +4,7 @@ Reveal.initialize({
   center:     true,
   transition: 'slide',
   slideNumber: true,
+  hideAddressBar: true,
   help: true,
 });
 Reveal.addEventListener('autoslidepaused', function(ev) {
