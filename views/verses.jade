@@ -71,7 +71,9 @@ block content
           hr
           .left(itemscope,itemtype="http://schema.org/Article")
             span(itemprop="name",itemtype="http://schema.org/Article") #{info.enname} 
-            img.hidden(itemprop="thumbnailUrl",src="#{page.image}") 
+            img.hidden(itemprop="image",src="#{page.image}") 
+            meta(itemprop="headline",content="#{page.description}")
+            meta(itemprop="datePublished",content="2014-01-09T08:40:00+05:30")
             span(itemprop="aggregateRating",itemscope itemtype="http://schema.org/AggregateRating")
               | rated 
               span(itemprop="ratingValue") #{rating} 
@@ -84,6 +86,8 @@ block content
               | votes. 
 
          include sharing
+         a(href=url + '/slides',tooltip="view fullscreen")
+           img(src="/img/fullscreen.png")
         br
 
       if (info.audio)
