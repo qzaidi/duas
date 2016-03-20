@@ -1,5 +1,14 @@
 extends layout
 
+append htmlhead
+  link(rel="alternate",hreflang="en",href="#{url}")
+  if(data[0].urdu) 
+    link(rel="alternate",hreflang="ur",href="#{url}?lang=urdu")
+  if(data[0].hindi)
+    link(rel="alternate",hreflang="hi",href="#{url}?lang=hindi")
+  if(data[0].id)
+    link(rel="alternate",hreflang="id",href="#{url}?lang=id")
+
 block content
   div(role='main')
     .page.innerPage.versePage(data-role="page")
