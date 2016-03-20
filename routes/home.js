@@ -35,7 +35,8 @@ var home = {
     res.render('index', {
       hijri: req.hijri,
       scripts: req.scripts,
-      verse: req.verseofday
+      verse: req.verseofday,
+      url : "http://duas.mobi/",
     });
   }
 

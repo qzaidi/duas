@@ -64,6 +64,10 @@ function generator(templ) {
           page.title += ' - ' + info.arname;
         }
 
+        if (info.cover) {
+          page.image = '//duas.mobi/img/slidecover/' + info.cover
+        }
+
         cls[lang] = 'ui-btn-active';
 
         page.description = info.collection + ' - ' + info.endesc + ' with ' + langdesc;
