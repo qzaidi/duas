@@ -22,6 +22,23 @@ function getPNum(verse) {
  return  ((verse - 1)/npp)|0;
 }
 
+function getnextlink(chapterInfo, currentChapter,currentVerse) {
+  var vnum = Number(currentVerse) + 1;
+  var cnum = currentChapter;
+
+  // handle chapter endings
+  if (vnum > chapterInfo.ayas) {
+    vnum = 1;
+    cnum++;
+    if (cnum > 114) {
+      return "/dua/quran";
+    }
+  }
+
+  var link = '/quran/' + cnum + '/' + vnum;
+  return link;
+}
+
 function getlink(page,npp, surat,lang) {
   var chapter = Number(surat.id);
   var pnum = page;
@@ -276,15 +293,14 @@ var quran = {
   },
 
   renderverse: function(req,res,next) {
-    var link = '/quran/' + req.params.chapter + '/' + (Number(req.params.verse) + 1);
+    var link = getnextlink(req.chapterInfo,req.params.chapter,req.params.verse);
     var pnum = getPNum(req.params.verse);
     var audio = 'http://www.everyayah.com/data/Abdul_Basit_Mujawwad_128kbps/' +
               leadZeroes(req.params.chapter,3) + leadZeroes(req.params.verse,3) + '.mp3';
 
     page.title = req.chapterInfo.tname + ':' + req.ayah.verse + ' - Holy Quran';
     page.description = 'Surat ' + req.chapterInfo.tname + ' (' + req.chapterInfo.arname + ' ) verse '  + req.params.verse + ' - Holy Quran ';
-    
-    
+
     res.render('quran/verse', { verse: req.params.verse, 
                                 ayah: req.ayah, 
                                 chapter: req.chapterInfo, 
