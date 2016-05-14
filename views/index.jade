@@ -15,11 +15,11 @@ block content
               span.day #{hijri.day}
           #coverVerse(style=verse.style) 
             if (verse.href)
-              a(href=verse.href,alt=verse.attrib) !{verse.arabic} 
+              a(href=verse.href,alt=verse.attrib,rel=verse.linkrel) !{verse.arabic} 
             else 
               div !{verse.arabic}
             span.right #{verse.attrib}
-          img(id="image-maps-2015-06-20-002144",src="/img/covers/#{verse.background}",border="0",usemap="#image-maps-2015-06-20-002144",alt="")
+          img(id="image-maps-2015-06-20-002144",src="/img/covers/#{verse.background}",border="0",usemap="#image-maps-2015-06-20-002144",alt="",style="border-radius: 5px;")
           map(name="image-maps-2015-06-20-002144",id="image-maps-2015-06-20-002144")
             area(alt="Duas.org",title="Duas.org",href="http://duas.org",shape="rect",coords="81,500,220,600",style="outline:none;",target="_blank")
             area(alt="",title="",href="#{verse.href}",shape="rect",coords="0,0,300,500",style="outline:none;",target="_self")

@@ -30,6 +30,7 @@ var vod = {
 
     if (selected.href) {
       req.verseofday.href = selected.href;
+      req.verseofday.linkrel = selected.linkrel;
     }
     
     req.verseofday.background = selected.image || 'quranlight.jpg';
