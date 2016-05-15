@@ -20,6 +20,7 @@ var verses = require('./verses');
 var tag = require('./tag');
 var duasorg = require('./duasorg');
 var hadith = require('./hadith');
+var slides = require('./slides');
 
 var mw = require('./mw');
 
@@ -123,6 +124,8 @@ module.exports = function(app) {
   app.get('/salat/:key', salat.verses, salat.duas, salat.render);
 
   app.get('/newsletter', mw.render('newsletter'));
+
+  app.get('/slides',slides.index);
 
   app.get('/*', mw.notfound);
 

@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#slideIndex(data-role="page")
+      .topGrahic
+      a.menuButton(href="/searchpage")
+        img(src="/img/menu-search.png",alt="Duas Search")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='#',data-rel='back')
+            img(src='/img/icon-back.png',alt='Back')
+            | Slideshows
+
+        p
+          | These duas/ziyarats are available as slideshows with audio. Press 'a' to pause audio, or use arrow keys / right swipe on
+          | mobile to stop auto play.
+        .clients
+            ul(data-role='listview')
+              each row in slides
+                li
+                  a(href='/#{row.type}/#{row.urlkey}/slides',rel="external")
+                   img.ui-li-icon(src='/img/sample-images/icon2.png', alt='duas')
+                   | #{row.enname}
