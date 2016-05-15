@@ -818,7 +818,13 @@ html:-moz-full-screen-ancestor {
   top: 0;
   left: 0;
   -webkit-perspective: 600px;
-          perspective: 600px; }
+          perspective: 600px; 
+  -webkit-filter: blur(3px);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px);
+}
 
 .reveal .slide-background {
   display: none;
