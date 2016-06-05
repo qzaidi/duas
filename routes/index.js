@@ -26,6 +26,7 @@ var mw = require('./mw');
 
 module.exports = function(app) {
   app.get('/', home.checkForSpecialOccasion, mw.hijri, verseofday.init, verseofday.get, home.index);
+  app.get('/ramadhan', home.checkForSpecialOccasion, mw.hijri, verseofday.init, verseofday.get, home.ramadhan);
 
   app.get('/about', about.index);
   app.get('/about/:page', about.page);
