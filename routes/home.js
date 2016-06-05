@@ -21,25 +21,22 @@ var home = {
       };
     } 
     
-    /* Don't show popup on desktop
-    else if (/Mobi/.test(ua) == false) {
-        // desktop browser, run script
-        if (!req.cookies.mobipopup) {
-          req.scripts.js = '/js/popup.js';
-          console.log('Going to serve popup');
-          res.cookie('mobipopup', '1', { maxAge: 90000000, httpOnly: true })
-        }
-    }
-    */
-
     res.render('index', {
       hijri: req.hijri,
       scripts: req.scripts,
       verse: req.verseofday,
       url : "http://duas.mobi/",
     });
-  }
+  },
 
+  ramadhan: function(req,res,next) {
+    res.render('ramadhan', {
+      hijri: req.hijri,
+      scripts: req.scripts,
+      verse: req.verseofday,
+      url : "http://duas.mobi/",
+    });
+  }
 };
 
 module.exports = home;

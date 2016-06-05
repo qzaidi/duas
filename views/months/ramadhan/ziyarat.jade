@@ -1,0 +1,36 @@
+extends ../../layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+
+      .padpage.padtop
+        h1
+          a.back.ui-link(href='/',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Ramadhan ul Mubarak - Ziyarat
+
+       .padpage
+         h2
+         span.h2 Ziyarat Recitations for Ramadhan
+       ul(data-role='listview')
+         li
+           a(href='/ziyarat/imamhusainqadr')
+             img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Ziyarat of Imam Husain')
+             | Ziyarat of Imam Husain (AS) on Laylatul Qadr
+         li
+           a(href='/ziyarat/aminullah')
+             img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Ziyarat of Ameerul Momineen')
+             | Ziyarat Aminullah
+         li
+           a(href='/ziyarat/ashura')
+             img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Ziyarat Ashura')
+             | Ziyarat Ashura
+         li
+           a(href='/ziyarat/warisa')
+             img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Ziyarat Warisa')
+             | Ziyarat Warisa

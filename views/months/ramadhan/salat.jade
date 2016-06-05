@@ -1,0 +1,29 @@
+extends ../../layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+
+      .padpage.padtop
+        h1
+          a.back.ui-link(href='/',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Prayers for Ramadhan
+
+       .padpage
+         h2
+         span.h2 Duas after Salat
+
+       ul(data-role='listview')
+         li
+           a(href='/dua/yaaliyoyaazeem')
+             img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Dua-e-Salaat')
+             | Dua after every prayer (Ya Aliyo Ya Azeem)
+         li
+           a(href='/dua/allahhummaadkhil')
+             img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Dua-e-Allah Humma Adkhil ala')
+             | Dua after every prayer (Allah Humma Adkhil ala)

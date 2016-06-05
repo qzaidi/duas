@@ -1,0 +1,71 @@
+extends layout
+
+append htmlhead
+  if (scripts.css)
+    link(href='#{scripts.css}',rel='stylesheet',type='text/css')
+
+block content
+  div(role='main')
+    #menuPage.page.iscroll(data-role='page', data-cache='never')
+      .scroller
+        .company
+          a(href='/month/')
+            .calendar
+              span.month #{hijri.monthName}
+              span.day #{hijri.day}
+          #coverVerse(style=verse.style) 
+            if (verse.href)
+              a(href=verse.href,alt=verse.attrib,rel=verse.linkrel) !{verse.arabic} 
+            else 
+              div !{verse.arabic}
+            span.right #{verse.attrib}
+          img(id="image-maps-2015-06-20-002144",src="/img/covers/ramadhan2.jpg",border="0",usemap="#image-maps-2015-06-20-002144",alt="",style="border-radius: 5px;")
+          map(name="image-maps-2015-06-20-002144",id="image-maps-2015-06-20-002144")
+            area(alt="Duas.org",title="Duas.org",href="http://duas.org",shape="rect",coords="81,500,220,600",style="outline:none;",target="_blank")
+            area(alt="",title="",href="#{verse.href}",shape="rect",coords="0,0,300,500",style="outline:none;",target="_self")
+        ul.menu
+          li
+            ul.section
+              li.square
+                a.box(href='/months/ramadhan/crescent', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-ramadhan2.png', alt='Ramadhan Crescent')
+                  span.text Sighting the moon
+              li.square
+                a.box(href='/months/ramadhan/quran', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-quran.png', alt='Ramadhan Quran')
+                  span.text  Quran Recitations
+              li.square
+                a.box(href='/months/ramadhan/duas', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-dua.png', alt='Supplications')
+                  span.text  Daily Duas
+          li
+            ul.section
+              li.square
+                a.box(href='/months/ramadhan/iftar', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-iftar.png', alt='Sahar &amp; Iftar Duas')
+                  span.text  Suhoor &amp; Iftar Duas
+              li.square
+                a.box(href='/months/ramadhan/qadr', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-qadr.png', alt='Laylatul Qadr')
+                  span.text  Laylatul Qadr
+              li.square
+                a.box(href='/months/ramadhan/ziyarat', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-ziyarat.png', alt='Ziyaraat')
+                  span.text  Ziyaraat
+          li
+            ul.section
+              li.square
+                a.box(href='/prayertimes', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-praytimes.png', alt='Prayer Times')
+                  span.text Prayer Times
+              li.square
+                a.box(href='/months/ramadhan/salat', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-munajat.png', alt='Salat for Ramadhan')
+                  span.text Salat
+              li.square
+                a.box(href='/months/ramadhan/farewell', data-transition='fade', data-direction='reverse')
+                  img(src='/img/icon-eid.jpg', alt='Eid ul Fitr')
+                  span.text  Farewell &amp; Eid
+
+    if (scripts.js)
+      script(src="#{scripts.js}",defer="defer")

@@ -1,0 +1,39 @@
+extends ../../layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+
+      .padpage.padtop
+        h1
+          a.back.ui-link(href='/',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Bidding Farewell
+
+       .padpage
+         h2
+         span.h2 Farewell
+
+       ul(data-role='listview')
+         li
+           a(href='/dua/farewell')
+             img.ui-li-icon(src='/img/sample-images/icon2.png', alt='farewell Ramadhan')
+             | Bidding farewell - Sahifa Sajjadiya
+         li
+           a(href='/dua/lastnightramadhan')
+             img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Farewell Ramadhan')
+             | Dua for last night by Imam Jafar As Sadiq (AS)
+
+       .padpage
+         h2
+         span.h2 Eid-ul-Fitr
+
+       ul(data-role='listview')
+         li
+           a(href='/salat/eid')
+             img.ui-li-icon(src='/img/salat.png', alt='Salat of Eid')
+             | Salat of Eid

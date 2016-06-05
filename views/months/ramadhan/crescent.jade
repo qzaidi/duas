@@ -1,0 +1,34 @@
+extends ../../layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+
+      .padpage.padtop
+        h1
+          a.back.ui-link(href='/',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Sighting the crescent of Ramadhan
+
+       .padpage
+         h2
+         span.h2 Sighting the cresent
+
+       ul(data-role='listview')
+         li
+           a(href='/dua/cresentprophet')
+             img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Sighting of Ramadhan moon')
+             | Holy Prophet's supplication on sighting the crescent.
+         li
+           a(href='/dua/ramadhan01')
+             img.ui-li-icon(src='/img/sample-images/icon2.png', alt='first day')
+             | Dua from Imam Taqi (AS) for the first day of Ramadhan
+         li
+           a(href='/dua/ramadan')
+             img.ui-li-icon(src='/img/sample-images/icon2.png', alt='Welcoming Ramadhan')
+             | Welcoming the coming of month of Ramadhan
+
