@@ -1,5 +1,5 @@
 server {
-    server_name duas.mobi;
+    server_name m.duas.org;
     root /var/www/sajjad/releases/current/public/;
     index index.html index.htm;
   
@@ -25,11 +25,17 @@ server {
         expires 4w;
     }
 
+    location = / {
+       rewrite / /landing;
+    }
+
     location / {
        try_files $uri $uri/index.html @proxy;
     }
   
     location @proxy {
        proxy_pass   http://localhost:3786;
+       proxy_set_header host duas.mobi;
+       proxy_cache microcache;
     }
 }
