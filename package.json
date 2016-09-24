@@ -6,15 +6,17 @@
     "start": "node app"
   },
   "dependencies": {
+    "dik-geocoder": "^1.0.1",
     "express": "3.0.6",
+    "firebase": "^3.4.0",
     "jade": "*",
     "level": "^0.18.0",
+    "leveldown": "~0.10.4",
     "magickwand": "*",
     "nodemailer": "*",
     "ptmproc": "git+ssh://git@admedly.unfuddle.com:admedly/proc.git",
     "quran": "0.0.8",
-    "sqlite3": "*",
-    "leveldown": "~0.10.4"
+    "sqlite3": "*"
   },
   "devDependencies": {
     "uglify-js": "*",
