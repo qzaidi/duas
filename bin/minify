@@ -51,7 +51,7 @@ function minifyCSS(template) {
 
       console.log('generated minfied file as ' + outfilename,'minify');
 
-      fs.writeFile(template + '.jade',data.replace('<PLACEHOLDERFORMINIFIEDFILE>',outfilename),function(err) {
+      fs.writeFile(template + '.pug',data.replace('<PLACEHOLDERFORMINIFIEDFILE>',outfilename),function(err) {
         if (err) {
           throw err; 
         }
@@ -95,7 +95,7 @@ function minifyJS(tmpl) {
         console.log('placeholder missing from template ' + tmpl,'minify');
         process.exit(1);
       } else {
-        fs.writeFile(tmpl + '.jade',footer.replace(replacePattern,outfilename),function(err) {
+        fs.writeFile(tmpl + '.pug',footer.replace(replacePattern,outfilename),function(err) {
           if (err) throw err;
         });
       }

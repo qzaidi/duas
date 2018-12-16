@@ -1,0 +1,55 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#bestplace(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1
+          a.back.ui-link(href='#',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Prophet's Progeny
+
+        p
+          | It is reported that Harun al–Rasheed said to Imam Musa ibn Ja’far (as), 
+          blockquote 
+            | “You consider yourself to be the Prophet’s offspring, whereas one’s progeny should 
+            | descend from his son. You descend from the Prophet’s daughter”.
+
+          | Imam did not want to reply but Harun insisted that Imam present a proof and said to him, 
+          blockquote 
+            | ‘You have to present your proof. You claim to be Imam Ali’s (as) progeny and you are fully 
+            | versed in the Qur’an and there is not a single letter in the Qur’anic verses 
+            | which you do not know. You have heard God’s words:
+
+        p 
+          +verses(book)
+
+        p
+          | And you claim you are not in need of the ulama’s verdict and the analogy they follow.’
+        p
+          | In answer to Harun, Imam recited the following Qur’anic verse:
+
+        p
+          +verses(descent)
+
+        p
+          | Imam then asked Harun, ‘Who was Jesus’s father?’ Harun answered, ‘Jesus had no father.’ 
+          | Imam said, ‘God has linked him to the Prophets through Mary. He has likewise linked us to the 
+          | Prophet (saws) through our mother, Fatimah (sa), peace be on her.’
+
+        p
+          | Presenting another evidence, Imam recited the verse of mubahalah  
+          +verses(mubahila)
+
+        p
+          | and said, 
+          | ‘No one has ever claimed that the Prophet (saws) has admitted anyone other than Ali (as), 
+          | Fatimah (sa), Al–Hasan(as) and Al–Husain (as) into his cloak on the day of mubahalah (prayer of contest). 
+          | Therefore, “our sons”, in the verse refers to al–Hasan and al–Husain (p.b.u.th.), “our women” refers 
+          | to Fatimah, peace be on her, and “our souls” refers to Ali (as).
+
+       include ../sharing

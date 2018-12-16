@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#quranIndex(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Home")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='#',data-rel='back')
+            img(src='/img/icon-back.png',alt='Back')
+            | Salat
+
+
+        .clients
+            ul(data-role='listview')
+              each salat in rows
+                li
+                  a(href='/salat/' + salat.urlkey)
+                    img.ui-li-icon(src='/img/icon-munajat.png',width='16',height='16',alt='Salat')
+                    | #{salat.enname}
+                    span.arabic.right(style='background: transparent;') #{salat.arname}

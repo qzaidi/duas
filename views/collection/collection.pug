@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#startPage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/collections')
+            img(src='/img/icon-back.png',alt='Back')
+            | #{title} tagged in #{collection} collection
+
+        +breadcrumb([ { href: '/' + data[0].type, text: titlecase(data[0].type) }, { href: '/collection/' + collection, text: collection }])
+
+        .clients
+            ul(data-role='listview')
+              each row in data
+                li
+                  a(href='/dua/' + row.urlkey)
+                    img.ui-li-icon(src='/img/sample-images/icon2.png', alt='duas')
+                    | #{row.enname}

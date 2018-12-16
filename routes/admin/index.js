@@ -1,13 +1,15 @@
 "use strict";
 
 var express = require('express');
+var basicAuth = require('express-basic-auth');
 var db = require('../../model/duas');
 
 var munajat = require('./munajat');
 var duas = require('./duas');
 var ziyarat = require('./ziyarat');
 
-var auth = express.basicAuth('admin','hell0World');
+
+var auth = basicAuth({ users: { 'admin':'hell0World' } });
 
 module.exports = function(app) {
 

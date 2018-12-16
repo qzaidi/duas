@@ -1,0 +1,54 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#rights(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+
+        h1 
+          a.back.ui-link(href='#',data-rel='back')
+            img(src='/img/icon-back.png',alt='Qunoot')
+            |  #{chapter.tname}: #{verse}
+
+        +breadcrumb([{ href: '/quran', text: 'Quran' }, { href: '/quran/' + chapter.id , text: chapter.tname }])
+
+        p.arabic
+          | !{ayah.ar} 
+          span.ayahNumber ﴿#{digits(verse)}﴾  
+          each v in verses
+            | #{v.ar} 
+            span.ayahNumber ﴿#{digits(v.verse)}﴾  
+          | !{arhtml}
+
+        p.english
+          | !{ayah.en}
+          each v in verses
+            |. #{v.en} 
+          | !{enhtml}
+
+        p.ur
+          | !{ayah.ur}
+          each v in verses
+            |. #{v.ur} 
+          | !{urhtml}
+
+        hr
+
+        p(style='font-size: 14px;')
+          | #{description}
+
+
+        h4
+          a.prev.ui-link(href='/qunoot/#{id - 1}')
+            img(src="/img/icon-back.png",alt='Previous')
+            | Previous
+          div.right
+            a.next.ui-link(href="/qunoot/#{id + 1}") 
+              | Next
+              img(src="/img/icon-next.png")
+
+      include ../sharing

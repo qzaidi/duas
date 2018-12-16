@@ -1,0 +1,79 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#rights(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+
+        h1 
+          a.back.ui-link(href='/',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Surat #{chapter.tname} (#{chapter.enname}) - #{chapter.arname}
+
+        +breadcrumb([{ href: '/quran', text: 'Quran' }, { href: '/quran/index', text: 'Chapters'},{ href: '/quran/'+chapter.id, text: chapter.tname }])
+
+        div.ui-field-contain(data-role="controlgroup",data-type="horizontal",data-mini="true")
+          a(href=helpers.setLanguage(url,'ar'),data-role="button") Arabic 
+          a(href=helpers.setLanguage(url,'en'),data-role="button") English
+          a(href=helpers.setLanguage(url,'ur'),data-role="button") Urdu
+          a(href=helpers.setLanguage(url,'hi'),data-role="button") Hindi
+        br
+
+        table.quran(cellpadding=0,cellspacing=0,border=0)
+          tbody
+            tr
+              td 
+                img(src='/img/quran/tl.png',width=54,border=0,alt='')
+              td(background='/img/quran/t.png')
+                img(src='/img/quran/pixel.gif',width=54,height=54,border=0,alt='')
+              td
+                img(src='/img/quran/tr.png',width=54,height=54,alt='')
+            tr
+              td(background='/img/quran/l.png')
+                img(src='/img/quran/pixel.gif',border=0,width=54)
+              td
+                div.ayahBox
+                  a.ayahBoxNum(href="/quran/" + chapter.id + "/" + verse) #{chapter.id}:#{verse}
+                  p.arabic.textbox
+                    | !{ayah.ar} 
+                    span.ayahNumber ﴿#{helpers.digits(verse)}﴾  
+                    each verse in verses
+                      a(class=verse.class) #{verse.ar} 
+                      span.ayahNumber ﴿#{helpers.digits(verse.verse)}﴾  
+
+                  if (lang != 'ar' && ayah[lang])
+                    p(class=lang)
+                      | !{ayah[lang]} 
+                      each verse in verses
+                        a(class=verse.class) #{verse[lang]} 
+
+              td(background='/img/quran/r.png',border=0,alt='',width=54)
+                img(src='/img/quran/pixel.gif',width=54)
+            tr
+              td
+                img(src='/img/quran/bl.png',width=54,height=54)
+              td(background='/img/quran/b.png')
+                img(src='/img/quran/pixel.gif',width=54)
+              td
+                img(src='/img/quran/br.png',width=54,height=54)
+
+        p This is a portion of the entire surah. View 
+          a.ui-link(href=ctx,style="color:blue;") this verse in context, 
+          | or view the 
+          a.ui-link(href='/quran/' + chapter.id, style="color:blue;") entire surah here.
+
+        div(data-role="footer",data-position="fixed")
+          audio.noprint#amtag(itemprop="audio",style="width: 100%",src=audio,controls="controls",preload="none")
+
+
+        h4
+          if (next) 
+            a.next.ui-link(href=next) 
+              | Next
+              img(src="/img/icon-next.png")
+
+      +sharing(ayah.ar + '%20%0a%0d' + ayah.en,url)

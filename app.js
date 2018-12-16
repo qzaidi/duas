@@ -3,34 +3,41 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var http = require('http');
-var path = require('path');
+var express = require('express')
+var favicon = require('serve-favicon')
+var http = require('http')
+var path = require('path')
+var morgan = require('morgan')
+var bodyParser = require('body-parser')
+var cookieParser = require('cookie-parser')
+var methodOverride = require('method-override')
+var session = require('express-session')
+var errorhandler = require('errorhandler')
+
 
 var app = express();
 
-app.configure(function(){
-  app.set('port', process.env.PORT || 3786);
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.favicon('public/favicon.ico'));
-  app.use(express.static(path.join(__dirname, 'public')));
-  app.use(express.logger('dev'));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(express.cookieParser('your secret here'));
-  app.use(express.session());
-  require('./lib/view')(app);
-  app.use(app.router);
-});
+app.set('port', process.env.PORT || 3786);
+app.set('views', __dirname + '/views');
+app.set('view engine', 'pug');
+app.use(favicon(path.join(__dirname,'public','favicon.ico')));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(morgan('tiny'));
+app.use(bodyParser());
+app.use(methodOverride());
+app.use(cookieParser('your secret here'));
+app.use(session());
+require('./lib/view')(app);
 
-app.configure('development', function(){
-  app.use(express.errorHandler());
-});
 
-app.configure('production', function() {
+var env = process.env.NODE_ENV || 'development';
+if (env == 'development') {
+  app.use(errorhandler());
+}
+
+if (env == 'production') {
   app.use(require('./routes/mw').error);
-});
+}
 
 require('./routes')(app);
 

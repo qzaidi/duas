@@ -1,0 +1,83 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#bestplace(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/salat',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Salat on 15th of Rajab
+        
+        ol 
+          li 
+            details
+              summary On the night of 15th Rajab, recite this ziyarat of Imam Husain (AS)
+              p
+                +dua(rajabziyarat)
+
+          li Pray 12 rakats (units), in 6 sets of 2 rakats each. In every rakat, recite surahs as described.
+          li 
+            details
+              summary Recite al Fatihah 4 times
+              p
+                +verses(q1)
+          li 
+            details 
+              summary Recite Sooratul Ikhlass 4 times
+              p
+                +verses(q112)
+
+          li
+            details
+              summary Recite Al Falaq 4 times
+              p
+                +verses(q113)
+
+          li
+            details
+              summary Recite Al Kafiroon 4 times
+              p
+                +verses(q109)
+
+          li
+            details 
+              summary Recite Surat an Naas 4 times
+              p
+                +verses(q114)
+
+          li 
+            details
+              summary Recite Sooratul Qadr 4 times
+              p
+                +verses(q97)
+
+          li
+            details
+              summary Recite Aayatal Kursi 4 times
+              p
+                +verses(q2v254)
+
+          li
+            details
+              summary Recite Tashbeehat ul Arbaa 4 times
+              p
+                .section.group
+                  .col.span_1_of_2.arabic سبحان الله والحمد لله، ولا إله إلا الله والله أكبر،
+                  .col.span_1_of_2.english  Glory be to Allah, Praise be to Allah, there is no god but Allah, and Allah is Great.
+
+          li
+            details
+              summary After every salaam, recite this 4 times
+              p
+                .section.group
+                  .col.span_1_of_2.arabic اَللّهُ اَللّهُ رَبّى لا اُشْرِكُ بِهِ شَيْئا وَ ما شاَّءَ اللّهُ لا قُوَّةَ اِلاّ بِاللّهِ الْعَلِىِّ الْعَظيمِ
+                  .col.span_1_of_2.english Allah! Allah! My Lord! I associate not anything with Him. 
+                    | I choose no protecting friend beside Him. That which Allah wills (come to pass). 
+                    | There is no might and no strength save in Allah, the Highest, the Almighty
+
+      include ../sharing

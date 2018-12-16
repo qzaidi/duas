@@ -1,0 +1,49 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#bestplace(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/salat',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Salat-e-Ruyat-e-Hilal (Witnessing a new crescent)
+        
+        p
+          | Recite a 2 rakat Salat after seeing the moon of the first night of every lunar month, (or within 3 days 
+          | &amp; earlier the better) Also give sadqa /charity &amp; Inshallah you will be safe throughout the month. 
+
+        ol
+          li Make Niyat of Ruyatil Hilal
+          li 
+            details
+              summary In first Rakat recite Sura Fatiha 
+              p
+                +verses(q1)
+
+          li 
+            details 
+              summary Recite Sooratul Ikhlass 30 times
+              p
+                +verses(q112)
+
+          li In the second rakat recite Sura Fatiha  
+          li 
+            details
+              summary Recite Sooratul Qadr 30 times
+              p
+                +verses(q97)
+
+          li After Salaam Recite the following Ayats 
+              p 
+                +verses(q11v5)
+              p
+                +verses(q10v106)
+              p
+                +dua(ruyatihilal)
+
+       include ../sharing

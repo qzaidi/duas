@@ -1,0 +1,119 @@
+extends layout
+
+append htmlhead
+  link(rel="alternate",hreflang="en",href=url)
+  if(data[0].urdu) 
+    link(rel="alternate",hreflang="ur",href=url + "?lang=urdu")
+  if(data[0].hindi)
+    link(rel="alternate",hreflang="hi",href=url+"?lang=hindi")
+  if(data[0].id)
+    link(rel="alternate",hreflang="id",href=url + "?lang=id")
+
+block content
+  div(role='main')
+    .page.innerPage.versePage(data-role="page")
+      .topGrahic
+      a.menuButton(href="/searchpage")
+        img(src="/img/menu-search.png",alt="Duas Search")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/',data-rel="back")
+            img(src='/img/icon-back.png',alt='<-')
+            | #{info.enname}
+          include plusone
+          .raty.right.noprint(data-score=rating)
+            meta(itemprop="ratingValue",content=rating)
+
+        +breadcrumb([ { href: '/' + info.type, text: titlecase(info.type) }, { href: '/' + info.type + 's/collection/' + info.collection , text: info.collection }])
+
+        #toTop ↑ Top
+        div.noprint.ui-field-contain(data-role="controlgroup",data-type="horizontal",data-mini="true")
+          if (data[0].english)
+            a(class=cls.english,href='?lang=english',data-role="button",data-icon="duas-english") En
+          if (data[0].urdu)
+            a(class=cls.urdu,href='?lang=urdu',data-role="button",data-icon="duas-urdu") Ur
+          a(class=cls.arabic,href='?lang=arabiconly',data-role="button",data-icon="duas-arabic") Ar
+          if (data[0].hindi)
+            a(href='?lang=hindi',data-role="button") Hindi
+          if (data[0].hintrans)
+            a(href='?lang=hintrans',data-role="button") Hindi Transliteration
+          if (data[0].engtrans)
+            a(class=cls.engtrans,href='?lang=engtrans',data-role="button",data-icon="duas-translit") Tr
+          | &nbsp;
+          a(data-role="button",data-icon="plus",onclick="changeFont('ar','+')") A
+          a(data-role="button",data-icon="minus",onclick="changeFont('ar','-')") a
+          select.colswitch(name="flip-mini",data-role="slider",data-mini="true")
+            option(value="off") 1 Col
+            option(value="on") 2 Col
+
+
+      .ui-content(data-role="content")
+        p !{info.endesc} 
+
+          .section.group
+            .col.span_1_of_2.arabic #{info.arname}
+            .col.span_1_of_2
+        if (lang.indexOf('only') == -1) 
+          each row in data
+            .section.group
+              .col.span_1_of_2.arabic #{row.arabic}
+              .col.span_1_of_2(class="#{lang}") !{helpers.embellish(row[lang])}
+        else
+          p.arabic.doublespaced
+            each row in data
+              | !{helpers.handleEllipsis(row.arabic)} &nbsp;
+
+        hr
+        p '#{info.enname}' is tagged in #{info.collection} collection. See other #{info.type}'s from 
+          a(href='/' + info.type + 's/collection/' + info.collection) #{info.collection}
+
+        if info.link
+          h3 Related Links
+          ol
+          each link in info.link
+            li
+              a.next.ui-link(href=link.href) #{link.title}
+                img(src='/img/icon-next.png')
+
+        if (votes > 1)
+          hr
+          .left(itemscope,itemtype="http://schema.org/Article")
+            span(itemprop="name",itemtype="http://schema.org/Article") #{info.enname} 
+            img.hidden(itemprop="image",src="#{page.image}") 
+            meta(itemprop="headline",content="#{page.description}")
+            meta(itemprop="datePublished",content="2014-01-09T08:40:00+05:30")
+            span(itemprop="aggregateRating",itemscope itemtype="http://schema.org/AggregateRating")
+              | rated 
+              span(itemprop="ratingValue") #{rating} 
+              | on a 
+              span(itemprop="worstRating") 1
+              | to
+              span(itemprop="bestRating") 5 
+              | point scale based on 
+              span(itemprop="ratingCount") #{votes} 
+              | votes. 
+
+          include sharing
+          a(href=url + '/slides',tooltip="view fullscreen",rel="external")
+           img(src="/img/fullscreen.png")
+        br
+
+      if (info.audio)
+        div(data-role="footer",data-position="fixed",itemscope,itemtype="http://schema.org/MusicRecording")
+          meta(itemprop="name",content="#{info.enname}")
+          meta(itemprop="url",content="#{url}")
+          if (duration)
+            meta(itemprop="duration",content="#{duration}")
+          meta(itemprop="inAlbum",content="#{titlecase(info.type)}-#{info.collection}")
+          audio.noprint#amtag(itemprop="audio",style="width: 100%",src="#{info.audio}",controls="controls",preload="none")
+
+
+        != "<script type='text/javascript'>"
+        != "var cues = ["
+        if (data[0].cue)
+          each row in data
+           | !{row.cue},
+        != " ]; </script>"
+
+

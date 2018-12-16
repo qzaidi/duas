@@ -1,0 +1,64 @@
+doctype html
+
+include layout/mixins
+
+html(xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#",xmlns:fb="https://www.facebook.com/2008/fbml")
+  head
+      meta(charset="utf-8")
+      meta(name="HandheldFriendly",content="True")
+      meta(name="MobileOptimized",content="320")
+      meta(name="viewport",content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0")
+      meta(name="apple-mobile-web-app-capable", content="yes")
+
+      link(rel="manifest",href="/manifest.json")
+      link(rel="apple-touch-icon",sizes="72x72",href="apple-touch-icon-72x72-precomposed.png")
+      link(rel="apple-touch-icon",sizes="114x114",href="apple-touch-icon-114x114-precomposed.png")
+      link(rel="apple-touch-icon",sizes="144x144",href="apple-touch-icon-144x144-precomposed.png")
+      link(rel="canonical",href=url)
+      link(rel="search",title="Search Duas,Ziyarats",href="opensearch.xml",type="application/opensearchdescription+xml")
+      link(href="https://plus.google.com/+DuasMobi",rel="publisher")
+      link(rel="amphtml",href="https://duas.mobi/amp#{rpath}")
+      script(src="https://cdn.onesignal.com/sdks/OneSignalSDK.js",async)
+      script.
+        var OneSignal = window.OneSignal || [];
+          OneSignal.push(["init", {
+            appId: "74fe06d5-8b26-4a4d-8971-010ac0834e38",
+            autoRegister: true,
+            notifyButton: {
+              enable: true /* Set to false to hide */
+            }
+          }]);
+
+
+      block metatags
+        title #{page.title}
+        meta(name="description",content=page.description)
+        meta(name="keywords",content=page.keywords)
+        meta(name="author",content=page.author)
+        meta(property="og:image",content="#{page.image}")
+
+      block htmlhead
+        // Use the .htaccess and remove these lines to avoid edge case issues.
+        // More info: h5bp.com/b/378 
+        // meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
+
+        include layout/css
+
+        link(href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600',rel='stylesheet',type='text/css')
+
+        script(src="/js/libs/modernizr-2.0.6.min.js")
+        include ga
+  body
+    block headerblock
+      header
+
+    block content
+
+    input(type='hidden',id='arfontsizecur',name='arfontsizecur',value="#{settings.language.arfontsize}")
+    input(type='hidden',id='urfontsizecur',name='urfontsizecur',value="#{settings.language.urfontsize}")
+    input(type='hidden',id='hifontsizecur',name='hifontsizecur',value="#{settings.language.hifontsize}")
+
+    include layout/footerjs
+    block footerblock
+      footer
+

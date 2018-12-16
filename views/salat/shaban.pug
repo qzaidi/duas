@@ -1,0 +1,58 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#bestplace(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/salat',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Salat for the month of Shaban
+        
+        p
+          | Its recommended to fast on every Thursday, and to recite this 2 rakat Salat. 
+
+        ol
+          li 
+            details
+              summary In first Rakat recite Sura Fatiha 
+              p
+                +verses(q1)
+
+          li 
+            details 
+              summary Recite Sura Al-Ikhlaas 100 times
+              p
+                +verses(q112)
+          li 
+            details
+              summary In second Rakat recite Sura Fatiha 
+              p
+                +verses(q1)
+          li 
+            details
+              summary Recite Sura Al-Ikhlaas 100 times
+              p
+                +verses(q112)
+        p Complete the prayer as usual. Upon completion of the 2 rakaat's recite the salwat 100 times
+        ol  
+          li
+            p Recite Salawaat 100 times
+            p.arabic للَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَ آلِ مُحَمَّدٍا
+          li
+            p 
+              | According to narrations, the best supplications and invocations that are recited in Shaban 
+              | are the prayers of seeking forgiveness of Almighty Allah (i.e. istighfar). Hence, to seek Almighty 
+              | Allah’s forgiveness seventy times a day in Sha`ban is equal to seeking His forgiveness seventy Thousand 
+              | times a day in the other months .Recite 70 times each day.
+            p
+              | I seek forgiveness of Allah who is “There is no God save  He”, the Beneficent, the Merciful; 
+              | the Ever living, the Eternal, and I turn repentant to Him
+            p
+              | Astaghfirullaahallad’ee laa ilaaha illa huwar rahmano rah’eemul h’ayyul qayyoomu wa atoobu ilayhi
+            p.arabic
+              | اسْتَغْفِرُ ٱللَّهَ ٱلَّذِي لاَ إِلٰهَ إِلاَّ هُوَ ٱلرَحْمٰنُ ٱلرَّحِيمُ ٱلْحَيُّ   ٱلْقَيُّوْمُ  وَاتُوبُ إِلَيْهِ

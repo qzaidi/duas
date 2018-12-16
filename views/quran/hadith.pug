@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#rights(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+
+        h1 
+          a.back.ui-link(href='#',data-rel='back')
+            img(src='/img/icon-back.png',alt='Ahadith about Quran')
+            | #{hadith.title}
+
+        +breadcrumb([{ href: '/quran', text: 'Quran' }, { href: '/quran/hadith/' + id , text: hadith.title }])
+
+        p.arabic
+          | !{hadith.arabic.split(':').join('<br/><br/>')}
+           
+
+        p.english
+          | !{hadith.english.replace(':','<blockquote>') + '</blockquote>'}
+
+        cite
+          | Source: #{hadith.ref}
+        br
+        br
+
+        h4
+          a.prev.ui-link(href='/quran/hadith/' + Math.max(id - 1,0))
+            img(src="/img/icon-back.png",alt='Previous')
+            | Previous
+          div.right
+            a.next.ui-link(href="/quran/hadith/' + Math.min(id + 1,40)) 
+              | Next
+              img(src="/img/icon-next.png")
+
+      include ../sharing
