@@ -6,7 +6,6 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
-var proc = require('ptmproc');
 
 var app = express();
 
@@ -45,4 +44,4 @@ http.createServer(app)
     );
 });
 
-proc.init(app);
+app.listen(app.port)

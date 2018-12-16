@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+    duas:
+      container_name: 'duas.mobi'
+      image: mqzaidi/duas.mobi
+      build: .
+      environment:
+        - EMAILUSER:'qasim@zaidi.me'
+        - EMAILPASS:$${EMAILPASS}
+      ports: 
+        - 3786:3786
+

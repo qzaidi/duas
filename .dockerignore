@@ -1,0 +1,6 @@
+node_modules
+npm-debug.log
+resources/db/seed/*
+public/css/min
+public/js/min
+public/cache

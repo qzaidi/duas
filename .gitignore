@@ -7,3 +7,4 @@ public/cache/
 resources/*
 data/ratings/
 resources/db/seed/*
+env.sh
