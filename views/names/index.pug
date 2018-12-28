@@ -22,8 +22,8 @@ block content
           ul(data-role='listview')
             each name in names
               li
-                a(href='/asmaulhusna/#{name.rowid}')
-                  img.ui-li-icon(src='/img/sample-images/icon2.png', alt='#{name.english}')
+                a(href='/asmaulhusna/' + name.rowid)
+                  img.ui-li-icon(src='/img/sample-images/icon2.png', alt=name.english)
                   | #{name.engtrans}
                   span.right #{name.arabic}
 

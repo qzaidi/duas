@@ -25,7 +25,7 @@ block content
             ul(data-role='listview')
               each right in rights
                 li
-                  a(href='/rights/#{right.id}')
+                  a(href='/rights/' + right.id)
                     img.ui-li-icon(src='/img/sample-images/icon1.png', alt='image 2')
                     | #{right.enname}
 

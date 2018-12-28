@@ -5,7 +5,7 @@ mixin breadcrumb(crumbs)
       each c in crumbs
         |  &gt;
         div(itemscope,itemtype="http://data-vocabulary.org/Breadcrumb",itemprop="child",style="display:inline;")
-          a(href="http://duas.mobi#{encodeURI(c.href)}",itemprop="url")
+          a(href='http://duas.mobi' + encodeURI(c.href),itemprop="url")
             span(itemprop="title") #{c.text}
 
 

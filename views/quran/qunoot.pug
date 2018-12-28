@@ -43,11 +43,11 @@ block content
 
 
         h4
-          a.prev.ui-link(href='/qunoot/#{id - 1}')
+          a.prev.ui-link(href='/qunoot/' + (id - 1))
             img(src="/img/icon-back.png",alt='Previous')
             | Previous
           div.right
-            a.next.ui-link(href="/qunoot/#{id + 1}") 
+            a.next.ui-link(href='/qunoot/' + (id + 1)) 
               | Next
               img(src="/img/icon-next.png")
 

@@ -17,9 +17,9 @@ block content
         p
           | &nbsp;!{info.description}
 
-         if info.collection
-           h4 
-              a(href='/tag/' + info.collection) Supplications &amp; Ziyarats for #{month}
+        if info.collection
+          h4 
+            a(href='/tag/' + info.collection) Supplications &amp; Ziyarats for #{month}
  
       .padpage
         h2
@@ -34,4 +34,4 @@ block content
                   h3 #{event.name}
                   p #{datehelper(event.hijridate,event.hijrimonth)}
 
-       include ../sharing
+      include ../sharing

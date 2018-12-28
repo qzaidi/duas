@@ -1,7 +1,6 @@
 version: '3.3'
 services:
     duas:
-      container_name: 'duas.mobi'
       image: mqzaidi/duas.mobi
       build: .
       environment:

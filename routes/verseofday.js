@@ -40,6 +40,10 @@ var vod = {
 
   get: function(req,res,next) {
     var l = vod.verses.length;
+    if (l == 0) {
+      return next();
+    }
+
     var candidates = vod.verses.filter(function(v) {
       return v.selected;
     }); 

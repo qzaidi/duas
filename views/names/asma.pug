@@ -34,12 +34,12 @@ block content
 
         h4
           if (id > 1)
-            a.prev.ui-link(href='/asmaulhusna/#{id - 1}')
+            a.prev.ui-link(href='/asmaulhusna/' + (id - 1))
               img(src="/img/icon-back.png",alt='Previous')
               | Previous
           if (id < 99)
             div.right
-              a.next.ui-link(href="/asmaulhusna/#{id + 1}") 
+              a.next.ui-link(href='/asmaulhusna/' + (id + 1)) 
                 | Next 
                 img(src="/img/icon-next.png")
 
