@@ -19,8 +19,8 @@ block content
             - for (var i =0; i < events.length; i++) {
               - var event = events[(i+offset)%events.length]
                 li
-                  a(href='/events/#{event.urlkey}')
-                    img(src='/cache/64x64/#{event.image}', alt='#{event.name}')
+                  a(href='/events/' + event.urlkey)
+                    img(src='/cache/64x64/' + event.image, alt=event.name)
                     h3 #{event.name}
                     p #{datehelper(event.hijridate,event.hijrimonth)}
             - }

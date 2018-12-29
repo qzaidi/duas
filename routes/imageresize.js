@@ -1,29 +1,32 @@
 "use  strict";
 
-var magickwand = require('magickwand');
-var util = require('util');
-var fs = require('fs');
-var path = require('path');
-var mime = require('express').mime;
+const sharp = require('sharp');
+const util = require('util');
+const fs = require('fs');
+const path = require('path');
 
 var imageresize = {
   render: function(req,res,next) {
-    var width = req.params[0];
-    var height = req.params[1];
+    var width = parseInt(req.params[0]);
+    var height = parseInt(req.params[1]);
     var src = './public/' + req.params[2];
     var dest = './public/' + req.url;
 
-    if (mime.lookup(req.params[2]).match('image') == null) {
+    if (req.accepts('image') == null) {
       var err = new Error('Not Found');
       err.status = 404;
       console.log(src + ' was not found');
       return next(err);
     }
 
-    magickwand.thumbnail(src, { width: width, height:height },function(err, data, info) {
+    sharp(src).resize(width,height).toBuffer(function(err,data) {
       if (!err) {
         console.log('writing thumbnail to ' + dest);
-        fs.writeFile(dest, data, "binary");
+        fs.writeFile(dest, data, "binary",function(err) {
+          if (err) {
+            util.log("failed to write file",dest)
+          }
+        });
       } else {
         util.log('imageresize:' + err);
       }

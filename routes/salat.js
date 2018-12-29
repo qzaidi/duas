@@ -80,7 +80,6 @@ var salat = {
               row.chapter = verses[0].chapter;
               row.verse = 0;
               ar = verses[0].ar.replace(row.ar,'');
-              console.log(ar);
               if (ar != verses[0].ar) {
                 verses[0].ar = ar;
                 data[key].unshift(row);

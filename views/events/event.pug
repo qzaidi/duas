@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   div(role='main')
-    .page.innerPage(id="#{event.urlkey}",data-role="page")
+    .page.innerPage(id=event.urlkey,data-role="page")
       .topGrahic
       a.menuButton(href="#",data-rel='back')
         img(src="/img/menu-button.png",alt="Home")
@@ -17,7 +17,7 @@ block content
           +breadcrumb([ { href: '/events', text: 'Events' }, { href:'/month/' + event.month, text: titlecase(event.month) } ])
 
           .flexslider 
-            img(itemprop="photo",src="#{page.image}",alt="#{event.name}")
+            img(itemprop="photo",src=page.image,alt=event.name)
 
           p
             span(itemprop="description") #{event.name} is marked on #{event.hijridate}#{suffix} of #{event.month}.

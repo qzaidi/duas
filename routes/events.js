@@ -1,8 +1,9 @@
 "use strict";
 
-var db = require('../model/duas');
-var hijri = require('../lib/hijri');
-var util = require('util');
+const db = require('../model/duas');
+const hijri = require('../lib/hijri');
+const util = require('util');
+const mw = require('./mw');
 
 function toc_link(x) {
   return '/' + x.type + '/' + x.urlkey;
@@ -16,6 +17,12 @@ var events = {
     db.get(sql, function(err,ev) {
       var page = {};
       if (err) {
+        return next(err);
+      }
+
+      if (!ev) {
+        err = new Error('not found')
+        err.status = 404;
         return next(err);
       }
 

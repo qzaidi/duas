@@ -26,7 +26,12 @@ app.use(morgan('tiny'));
 app.use(bodyParser());
 app.use(methodOverride());
 app.use(cookieParser('your secret here'));
-app.use(session());
+app.use(session({
+    secret: 'golden bear',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: true }
+}));
 require('./lib/view')(app);
 
 
@@ -36,6 +41,7 @@ if (env == 'development') {
 }
 
 if (env == 'production') {
+  util.log('running in production mode');
   app.use(require('./routes/mw').error);
 }
 

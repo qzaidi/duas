@@ -1,10 +1,12 @@
-var firebase = require('firebase')
+const admin = require('firebase-admin');
+const serviceAccount = require('../duas-cf741b0ca377.json');
 
-firebase.initializeApp({
+
+admin.initializeApp({
   databaseURL: "https://duas-d43d6.firebaseio.com/",
-  serviceAccount: "./duas-cf741b0ca377.json"
+  credential: admin.credential.cert(serviceAccount)
 });
 
-var db = firebase.database();
+var db = admin.database();
 
 module.exports = db;

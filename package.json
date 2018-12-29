@@ -6,6 +6,7 @@
     "start": "node app"
   },
   "dependencies": {
+    "sharp":"*",
     "dik-geocoder": "^1.0.1",
     "express": ">=3.0.11",
     "morgan":"*",
@@ -16,7 +17,7 @@
     "cookie-parser":"*",
     "errorhandler":"*",
     "express-basic-auth":"*",
-    "firebase": "^3.4.0",
+    "firebase-admin": "*",
     "pug": "*",
     "level": "*",
     "leveldown": "*",
