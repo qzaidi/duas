@@ -19,7 +19,7 @@ block content
           ul(data-role='listview')
             -for (var i = 0; i < 6; i++) 
               li
-                img(src='/img/salat/#{i}.png',alt='Subah')
+                img(src='/img/salat/' + i + '.png',alt='Subah')
                 h3(id='time_'+i) loading ..
                 span(id='label_' + i)
                 p.right(id='delay_'+i) 

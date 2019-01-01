@@ -41,7 +41,6 @@ if (env == 'development') {
 }
 
 if (env == 'production') {
-  util.log('running in production mode');
   app.use(require('./routes/mw').error);
 }
 

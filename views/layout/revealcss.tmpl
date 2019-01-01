@@ -2,4 +2,4 @@ if environment == 'development'
   link(rel="stylesheet",href="/css/reveal.css")
   link(rel="stylesheet",href="/css/theme/black.css")
 else
-  link(rel="stylesheet",href="#{static_url('/css/<PLACEHOLDERFORMINIFIEDFILE>')}")
+  link(rel="stylesheet",href=static_url('/css/<PLACEHOLDERFORMINIFIEDFILE>'))

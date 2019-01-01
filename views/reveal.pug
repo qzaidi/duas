@@ -33,15 +33,10 @@ html(xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#",xmlns:fb=
             h1.arabic #{row.arabic}
             br
             p #{row[lang]}
-         include reveallink
-   != "<script type='text/javascript'>"
-    != "var cues = ["
-       if (data[0].cue)
-         each row in data 
-           | !{row.cue} ,
-    != " ]; </script>"
+        include reveallink
+      include audio
     include layout/revealjs
     script.
       
     if data[0].cue
-      audio.noprint#amtag(itemprop="audio",style="width: 100%",src="#{info.audio}",controls="controls",autoplay="true")
+      audio.noprint#amtag(itemprop="audio",style="width: 100%",src=info.audio,controls="controls",autoplay="true")

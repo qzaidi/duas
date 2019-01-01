@@ -116,6 +116,7 @@ module.exports = function(app) {
       res.render('sermon', { prayers: rows, page: page });
     });
   });
+  app.get('/sermons/collection/:name',verses.collection('sermon'));
 
   app.get('/munajat', function(req,res) {
     db.all('select * from toc where type = "munajat"', function(err,rows) {

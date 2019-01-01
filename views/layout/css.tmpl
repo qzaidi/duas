@@ -7,4 +7,4 @@ if environment == 'development'
   link(rel="stylesheet",href="/css/arabic.css")
   link(rel="stylesheet",href="/css/urdu.css")
 else
-  link(rel="stylesheet",href="#{static_url('/css/<PLACEHOLDERFORMINIFIEDFILE>')}")
+  link(rel="stylesheet",href=static_url('/css/<PLACEHOLDERFORMINIFIEDFILE>'))

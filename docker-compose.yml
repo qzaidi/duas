@@ -4,9 +4,9 @@ services:
       image: mqzaidi/duas.mobi
       build: .
       environment:
-        - EMAILUSER:'qasim@zaidi.me'
-        - EMAILPASS:$${EMAILPASS}
-        - NODE_ENV:production
+        - EMAILUSER='qasim@zaidi.me'
+        - EMAILPASS=$${EMAILPASS}
+        - NODE_ENV=production
       ports: 
         - 3786:3786
 

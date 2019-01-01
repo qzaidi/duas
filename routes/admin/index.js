@@ -9,7 +9,7 @@ var duas = require('./duas');
 var ziyarat = require('./ziyarat');
 
 
-var auth = basicAuth({ users: { 'admin':'hell0World' } });
+var auth = basicAuth({ users: { 'admin':'hell0World' }, challenge:true });
 
 module.exports = function(app) {
 

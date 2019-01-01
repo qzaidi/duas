@@ -17,7 +17,7 @@ html(xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#",xmlns:fb=
       link(rel="canonical",href=url)
       link(rel="search",title="Search Duas,Ziyarats",href="/opensearch.xml",type="application/opensearchdescription+xml")
       link(href="https://plus.google.com/+DuasMobi",rel="publisher")
-      link(rel="amphtml",href="https://duas.mobi/amp#{rpath}")
+      link(rel="amphtml",href='https://duas.mobi/amp' + rpath)
       script(src="https://cdn.onesignal.com/sdks/OneSignalSDK.js",async)
       script.
         var OneSignal = window.OneSignal || [];
@@ -35,7 +35,7 @@ html(xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#",xmlns:fb=
         meta(name="description",content=page.description)
         meta(name="keywords",content=page.keywords)
         meta(name="author",content=page.author)
-        meta(property="og:image",content="#{page.image}")
+        meta(property="og:image",content=page.image)
 
       block htmlhead
         // Use the .htaccess and remove these lines to avoid edge case issues.
@@ -54,9 +54,9 @@ html(xmlns="http://www.w3.org/1999/xhtml",xmlns:og="http://ogp.me/ns#",xmlns:fb=
 
     block content
 
-    input(type='hidden',id='arfontsizecur',name='arfontsizecur',value="#{settings.language.arfontsize}")
-    input(type='hidden',id='urfontsizecur',name='urfontsizecur',value="#{settings.language.urfontsize}")
-    input(type='hidden',id='hifontsizecur',name='hifontsizecur',value="#{settings.language.hifontsize}")
+    input(type='hidden',id='arfontsizecur',name='arfontsizecur',value=settings.language.arfontsize)
+    input(type='hidden',id='urfontsizecur',name='urfontsizecur',value=settings.language.urfontsize)
+    input(type='hidden',id='hifontsizecur',name='hifontsizecur',value=settings.language.hifontsize)
 
     include layout/footerjs
     block footerblock

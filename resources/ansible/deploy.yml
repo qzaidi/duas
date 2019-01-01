@@ -1,0 +1,52 @@
+- name: Setup duas.mobi
+  hosts: duas
+  remote_user: ubuntu
+  become: true
+
+
+  tasks:
+    - name:    Add Docker GPG key
+      apt_key: url=https://download.docker.com/linux/ubuntu/gpg
+
+    - name:    Add Docker APT repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable
+
+    - name:    Install Docker
+      apt:     name=docker-ce
+
+    - name: install docker-py
+      pip:
+        name: docker-py
+
+    - name: Create the duas container
+      docker_container:
+        state: started
+        name: duas.mobi
+        image: mqzaidi/duas.mobi
+        ports:
+          - "3786:3786"
+
+    - name: setup nginx, certbot
+      package: name={{item}} state=present
+      with_items:
+        - nginx
+        - certbot
+
+    - name: copy nginx config
+      copy: src=duas.mobi dest=/etc/nginx/sites-available/duas.mobi
+
+    - name: copy nginx proxy config
+      copy: src=proxy.conf dest=/etc/nginx/conf.d/proxy.conf
+
+    - name: copy letsencrypt certs
+      copy: src=letsencrypt/live dest=/etc/letsencrypt/
+
+    - name: activate nginx config
+      file: state=link src=/etc/nginx/sites-available/duas.mobi dest=/etc/nginx/sites-enabled/duas.mobi
+
+    - name: config check
+      command: nginx -t
+
+    - name: reload nginx
+      command: nginx -s reload

@@ -58,7 +58,7 @@ block content
           each row in data
             .section.group
               .col.span_1_of_2.arabic #{row.arabic}
-              .col.span_1_of_2(class="#{lang}") !{helpers.embellish(row[lang])}
+              .col.span_1_of_2(class=lang) !{helpers.embellish(row[lang])}
         else
           p.arabic.doublespaced
             each row in data
@@ -94,26 +94,21 @@ block content
               span(itemprop="ratingCount") #{votes} 
               | votes. 
 
-          include sharing
+        include sharing
           a(href=url + '/slides',tooltip="view fullscreen",rel="external")
-           img(src="/img/fullscreen.png")
+            img(src="/img/fullscreen.png")
         br
 
       if (info.audio)
         div(data-role="footer",data-position="fixed",itemscope,itemtype="http://schema.org/MusicRecording")
-          meta(itemprop="name",content="#{info.enname}")
-          meta(itemprop="url",content="#{url}")
+          meta(itemprop="name",content=info.enname)
+          meta(itemprop="url",content=url)
           if (duration)
-            meta(itemprop="duration",content="#{duration}")
-          meta(itemprop="inAlbum",content="#{titlecase(info.type)}-#{info.collection}")
-          audio.noprint#amtag(itemprop="audio",style="width: 100%",src="#{info.audio}",controls="controls",preload="none")
+            meta(itemprop="duration",content=duration)
+          meta(itemprop="inAlbum",content=titlecase(info.type) + '-' + info.collection)
+          audio.noprint#amtag(itemprop="audio",style="width: 100%",src=info.audio,controls="controls",preload="none")
 
 
-        != "<script type='text/javascript'>"
-        != "var cues = ["
-        if (data[0].cue)
-          each row in data
-           | !{row.cue},
-        != " ]; </script>"
+        include audio
 
 

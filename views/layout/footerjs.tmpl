@@ -20,7 +20,7 @@ if environment == 'development'
   script(src='/js/autocomplete.js',defer='defer')
   script(src='/js/times.js',defer='defer')
 else
-  script(src="#{static_url('/js/<PLACEHOLDERFORMINIFIEDFILE>')}",defer='defer')
+  script(src=static_url('/js/<PLACEHOLDERFORMINIFIEDFILE>'),defer='defer')
 
 //if lt IE 7 
   script(defer='defer', src='//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js')

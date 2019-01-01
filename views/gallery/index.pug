@@ -22,6 +22,6 @@ block content
                 ul.section
                   each image in row
                     li.square
-                      a.box.gallery-item(href='/img/gallery/#{image.image}')
-                        img(src='/cache/135x135/img/gallery/#{image.image}',alt='#{image.description}')
+                      a.box.gallery-item(href='/img/gallery/' + image.image)
+                        img(src='/cache/135x135/img/gallery/' + image.image,alt=image.description)
 

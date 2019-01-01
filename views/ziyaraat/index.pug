@@ -35,8 +35,8 @@ block content
          ul(data-role='listview')
            each ziyarat in collection
              li
-               a(href='/ziyarat/#{ziyarat.urlkey}')
-                 img.ui-li-icon(src='/img/sample-images/icon2.png', alt='#{ziyarat.enname}')
+               a(href='/ziyarat/' + ziyarat.urlkey)
+                 img.ui-li-icon(src='/img/sample-images/icon2.png', alt=ziyarat.enname)
                  | #{ziyarat.enname}
 
       .padpage
