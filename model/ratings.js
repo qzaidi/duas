@@ -1,23 +1,39 @@
 "use strict";
 
-var level = require('level');
-var db = level(__dirname + '/../data/ratings', { valueEncoding: 'json' });
+var firebaseApp = require('./firebaseApp')
+
+//var db = level(__dirname + '/../data/ratings', { valueEncoding: 'json' });
+var db = firebaseApp.database().ref('ratings')
+
 var current = {};
+
+function transform(key) {
+  if (key[0] == '/') {
+    key = key.substring(1)
+  }
+
+  return key.replace('/',':')
+}
 
 var ratings = {
 
   // keys are strings
   
-  get: function(key,cb) {
-    db.get(key,function(err,res) {
-      if (err) {
-        res = { sum: 0, count: 0 };
+  get: function(lkey,cb) {
+    var key = transform(lkey)
+    db.child(key).once('value',function(snapshot) {
+      var value = snapshot.val()
+      if(value == null) {
+        value = { sum: 0, count: 0 };
+        return callback(null,value)
       }
-      cb(undefined,res);
-    });
+
+      cb(undefined,value);
+    },cb);
   },
 
-  set: function(key,val,cb) {
+  set: function(lkey,val,cb) {
+    var key = transform(lkey)
     if (current[key] != undefined) {
       current[key].push([val,cb]);
       console.log('skipping ' + val);
@@ -28,7 +44,7 @@ var ratings = {
 
   setImmediate: function(key,val,cb) {
     current[key] = [];
-    db.get(key, function(err,res) {
+    this.get(key, function(err,res) {
       var pendingUpdates;
       if (err || !res) {
         res = { sum: 0, count: 0 };
@@ -42,7 +58,7 @@ var ratings = {
         });
         current[key] = undefined;
       }
-      db.put(key,res,function(err,r) {
+      db.child(key).set(res,function(err,r) {
         cb(err,res);
         pendingUpdates.forEach(function(k) {
           if (k[1]) {
@@ -60,15 +76,10 @@ module.exports = ratings;
 (function() {
 
   if (require.main == module) {
-    ratings.get('test', function(e,r) { 
+
+    ratings.get('ziyarat/ashura', function(e,r) { 
       console.log('initial : ' , r);
-
-      ratings.set('test', 4, function(e,r) { console.log(e|| r); });
-      ratings.set('test', 5, function(e,r) { console.log(e|| r); });
-
-      ratings.set('test', 4, function(e,r) { 
-        ratings.get('test', function(e,r) { console.log('final: ', r); });
-      });
+      ratings.set('ziyarat/ashura',5,console.log)
     });
   }
 

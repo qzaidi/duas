@@ -1,4 +1,5 @@
-from node:8-slim
+FROM node:8-slim
+MAINTAINER qasim@zaidi.me
 
 WORKDIR /usr/src/app
 
