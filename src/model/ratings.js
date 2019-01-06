@@ -25,7 +25,7 @@ var ratings = {
       var value = snapshot.val()
       if(value == null) {
         value = { sum: 0, count: 0 };
-        return callback(null,value)
+        return cb(null,value)
       }
 
       cb(undefined,value);

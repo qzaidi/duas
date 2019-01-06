@@ -1,8 +1,10 @@
 node_modules/
 public/css/min
 public/js/min
-views/layout/css.jade
-views/layout/footerjs.jade
+src/views/layout/css.pug
+src/views/layout/revealcss.pug
+src/views/layout/revealjs.pug
+src/views/layout/footerjs.pug
 public/cache/
 resources/*
 data/ratings/

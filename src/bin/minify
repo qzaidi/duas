@@ -2,10 +2,13 @@
 
 "use strict";
 
-var fs = require('fs');
-var uglify = require('uglify-js');
-var crypto = require('crypto');
-var cleancss = require('clean-css');
+const fs = require('fs');
+const uglify = require('uglify-js');
+const crypto = require('crypto');
+const cleancss = require('clean-css');
+
+
+var outputDir = 'public';
 
 function getFiles(template,pattern,cb) {
   fs.readFile(template, 'utf-8' , function (err, data) {
@@ -41,13 +44,13 @@ function minifyCSS(template) {
     }
 
     files.forEach(function(file,i) {
-      file = 'public' + file + '.css';
+      file = outputDir + file + '.css';
       allCSS += fs.readFileSync(file).toString();
     });
 
-    fs.mkdir('public/css/min',function(err) {
+    fs.mkdir(outputDir + '/css/min',function(err) {
       var outfilename = 'min/' + crypto.createHash('md5').update(allCSS).digest('hex') + '.css';
-      fs.writeFileSync('public/css/' + outfilename, cleancss.process(allCSS),'utf-8');
+      fs.writeFileSync(outputDir + '/css/' + outfilename, cleancss.process(allCSS),'utf-8');
 
       console.log('generated minfied file as ' + outfilename,'minify');
 
@@ -75,7 +78,7 @@ function minifyJS(tmpl) {
     }
 
     flist = files.map(function(file) {
-      return 'public' + file + '.js';
+      return outputDir + file + '.js';
     });
 
     try {
@@ -85,9 +88,9 @@ function minifyJS(tmpl) {
       errHandler(e);
     }
 
-    fs.mkdir('public/js/min', function(err) {
+    fs.mkdir(outputDir + '/js/min', function(err) {
       var outfilename = 'min/' + crypto.createHash('md5').update(minified.code).digest('hex') + '.js';
-      fs.writeFileSync('public/js/' + outfilename, minified.code, 'utf-8');
+      fs.writeFileSync(outputDir + '/js/' + outfilename, minified.code, 'utf-8');
 
       console.log('generated minfied file as ' + outfilename + ' for template ' + tmpl,'minify');
 
@@ -112,9 +115,9 @@ function errHandler(e) {
 
 process.on('uncaughtException', errHandler);
 
-minifyCSS('views/layout/css');
-minifyCSS('views/layout/revealcss');
-minifyJS('views/layout/revealjs');
-minifyJS('views/layout/footerjs');
+minifyCSS('src/views/layout/css');
+minifyCSS('src/views/layout/revealcss');
+minifyJS('src/views/layout/revealjs');
+minifyJS('src/views/layout/footerjs');
 
 console.log('deployment completed');
