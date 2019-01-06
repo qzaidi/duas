@@ -32,8 +32,10 @@ app.use(session({
     saveUninitialized: false,
     cookie: { secure: true }
 }));
+
 require('./lib/view')(app);
 
+require('./routes')(app);
 
 var env = process.env.NODE_ENV || 'development';
 if (env == 'development') {
@@ -44,7 +46,7 @@ if (env == 'production') {
   app.use(require('./routes/mw').error);
 }
 
-require('./routes')(app);
+
 
 http.createServer(app)
     .on('error', function(err) {

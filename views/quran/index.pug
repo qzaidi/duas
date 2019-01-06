@@ -17,7 +17,7 @@ block content
             ul(data-role='listview')
               each surat in suras
                 li
-                  a(href='/quran/#{surat.id}')
+                  a(href='/quran/' + surat.id)
                     img.ui-li-icon(src='/img/quran.png',width='16',height='16',alt=surat.enname)
                     | #{surat.enname}
                     span.arabic.right(style='background: transparent;') #{surat.arname}
