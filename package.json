@@ -18,10 +18,12 @@
     "morgan": "*",
     "nodemailer": "*",
     "pug": "*",
-    "quran": "0.0.8",
+    "quran": "0.0.9",
     "serve-favicon": "*",
     "sharp": "*",
-    "sqlite3": "*"
+    "sql-injection": "0.0.6",
+    "sqlite3": "*",
+    "sqlstring": "^2.3.1"
   },
   "devDependencies": {
     "uglify-js": "*",

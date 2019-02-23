@@ -24,14 +24,14 @@ block content
           | #{urdu}
 
         h4
-          a.prev.ui-link(href='/ramadhan/daily/#{Math.max(1,day - 1)}')
+          a.prev.ui-link(href='/ramadhan/daily/' + Math.max(1,day - 1))
             img(src="/img/icon-back.png",alt='Previous')
             | Previous
           div.right
-            a.next.ui-link(href="/ramadhan/daily/#{Math.min(day + 1,29)}") 
+            a.next.ui-link(href='/ramadhan/daily/' + Math.min(day + 1,29)) 
               | Next
               img(src="/img/icon-next.png")/
 
       div(data-role="footer",data-position="fixed")
-        audio.noprint#amtag(itemprop="audio",style="width: 100%",src="http://storage.googleapis.com/mp3duas/ramadhan/daily/dua-ramadhan-#{day}.mp3",controls="controls",preload="none")
+        audio.noprint#amtag(itemprop="audio",style="width: 100%",src="http://storage.googleapis.com/mp3duas/ramadhan/daily/dua-ramadhan-" + day + ".mp3",controls="controls",preload="none")
       include ../../sharing

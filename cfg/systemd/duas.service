@@ -1,0 +1,20 @@
+[Unit]
+Description=duas.mobi 
+After=network-online.target
+
+[Service]
+WorkingDirectory=/var/www/duas/src
+Environment="NODE_ENV=production"
+
+User=ubuntu
+Group=ubuntu
+Type=simple
+
+ExecStart=/usr/bin/npm start
+Restart=always
+RestartSec=10
+StandardOutput=null
+
+[Install]
+WantedBy=multi-user.target
+Alias=duas

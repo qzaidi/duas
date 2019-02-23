@@ -280,6 +280,8 @@ var quran = {
       return next();
     }
 
+    console.log("xxx",option)
+
     qurandb.select(filter, option , function(err,rows) {
       var ayah;
       if (err || rows.length == 0) {
