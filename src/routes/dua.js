@@ -1,6 +1,7 @@
 "use strict";
 
 var db = require('../model/duas');
+var quran = require('./quran');
 var ratings = require('./ratings');
 var verses = require('./verses');
 
@@ -43,7 +44,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/dua', function(req,res,next) {
+  app.get('/dua', quran.getverses('pray',2,185,1),function(req,res,next) {
     db.all('select * from toc where type = "dua" and collection = "Sahifa-e-Sajjadiya"', function(err,rows) {
       var page = { title: 'Duas from Sahifa-e-Sajjadiya', 
                    description: 'Supplications from Sahifa-e-Sajjadiya, the Pslams of Islam by Imam Zainul Abideen' };
@@ -51,7 +52,9 @@ module.exports = function(app) {
         console.log(err);
         return next(err);
       }
-      res.render('duas', { data: rows , page: page});
+      req.data.data = rows
+      req.data.page = page;
+      res.render('duas', req.data);
     });
   });
 

@@ -1,0 +1,23 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#bestplace(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/salat',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Prayers during Salat
+        
+
+        p In each ruku, before the zikr 'سُبْحَانَ رَبِّيَ ٱلْعَظِيمِ وَبِحَمْدِهِ', you may say this prayer
+          + dua(ruku)
+          
+        p In the second sajda of the last rakat, you may recite this dua
+          +dua(lastsajda)
+
+      include ../sharing
