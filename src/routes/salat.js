@@ -8,7 +8,8 @@ var salat = {
   index: function(req,res,next) {
 
     db.all('select * from salat', function(err,rows) {
-      res.render('salat/index',{ rows: rows });
+      req.data.rows = rows
+      res.render('salat/index',req.data);
     });
 
   },

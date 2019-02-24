@@ -120,7 +120,7 @@ module.exports = function(app) {
 
   app.get('/nahjulbalagha',mw.render('nahj'));
 
-  app.get('/salat', salat.index);
+  app.get('/salat', quran.getverses('ankaboot45',29,44,1),salat.index);
 
   app.get('/salat/:key', salat.verses, salat.duas, salat.render);
 

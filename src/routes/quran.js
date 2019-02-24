@@ -16,7 +16,6 @@ var langmap = {
 };
 
 
-
 function getPNum(verse) {
  var npp = 8;
  return  ((verse - 1)/npp)|0;

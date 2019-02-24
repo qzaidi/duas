@@ -1,0 +1,25 @@
+extends ../layout
+
+block content
+  div(role='main')
+    .page.innerPage#bestplace(data-role="page")
+      .topGrahic
+      a.menuButton(href="/")
+        img(src="/img/menu-button.png",alt="Menu")
+
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/salat',data-rel="back")
+            img(src='/img/icon-back.png',alt='Back')
+            | Salat-e-Fatima-Zahra
+        
+        p
+          | It is narrated that Lady Fatimah al-Zahra, peace be upon her, used to offer a two-unit prayer taught by Archangel Gabriel. 
+          | In the first unit, she used to recite Surah al-Fatihah and repeat Surah al-Qadr one hundred times. 
+          | In the second unit, she used to recite Surah al-Fatihah and Surah al-Tawheed. After Taslim (i.e. the concluding part 
+          | of a prayer), she would say the following : 
+
+        p
+          +dua(salatzahra)
+
+      include ../sharing
