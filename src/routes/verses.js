@@ -13,6 +13,10 @@ var langmap = {
   'hintrans' : 'Hindi Transliteration'
 };
 
+var seolangs = {
+  'urdu': 'Urdu',
+  'hindi': 'Hindi'
+}
 
 var verses = {
   collection: function(type) {
@@ -50,13 +54,27 @@ var verses = {
   amp: generator('amp')
 };
 
+function getSupportedLangs(row) {
+  var text = ' with ';
+  var langs = Object.keys(row).filter(function(x) {
+    if (x in seolangs) {
+      return true
+    }
+  }).map(function(x) {
+    return seolangs[x];
+  });
+  text += langs.join(' and ') + ' translation and slides';
+  return text;
+}
+
 function generator(templ) { 
   return function(req,res,next) {
     db.all('select * from ' + req.params.name, function(err,rows) {
       var lang = req.query.lang || 'english';
       var langdesc = langmap[lang];
       var info = req.info;
-      var page = { title : info.enname + ' with ' + langdesc, image: '//duas.mobi/img/icon-' + info.type + '.png'};
+      var supportedLangs = getSupportedLangs(rows[rows.length-1]);
+      var page = { title : info.enname + supportedLangs, image: '//duas.mobi/img/icon-' + info.type + '.png'};
         var duration, min,sec,ptm;
         var cls = {};
         var url;
