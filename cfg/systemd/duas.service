@@ -13,7 +13,8 @@ Type=simple
 ExecStart=/usr/bin/npm start
 Restart=always
 RestartSec=10
-StandardOutput=null
+StandardOutput=file:/var/log/duas.out.log
+StandardError=file:/var/log/duas.err.log
 
 [Install]
 WantedBy=multi-user.target
