@@ -3,11 +3,11 @@ Description=duas.mobi
 After=network-online.target
 
 [Service]
-WorkingDirectory=/var/www/duas/src
-Environment="NODE_ENV=production"
+WorkingDirectory=/home/webapp/duas/src
+Environment="NODE_ENV=production EMAILUSER=qasim.zaidi@gmail.com EMAILPASS=mymmzksqnjvhddqx"
 
-User=ubuntu
-Group=ubuntu
+User=webapp
+Group=webapp
 Type=simple
 
 ExecStart=/usr/bin/npm start
