@@ -96,6 +96,7 @@ module.exports = function(app) {
   });
 
   app.get('/dua/:name/slides', validateDua,ratings.get, verses.reveal);
+  app.get('/amp/dua/:name', validateDua,ratings.get, verses.amp);
   app.get('/dua/:name', validateDua,ratings.get, verses.render);
 
   app.get('/sermon/:name', function(req,res,next) {

@@ -1,0 +1,53 @@
+extends layout-amp
+
+append htmlhead
+  link(rel="alternate",hreflang="en",href=url)
+  if(data[0].urdu) 
+    link(rel="alternate",hreflang="ur",href=url + "?lang=urdu")
+  if(data[0].hindi)
+    link(rel="alternate",hreflang="hi",href=url+"?lang=hindi")
+  if(data[0].id)
+    link(rel="alternate",hreflang="id",href=url + "?lang=id")
+  script(async,src="https://cdn.ampproject.org/v0.js")
+
+
+block content
+  div(role='main')
+    .page.innerPage.versePage(data-role="page")
+      .padpage.padtop
+        h1 
+          a.back.ui-link(href='/',data-rel="back")
+            amp-img(src='/img/icon-back.png',alt='<-',width=32,height=32)
+            | #{info.enname}
+          a.right(href=url + '/slides',rel="external")
+            amp-img(src="/img/fullscreen.png",width=32,height=32)
+          br
+
+      .ui-content(data-role="content")
+        p !{info.endesc} 
+
+          .section.group
+            .col.span_1_of_2.arabic #{info.arname}
+            .col.span_1_of_2
+        if (lang.indexOf('only') == -1) 
+          each row in data
+            .section.group
+              .col.span_1_of_2.arabic #{row.arabic}
+              .col.span_1_of_2(class=lang) !{helpers.embellish(row[lang])}
+        else
+          p.arabic.doublespaced
+            each row in data
+              | !{helpers.handleEllipsis(row.arabic)} &nbsp;
+
+        hr
+        p '#{info.enname}' is tagged in #{info.collection} collection. See other #{info.type}'s from 
+          a(href='/' + info.type + 's/collection/' + info.collection) #{info.collection}
+
+        if info.link
+          h3 Related Links
+          ol
+          each link in info.link
+            li
+              a.next.ui-link(href=link.href) #{link.title}
+                amp-img(src='/img/icon-next.png',width=32,height=32)
+

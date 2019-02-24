@@ -46,7 +46,8 @@ var verses = {
   },
 
   render: generator('verses'),
-  reveal: generator('reveal')
+  reveal: generator('reveal'),
+  amp: generator('amp')
 };
 
 function generator(templ) { 
