@@ -20,6 +20,6 @@ block content
             ul(data-role='listview')
               each row in slides
                 li
-                  a(href='/' + row.type + '/#' + row.urlkey + '/slides',rel="external")
+                  a(href='/' + row.type + '/' + row.urlkey + '/slides',rel="external")
                    img.ui-li-icon(src='/img/sample-images/icon2.png', alt='duas')
                    | #{row.enname}
