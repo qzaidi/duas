@@ -1,5 +1,7 @@
 "use strict";
 
+var menu = require('./menu');
+
 var home = {
 
   checkForSpecialOccasion: function(req,res,next) {
@@ -20,11 +22,15 @@ var home = {
         js: '/js/add2home.js'
       };
     } 
+
+    // hack for events
+    menu[4].text = req.hijri.monthName;
     
     res.render('index', {
       hijri: req.hijri,
       scripts: req.scripts,
       verse: req.verseofday,
+      menu: menu,
       url : "http://duas.mobi/",
     });
   },
