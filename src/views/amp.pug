@@ -43,6 +43,15 @@ block content
         p '#{info.enname}' is tagged in #{info.collection} collection. See other #{info.type}'s from 
           a(href='/' + info.type + 's/collection/' + info.collection) #{info.collection}
 
+        if (info.audio)
+          div(data-role="footer",data-position="fixed",itemscope,itemtype="http://schema.org/MusicRecording")
+            meta(itemprop="name",content=info.enname)
+            meta(itemprop="url",content=url)
+            if (duration)
+              meta(itemprop="duration",content=duration)
+            meta(itemprop="inAlbum",content=titlecase(info.type) + '-' + info.collection)
+            amp-audio.noprint#amtag(itemprop="audio",style="width: 100%",src=info.audio,controls="controls",preload="none")
+
         if info.link
           h3 Related Links
           ol
