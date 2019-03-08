@@ -56,4 +56,6 @@ module.exports = function(app) {
 
   app.get('/ziyarat/:name/slides',validate,ratings.get,verses.reveal);
   app.get('/ziyarat/:name', validate,ratings.get,verses.render);
+  app.get('/amp/ziyarat/:name', validate,ratings.get, verses.amp);
+
 };
