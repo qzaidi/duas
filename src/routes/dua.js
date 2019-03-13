@@ -86,6 +86,13 @@ module.exports = function(app) {
         return next(err);
       }
 
+      if (rows.length == 0) {
+        err = new Error('Not Found');
+        err.status = 404;
+        return next(err);
+      }
+
+
       page = { title: 'Duas from ' + name, description: rows.length + 'Supplications from ' + name };
       res.render('collection/collection' , { data: rows, page: page, collection: rows[0].collection, title: 'Supplications', url: '/duas/collection/'+name });
     });

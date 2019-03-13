@@ -56,11 +56,16 @@ var months = {
   render: function(req,res,next) {
     var hdate = req.hijri;
     var month = hijri.months[hdate.month - 1];
+    var prev = hijri.months[(hdate.month - 2 + 12)% 12]
+    var next = hijri.months[hdate.month]
+
     res.render('months', { 
                            events: req.events, 
                            month: month , 
                            datehelper: hijri.getDate,
                            info: req.info,
+                           next: next,
+                           prev: prev,
                            page: {
                             title: month,
                             description: 'Supplications for the month of ' + month

@@ -21,7 +21,7 @@ var menu = [
     icon: 'icon-search.png'
   },
   {
-    href: '/events',
+    href: '/month',
     text: 'Events',
     icon: 'icon-events.png'
   },

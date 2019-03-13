@@ -34,4 +34,14 @@ block content
                   h3 #{event.name}
                   p #{datehelper(event.hijridate,event.hijrimonth)}
 
+        h4
+          if (next && prev) 
+            a.next.ui-link(href=prev) 
+              | Previous
+              img(src="/img/icon-back.png")
+            div.right
+              a.next.ui-link(href=next)
+                | Next
+                img(src="/img/icon-next.png")
+
       include ../sharing
