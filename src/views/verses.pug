@@ -28,6 +28,12 @@ block content
         +breadcrumb([ { href: '/' + info.type, text: titlecase(info.type) }, { href: '/' + info.type + 's/collection/' + info.collection , text: info.collection }])
 
         #toTop ↑ Top
+        if (info.cover) 
+          div.info.noprint
+            | Experience 
+            a(href=url + '/slides',tooltip="view fullscreen",rel="external")
+              | #{info.enname} as a slide-show.
+
         div.noprint.ui-field-contain(data-role="controlgroup",data-type="horizontal",data-mini="true")
           if (data[0].english)
             a(class=cls.english,href='?lang=english',data-role="button",data-icon="duas-english") En

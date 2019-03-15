@@ -2320,6 +2320,12 @@ div.calendar
   text-align: center;
 }
 
+.info {
+  border: 1px dotted; 
+  background-color: #ffffe2; 
+  padding: 8px;
+}
+
 .limit250 {
   text-overflow: ellipsis;
   overflow: hidden;

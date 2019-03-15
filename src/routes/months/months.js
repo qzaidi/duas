@@ -64,8 +64,8 @@ var months = {
                            month: month , 
                            datehelper: hijri.getDate,
                            info: req.info,
-                           next: next,
-                           prev: prev,
+                           next: '/month/'+ next,
+                           prev: '/month/' + prev,
                            page: {
                             title: month,
                             description: 'Supplications for the month of ' + month
