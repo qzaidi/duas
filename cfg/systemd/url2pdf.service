@@ -1,0 +1,22 @@
+[Unit]
+Description=duas pdf printer
+After=network-online.target
+
+[Service]
+WorkingDirectory=/home/webapp/url-to-pdf-api
+Environment="NODE_ENV=production"
+Environment="ALLOW_HTTP=true"
+
+User=webapp
+Group=webapp
+Type=simple
+
+ExecStart=/usr/local/bin/node src/index.js
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+
+[Install]
+WantedBy=multi-user.target
+Alias=url2pdf

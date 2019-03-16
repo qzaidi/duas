@@ -14,12 +14,12 @@ block content
     .page.innerPage.versePage(data-role="page")
       .topGrahic
       a.menuButton(href="/searchpage")
-        img(src="/img/menu-search.png",alt="Duas Search")
+        img.noprint(src="/img/menu-search.png",alt="Duas Search")
 
       .padpage.padtop
         h1 
           a.back.ui-link(href='/',data-rel="back")
-            img(src='/img/icon-back.png',alt='<-')
+            img.noprint(src='/img/icon-back.png',alt='<-')
             | #{info.enname}
           include plusone
           .raty.right.noprint(data-score=rating)
@@ -74,13 +74,16 @@ block content
         p '#{info.enname}' is tagged in #{info.collection} collection. See other #{info.type}'s from 
           a(href='/' + info.type + 's/collection/' + info.collection) #{info.collection}
 
-        if info.link
-          h3 Related Links
-          ol
-          each link in info.link
-            li
-              a.next.ui-link(href=link.href) #{link.title}
-                img(src='/img/icon-next.png')
+        h3 Related Links
+        ol
+          li 
+            a.next.ui-link(href='/pdf'+rpath) #{info.enname} - PDF version
+              img(src='/img/icon-pdf.png')
+          if info.link
+            each link in info.link
+              li
+                a.next.ui-link(href=link.href) #{link.title}
+                  img(src='/img/icon-next.png')
 
         if (votes > 1)
           hr

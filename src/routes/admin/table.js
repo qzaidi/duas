@@ -22,14 +22,23 @@ module.exports = function(app,dbmodel,auth,table) {
     },
 
     list: function(req,res,next) {
-      var query = 'select rowid, * from ' + table + ' order by rowid desc';
+      var query = 'select rowid, * from ' + table;
+      var args = req.header('Referer').split('?');
+
+      // very hacky - must be sanitised
+      if (args.length > 0) {
+        query += ' where ' + unescape(args[1]);
+      }
+
+      query += ' order by rowid desc';
       if (req.query.jtPageSize) {
         query += ' limit ' + req.query.jtPageSize;
       }
       if (req.query.jtStartIndex) {
         query += ' offset ' + req.query.jtStartIndex;
       }
-      console.log(query);
+
+      console.log(query)
 
       db.all(query, function(err,data) {
         db.get('select count(1) as count from ' + table, function(err,count) {

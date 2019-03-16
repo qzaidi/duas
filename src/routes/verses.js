@@ -63,7 +63,7 @@ function getSupportedLangs(row) {
   }).map(function(x) {
     return seolangs[x];
   });
-  text += langs.join(' and ') + ' translation and slides';
+  text += langs.join(' and ') + ' translation and pdf';
   return text;
 }
 
