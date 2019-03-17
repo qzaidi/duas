@@ -301,6 +301,7 @@ var quran = {
 
     page.title = req.chapterInfo.tname + ':' + req.ayah.verse + ' - Holy Quran';
     page.description = 'Surat ' + req.chapterInfo.tname + ' (' + req.chapterInfo.arname + ' ) verse '  + req.params.verse + ' - Holy Quran ';
+    page.skipLangControls = true;
 
     res.render('quran/verse', { verse: req.params.verse, 
                                 ayah: req.ayah, 

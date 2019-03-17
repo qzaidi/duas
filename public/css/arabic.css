@@ -32,3 +32,8 @@
   text-align: justify;
   word-spacing: 5px;
 }
+.quranverse {
+  font-size:44px;
+  border-style: solid;
+  line-height: 1.5;
+}

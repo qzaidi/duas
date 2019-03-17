@@ -7,7 +7,7 @@ var salat = {
 
   index: function(req,res,next) {
 
-    db.all('select * from salat', function(err,rows) {
+    db.all('select * from salat order by sort', function(err,rows) {
       req.data.rows = rows
       res.render('salat/index',req.data);
     });

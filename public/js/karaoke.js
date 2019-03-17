@@ -1,5 +1,15 @@
 var cues;
 
+function setColLayout(state) {
+  if (state == 'off') {
+    $('.col').css('float','none')
+    $('.span_1_of_2').css('width','100%');
+  } else {
+    $('.col').css('float','right')
+    $('.span_1_of_2').css('width','48%');
+  }
+}
+
 $(document).on('pageinit','.versePage',function() {
   (function() {
     $(window).scroll(function() {
@@ -10,20 +20,18 @@ $(document).on('pageinit','.versePage',function() {
       }
     });
 
-    if ($('.span_1_of_2').css('width') == '48%') {
+    $('.colswitch').on('change',function(e) { 
+      var state = $(this).val();
+      setColLayout(state);
+    });
+
+    if (window.location.hash.indexOf('col1') > 0) {
+      $('.colswitch').val('off').slider('refresh')
+      setColLayout('off');
+    } else if ($('.span_1_of_2').css('width') == '48%') {
       $('.colswitch').val('on').slider('refresh')
     }
 
-    $('.colswitch').on('change',function(e) { 
-      var state = $(this).val();
-      if (state == 'off') {
-        $('.col').css('float','none')
-        $('.span_1_of_2').css('width','100%');
-      } else {
-        $('.col').css('float','right')
-        $('.span_1_of_2').css('width','48%');
-      }
-    });
 
     $('#toTop').click(function() {
       $('body,html').animate({scrollTop:0},800);

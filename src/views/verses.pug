@@ -77,7 +77,7 @@ block content
         h3 Related Links
         ol
           li 
-            a.next.ui-link(href='/pdf'+rpath) #{info.enname} - PDF version
+            a.next.ui-link(href='/pdf'+rpath,rel="external") #{info.enname} - PDF version
               img(src='/img/icon-pdf.png')
           if info.link
             each link in info.link
