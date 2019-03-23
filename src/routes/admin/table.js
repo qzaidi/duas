@@ -23,11 +23,15 @@ module.exports = function(app,dbmodel,auth,table) {
 
     list: function(req,res,next) {
       var query = 'select rowid, * from ' + table;
-      var args = req.header('Referer').split('?');
+      var referer = req.header('Referer');
+      
+      if (referer) {
+        var args = referer.split('?');
 
-      // very hacky - must be sanitised
-      if (args.length > 0) {
-        query += ' where ' + unescape(args[1]);
+        // very hacky - must be sanitised
+        if (args.length > 1 && args[1]) {
+          query += ' where ' + unescape(args[1]);
+        }
       }
 
       query += ' order by rowid desc';
