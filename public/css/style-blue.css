@@ -2357,6 +2357,15 @@ div.calendar
     filter: none !important;
     -ms-filter: none !important;
   }
+
+  .col {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .span_1_of_2 {
+    width: 100% !important;
+  }
   /* Black prints faster: h5bp.com/s */
   a, a:visited {
     text-decoration: underline;

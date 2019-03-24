@@ -70,12 +70,12 @@ block content
             each row in data
               | !{helpers.handleEllipsis(row.arabic)} &nbsp;
 
-        hr
-        p '#{info.enname}' is tagged in #{info.collection} collection. See other #{info.type}'s from 
+        hr.noprint
+        p.noprint '#{info.enname}' is tagged in #{info.collection} collection. See other #{info.type}'s from 
           a(href='/' + info.type + 's/collection/' + info.collection) #{info.collection}
 
-        h3 Related Links
-        ol
+        h3.noprint Related Links
+        ol.noprint
           li 
             a.next.ui-link(href='/pdf'+rpath,rel="external") #{info.enname} - PDF version
               img(src='/img/icon-pdf.png')
@@ -86,8 +86,8 @@ block content
                   img(src='/img/icon-next.png')
 
         if (votes > 1)
-          hr
-          .left(itemscope,itemtype="http://schema.org/Article")
+          hr.noprint
+          .left.noprint(itemscope,itemtype="http://schema.org/Article")
             span(itemprop="name",itemtype="http://schema.org/Article") #{info.enname} 
             img.hidden(itemprop="image",src="#{page.image}") 
             meta(itemprop="headline",content="#{page.description}")

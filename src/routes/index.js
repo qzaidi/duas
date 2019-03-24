@@ -20,6 +20,7 @@ var verses = require('./verses');
 var tag = require('./tag');
 var duasorg = require('./duasorg');
 var hadith = require('./hadith');
+var pdf = require('./pdf');
 var slides = require('./slides');
 
 var mw = require('./mw');
@@ -127,6 +128,8 @@ module.exports = function(app) {
   app.get('/newsletter', mw.render('newsletter'));
 
   app.get('/slides',slides.index);
+
+  app.get('/pdf/*',pdf.index);
 
   app.get('/*', mw.notfound);
 
