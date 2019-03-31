@@ -23,7 +23,8 @@
     "sharp": "*",
     "sql-injection": "0.0.6",
     "sqlite3": "*",
-    "sqlstring": "^2.3.1"
+    "sqlstring": "^2.3.1",
+    "tee": "^0.2.0"
   },
   "devDependencies": {
     "uglify-js": "*",
