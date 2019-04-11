@@ -139,6 +139,7 @@ module.exports = function(app) {
 
   app.get('/munajat/:name/slides',validateMunajat,ratings.get,verses.reveal);
   app.get('/munajat/:name',validateMunajat,ratings.get,verses.render);
+  app.get('/amp/munajat/:name', validateMunajat,ratings.get, verses.amp);
 
   app.get('/munajats/collection/:name',verses.collection('munajat'));
 
