@@ -8,9 +8,9 @@ const cacheDir = './public/cache/pdf/'
 var pdf = {
 
   index: function(req,res,next) {
-    var filename = cacheDir + req.params[0];
+    var filename = cacheDir + req.params.contentType + '/' + req.params.content;
     
-    var url = req.protocol + '://' + req.get('host') + '/' + req.params[0];
+    var url = req.protocol + '://' + req.get('host') + '/' + req.params.contentType + '/' + req.params.content;
     if (req.query && req.query.lang) {
       url += '?lang=' + req.query.lang;
       filename += '-' + req.query.lang;
@@ -26,7 +26,7 @@ var pdf = {
 
       console.log('serving from cache',filename);
       fs.createReadStream(filename).pipe(res);
-    })
+    });
    },
 
 
@@ -43,9 +43,16 @@ var pdf = {
 
     request.get(opts)
            .on('error',function(err) {
-              console.log('error in pdf gen',err,req.url);
+              console.log('error in pdf gen',err,url);
+              res.sendStatus(500);
+              fs.unlinkSync(filename);// remove generated file
            })
-           .pipe(tee(fs.createWriteStream(filename),res))
+           .on('response',function(response) {
+              console.log(response.statusCode)
+              if (response.statusCode != 200){
+                console.log('got unexpected response',response.statusCode);
+              }
+           }).pipe(tee(fs.createWriteStream(filename),res))
    }
 
 };

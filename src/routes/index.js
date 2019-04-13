@@ -130,7 +130,8 @@ module.exports = function(app) {
 
   app.get('/slides',slides.index);
 
-  app.get('/pdf/*',pdf.index);
+  app.param('content',verses.content);
+  app.get('/pdf/:contentType/:content',pdf.index);
 
   app.get('/*', mw.notfound);
 

@@ -19,6 +19,28 @@ var seolangs = {
 }
 
 var verses = {
+  content: function(req,res,next,id) {
+    db.all('select * from toc where urlkey = ?',id,function(err,rows) {
+      if (err) {
+        console.log('error in :content',err);
+        return next(err);
+      }
+
+      if (rows.length == 0) {
+        console.log('specified url did not match',id);
+        return next(new Error('Not Found'));
+      }
+    
+
+      if (req.params.contentType && req.params.contentType != rows[0].type) {
+        console.log('content type mismatch',req.params.contentType,rows[0].type)
+      }
+
+      req.content = rows[0];
+      next();
+    });
+  },
+
   collection: function(type) {
     return function(req,res,next) {
       var name = req.params.name;
