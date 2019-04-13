@@ -36,6 +36,7 @@ module.exports = function(app) {
   app.get('/asmaulhusna/:id', names.get, quran.getverse, names.render);
 
   app.get('/events/:page', events.page);
+  app.get('/amp/events/:page', events.amp);
   app.get('/events', mw.hijri, events.index);
 
   app.get('/month/:month',months.getName, months.getInfo, months.events,months.render);

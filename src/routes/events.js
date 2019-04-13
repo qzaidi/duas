@@ -9,9 +9,8 @@ function toc_link(x) {
   return '/' + x.type + '/' + x.urlkey;
 }
 
-var events = {
-
-  page: function(req,res,next) {
+function generator(templ) {
+  return function(req,res,next) {
     var urlkey = req.params.page;
     var sql = 'select * from events where urlkey = "' + urlkey + '"';
     db.get(sql, function(err,ev) {
@@ -43,9 +42,11 @@ var events = {
 
       ev.crdate = hijri.getGregorianDate({ day: ev.hijridate, month: ev.hijrimonth -1 });
       ev.month = hijri.months[ev.hijrimonth - 1];
-      res.render('events/event', { page: page, event: ev, suffix: hijri.get_nth_suffix(ev.hijridate) });
+      res.render('events/' + templ, { page: page, event: ev, suffix: hijri.get_nth_suffix(ev.hijridate) });
     });
-  },
+  };
+}
+var events = {
 
   index: function(req,res,next) {
     db.all('select * from events order by hijrimonth,hijridate', function(err,rows) {
@@ -89,7 +90,10 @@ var events = {
       });
       next();
     });
-  }
+  },
+
+  page: generator('event'),
+  amp: generator('amp')
 };
 
 module.exports = events;
