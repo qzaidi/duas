@@ -6,10 +6,6 @@ var home = {
 
   checkForSpecialOccasion: function(req,res,next) {
     req.scripts = {};
-    // set the text for popupinfo here
-    // add popup.js to req.scripts.js array
-    // TODO: support both external scripts and inline scripts
-    
     next();
   },
 
