@@ -25,26 +25,16 @@ echo "Running npm install in $PWD"
 npm install
 
 log "minifying assets"
-bin/minify || abort 'Minification failed. Aborted Restart, but npm packages have been updated.'
+./src/bin/minify || abort 'Minification failed. Aborted Restart, but npm packages have been updated.'
  
 log 'Post deploy script has been executed successfully.'
 
-if test -e '/etc/init/sajjad.conf' ; then
-  log 'upstart config is okay'
+if test -e '/etc/systemd/system/duas.service' ; then
+  log 'systemd config is okay'
+  systemctl restart duas
+  log 'Deployment complete'
 else
   log '**** Upstart configuration is missing ****'
   exit 1
 fi
 
-# Display nginx maintainence page
-log 'Starting maintainence window'
-cp public/system/.maintenance.html public/system/maintenance.html
-
-#log 'Touching restart file'
-touch public/system/restart
-# wait for a max of 1 minute - this is the time to restart
-sleep 15
-
-# remove the file if it still exists
-#rm -f public/system/maintenance.html
-log 'Deployment complete'

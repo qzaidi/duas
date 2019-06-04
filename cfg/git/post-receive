@@ -43,7 +43,7 @@ export DEPLOY_ALLOWED_BRANCH="master"
 
 # Use this to do update tasks and maybe service restarts
 # If you need this just delete the comment and modify to your needs
-POST_UPDATE_CMD='cd ${DEPLOY_ROOT} && npm install'
+POST_UPDATE_CMD='cd ${DEPLOY_ROOT} && ./src/bin/deploy'
 
 ###########################################################################################
 
