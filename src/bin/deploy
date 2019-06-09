@@ -18,9 +18,6 @@ log() {
 #create symlink for logs
 ln -sf ../shared/logs
 
-log "creating release file"
-echo "module.exports = '$(git describe)'" > release
-
 echo "Running npm install in $PWD"
 npm install
 
