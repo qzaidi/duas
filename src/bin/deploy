@@ -27,7 +27,8 @@ log "minifying assets"
 log 'Post deploy script has been executed successfully.'
 
 if test -e '/etc/systemd/system/duas.service' ; then
-  log 'systemd config is okay'
+  log 'systemd config is okay, clearing nginx cache'
+  rm -f /var/cache/nginx/*
   systemctl restart duas
   log 'Deployment complete'
 else
