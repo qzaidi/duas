@@ -9,7 +9,7 @@ block content
 
       .padpage.padtop
 
-        h1 
+        h1.noprint
           a.back.ui-link(href='#',data-rel='back')
             img(src='/img/icon-back.png',alt='Ahadith')
             | #{hadith.title}
@@ -28,13 +28,6 @@ block content
         br
         br
 
-        h4
-          a.prev.ui-link(href='/ahadith/' + collection + '/' + Math.max(id - 1,1))
-            img(src="/img/icon-back.png",alt='Previous')
-            | Previous
-          div.right
-            a.next.ui-link(href='/ahadith/' + collection + '/' + Math.min(id + 1,40)) 
-              | Next
-              img(src="/img/icon-next.png")
+        +prevnext('/ahadith/' + collection + '/' + Math.max(id - 1,1),'/ahadith/' + collection + '/' + Math.min(id + 1,40)) 
 
       include ../sharing

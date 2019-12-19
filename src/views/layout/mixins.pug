@@ -32,3 +32,14 @@ mixin dua(key)
     .section.group
       .col.span_1_of_2.arabic #{row.arabic}
       .col.span_1_of_2(class="english") #{row.english}
+
+mixin prevnext(prevurl,nexturl)
+  h4.noprint
+    a.prev.ui-link(href=prevurl)
+      img(src="/img/icon-back.png",alt='Previous')
+      | Previous
+    div.right
+      a.next.ui-link(href=nexturl) 
+        | Next
+        img(src="/img/icon-next.png")
+

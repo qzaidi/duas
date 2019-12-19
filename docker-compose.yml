@@ -7,6 +7,7 @@ services:
         - EMAILUSER='qasim@zaidi.me'
         - EMAILPASS=$${EMAILPASS}
         - NODE_ENV=production
+        - PDFSERVER=pdfgen
       ports: 
         - 3786:3786
       volumes:
@@ -31,6 +32,15 @@ services:
        - ./cfg/certbot/conf:/etc/letsencrypt
        - ./cfg/certbot/www:/var/www/certbot
       entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+    pdfgen:
+      image: mqzaidi/url2pdf
+      build: deployments/local/pdfgen
+      environment:
+        - NODE_ENV=production
+        - ALLOW_HTTP=true
+      ports:
+        - 9000:9000
 
 volumes:
   public:

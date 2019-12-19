@@ -22,7 +22,7 @@
     "serve-favicon": "*",
     "sharp": "*",
     "sql-injection": "0.0.6",
-    "sqlite3": "*",
+    "sqlite3": "^4.1.0",
     "sqlstring": "^2.3.1",
     "tee": "^0.2.0"
   },

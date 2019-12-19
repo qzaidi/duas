@@ -4,7 +4,7 @@ After=multi-user.target
 
 [Service]
 WorkingDirectory=/home/webapp/duas/src
-Environment="NODE_ENV=production EMAILUSER=qasim.zaidi@gmail.com EMAILPASS=mymmzksqnjvhddqx"
+Environment="NODE_ENV=production EMAILUSER=qasim.zaidi@gmail.com EMAILPASS=mymmzksqnjvhddqx PDFSERVER=localhost"
 
 User=webapp
 Group=webapp

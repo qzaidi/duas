@@ -3,7 +3,8 @@ var fs = require('fs');
 var tee = require('tee');
 var path = require('path');
 
-const cacheDir = './public/cache/pdf/'
+const cacheDir = './public/cache/pdf/';
+const pdfgenServer = process.env.PDFSERVER;
 
 var pdf = {
 
@@ -32,7 +33,7 @@ var pdf = {
 
    generate: function(url,filename,res) {
     var opts = {
-      url: 'http://127.0.0.1:9000/api/render?emulateScreenMedia=false&pdf.printBackground=false&url=' + encodeURI(url),
+      url: 'http://' + pdfgenServer + ':9000/api/render?emulateScreenMedia=false&pdf.printBackground=false&url=' + encodeURI(url),
     };
 
     var dir = path.dirname(filename)
