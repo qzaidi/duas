@@ -34,8 +34,7 @@ services:
       entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
     pdfgen:
-      image: mqzaidi/url2pdf
-      build: deployments/local/pdfgen
+      image: restorecommerce/pdf-rendering-srv
       environment:
         - NODE_ENV=production
         - ALLOW_HTTP=true
