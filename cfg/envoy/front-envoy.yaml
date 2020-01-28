@@ -1,0 +1,88 @@
+static_resources:
+  listeners:
+  - address:
+      socket_address:
+        address: 0.0.0.0
+        port_value: 80
+    filter_chains:
+    - filters:
+      - name: envoy.http_connection_manager
+        config:
+          codec_type: auto
+          stat_prefix: ingress_http
+          route_config:
+            virtual_hosts:
+            - name: backend
+              domains:
+              - "duas.mobi"
+              routes:
+              - match:
+                  prefix: "/"
+                redirect:
+                  path_redirect: "/"
+                  https_redirect: true
+          http_filters:
+          - name: envoy.router
+            config: {}
+  - address:
+      socket_address:
+        address: 0.0.0.0
+        port_value: 1443
+    filter_chains:
+    - filters:
+      - name: envoy.http_connection_manager
+        config:
+          codec_type: auto
+          stat_prefix: ingress_http
+          route_config:
+            name: local_route
+            virtual_hosts:
+            - name: backend
+              domains:
+              - "duas.mobi"
+              routes:
+              - match:
+                  prefix: "/"
+                route:
+                  cluster: duas
+          http_filters:
+          - name: envoy.router
+            config: {}
+      tls_context:
+        common_tls_context:
+          tls_certificates:
+            - certificate_chain:
+                filename: "/etc/letsencrypt/live/duas.mobi/fullchain.pem"
+              private_key:
+                filename: "/etc/letsencrypt/live/duas.mobi/privkey.pem"
+  clusters:
+  - name: duas
+    connect_timeout: 0.25s
+    type: strict_dns
+    lb_policy: round_robin
+    hosts:
+    - socket_address:
+        address: duas
+        port_value: 3786
+    health_checks:
+     - timeout: 1s
+       interval: 60s
+       interval_jitter: 1s
+       unhealthy_threshold: 3
+       healthy_threshold: 3
+       tcp_health_check: {}
+  - name: pdfgen
+    connect_timeout: 0.25s
+    type: strict_dns
+    lb_policy: round_robin
+    http2_protocol_options: {}
+    hosts:
+    - socket_address:
+        address: pdfgen
+        port_value: 9000
+admin:
+  access_log_path: "/dev/null"
+  address:
+    socket_address:
+      address: 0.0.0.0
+      port_value: 8001
