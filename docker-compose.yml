@@ -32,8 +32,8 @@ services:
        - ./cfg/envoy/front-envoy.yaml:/etc/envoy/envoy.yaml
        - ./cfg/certbot/conf:/etc/letsencrypt
       ports:
-       - 80:8001
-       - 1443:1443
+       - 80:80
+       - 443:1443
 
     certbot:
       image: certbot/certbot
