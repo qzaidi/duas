@@ -12,34 +12,34 @@ services:
         - "3786"
       volumes:
         - public:/usr/src/app/public
+        - ./duas-d43d6-firebase-adminsdk-1gmx8-f0b0d45ead.json:/usr/src/app/firebase.json
         - ./src/data:/usr/src/app/src/data
       restart: always
 
-#    nginx:
-#      image: nginx:1.15-alpine
-#      ports:
-#        - 80:80
-#        - 1443:443
-#      volumes:
-#        - public:/var/www/
-#        - ./cfg/nginx:/etc/nginx/conf.d
-#        - ./cfg/certbot/conf:/etc/letsencrypt
-#        - ./cfg/certbot/www:/var/www/certbot
-#
-    front-envoy:
-      image: envoyproxy/envoy-alpine
-      volumes:
-       - ./cfg/envoy/front-envoy.yaml:/etc/envoy/envoy.yaml
-       - ./cfg/certbot/conf:/etc/letsencrypt
+    nginx:
+      image: nginx:1.15-alpine
       ports:
-       - 80:80
-       - 443:1443
-
+        - 80:80
+        - 443:443
+      volumes:
+        - public:/var/www/
+        - ./cfg/nginx:/etc/nginx/conf.d
+        - ./cfg/certbot/conf:/etc/letsencrypt
+        - ./cfg/certbot/www:/var/www/certbot
+#    front-envoy:
+#      image: envoyproxy/envoy-alpine
+#      volumes:
+#       - ./cfg/envoy/front-envoy.yaml:/etc/envoy/envoy.yaml
+#       - ./cfg/certbot/conf:/etc/letsencrypt
+#      ports:
+#       - 80:80
+#       - 443:1443
     certbot:
       image: certbot/certbot
       volumes:
        - ./cfg/certbot/conf:/etc/letsencrypt
-       - ./cfg/certbot/www:/var/www/certbot
+       - public:/data/letsencrypt
+       - ./cfg/certbot/www:/data/letsencrypt
       entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
     pdfgen:
