@@ -9,7 +9,7 @@
     "body-parser": "*",
     "cookie-parser": "*",
     "errorhandler": "*",
-    "express": ">=3.0.11",
+    "express": ">=4.18.2",
     "express-basic-auth": "*",
     "express-session": "*",
     "firebase-admin": "*",
