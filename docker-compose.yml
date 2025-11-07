@@ -15,24 +15,8 @@ services:
         - ./firebase.json:/usr/src/app/firebase.json
         - ./src/data:/usr/src/app/src/data
       restart: always
-
-    nginx:
-      image: nginx:1.15-alpine
-      ports:
-        - 80:80
-        - 443:443
-      volumes:
-        - public:/var/www/
-        - ./cfg/nginx:/etc/nginx/conf.d
-        - ./cfg/certbot/conf:/etc/letsencrypt
-        - ./cfg/certbot/www:/var/www/certbot
-    certbot:
-      image: certbot/certbot
-      volumes:
-       - ./cfg/certbot/conf:/etc/letsencrypt
-       - ./cfg/certbot/www:/data/letsencrypt/www
-      command: "renew --webroot -w /data/letsencrypt"
-      entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew --webroot -w /data/letsencrypt/www; sleep 12h & wait $${!}; done;'"
+      networks:
+        - webproxy
 
     pdfgen:
       image: restorecommerce/pdf-rendering-srv
@@ -41,6 +25,12 @@ services:
         - ALLOW_HTTP=true
       ports:
         - 9000:9000
+      networks:
+        - webproxy
+
+networks:
+  webproxy:
+    external: true
 
 volumes:
   public:
